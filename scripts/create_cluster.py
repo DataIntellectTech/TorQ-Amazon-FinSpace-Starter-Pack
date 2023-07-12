@@ -151,7 +151,7 @@ if __name__ == "__main__":
     lgi("Successfully found KX environment - {}".format(resp['name']))
     
     if args.action == 'create':
-        resp = create_cluster(client, args.clusterName, args.clusterType, args.proctype, args.procname)
+        resp = create_cluster(client, args.clusterName, args.clusterType, proctype=args.proctype, procname=args.procname)
     elif args.action == 'destroy':
         resp = delete_cluster(client, args.clusterName)
     elif args.action == 'check_status':
