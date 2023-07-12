@@ -62,7 +62,6 @@ def check_status(client, clusterName, action, waitForCompletion=False):
 
 
 def create_cluster(client, clusterName, clusterType, **kwargs):
-    lgi("creating kx cluster {} of type {}".format(clusterName, clusterType))
 
     databases = [
         {
@@ -91,22 +90,28 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         if v is not None:
             cmdLine.append({'key':k, 'value':v})
 
-    resp = client.create_kx_cluster(
-        environmentId=environmentId,
-        clusterName=clusterName,
-        clusterType=clusterType,
-        databases=databases,
-        clusterDescription=clusterDescription,
-        capacityConfiguration=capacityConfiguration,
-        releaseLabel=releaseLabel,
-        vpcConfiguration=vpcConfiguration,
-        initializationScript=initScript,
-        commandLineArguments=cmdLine,
-        code=code,
-        savedownStorageConfiguration=savedownStorageConfiguration,
-        azMode=azMode,
-        availabilityZoneId=availabilityZoneId
-    )
+    clusterArgs = {
+        'environmentId': environmentId,
+        'clusterName': clusterName,
+        'clusterType': clusterType,
+        'databases': databases,
+        'clusterDescription': clusterDescription,
+        'capacityConfiguration': capacityConfiguration,
+        'releaseLabel': releaseLabel,
+        'vpcConfiguration': vpcConfiguration,
+        'initializationScript' : initScript,
+        'commandLineArguments' : cmdLine,
+        'code': code,
+        'azMode' : azMode,
+        'availabilityZoneId' :availabilityZoneId
+    }
+
+    if clusterType == 'RDB':
+        clusterArgs['savedownStorageConfiguration'] = savedownStorageConfiguration
+
+    lgi("creating kx cluster {} of type {} with params {}".format(clusterName, clusterType, clusterArgs))
+
+    resp = client.create_kx_cluster(**clusterArgs)
 
     check_status(client, clusterName, 'create', waitForCompletion=True)
 
@@ -136,8 +141,8 @@ if __name__ == "__main__":
                         help="Name to give the cluster"
                         )
     
-    parser.add_argument("--procname", help="name of the torq proc")
     parser.add_argument("--proctype", help="type of the torq proc")
+    parser.add_argument("--procname", help="name of the torq proc")
     
     args = parser.parse_args()
 

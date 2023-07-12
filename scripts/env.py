@@ -19,8 +19,6 @@ s3Bucket = "fintorq-eu-west1-code"
 s3Key = "code.zip"
 initScript = "finTorq-App/env.q"
 commandLineArguments = [
-    {"key":"proctype", "value":"discovery"},
-    {"key":"procname", "value":"discovery1"},
     {"key":"noredirect", "value":"true"}
     ]
 
