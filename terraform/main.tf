@@ -157,12 +157,6 @@ resource "aws_s3_object" "code" {
   source = var.zip_file_path
 }
 
-#resource "null_resource" "upload_hdb" {
-#  provisioner "local-exec" {
-#    command = "aws s3 cp --recursive hdb s3://finspace-data-bucket/hdb"
-#  }
-#}
-
 variable "kms-key-id" {
   description = "key id for kms key"
   type        = string 
