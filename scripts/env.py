@@ -18,6 +18,9 @@ availabilityZoneId = "euw1-az1"
 s3Bucket = "fintorq-eu-west1-code"
 s3Key = "code.zip"
 initScript = "finTorq-App/env.q"
+
+executionRole = "arn:aws:iam::766012286003:role/finTorq_hdb_connect"
+
 commandLineArguments = [
     {"key":"noredirect", "value":"true"}
     ]

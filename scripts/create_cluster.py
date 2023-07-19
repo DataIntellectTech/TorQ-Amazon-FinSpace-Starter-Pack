@@ -102,6 +102,7 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         'initializationScript' : initScript,
         'commandLineArguments' : cmdLine,
         'code': code,
+        'executionRole': executionRole,
         'azMode' : azMode,
         'availabilityZoneId' :availabilityZoneId
     }
