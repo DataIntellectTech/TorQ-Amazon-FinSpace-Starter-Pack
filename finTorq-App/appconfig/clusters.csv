@@ -1,6 +1,6 @@
 cluster_name,cluster_type,proctype,procname,toload,args
 finTorq_hdb,HDB,hdb,hdb1,${KDBHDB},
 finTorq_disc,RDB,discovery,discovery1,${KDBCODE}/processes/discovery.q,
-finTorq_rdb,RDB,rdb,rdb1,${KDBCODE}/processes/rdb.q
+finTorq_rdb,RDB,rdb,rdb1,${KDBCODE}/processes/rdb.q,
 finTorq_gateway,GATEWAY,gateway,gateway1,${KDBCODE}/processes/gateway.q,
 finTorq_monitor,RDB,monitor,monitor1,${KDBCODE}/processes/monitor.q,
