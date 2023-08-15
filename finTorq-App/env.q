@@ -1,6 +1,6 @@
 opts:.Q.opt .z.x;
 codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
-hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/oreganTestDatabase"];
+hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db"];
 
 torqDir:codeDir,"/TorQ";
 appDir:codeDir,"/finTorq-App";
@@ -14,9 +14,11 @@ setenv[`KDBCONFIG; torqDir,"/config"];
 setenv[`KDBLOG; torqDir,"/logs"];
 setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
-setenv[`KDBHDB; hdbDir];
+setenv[`KDBHDBPOSITION; hdbDir,"/oreganTestDatabase"];
+setenv[`KDBHDBTRADE; hdbDir,"/oreganTradeDatabase"];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
-setenv[`KDBDATABSE; "oreganTestDatabase"];
+setenv[`KDBDATABASEPOSITION; "oreganTestDatabase"];
+setenv[`KDBDATABASETRADE; "oreganTradeDatabase"];
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
 setenv[`KDBAPPCODE; appDir,"/code"];
@@ -27,3 +29,5 @@ setenv[`TORQPROCESSES; getenv[`KDBAPPCONFIG],"/process.csv"];
 
 / TODO - remove this once we can pass in the env file as a cmd line parameter
 system"l ",torqDir,"/torq.q";
+
+/ system"l ",torqDir,"/code/processes/rdb.q";
