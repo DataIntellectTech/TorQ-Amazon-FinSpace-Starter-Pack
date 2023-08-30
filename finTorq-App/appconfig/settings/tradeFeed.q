@@ -1,4 +1,4 @@
-.feed.clusters:enlist `$"oregan-fintorq-rdb-trade"
+.finspace.clusters:enlist `$"oregan-fintorq-rdb-trade"
 
 \d .servers
 

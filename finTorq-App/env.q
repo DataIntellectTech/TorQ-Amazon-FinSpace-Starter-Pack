@@ -14,11 +14,10 @@ setenv[`KDBCONFIG; torqDir,"/config"];
 setenv[`KDBLOG; torqDir,"/logs"];
 setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
-setenv[`KDBHDBPOSITION; hdbDir,"/oreganTestDatabase"];
-setenv[`KDBHDBTRADE; hdbDir,"/oreganTradeDatabase"];
+setenv[`KDBHDB; hdbDir,"/oreganTradeDatabase"];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
-setenv[`KDBDATABASEPOSITION; "oreganTestDatabase"];
 setenv[`KDBDATABASETRADE; "oreganTradeDatabase"];
+
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
 setenv[`KDBAPPCODE; appDir,"/code"];
@@ -29,5 +28,3 @@ setenv[`TORQPROCESSES; getenv[`KDBAPPCONFIG],"/process.csv"];
 
 / TODO - remove this once we can pass in the env file as a cmd line parameter
 system"l ",torqDir,"/torq.q";
-
-/ system"l ",torqDir,"/code/processes/rdb.q";

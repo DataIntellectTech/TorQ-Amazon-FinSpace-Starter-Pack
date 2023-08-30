@@ -1,8 +1,6 @@
 cluster_name,cluster_type,proctype,procname,toload,args
-oregan-fintorq-hdb-position,HDB,hdb,hdb_position,${KDBHDBPOSITION},
-oregan-fintorq-hdb-trade,HDB,hdb,hdb_trade,${KDBHDBTRADE},
+oregan-fintorq-hdb-trade,HDB,hdb,hdb_trade,${KDBHDB},
 finTorq_disc,RDB,discovery,discovery1,${KDBCODE}/processes/discovery.q,
-oregan-fintorq-rdb-position,RDB,rdb,rdb_position,${KDBCODE}/processes/rdb.q,
 oregan-fintorq-rdb-trade,RDB,rdb,rdb_trade,${KDBCODE}/processes/rdb.q,
 oregan-fintorq-feed-trade,RDB,tradeFeed,tradeFeed1,${KDBAPPCODE}/processes/tradeFeed.q,
 finTorq_gateway,GATEWAY,gateway,gateway1,${KDBCODE}/processes/gateway.q,

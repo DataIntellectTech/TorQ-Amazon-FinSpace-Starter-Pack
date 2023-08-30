@@ -1,1 +1,0 @@
-setenv[`KDBHDB;getenv[`KDBHDBTRADE]];
