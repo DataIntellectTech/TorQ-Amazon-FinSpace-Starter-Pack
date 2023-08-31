@@ -7,6 +7,7 @@ trades:([]sym:`g#`symbol$();time:`timestamp$();src:`symbol$();price:`float$();si
 \d .finspace
 
 database:getenv[`KDBDATABASETRADE];
+hdbclusters:enlist `$"oregan-fintorq-hdb-trade";
 
 \d .
 

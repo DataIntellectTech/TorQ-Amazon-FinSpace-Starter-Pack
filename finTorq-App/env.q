@@ -1,6 +1,6 @@
 opts:.Q.opt .z.x;
 codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
-hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db"];
+hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/oreganTradeDatabase"];
 
 torqDir:codeDir,"/TorQ";
 appDir:codeDir,"/finTorq-App";
@@ -14,7 +14,7 @@ setenv[`KDBCONFIG; torqDir,"/config"];
 setenv[`KDBLOG; torqDir,"/logs"];
 setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
-setenv[`KDBHDB; hdbDir,"/oreganTradeDatabase"];
+setenv[`KDBHDB; hdbDir];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
 setenv[`KDBDATABASETRADE; "oreganTradeDatabase"];
 
