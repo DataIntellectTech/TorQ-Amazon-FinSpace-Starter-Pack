@@ -27,8 +27,5 @@ hdbtypes:()                         //connection to HDB not needed
 
 subfiltered:0b
 // path to rdbsub{i}.csv
-subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"]
+subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"];
 
-\d .
-
-.aws.get_latest_sym_file[.finspace.database;getenv[`KDBSCRATCH]];
