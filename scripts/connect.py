@@ -1,10 +1,15 @@
 import boto3
+import argparse
 
 from env import *
 
 
 userName = "finTorq_user"
-clusterName = "finTorq_hdb"
+parser = argparse.ArgumentParser()
+parser.add_argument("--clusterName", required=True, help="Name to give the cluster")
+args = parser.parse_args()
+
+clusterName = args.clusterName
 
 defaultSession = boto3.Session()
 finspace = defaultSession.client('finspace')
