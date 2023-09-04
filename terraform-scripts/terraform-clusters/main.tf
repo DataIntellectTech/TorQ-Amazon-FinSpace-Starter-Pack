@@ -41,3 +41,23 @@ variable "rdb-count" {
  description = "number of hdb clusters"
  type = number
 }
+
+variable "subnet" {
+  description = "subnet for cluster"
+  type        = list(string)
+}
+
+variable "vpc" {
+  description = "vpc for clsuter"
+  type        = string
+}
+
+variable "security-group" {
+  description = "security group for cluster"
+  type        = list(string)
+}
+
+variable "availability-zone" {
+  description = "availability zone for clusters"
+  type = string
+}

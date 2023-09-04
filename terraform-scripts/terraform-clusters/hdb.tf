@@ -6,7 +6,7 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
   type                  = "HDB"
   release_label         = "1.0"
   az_mode               = "SINGLE"
-  availability_zone_id  = "use2-az2"
+  availability_zone_id  = var.availability-zone
   initialization_script = var.init-script
 
 
@@ -26,15 +26,15 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
   }
 
   command_line_arguments =  {
-    procname   = "hdb${count.index+1}"
+    procname   = "hdb_trade"
     proctype   = "hdb"
     noredirect = "true"
   }
 
   vpc_configuration {
-    vpc_id             = "vpc-2b89ff40"
-    security_group_ids = ["sg-c370258f"]
-    subnet_ids         = ["subnet-0569bd78"]
+    vpc_id             = var.vpc
+    security_group_ids = var.security-group
+    subnet_ids         = var.subnet
     ip_address_type    = "IP_V4"
   }
 }

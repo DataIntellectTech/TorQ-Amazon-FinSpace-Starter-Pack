@@ -1,7 +1,5 @@
-resource "aws_finspace_kx_cluster" "rdb-cluster" {
-  depends_on            = [aws_finspace_kx_cluster.discovery-cluster]
-  count                 = var.rdb-count
-  name                  = "rdb-cluster-${count.index+1}"
+resource "aws_finspace_kx_cluster" "gateway-cluster" {
+  name                  = "discovery-cluster"
   environment_id        = var.environment-id
   type                  = "RDB"
   release_label         = "1.0"
@@ -27,12 +25,12 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
   }
 
   command_line_arguments =  {
-    procname   = "rdb_trade"
-    proctype   = "rdb"
+    procname   = "gateway1"
+    proctype   = "gateway"
     noredirect = "true"
   }
 
-  vpc_configuration {
+ vpc_configuration {
     vpc_id             = var.vpc
     security_group_ids = var.security-group
     subnet_ids         = var.subnet
