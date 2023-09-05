@@ -9,6 +9,9 @@ system"c 23 2000"
 .servers.CLUSTERS:("SSSS**"; enlist ",") 0: .servers.FINSPACECLUSTERSFILE;
 .servers.SOCKETTYPE:{x!count[x]#`finspace} exec distinct proctype from .servers.CLUSTERS;
 
+\d .finspace
+
+.finspace.enabled:1b;
 
 if[count toload:exec first toload from .servers.CLUSTERS where proctype = .proc.proctype, procname=.proc.procname;
     .proc.params[`load]:enlist .rmvr.removeenvvar toload
