@@ -94,7 +94,6 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         'environmentId': environmentId,
         'clusterName': clusterName,
         'clusterType': clusterType,
-        'databases': databases,
         'clusterDescription': clusterDescription,
         'capacityConfiguration': capacityConfiguration,
         'releaseLabel': releaseLabel,
@@ -106,6 +105,9 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         'azMode' : azMode,
         'availabilityZoneId' :availabilityZoneId
     }
+
+    if clusterType in ['RDB', 'HDB']:
+        clusterArgs['databases'] = databases 
 
     if clusterType == 'RDB':
         clusterArgs['savedownStorageConfiguration'] = savedownStorageConfiguration
