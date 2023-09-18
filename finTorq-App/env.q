@@ -17,6 +17,7 @@ setenv[`KDBLIB; torqDir,"/lib"];
 setenv[`KDBHDB; hdbDir];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
 setenv[`KDBDATABASETRADE; "oreganTradeDatabase"];
+setenv[`KDBFINSPACE; "true"];
 
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
