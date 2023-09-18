@@ -2,14 +2,11 @@ system"c 23 2000"
 
 .usage.logtodisk:0b; / disable usage logging as we cannot write to disk in finspace
 
-
 .servers.FINSPACEDISC:1b;
 .servers.FINSPACECLUSTERSFILE:hsym `$getenv[`KDBAPPCONFIG],"/clusters.csv"
 
 .servers.CLUSTERS:("SSSS**"; enlist ",") 0: .servers.FINSPACECLUSTERSFILE;
 .servers.SOCKETTYPE:{x!count[x]#`finspace} exec distinct proctype from .servers.CLUSTERS;
-
-\d .finspace
 
 .finspace.enabled:1b;
 

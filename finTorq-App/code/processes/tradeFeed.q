@@ -49,9 +49,9 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
  };
 
 
-// TODO - Both .trade.updateRDB and .trade.endofday need to be altered so that they derive their rdb handles from
+// TODO - Both .trade.updateRDB and .trade.endofday need to be altered so that they derive their rdb handles from 
 //        the discovery cluster as opposed to manually creating a connection string
 // TODO - Set the timer to generate the dummy trade data on a specified time interval once the timer is unblocked
 /.timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateRDB;`);"Publish Trade Feed"];
 // TODO - Set the end of day function to trigger the end of day functions on the downstream rdb clusters
-/.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.updateRDB;.proc.cd[]);0h;"Triggering RDB End of Day";1b]];
+/.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;.proc.cd[]);0h;"Triggering RDB End of Day";1b]];

@@ -1,3 +1,4 @@
+//TODO this can be changed or removed to work with discovery once unblocked
 .feed.clusters:enlist `$"oregan-fintorq-rdb-trade"
 
 \d .servers
