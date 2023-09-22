@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "hdb-cluster" {
-  name                  = "hdb-cluster-${count.index+1}"
+  name                  = "hdb"
   environment_id        = var.environment-id
   type                  = "HDB"
   release_label         = "1.0"

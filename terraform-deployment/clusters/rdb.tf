@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "rdb-cluster" {
-  name                  = "rdb-cluster-${count.index+1}"
+  name                  = "rdb"
   environment_id        = var.environment-id
   type                  = "RDB"
   release_label         = "1.0"

@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "discovery-cluster" {
-  name                  = "discovery-cluster"
+  name                  = "discovery"
   environment_id        = var.environment-id
   type                  = "RDB"
   release_label         = "1.0"
