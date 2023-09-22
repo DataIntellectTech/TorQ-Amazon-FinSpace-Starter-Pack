@@ -1,5 +1,5 @@
  resource "aws_finspace_kx_cluster" "gateway-cluster" {
-  name                  = "gateway-cluster-${count.index+1}"
+  name                  = "gateway"
   environment_id        = var.environment-id
   type                  = "GATEWAY"
   release_label         = "1.0"

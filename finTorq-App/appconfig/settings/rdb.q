@@ -3,7 +3,7 @@ system "l ",getenv[`TORQAPPHOME],"/code/rdb/schema.q"
 \d .finspace
 
 database:getenv[`KDBDATABASETRADE];
-hdbclusters:enlist `$"oregan-fintorq-hdb-trade";
+hdbclusters:enlist `$"hdb";
 
 \d .
 

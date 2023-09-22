@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "feed-cluster" {
-  name                  = "feed-cluster-${count.index+1}"
+  name                  = "feed"
   environment_id        = var.environment-id
   type                  = "RDB"
   release_label         = "1.0"
