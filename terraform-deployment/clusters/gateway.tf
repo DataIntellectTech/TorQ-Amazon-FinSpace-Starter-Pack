@@ -1,10 +1,10 @@
  resource "aws_finspace_kx_cluster" "gateway-cluster" {
-  name                  = "gateway-cluster-${count.index+1}"
+  name                  = "gateway"
   environment_id        = var.environment-id
   type                  = "GATEWAY"
   release_label         = "1.0"
   az_mode               = "SINGLE"
-  availability_zone_id  = var.availability-zone
+  availability_zone_id  = data.aws_subnet.subnet-0.availability_zone_id
   initialization_script = var.init-script
   execution_role        = var.execution-role
 
@@ -36,8 +36,8 @@
 
   vpc_configuration {
     vpc_id             = var.vpc-id
-    security_group_ids = var.security-groups
-    subnet_ids         = var.subnets
+    security_group_ids = [var.security-group-id]
+    subnet_ids         = [var.subnet-ids[0]]
     ip_address_type    = "IP_V4"
   }
 }

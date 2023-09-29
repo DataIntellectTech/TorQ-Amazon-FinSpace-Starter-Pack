@@ -5,26 +5,22 @@ provider "aws" {
 module "environment" {
   source = "./environment"
 
-  region           = var.region
-  code-bucket-name = var.code-bucket-name
-  data-bucket-name = var.data-bucket-name
-  zip_file_path    = var.zip_file_path
-  hdb-path         = var.hdb-path
-  kms-key-id       = var.kms-key-id
-  environment-name = var.environment-name
-  database-name    = var.database-name
-  policy-name      = var.policy-name
-  role-name        = var.role-name
-  kx-user          = var.kx-user
+  region               = var.region
+  code-bucket-name     = var.code-bucket-name
+  data-bucket-name     = var.data-bucket-name
+  zip_file_path        = var.zip_file_path
+  hdb-path             = var.hdb-path
+  kms-key-id           = var.kms-key-id
+  environment-name     = var.environment-name
+  database-name        = var.database-name
+  policy-name          = var.policy-name
+  role-name            = var.role-name
+  kx-user              = var.kx-user
 }
 
 module "clusters" {
   source = "./clusters"
 
-  availability-zone    = var.availability-zone
-  vpc-id               = var.vpc-id
-  subnets              = var.subnets
-  security-groups      = var.security-groups
   init-script          = var.init-script
   create-clusters      = var.create-clusters
   rdb-count            = var.rdb-count
@@ -40,5 +36,13 @@ module "clusters" {
   environment-resource = module.environment.environment-resource
   create-changeset     = module.environment.create-changeset
   execution-role       = module.environment.execution-role
+  vpc-id               = module.network.vpc-id
+  subnet-ids           = module.network.subnet-ids
+  security-group-id    = module.network.security-group-id
 }
 
+module "network" {
+  source = "./network"
+
+  region               = var.region
+}

@@ -1,3 +1,9 @@
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+
 variable "region" {
   description = "AWS region"
   type        = string
@@ -26,10 +32,10 @@ bucket = aws_s3_bucket.finspace-code-bucket.id
 resource "aws_s3_bucket_public_access_block" "code_bucket" {
   bucket = aws_s3_bucket.finspace-code-bucket.id
 
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 variable "data-bucket-name" {
@@ -44,10 +50,10 @@ resource "aws_s3_bucket" "finspace-data-bucket" {
 resource "aws_s3_bucket_public_access_block" "data_bucket" {
   bucket = aws_s3_bucket.finspace-data-bucket.id
 
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 data "aws_iam_policy_document" "s3-code-policy" {
@@ -59,7 +65,9 @@ data "aws_iam_policy_document" "s3-code-policy" {
     ]
     actions = [
       "s3:GetObject", 
-      "s3:GetObjectTagging"
+      "s3:GetObjectTagging",
+      "s3:GetObjectVersion",
+      "s3:GetObjectVersionTagging"
     ]
     principals {
       type        = "Service"
@@ -68,7 +76,7 @@ data "aws_iam_policy_document" "s3-code-policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:SourceAccount"
-      values   = ["766012286003"]
+      values   = ["${data.aws_caller_identity.current.account_id}"]
     }
   }
 
@@ -79,7 +87,9 @@ data "aws_iam_policy_document" "s3-code-policy" {
       "${aws_s3_bucket.finspace-code-bucket.arn}"
     ]
     actions = [
-      "s3:ListBucket"
+      "s3:ListBucket",
+      "s3:GetBucketVersioning",
+      "s3:ListBucketVersions"
     ]
     principals {
       type        = "Service"
@@ -88,7 +98,7 @@ data "aws_iam_policy_document" "s3-code-policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:SourceAccount"
-      values   = ["766012286003"]
+      values   = ["${data.aws_caller_identity.current.account_id}"]
     }
   }
 }
@@ -111,7 +121,7 @@ data "aws_iam_policy_document" "s3-data-policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:SourceAccount"
-      values   = ["766012286003"]
+      values   = ["${data.aws_caller_identity.current.account_id}"]
     }
   }
 
@@ -131,7 +141,7 @@ data "aws_iam_policy_document" "s3-data-policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:SourceAccount"
-      values   = ["766012286003"]
+      values   = ["${data.aws_caller_identity.current.account_id}"]
     }
   }
 }
@@ -157,7 +167,6 @@ resource "aws_s3_object" "code" {
   key        = "${sha1(filebase64(var.zip_file_path))}.zip"
   source     = var.zip_file_path
 }
-
 
 variable "hdb-path" {
   description = "path to hdb to reload"
@@ -257,7 +266,7 @@ resource "aws_iam_role" "finspace-test-role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::766012286003:root",
+        "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
         "Service": "finspace.amazonaws.com"
       },
       "Action": "sts:AssumeRole"

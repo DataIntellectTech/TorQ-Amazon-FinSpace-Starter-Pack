@@ -7,7 +7,7 @@ This terraform setup can be used to deploy and manage a finspace environment run
 1. Have latest version of  aws cli installed (already done on homer)
 2. Have latest version of terraform installed (also done on homer)
 3. Configure aws cli to your aws account 
-4. Create a kms key on the region you are setting up your environment
+4. Create a kms key on the region you are setting up your environment - Will also need to edit key policy to give FinSpace permissions
 5. Finspace environment are limited to one per region - so you should not already have an environment set up on this region
 
 # How to Use - Initial Deployment
