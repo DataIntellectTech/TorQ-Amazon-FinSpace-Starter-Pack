@@ -19,6 +19,7 @@ setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
 setenv[`KDBDATABASETRADE; "finspace-database"];
 setenv[`KDBFINSPACE; "true"];
 
+setenv[`KDBBLOCKLIST; "/opt/kx/app/db/*"]; // regex for like command. list seperated by comma
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
 setenv[`KDBAPPCODE; appDir,"/code"];
