@@ -73,7 +73,7 @@ variable "vpc-id" {
 }
 
 data "aws_subnet" "subnet-0" {
-  id = var.subnet-ids[0]
+  id = var.subnet-ids[1]
 }
 
 output "subnet-0-az-id" {
