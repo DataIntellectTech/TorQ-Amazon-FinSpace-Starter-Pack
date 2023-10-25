@@ -1,4 +1,25 @@
 
+variable "lambda-name" {
+  description = "import name of the function"
+  type = string
+}
+
+variable "region" {
+  description = "import the aws region"
+}
+
+variable "environment-id" {
+  description = "import the environment_id"
+}
+
+variable "account_id" {
+  description = "import the account_id of the current root user"
+}
+
+locals {
+  lambda-file-name = "delete_cluster_on_alarm"
+}
+
 #### create and attach the appropriate IAM policies ####
 
 ## basic lambda execution permissions
@@ -14,7 +35,7 @@ data "aws_iam_policy_document" "assume_role_doc" {
 
     actions = ["sts:AssumeRole"]
   }
-} 
+}
 
 data "aws_iam_policy_document" "lambda_basic_execution" {
   statement {
@@ -33,12 +54,13 @@ data "aws_iam_policy_document" "lambda_basic_execution" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.lambda_name}:*"]
+    resources = ["arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.lambda-name}:*"]
   }
 }
 
 
-## finspace policies 
+## finspace policies
+
 data "aws_iam_policy_document" "finspace-extra" {
 
   statement {
@@ -50,7 +72,7 @@ data "aws_iam_policy_document" "finspace-extra" {
         "finspace:GetKxCluster"
     ]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxCluster/*"]       
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxCluster/*"]
   }
 
   statement {
@@ -64,7 +86,7 @@ data "aws_iam_policy_document" "finspace-extra" {
 
 ## ec2 policies
 data "aws_iam_policy_document" "ec2-permissions-lambda" {
-  
+
   statement {
     effect = "Allow"
 
@@ -90,21 +112,56 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
 
 ## put it all together
 
+resource "aws_iam_policy" "lambda_ec2_policy" {
+  name = "${var.lambda-name}-ec2-permissions-role"
+
+  policy = data.aws_iam_policy_document.ec2-permissions-lambda.json
+}
+
+resource "aws_iam_policy" "lambda_basic_policy" {
+  name = "${var.lambda-name}-basic-permissions-role"
+
+  policy = data.aws_iam_policy_document.lambda_basic_execution.json
+}
+
+resource "aws_iam_policy" "lambda_finspace_policy" {
+  name = "${var.lambda-name}-finspace-permissions-role"
+
+  policy = data.aws_iam_policy_document.finspace-extra.json
+}
+
+
 resource "aws_iam_role" "lambda_execution_role" {
   name = "boto3-rdb-scaling-test"
   assume_role_policy = data.aws_iam_policy_document.assume_role_doc.json
 }
 
-resource "aws_iam_role_policy_attachment" "role-policy-attachment" {
-  for_each = toset([
-    data.aws_iam_policy_document.lambda_basic_execution.arn,
-    data.aws_iam_policy_document.ec2-permissions-lambda.arn,
-    data.aws_iam_policy_document.finspace-extra.arn,
-  ])
-
+resource "aws_iam_role_policy_attachment" "attach1" {
   role = aws_iam_role.lambda_execution_role.name
-  policy_arn = each.value
+  policy_arn = aws_iam_policy.lambda_basic_policy.arn
 }
+
+resource "aws_iam_role_policy_attachment" "attach2" {
+  role = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_ec2_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "attach3" {
+  role = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_finspace_policy.arn
+}
+
+#resource "aws_iam_role_policy_attachment" "role-policy-attachment" {
+
+#  for_each = toset([
+#    aws_iam_policy.lambda_basic_policy.arn,
+#    aws_iam_policy.lambda_ec2_policy.arn,
+#    aws_iam_policy.lambda_finspace_policy.arn,
+#  ])
+
+#  role = aws_iam_role.lambda_execution_role.name
+#  policy_arn = each.value
+#}
 
 
 #### create lambda function itself ####
@@ -116,13 +173,13 @@ data "archive_file" "lambda_my_function" {
   type             = "zip"
   source_dir      = "${path.module}/src"
   output_file_mode = "0666"
-  output_path      = "${path.module}/bin/delete_cluster_on_alarm.zip"
+  output_path      = "${path.module}/bin/${var.lambda-name}.zip"
 }
 
 resource "aws_lambda_function" "finSpace-rdb-lambda" {
   filename = data.archive_file.lambda_my_function.output_path
   function_name = var.lambda-name
-  handler = "boto3-rdb-scaling-test.lambda_handler"
+  handler = "${local.lambda-file-name}.lambda_handler"
   role = aws_iam_role.lambda_execution_role.arn
 
   runtime = "python3.9"
@@ -131,7 +188,7 @@ resource "aws_lambda_function" "finSpace-rdb-lambda" {
 
 #### create the alarm ####
 resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization" {
-  alarm_name = "terraform-rdb-cpu-test-1"
+  alarm_name = "trigger-${var.lambda-name}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = 1
   metric_name = "CPUUtilization"
@@ -156,7 +213,7 @@ resource "aws_cloudwatch_event_rule" "trigger_finSpace-rdb-lambda" {
   event_pattern = jsonencode({
     "source": ["aws.cloudwatch"],
     "detail-type": ["CloudWatch Alarm State Change"],
-    "resources": ["arn:aws:cloudwatch:us-east-1:766012286003:alarm:terraform-rdb-cpu-test-1"],
+    "resources": ["${aws_cloudwatch_metric_alarm.RDBOverCPUUtilization.arn}"]
     "detail": {
       "state": {
         "value": ["ALARM"]
@@ -171,14 +228,13 @@ resource "aws_cloudwatch_event_target" "target_finSpace-rdb-lambda" {
 }
 
 resource "aws_lambda_permission" "lambda_from_cw_permission" {
-  statementid = "AllowExecutionFromCloudWatch"
+  statement_id = "AllowExecutionFromCloudWatch"
   action = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.finSpace-rdb-lambda.name
+  function_name = aws_lambda_function.finSpace-rdb-lambda.function_name
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda.arn
 }
 
-
-output {
-
+output "execution_policy_res" {
+  value = data.aws_iam_policy_document.lambda_basic_execution.json
 }
