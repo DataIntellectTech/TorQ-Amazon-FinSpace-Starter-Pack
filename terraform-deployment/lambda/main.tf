@@ -182,7 +182,7 @@ resource "aws_lambda_function" "finSpace-rdb-lambda" {
   handler = "${local.lambda-file-name}.lambda_handler"
   role = aws_iam_role.lambda_execution_role.arn
 
-  runtime = "python3.9"
+  runtime = "python3.11"
   timeout = 900
 }
 
