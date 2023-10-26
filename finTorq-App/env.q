@@ -19,8 +19,6 @@ setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
 setenv[`KDBDATABASETRADE; "finspace-database"];
 setenv[`KDBFINSPACE; "true"];
 
-setenv[`KDBBLOCKLIST; "/opt/kx/app/db/*"]; // regex for like command. list seperated by comma
-
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
 setenv[`KDBAPPCODE; appDir,"/code"];
 
@@ -28,5 +26,5 @@ setenv[`KDBBASEPORT; "17000"];
 setenv[`KDBSTACKID; "-stackid ",getenv`KDBBASEPORT];
 setenv[`TORQPROCESSES; getenv[`KDBAPPCONFIG],"/process.csv"];
 
-/ TODO - remove this once we can pass in the env file as a cmd line parameter
+/  TODO - remove this once we can pass in the env file as a cmd line parameter
 system"l ",torqDir,"/torq.q";
