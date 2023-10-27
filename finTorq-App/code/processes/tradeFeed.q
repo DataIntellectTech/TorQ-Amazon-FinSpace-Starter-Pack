@@ -37,21 +37,20 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 
 .trade.upd:{[w;t;d](neg first w)(`upd;t;d)};
 
+//TODO derive rdb handles through discovery cluster instead of generating
+
 .trade.updateRDB:{
- rdbHandles:{hopen .aws.get_kx_connection_string[x]}each .feed.clusters;
+ rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;
  tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
  {[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata] each rdbHandles
   };
 
 .trade.endofday:{[date]
- rdbHandles:{hopen .aws.get_kx_connection_string[x]}each .feed.clusters;
+ rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;
  {[handle;dt] (neg first handle)(`.u.end;dt)}[;date] each rdbHandles
- };
+  };
 
 
-// TODO - Both .trade.updateRDB and .trade.endofday need to be altered so that they derive their rdb handles from 
-//        the discovery cluster as opposed to manually creating a connection string
-// TODO - Set the timer to generate the dummy trade data on a specified time interval once the timer is unblocked
-/.timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateRDB;`);"Publish Trade Feed"];
-// TODO - Set the end of day function to trigger the end of day functions on the downstream rdb clusters
-/.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;.proc.cd[]);0h;"Triggering RDB End of Day";1b]];
+.timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateRDB;`);"Publish Trade Feed"];
+
+.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;.proc.cd[]);0h;"Triggering RDB End of Day";1b];
