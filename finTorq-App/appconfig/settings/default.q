@@ -1,5 +1,7 @@
 system"c 23 2000"
 
+.usage.logtodisk:0b; / disable usage logging as we cannot write to disk in finspace
+
 .servers.FINSPACEDISC:1b;
 .servers.FINSPACECLUSTERSFILE:hsym `$getenv[`KDBAPPCONFIG],"/clusters.csv"
 
