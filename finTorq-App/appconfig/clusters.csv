@@ -1,6 +1,6 @@
 cluster_name,cluster_type,proctype,procname,toload,args
-hdb,HDB,hdb,hdb1,${KDBHDB},
-discovery,RDB,discovery,discovery1,${KDBCODE}/processes/discovery.q,
-rdb,RDB,rdb,rdb1,${KDBCODE}/processes/rdb.q,
-feed,RDB,tradeFeed,tradeFeed1,${KDBAPPCODE}/processes/tradeFeed.q,
-gateway,GATEWAY,gateway,gateway1,${KDBCODE}/processes/gateway.q,
+hdb,GP,hdb,hdb1,${KDBHDB},
+discovery,GP,discovery,discovery1,${KDBCODE}/processes/discovery.q,
+rdb,GP,rdb,rdb1,${KDBCODE}/processes/rdb.q,
+feed,GP,tradeFeed,tradeFeed1,${KDBAPPCODE}/processes/tradeFeed.q,
+gateway,GP,gateway,gateway1,${KDBCODE}/processes/gateway.q,
