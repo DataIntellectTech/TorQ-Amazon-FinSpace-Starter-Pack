@@ -2,10 +2,10 @@ region            = "us-east-1"                              # region for kdb en
 kms-key-id        = "1d74c759-80e3-4780-a721-c27f376bf7c9"      # key id for kms key (create kms key first)
 
 # file paths
-#zip_file_path     = "../code.zip"                               # path to zipped code
-zip_file_path     = "../zancodemydb-dep.zip"                     # path to zipped code
-#hdb-path          = "../finTorq-App/hdb"                        # path to hdb to migrate
-hdb-path           = "../zancodemydb-edit/finTorq-App/hdb2"      # path to hdb to migrate 
+zip_file_path     = "../code.zip"                               # path to zipped code
+#zip_file_path     = "../zancodemydb-dep.zip"                     # path to zipped code
+hdb-path          = "../finTorq-App/hdb"                        # path to hdb to migrate
+#hdb-path           = "../zancodemydb-edit/finTorq-App/hdb2"      # path to hdb to migrate 
 
 # network details
 # availability_zone = "use1-az6"
