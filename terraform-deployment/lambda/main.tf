@@ -91,24 +91,48 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
     effect = "Allow"
 
     actions = [
-        "ec2:DeleteVpcEndpoints",
-        "ec2:CreateTags"
+        "ec2:DescribeTags",
+        "ec2:DescribeSubnets",
+        "ec2:CreateTags",
+        "ec2:DescribeVpcs",
+        "logs:CreateLogDelivery"
     ]
 
-    resources = ["arn:aws:ec2:${var.region}:${var.account_id}:vpc-endpoint/*"]
+    resources = ["*"]
   }
 
   statement {
     effect = "Allow"
 
     actions = [
-        "ec2:DescribeTags",
-        "ec2:DescribeSubnets"
+      "ec2:DescribeVpcEndpointServicePermissions",
+      "ec2:DeleteVpcEndpoints",
+      "ec2:CreateVpcEndpoint"
     ]
 
-    resources = ["*"]
+    resources = [
+      "arn:aws:ec2:${var.region}:${var.account_id}:vpc-endpoint-service/*",
+      "arn:aws:ec2:${var.region}:${var.account_id}:security-group/*",
+      "arn:aws:ec2:${var.region}:${var.account_id}:subnet/*",
+      "arn:aws:ec2:${var.region}:${var.account_id}:vpc/*",
+      "arn:aws:ec2:${var.region}:${var.account_id}:vpc-endpoint/*",
+      "arn:aws:ec2:${var.region}:${var.account_id}:route-table/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "route53:AssociateVPCWithHostedZone"
+    ]
+
+    resources = [
+      "arn:aws:route53:::hostedzone/*"
+    ]
   }
 }
+
 
 ## put it all together
 

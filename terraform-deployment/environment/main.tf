@@ -281,23 +281,6 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
   policy_arn = aws_iam_policy.finspace-policy.arn
 }
 
-resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization" {
-  alarm_name = "terraform-rdb-cpu-test-1"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods = 1
-  metric_name = "CPUUtilization"
-  namespace = "AWS/FinSpace"
-  period = 60
-  statistic = "Maximum"
-  threshold = 10
-  alarm_description = "This alarm should be raised if rdb is over a certain threshold"
-  datapoints_to_alarm = 1
-
-  dimensions = {
-    KxClusterId = "rdb"
-  }
-}
-
 variable "kx-user" {
   description = "name of finspace user"
   type        = string
