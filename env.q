@@ -1,9 +1,9 @@
 opts:.Q.opt .z.x;
 codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
-hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finspace-database"];
+hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finTorq_hdb"];
 
 torqDir:codeDir,"/TorQ";
-appDir:codeDir,"/finTorq-App";
+appDir:codeDir,"/TorQ-Finspace-Starter-Pack";
 
 
 setenv[`TORQHOME; torqDir];
@@ -16,7 +16,7 @@ setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
 setenv[`KDBHDB; hdbDir];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
-setenv[`KDBDATABASETRADE; "finspace-database"];
+setenv[`KDBDATABASETRADE; "finTorq_hdb"];
 setenv[`KDBFINSPACE; "true"];
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
