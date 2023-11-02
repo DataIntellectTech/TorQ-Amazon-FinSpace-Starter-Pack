@@ -1,4 +1,4 @@
-terraforimport {
+import {
   to = module.environment.aws_s3_bucket_policy.data-policy
   id = "exsiting"
 }

@@ -1,11 +1,9 @@
-region            = "us-east-1"                              # region for kdb environment
-kms-key-id        = "1d74c759-80e3-4780-a721-c27f376bf7c9"      # key id for kms key (create kms key first)
+region            = "us-west-2"                              # region for kdb environment
+kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms key (create kms key first)
 
 # file paths
 zip_file_path     = "../code.zip"                               # path to zipped code, containing finTorq-App and TorQ with updated database name in env.q
-#zip_file_path     = "../zancodemydb-dep.zip"                     # path to zipped code
 hdb-path          = "../finTorq-App/hdb"                        # path to hdb to migrate 
-#hdb-path           = "../zancodemydb-edit/finTorq-App/hdb2"      # path to hdb to migrate 
 
 # network details
 # availability_zone = "use1-az6"
@@ -28,7 +26,7 @@ database-name     = "finspace-database"                        # database name s
 init-script       = "finTorq-App/env.q"                        # path to init script inside zipped folder
 
 # cluster count
-create-clusters   = 1                                        # 1=create no. of clusters specified below, 0=no clusters
+create-clusters   = 0                                        # 1=create no. of clusters specified below, 0=no clusters
 
 rdb-count         = 0
 hdb-count         = 0
