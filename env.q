@@ -3,7 +3,7 @@ codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
 hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finspace-database"];
 
 torqDir:codeDir,"/TorQ";
-appDir:codeDir,"/finTorq-App";
+appDir:codeDir,"/TorQ-Finspace-Starter-Pack";
 
 
 setenv[`TORQHOME; torqDir];
