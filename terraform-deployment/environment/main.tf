@@ -307,7 +307,7 @@ resource "null_resource" "create_changeset" {
         --change-requests '[
           {
             "changeType": "PUT",
-            "s3Path": "s3://${var.data-bucket-name}/hdb2/",
+            "s3Path": "s3://${var.data-bucket-name}/hdb/",
             "dbPath": "/"
           }
         ]'
