@@ -37,7 +37,7 @@
   vpc_configuration {
     vpc_id             = var.vpc-id
     security_group_ids = [var.security-group-id]
-    subnet_ids         = [var.subnet-ids[1]]
+    subnet_ids         = [var.subnet-ids[0]]
     ip_address_type    = "IP_V4"
   }
 }
