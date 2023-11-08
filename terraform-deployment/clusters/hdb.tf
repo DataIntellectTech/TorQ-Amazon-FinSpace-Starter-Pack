@@ -37,7 +37,7 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
   vpc_configuration {
     vpc_id             = var.vpc-id
     security_group_ids = [var.security-group-id]
-    subnet_ids         = [var.subnet-ids[]]
+    subnet_ids         = [var.subnet-ids[0]]
     ip_address_type    = "IP_V4"
   }
 
