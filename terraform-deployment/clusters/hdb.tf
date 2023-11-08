@@ -41,10 +41,10 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
     ip_address_type    = "IP_V4"
   }
 
-  cache_storage_configurations {
-    type = "CACHE_1000"
-    size = 1200
-  }
+//  cache_storage_configurations {
+//    type = "CACHE_1000"
+//    size = 1200
+//  }
 
   database {
     database_name = var.database-name
