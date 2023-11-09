@@ -8,7 +8,6 @@ randomcounts:@[value;`randomcounts;0.00000001];
 clusters:@[value;`clusters;enlist `cluster];        //which rdb cluster or clusters to point the data to
 rnd:{0.01*floor 100*x};
 timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push new dummy data to the rdb clusters
-d:.z.D
 
 \d .
 // Generates dummy trade, quotes and depth data to be pushed to the rdb
