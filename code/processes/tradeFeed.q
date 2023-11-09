@@ -8,6 +8,7 @@ randomcounts:@[value;`randomcounts;0.00000001];
 clusters:@[value;`clusters;enlist `cluster];        //which rdb cluster or clusters to point the data to
 rnd:{0.01*floor 100*x};
 timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push new dummy data to the rdb clusters
+d:.z.D
 
 \d .
 // Generates dummy trade, quotes and depth data to be pushed to the rdb
@@ -45,11 +46,12 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
  {[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata] each rdbHandles
   };
 
-.trade.endofday:{[date]
+.trade.endofday:{
  rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;
- {[handle;dt] (neg first handle)(`.u.end;dt)}[;date] each rdbHandles
+ {[handle;dt] (neg first handle)(`.u.end;dt)}[;.proc.cd[]] each rdbHandles
   };
 
 .timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateRDB;`);"Publish Trade Feed"];
 
-.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;.proc.cd[]);0h;"Triggering RDB End of Day";1b];
+.timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;`);0h;"Triggering RDB End of Day";1b];
+
