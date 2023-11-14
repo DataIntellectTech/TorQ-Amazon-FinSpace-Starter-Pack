@@ -10,19 +10,20 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 4. Create a KMS key in the region where you intend to set up your environment. You will also need to edit the key policy to grant FinSpace permissions.
 5. Note that FinSpace environments are limited to one per region. Make sure you don't already have an environment set up in the same region.
 6. Download this repository along with the latest version of TorQ.
+7. This instruction refers to Linux and would only work on Linux envirnment.
 
 ## How to Use - Initial Deployment (New User Please Follow This Section)
 
 
-1. Move TorQ into the `FinTorQ` directory, alongside `finTorq-App`.
-2. Zip `TorQ` and `finTorq-App` together using the command: `zip -r code.zip TorQ/ finTorq-App/`. This will form the base code for each cluster.
-3. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `/finTorq-App/hdb`.
+1. Move `TorQ` into the `TorQ-Finspace-Start-Pack` directory, alongside `finTorq-App`.
+2. Zip up the whole `TorQ-Finspace-Start-Pack` directory using the command: `zip -r code.zip TorQ-Finspace-Start-Pack/`. This will form the base code for each cluster.
+3. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `/hdb`.
 4. Move into the `terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
 5. Modify variables inside the `terraform.tfvars` file, such as region name, envirnment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For variable on `role-name`, you can change variable name by replacing `"finspace-role"`.
 6. (Optional) If you have chagned the database name from the default `finspace-database` to any other names, please also edit the `env.q` in side of `finTorq-App` directory, changing the database name to the new variable that you have set in line 19. 
 7. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
 8. From your Terraform working directory, run `terraform init`.
-9. If initialized successfully, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
+9. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
 10. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`.
 
 ## Resource Link
