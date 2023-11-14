@@ -10,7 +10,13 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 4. Create a KMS key in the region where you intend to set up your environment. You will also need to edit the key policy to grant FinSpace permissions.
 5. Note that FinSpace environments are limited to one per region. Make sure you don't already have an environment set up in the same region.
 6. Download this repository along with the latest version of TorQ.
-7. This instruction refers to Linux and would only work on Linux envirnment.
+7. This instruction refers to Linux and would only work under the Linux environment.
+
+## Resource Link
+* For installing AWS CLI [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+* For Connecting AWS CLI to Your AWS Account [AWS Sign-In](https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html)
+* For installing Terraform [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+* For detailed Terraform deployment instructions, refer to [TorQ in Finspace Deployment / Terraform](https://data-intellect.atlassian.net/wiki/spaces/TK/pages/238944400/FinTorq+Deployment+Terraform).
 
 ## How to Use - Initial Deployment (New User Please Follow This Section)
 
@@ -19,18 +25,13 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 2. Zip up the whole `TorQ-Finspace-Start-Pack` directory using the command: `zip -r code.zip TorQ-Finspace-Start-Pack/`. This will form the base code for each cluster.
 3. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `/hdb`.
 4. Move into the `terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
-5. Modify variables inside the `terraform.tfvars` file, such as region name, envirnment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For variable on `role-name`, you can change variable name by replacing `"finspace-role"`.
-6. (Optional) If you have chagned the database name from the default `finspace-database` to any other names, please also edit the `env.q` in side of `finTorq-App` directory, changing the database name to the new variable that you have set in line 19. 
+5. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
+6. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` inside the `finTorq-App` directory, changing the database name to the new variable that you have set in line 19.
 7. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
 8. From your Terraform working directory, run `terraform init`.
 9. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
-10. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`.
+10. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.)
 
-## Resource Link
-For installing AWS CLI [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-For Connecting AWS CLI to Your AWS Account [AWS Sign-In](https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html)
-For installing Terraform[Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-For detailed Terraform deployment instructions, refer to [TorQ in Finspace Deployment / Terraform](https://data-intellect.atlassian.net/wiki/spaces/TK/pages/238944400/FinTorq+Deployment+Terraform).
 
 
 
@@ -42,6 +43,13 @@ Once your environment is up and running, you can use this configuration to manag
 2. Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in `clusters/rdb.tf` and run Terraform again. The RDB will be recreated with the new node size.
 3. Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the `terraform.tfvars` file. To delete a cluster, set its count to 0. To delete all clusters, set `create-clusters` to 0.
 
+### Basic Commands in Terraform 
+*  `terraform init`       -   Prepare your working directory for other commands
+*  `terraform validate`   -   Check whether the configuration is valid
+*  `terraform plan`       -   Show changes required by the current configuration
+*  `terraform apply`      -   Create or update infrastructure
+*  `terraform destroy`    -   Destroy previously-created infrastructure
+
 ## Terraform State Management
 
 Terraform maintains a state file that tracks the state of the deployed infrastructure. This state file is crucial for Terraform to understand what resources have been created and to make changes to them. To ensure proper state management:
@@ -51,7 +59,7 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 - Avoid manual changes to resources managed by Terraform, as this can lead to inconsistencies between the actual infrastructure and Terraform's state.
 
 
-## Deploying With Terraform But With Existing Infrastructure (User With Existing Infrastructure)
+## Deploying With Terraform (User With Existing Infrastructure)
 
 For users with existing infrastructure in their AWS account who would like to reuse the same resources for their TorQ in Finspace bundle, you can use import blocks in Terraform. This functionality allows you to import existing infrastructure resources into Terraform, bringing them under Terraform's management. The import block records that Terraform imported the resource and did not create it. After importing, you can optionally remove import blocks from your configuration or leave them as a record of the resource's origin.
 
