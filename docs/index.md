@@ -1,8 +1,8 @@
-TorQ in Finspace Demo Pack
+TorQ in Managed kdb Insights Demo Pack
 ==============
 
-The purpose of the TorQ in Finspace Demo Pack is to set up an example TorQ
-installation in AWS Finspace and to show how applications can be built and
+The purpose of the TorQ on Managed kdb Insights Demo Pack is to set up an example TorQ
+installation on Managed kdb Insights and to show how applications can be built and
 deployed on top of the TorQ framework. The example installation contains
 all the key features of a production data capture installation, including
 persistence and resilience. The demo pack includes:
@@ -19,10 +19,9 @@ persistence and resilience. The demo pack includes:
 
 Once started, TorQ will generate dummy data and push it into an
 in-memory real-time database inside the rdb cluster. It will persist this
-data to your S3 bucket every day at midnight. The system will operate 24\*7.
+data to S3 every day at midnight. The system will operate 24\*7.
 
-Further information can be found in the [TorQ
-Manual](https://dataintellecttech.github.io/TorQ/).
+Further information can be found in the [TorQ on Managed kdb Insights Manual](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/).
 
 *email:* <torqsupport@dataintellect.com>
 

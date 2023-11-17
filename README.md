@@ -1,10 +1,10 @@
 # TorQ-Finspace-Starter-Pack
-An example production ready market data capture system designed for running in AWS Finspace.
+An example production ready market data capture system designed for running in AWS Managed kdb Insights.
 
 This codebase contains
 
-* Useful scripts for interacting with AWS Finspace - ./scripts directory
-* Initial code for a TorQ in Finspace application
+* Useful scripts for interacting with Managed kdb Insights - ./scripts directory
+* Initial code for a TorQ on Managed kdb Insights application
 
 ## Getting Started
-Follow instructions on the [TorQ on Finspace Manual](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/).
+Follow instructions on the [TorQ on Managed kdb Insights Manual](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/).
