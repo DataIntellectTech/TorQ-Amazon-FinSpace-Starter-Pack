@@ -20,17 +20,14 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 
 ## How to Use - Initial Deployment (New User Please Follow This Section)
 
-
-1. Move `TorQ` into the `TorQ-Finspace-Start-Pack` directory, alongside `finTorq-App`.
-2. Zip up the whole `TorQ-Finspace-Start-Pack` directory using the command: `zip -r code.zip TorQ-Finspace-Start-Pack/`. This will form the base code for each cluster.
-3. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `/hdb`.
-4. Move into the `terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
-5. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
-6. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` inside the `finTorq-App` directory, changing the database name to the new variable that you have set in line 19.
-7. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
-8. From your Terraform working directory, run `terraform init`.
-9. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
-10. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.)
+1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Finspace-Starter-Pack/finTorq-App/hdb`.
+2. Move into the `TorQ-Finspace-Starter-Pack/terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
+3. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
+4. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` inside the `finTorq-App` directory, changing the database name to the new variable that you have set in line 19.
+5. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
+6. From your Terraform working directory which is `TorQ-Finspace-Starter-Pack/terraform-deployment/deployments`, run `terraform init`.
+7. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
+8. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.)
 
 
 
@@ -49,6 +46,7 @@ Once your environment is up and running, you can use this configuration to manag
 *  `terraform plan`       -   Show changes required by the current configuration
 *  `terraform apply`      -   Create or update infrastructure
 *  `terraform destroy`    -   Destroy previously-created infrastructure
+* For more commands in Terraform, please visit [Terraform Command](https://developer.hashicorp.com/terraform/cli/commands) 
 
 ## Terraform State Management
 
