@@ -21,6 +21,7 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
     "procname"   = "hdb${count.index+1}"
     "proctype"   = "hdb"
     "noredirect" = "true"
+    "s" = "2"
   }
   
   capacity_configuration {
@@ -40,8 +41,17 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
     ip_address_type    = "IP_V4"
   }
 
+//  cache_storage_configurations {
+//    type = "CACHE_1000"
+//    size = 1200
+//  }
+
   database {
     database_name = var.database-name
+//   cache_configurations {
+//   cache_type = "CACHE_1000"
+//     db_paths   = ["/2015.01.15/","/2015.01.16/","/2015.01.17/","/2015.01.18/","/2015.01.19/","/2015.01.20/"]
+//  }
   }
 
   lifecycle {

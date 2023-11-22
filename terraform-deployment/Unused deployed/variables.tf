@@ -82,3 +82,7 @@ variable "discovery-count" {
   description = "no of discovery clusters to create"
 }
 
+variable "lambda-name" {
+  description = "import name of the function"
+  type = string
+}
