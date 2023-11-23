@@ -128,7 +128,7 @@ This will return a large connection string which can be used to connect to your 
 
 #### Create an EC2 instance
 
-To connect, you need to set up an Ec2 instance running in the same VPC as your cluster. It also must have the same security group as the cluster - [What is Amazon EC2?](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/concepts.html)
+To connect, you need to set up an EC2 instance running in the same VPC as your cluster. It also must have the same security group as the cluster - [What is Amazon EC2?](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/concepts.html)
 
 When creating the instance, under the key-pair section, create a new key pair. Leave the key pair type as RSA and file format as .pem. This will download a key which you will use to connect to the instance.
 
