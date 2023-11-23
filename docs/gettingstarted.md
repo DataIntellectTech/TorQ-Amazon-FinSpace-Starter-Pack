@@ -49,18 +49,18 @@ Connecting
 
 4. Switch to the JSON view and copy in the following code
 
-        { // TODO ZAN
+        {
                "Version": "2012-10-17",
                 "Statement": [
                         {
                                 "Effect": "Allow",
                                 "Action": "finspace:ConnectKxCluster",
-                                "Resource": "arn:aws:finspace:eu-west-1:766012286003:kxEnvironment/rtci3jl7pii6tyhp5d2shk/kxCluster/<MY_HDB_CLUSTER>"
+                                "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
                         },
                         {
                                 "Effect": "Allow",
                                 "Action": "finspace:GetKxConnectionString",
-                                "Resource": "arn:aws:finspace:eu-west-1:766012286003:kxEnvironment/rtci3jl7pii6tyhp5d2shk/kxCluster/<MY_HDB_CLUSTER>"
+                                "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
                         }
                 ]
         }
@@ -79,14 +79,14 @@ Note the ARN should match that of your created cluster, although there doesn’t
 
 10. Enter the following JSON
 
-        { // TODO ZAN
+        {
                 "Version": "2012-10-17",
                 "Statement": [
                         {
                                 "Effect": "Allow",
                                 "Principal": {
                                         "Service": "finspace.amazonaws.com",
-                                        "AWS": "arn:aws:iam::766012286003:root"
+                                        "AWS": "arn:aws:iam::<ACCOUNT_ID>:root"
                                 },
                                 "Action": "sts:AssumeRole"
                         }
@@ -132,7 +132,7 @@ To connect, you need to set up an Ec2 instance running in the same VPC as your c
 
 When creating the instance, under the key-pair section, create a new key pair. Leave the key pair type as RSA and file format as .pem. This will download a key which you will use to connect to the instance.
 
-#### Connecting with PyKx
+#### Connecting with PyKx (need to be inside your EC2 instance)
 
 1. Follow the instructions [here](https://dataschool.com/data-modeling-101/running-jupyter-notebook-on-an-ec2-server/) to get a jupyter notebook running.
 

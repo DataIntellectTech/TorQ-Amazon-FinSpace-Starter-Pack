@@ -1,5 +1,5 @@
 # TorQ-Finspace-Starter-Pack
-An example production ready market data capture system designed for running in AWS Managed kdb Insights.
+An example market data capture system designed for running in AWS Managed kdb Insights.
 
 This codebase contains
 

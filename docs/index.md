@@ -4,7 +4,7 @@ TorQ in Managed kdb Insights Demo Pack
 The purpose of the TorQ on Managed kdb Insights Demo Pack is to set up an example TorQ
 installation on Managed kdb Insights and to show how applications can be built and
 deployed on top of the TorQ framework. The example installation contains
-all the key features of a production data capture installation, including
+key features of a production data capture installation, including
 persistence. The demo pack includes:
 
 -   an example set of historic data
