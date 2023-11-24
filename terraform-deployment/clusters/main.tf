@@ -1,23 +1,3 @@
-variable "availability-zone" {
-  description = "default az for clusters"
-  type        = string
-}
-
-variable "vpc-id" {
-  description = "defailt vpc for clusters"
-  type        = string
-}
-
-variable "subnets" {
-  description = "subnet for cluster"
-  type        = list(string)
-}
-
-variable "security-groups" {
-  description = "security groups applied to cluster"
-  type        = list(string)
-}
-
 variable "init-script" {
   description = "script to run on cluster startup"
   type        = string
@@ -78,4 +58,24 @@ variable "discovery-count" {
 variable "execution-role" {
   description = "role to apply to clusters"
   type        = string
+}
+
+variable "security-group-id" {
+  description = "security group for cluster endpoint"
+}
+
+variable "subnet-ids" {
+  description = "list of available subnets"
+}
+
+variable "vpc-id" {
+  description = "finspace vpc id"
+}
+
+data "aws_subnet" "subnet-0" {
+  id = var.subnet-ids[0]
+}
+
+output "subnet-0-az-id" {
+  value = data.aws_subnet.subnet-0.availability_zone_id
 }
