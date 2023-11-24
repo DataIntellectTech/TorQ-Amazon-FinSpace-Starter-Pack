@@ -1,0 +1,6 @@
+host,port,proctype,procname,U,localtime,g,T,w,load,startwithall,extras,qcmd
+localhost,{KDBBASEPORT}+1,discovery,discovery1,,1,0,,,${KDBCODE}/processes/discovery.q,1,,q
+localhost,{KDBBASEPORT}+2,rdb,rdb1,,1,1,180,,${KDBCODE}/processes/rdb.q,1,,q
+localhost,{KDBBASEPORT}+3,hdb,hdb1,,1,1,60,4000,${KDBHDB},1,,q
+localhost,{KDBBASEPORT}+7,gateway,gateway1,,1,1,,4000,${KDBCODE}/processes/gateway.q,1,,q
+localhost,{KDBBASEPORT}+9,monitor,monitor1,,1,0,,,${KDBCODE}/processes/monitor.q,1,,q
