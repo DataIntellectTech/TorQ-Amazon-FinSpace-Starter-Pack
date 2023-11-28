@@ -53,26 +53,6 @@ variable "kx-user" {
   type        = string
 }
 
-variable "availability-zone" {
-  description = "default az for clusters"
-  type        = string
-}
-
-variable "vpc-id" {
-  description = "defailt vpc for clusters"
-  type        = string
-}
-
-variable "subnets" {
-  description = "subnet for cluster"
-  type        = list(string)
-}
-
-variable "security-groups" {
-  description = "security groups applied to cluster"
-  type        = list(string)
-}
-
 variable "init-script" {
   description = "script to run on cluster startup"
   type        = string
@@ -102,3 +82,7 @@ variable "discovery-count" {
   description = "no of discovery clusters to create"
 }
 
+variable "lambda-name" {
+  description = "import name of the function"
+  type = string
+}
