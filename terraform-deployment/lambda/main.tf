@@ -228,6 +228,23 @@ resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization" {
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization2" {
+  alarm_name = "trigger-${var.lambda-name}-2"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods = 1
+  metric_name = "CPUUtilization"
+  namespace = "AWS/FinSpace"
+  period = 60
+  statistic = "Maximum"
+  threshold = 10
+  alarm_description = "This alarm should be raised if rdb is over a certain threshold"
+  datapoints_to_alarm = 1
+
+  dimensions = {
+    KxClusterId = "rdb2"
+  }
+}
+
 #### create the evenBridge event ####
 
 resource "aws_cloudwatch_event_rule" "trigger_finSpace-rdb-lambda" {
@@ -237,7 +254,10 @@ resource "aws_cloudwatch_event_rule" "trigger_finSpace-rdb-lambda" {
   event_pattern = jsonencode({
     "source": ["aws.cloudwatch"],
     "detail-type": ["CloudWatch Alarm State Change"],
-    "resources": ["${aws_cloudwatch_metric_alarm.RDBOverCPUUtilization.arn}"]
+    "resources": [
+      "${aws_cloudwatch_metric_alarm.RDBOverCPUUtilization.arn}",
+      "${aws_cloudwatch_metric_alarm.RDBOverCPUUtilization2.arn}"
+      ]
     "detail": {
       "state": {
         "value": ["ALARM"]
