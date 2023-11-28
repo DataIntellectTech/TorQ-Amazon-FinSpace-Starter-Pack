@@ -10,6 +10,13 @@ system"c 23 2000"
 
 .finspace.enabled:1b;
 
+svrstoload:select from .servers.CLUSTERS where proctype = .proc.proctype
+$[count toload:first exec toload from svrstoload where procname = .proc.procname;
+  .proc.params[`load]:enlist .rmvr.removeenvvar toload;
+  if[count svrstoload; .proc.params[`load]:enlist .rmvr.removeenvvar first exec toload from svrstoload]
+ ];
+
+/
 if[count toload:exec first toload from .servers.CLUSTERS where proctype = .proc.proctype, procname=.proc.procname;
     .proc.params[`load]:enlist .rmvr.removeenvvar toload
     ];
