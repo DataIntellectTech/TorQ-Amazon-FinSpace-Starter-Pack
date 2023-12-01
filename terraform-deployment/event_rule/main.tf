@@ -1,4 +1,10 @@
-provider "aws" {
+variable "region" {
+  description = "AWS region"
+  type        = string
+}
+
+
+Provider "aws" {
   region = "eu-west-1"
 
   # Make it faster by skipping something

@@ -57,3 +57,8 @@ module "lambda" {
 
 }
 
+module "event_rules" {
+  source = "../event_rules"
+
+  region               = var.region
+}
