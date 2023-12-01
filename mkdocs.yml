@@ -3,6 +3,7 @@ nav:
     - Home: index.md
     - Getting Started: gettingstarted.md
     - Architecture: architecture.md
+    - Deploy Using Terraform: terraformdeloyment.md
 
 repo_name: 'GitHub'
 repo_url: 'https://github.com/DataIntellectTech/TorQ-Finspace-Starter-Pack'
