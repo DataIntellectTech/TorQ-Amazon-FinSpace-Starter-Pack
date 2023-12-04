@@ -24,7 +24,7 @@ locals {
 
 ## basic lambda execution permissions
 
-data "aws_iam_policy_document" "assume_role_doc" {
+data "aws_iam_policy_document" "assume_lambda_doc" {
   statement {
     effect = "Allow"
 
@@ -81,6 +81,14 @@ data "aws_iam_policy_document" "finspace-extra" {
     actions = ["finspace:MountKxDatabase"]
 
     resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxDatabase/*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = ["finspace:ListKxClusters"]
+
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/{var.environment-id}"]
   }
 }
 
@@ -157,7 +165,7 @@ resource "aws_iam_policy" "lambda_finspace_policy" {
 
 resource "aws_iam_role" "lambda_execution_role" {
   name = "boto3-rdb-scaling-test"
-  assume_role_policy = data.aws_iam_policy_document.assume_role_doc.json
+  assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
 }
 
 resource "aws_iam_role_policy_attachment" "attach1" {
@@ -208,6 +216,27 @@ resource "aws_lambda_function" "finSpace-rdb-lambda" {
 
   runtime = "python3.11"
   timeout = 900
+}
+
+#### create the eventbrighe scheduler ####
+
+resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
+  name = "rotateRDB_eventRule_${var.region}"
+  description = "Scheduler to create a new RDB every two hours"
+  schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
+}
+
+resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
+  arn = aws_lambda_function.finSpace-rdb-lambda.arn
+  rule = aws_cloudwatch_event_rule.rotateRDB_eventRule.name
+}
+
+resource "aws_lambda_permission" "lambda_from_schedule_permission" {
+  statement_id = "AllowExecutionOnSchedule"
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.finSpace-rdb-lambda.function_name
+  principal = "events.amazonaws.com"
+  source_arn = aws_cloudwatch_event_rule.rotateRDB_eventRule.arn
 }
 
 #### create the alarm ####

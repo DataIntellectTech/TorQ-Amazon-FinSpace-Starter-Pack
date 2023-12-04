@@ -3,22 +3,27 @@ import boto3
 #import botocore
 import logging
 import time
+import sys
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 defaultSession = boto3.Session()
 client = defaultSession.client('finspace')
+envId="33c4rqbmsx7bjclrrwb2gc" # eventually have this in env.py
 
 def lambda_handler(event, context):
     cluster_name = "rdb"
+
+    ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
     try:
-        metrics0 = event['detail']['configuration']['metrics'][0]
-        cluster_name = metrics0['metricStat']['metric']['dimensions']['KxClusterId']
-    except:
+        resp = client.list_kx_clusters(environmentId=envId, clusterType='RDB')
+        cluster_name = resp['kxClusterSummaries'][-1]['clusterName']
+    except Exception as err:
+        print(sys.exc_info())
         pass
         
-    clusterInfo = client.get_kx_cluster(environmentId="ytcy24hpfrehp22hder66x", clusterName=cluster_name)
+    clusterInfo = client.get_kx_cluster(environmentId=envId, clusterName=cluster_name)
     
     logger.info("former capacityConfig is %s" % clusterInfo['capacityConfiguration']) 
     
@@ -26,6 +31,11 @@ def lambda_handler(event, context):
     capacityConfiguration['nodeCount'] = 1+clusterInfo['capacityConfiguration']['nodeCount'] #increase the nodeCount by one
     
     logger.info("new capacityConfig is %s" % capacityConfiguration)
+
+    rdbCntr = cluster_name.replace('rdb','')
+    rdbCntr = 1 if not rdbCntr else int(rdbCntr)
+    rdbCntr = (rdbCntr%2)+1
+    newClusterId = f"rdb{rdbCntr}"
 
     databaseInfo = [{
         'databaseName':clusterInfo['databases'][0]['databaseName'],
@@ -35,18 +45,18 @@ def lambda_handler(event, context):
     commandLineArgs = []
     for k in clusterInfo['commandLineArguments']:
         if k['key'] == 'procname':
-            commandLineArgs.append({'key':'procname','value':f"{k['value']}1"})
+            commandLineArgs.append({'key':'procname','value':newClusterId})
+            commandLineArgs.append({'key':'replaceProc','value':k['value']})
+            commandLineArgs.append({'key':'replaceCluster','value':cluster_name})
+        elif k['key'] == 'replaceCluster' or k['key'] == 'replaceProc':
+            pass
         else:
             commandLineArgs.append(k)
     logger.info("new command line args: %s" % commandLineArgs)
     
-    #logger.info(clusterInfo['databases'])
-    #logger.info(clusterInfo['code'])
-    #logger.info(clusterInfo['commandLineArguments'])
-    
     clusterArgs = {
-        'environmentId': "ytcy24hpfrehp22hder66x",
-        'clusterName': "rdb2",
+        'environmentId': envId,
+        'clusterName': newClusterId,
         'clusterType': "RDB",
         'databases': databaseInfo,
         'clusterDescription': "new rdb cluster",
@@ -68,18 +78,10 @@ def lambda_handler(event, context):
     
     client.create_kx_cluster(**clusterArgs)
 
+    # what happens if the create_kx_cluster fails --> DLQ??
+
     logging.info("CREATION COMPLETE")
     
-    time.sleep(5)
-
-    logger.info("BEGINNING DELETION")
-    
-    client.delete_kx_cluster(environmentId="ytcy24hpfrehp22hder66x", clusterName="rdb")
-    
-    logger.info("DELETION COMPLETE")
-    
-    time.sleep(5)
-
     return {
         'statusCode': 200
     }

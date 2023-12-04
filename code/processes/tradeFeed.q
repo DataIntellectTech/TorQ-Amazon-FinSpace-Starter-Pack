@@ -38,6 +38,7 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 .trade.upd:{[w;t;d](neg first w)(`upd;t;d)};
 
 //TODO derive rdb handles through discovery cluster instead of generating
+//rdb2 will subscribe to the tradeFeed. Check how tradeFeed will handle that
 
 .trade.updateRDB:{
  rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;

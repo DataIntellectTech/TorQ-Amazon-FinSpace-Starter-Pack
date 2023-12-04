@@ -8,3 +8,6 @@ hloc:{[startdate;enddate;bucket]
  by sym, bucket xbar time
  from trade
  where date within (startdate;enddate)}
+
+getQryPerf:{[qry;src] start:.z.p; res:value qry; sz:(-22!res)%1024; exectime:.z.p-start; t:"i"$"t"$exectime; ([] rows:enlist count res; sizeKB:enlist sz;ms:enlist t;startTime:enlist start; query:enlist qry; querySource:enlist src)}
+
