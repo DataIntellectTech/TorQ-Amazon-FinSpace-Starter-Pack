@@ -88,7 +88,7 @@ data "aws_iam_policy_document" "finspace-extra" {
 
     actions = ["finspace:ListKxClusters"]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/{var.environment-id}"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}"]
   }
 }
 
@@ -200,6 +200,13 @@ resource "aws_iam_role_policy_attachment" "attach3" {
 
 ## create the scripts
 ##      I don't know how the scripts get attached and stuff
+
+resource "local_file" "lambda_configs" {
+  content = <<-EOT
+    envId="${var.environment-id}"
+  EOT
+  filename = "${path.module}/src/env.py"
+}
 
 data "archive_file" "lambda_my_function" {
   type             = "zip"

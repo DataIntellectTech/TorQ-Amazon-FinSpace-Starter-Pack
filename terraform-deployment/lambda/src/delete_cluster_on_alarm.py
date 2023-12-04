@@ -4,13 +4,13 @@ import boto3
 import logging
 import time
 import sys
+from env import *
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 defaultSession = boto3.Session()
 client = defaultSession.client('finspace')
-envId="33c4rqbmsx7bjclrrwb2gc" # eventually have this in env.py
 
 def lambda_handler(event, context):
     cluster_name = "rdb"
