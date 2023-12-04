@@ -204,11 +204,14 @@ resource "aws_iam_role_policy_attachment" "attach3" {
 resource "local_file" "lambda_configs" {
   content = <<-EOT
     envId="${var.environment-id}"
+    default_cluster_name="rdb"
   EOT
   filename = "${path.module}/src/env.py"
 }
 
 data "archive_file" "lambda_my_function" {
+  depends_on = [local_file.lambda_configs]
+
   type             = "zip"
   source_dir      = "${path.module}/src"
   output_file_mode = "0666"

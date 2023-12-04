@@ -13,7 +13,7 @@ defaultSession = boto3.Session()
 client = defaultSession.client('finspace')
 
 def lambda_handler(event, context):
-    cluster_name = "rdb"
+    cluster_name = default_cluster_name
 
     ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
     try:
