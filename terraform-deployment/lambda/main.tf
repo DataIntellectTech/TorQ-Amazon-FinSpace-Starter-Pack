@@ -145,26 +145,26 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
 ## put it all together
 
 resource "aws_iam_policy" "lambda_ec2_policy" {
-  name = "${var.lambda-name}-ec2-permissions-role"
+  name = "${var.lambda-name}-${var.region}-ec2-permissions-role-${var.environment-id}"
 
   policy = data.aws_iam_policy_document.ec2-permissions-lambda.json
 }
 
 resource "aws_iam_policy" "lambda_basic_policy" {
-  name = "${var.lambda-name}-basic-permissions-role"
+  name = "${var.lambda-name}-${var.region}-basic-permissions-role-${var.environment-id}"
 
   policy = data.aws_iam_policy_document.lambda_basic_execution.json
 }
 
 resource "aws_iam_policy" "lambda_finspace_policy" {
-  name = "${var.lambda-name}-finspace-permissions-role"
+  name = "${var.lambda-name}-${var.region}-finspace-permissions-role-${var.environment-id}"
 
   policy = data.aws_iam_policy_document.finspace-extra.json
 }
 
 
 resource "aws_iam_role" "lambda_execution_role" {
-  name = "boto3-rdb-scaling-test"
+  name = "${var.lambda-name}-role-${var.environment-id}"
   assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
 }
 
@@ -199,7 +199,6 @@ resource "aws_iam_role_policy_attachment" "attach3" {
 #### create lambda function itself ####
 
 ## create the scripts
-##      I don't know how the scripts get attached and stuff
 
 resource "local_file" "lambda_configs" {
   content = <<-EOT
