@@ -6,7 +6,7 @@ nav:
     - Deploy Using Terraform: terraformdeloyment.md
 
 repo_name: 'GitHub'
-repo_url: 'https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack'
+repo_url: 'https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack'
 
 theme:
   favicon: graphics/favicon.ico
