@@ -13,7 +13,10 @@ environment-name  = "virginia-env-test3"
 policy-name       = "finspace-policy-virginia"
 role-name         = "finspace-role-virginia"
 kx-user           = "finspace-user-virginia"
+
+# lambda configs
 lambda-name       = "boto3-rdb-scaling-test"
+rdbCntr_modulo    = 3
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 

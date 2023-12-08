@@ -12,15 +12,17 @@ logger.setLevel(logging.INFO)
 defaultSession = boto3.Session()
 client = defaultSession.client('finspace')
 
+# if relying on "event", we need to ensure event is of a specific format
 def lambda_handler(event, context):
     cluster_name = default_cluster_name
 
     ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
     try:
         resp = client.list_kx_clusters(environmentId=envId, clusterType='RDB')
+        resp['kxClusterSummaries'].sort(key=lambda x: x['createdTimestamp'])
         cluster_name = resp['kxClusterSummaries'][-1]['clusterName']
     except Exception as err:
-        print(sys.exc_info())
+        logger.error(sys.exc_info())
         pass
         
     clusterInfo = client.get_kx_cluster(environmentId=envId, clusterName=cluster_name)
@@ -34,7 +36,7 @@ def lambda_handler(event, context):
 
     rdbCntr = cluster_name.replace('rdb','')
     rdbCntr = 1 if not rdbCntr else int(rdbCntr)
-    rdbCntr = (rdbCntr%2)+1
+    rdbCntr = (rdbCntr%rdbCntr_modulo)+1
     newClusterId = f"rdb{rdbCntr}"
 
     databaseInfo = [{

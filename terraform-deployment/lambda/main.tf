@@ -16,6 +16,10 @@ variable "account_id" {
   description = "import the account_id of the current root user"
 }
 
+variable "rdbCntr_mod" {
+  description = "maximum number of rdbs created by lambda"
+}
+
 locals {
   lambda-file-name = "delete_cluster_on_alarm"
 }
@@ -162,7 +166,6 @@ resource "aws_iam_policy" "lambda_finspace_policy" {
   policy = data.aws_iam_policy_document.finspace-extra.json
 }
 
-
 resource "aws_iam_role" "lambda_execution_role" {
   name = "${var.lambda-name}-role-${var.environment-id}"
   assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
@@ -204,6 +207,7 @@ resource "local_file" "lambda_configs" {
   content = <<-EOT
     envId="${var.environment-id}"
     default_cluster_name="rdb"
+    rdbCntr_modulo=${var.rdbCntr_mod}
   EOT
   filename = "${path.module}/src/env.py"
 }

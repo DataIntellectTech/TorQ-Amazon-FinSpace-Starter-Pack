@@ -50,10 +50,10 @@ module "network" {
 module "lambda" {
   source = "../lambda"
 
-  lambda-name = var.lambda-name
-  region = var.region
+  lambda-name          = var.lambda-name
+  region               = var.region
   environment-id       = module.environment.environment-id
-  account_id = module.environment.account_id
-
+  account_id           = module.environment.account_id
+  rdbCntr_mod          = var.rdbCntr_modulo
 }
 

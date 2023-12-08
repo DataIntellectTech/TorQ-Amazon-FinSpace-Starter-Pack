@@ -86,3 +86,7 @@ variable "lambda-name" {
   description = "import name of the function"
   type = string
 }
+
+variable "rdbCntr_modulo" {
+  description = "maximum number of rdbs created by lambda"
+}
