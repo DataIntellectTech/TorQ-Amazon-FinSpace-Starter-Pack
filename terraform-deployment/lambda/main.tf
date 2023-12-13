@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "finspace-extra" {
         "finspace:GetKxCluster"
     ]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxCluster/*"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxCluster/*"]
   }
 
   statement {
@@ -84,7 +84,7 @@ data "aws_iam_policy_document" "finspace-extra" {
 
     actions = ["finspace:MountKxDatabase"]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxDatabase/*"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxDatabase/*"]
   }
 
   statement {
@@ -92,7 +92,7 @@ data "aws_iam_policy_document" "finspace-extra" {
 
     actions = ["finspace:ListKxClusters"]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*"]
   }
 }
 
@@ -149,25 +149,25 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
 ## put it all together
 
 resource "aws_iam_policy" "lambda_ec2_policy" {
-  name = "${var.lambda-name}-${var.region}-ec2-permissions-role-${var.environment-id}"
+  name = "${var.lambda-name}-${var.region}-ec2-permissions-role"
 
   policy = data.aws_iam_policy_document.ec2-permissions-lambda.json
 }
 
 resource "aws_iam_policy" "lambda_basic_policy" {
-  name = "${var.lambda-name}-${var.region}-basic-permissions-role-${var.environment-id}"
+  name = "${var.lambda-name}-${var.region}-basic-permissions-role"
 
   policy = data.aws_iam_policy_document.lambda_basic_execution.json
 }
 
 resource "aws_iam_policy" "lambda_finspace_policy" {
-  name = "${var.lambda-name}-${var.region}-finspace-permissions-role-${var.environment-id}"
+  name = "${var.lambda-name}-${var.region}-finspace-permissions-role"
 
   policy = data.aws_iam_policy_document.finspace-extra.json
 }
 
 resource "aws_iam_role" "lambda_execution_role" {
-  name = "${var.lambda-name}-role-${var.environment-id}"
+  name = "${var.lambda-name}-role-${var.region}"
   assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
 }
 
