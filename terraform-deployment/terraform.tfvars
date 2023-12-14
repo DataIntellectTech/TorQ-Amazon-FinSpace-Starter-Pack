@@ -3,8 +3,8 @@ kms-key-id        = "c8f9ea11-d45c-45d4-86fd-e8994e2ab6f0"      # key id for kms
 
 # file paths
 zip_file_path     = "../code.zip"                               # path to zipped code
-init-script       = "TorQ-Finspace-Starter-Pack/env.q"          # initialization script
-hdb-path          = "../TorQ-Finspace-Starter-Pack/hdb"        	# path to hdb to migrate 
+init-script       = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"          # initialization script
+hdb-path          = "../TorQ-Amazon-FinSpace-Starter-Pack/hdb"        	# path to hdb to migrate 
 
 # network details
 availability-zone = "use2-az1"                                  # availability zone ID

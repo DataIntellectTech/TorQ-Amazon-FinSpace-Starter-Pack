@@ -13,14 +13,14 @@ Installation and Configuration
 
 2. You need a KX insights license applied to our account. If you don’t have one see [Activate your Managed kdb Insights license - Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/kdb-licensing.html).
 
-3. Inside a Linux system you will need to download the [TorQ](https://github.com/DataIntellectTech/TorQ/tree/master) and [TorQ FinSpace Starter Pack](https://github.com/DataIntellectTech/TorQ-Finspace-Starter-Pack/tree/master) GitHub code repos.
+3. Inside a Linux system you will need to download the [TorQ](https://github.com/DataIntellectTech/TorQ/tree/master) and [TorQ FinSpace Starter Pack](https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack/tree/master) GitHub code repos.
 
 Start Up
 --------
 
-1. Zip up TorQ and TorQ-Finspace-Starter-Pack and name it code.zip
+1. Zip up TorQ and TorQ-Amazon-FinSpace-Starter-Pack and name it code.zip
 
-2. Follow the steps in our [Terraform documentation](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/terraform/) to get your environment and clusters (processes) started.
+2. Follow the steps in our [Terraform documentation](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/terraformdeloyment/) to get your environment and clusters (processes) started.
 
 The process of setting up a working Managed kdb Insights environment manually can take some time - especially if you are new to AWS. To aid this process we have a Terraform deployment option which should allow you to boot TorQ in Managed kdb Insights in a few simple commands. This Terraform script can be used to deploy an entire environment from scratch. Including creating and uploading data to s3 buckets with required policies, creating IAM roles, and creating network and transit gateway, as well as deploying clusters.
 

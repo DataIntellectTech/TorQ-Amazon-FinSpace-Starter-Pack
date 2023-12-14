@@ -1,4 +1,4 @@
-# TorQ-Finspace-Starter-Pack
+# TorQ-Amazon-FinSpace-Starter-Pack
 An example market data capture system designed for running in AWS Managed kdb Insights.
 
 This codebase contains
@@ -7,7 +7,7 @@ This codebase contains
 * Initial code for a TorQ on Managed kdb Insights application
 
 ## Getting Started
-Follow instructions on the [TorQ on Managed kdb Insights Manual](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/).
+Follow instructions on the [TorQ on Managed kdb Insights Getting Started page](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/gettingstarted/).
 
 ## Updating the Documentation with Mkdocs
 
@@ -26,5 +26,7 @@ Then:
 Head to the address it gives you to check if your changes have worked. More information about using mkdocs can be found [here](http://www.mkdocs.org/)
   
 ## Release Notes
+- **1.0.1, Dec 2023**:
+  * Renaming project refrences to TorQ-Amazon-FinSpace-Starter-Pack
 - **1.0.0, Dec 2023**:
   * Initial public release of TorQ-Finspace-Starter-Pack

@@ -17,7 +17,7 @@ availabilityZoneId = "euw1-az1"
 # code settings
 s3Bucket = "fintorq-eu-west1-code"
 s3Key = "code.zip"
-initScript = "TorQ-Finspace-Starter-Pack/env.q"
+initScript = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"
 
 executionRole = "arn:aws:iam::766012286003:role/finTorq_hdb_connect"
 

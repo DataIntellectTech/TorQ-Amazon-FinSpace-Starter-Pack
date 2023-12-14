@@ -19,8 +19,6 @@ Once started, TorQ will generate simulated data and push it into an
 in-memory real-time database inside the rdb cluster. It will persist this
 data to a Managed kdb database every day at midnight. The system will operate 24\*7.
 
-Further information can be found in the [TorQ on Managed kdb Insights Manual](https://dataintellecttech.github.io/TorQ-Finspace-Starter-Pack/).
-
 *email:* <torqsupport@dataintellect.com>
 
 *web:* [www.dataintellect.com](http://www.dataintellect.com)
