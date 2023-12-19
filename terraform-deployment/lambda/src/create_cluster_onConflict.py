@@ -1,6 +1,7 @@
 import json
 import boto3
 #import botocore
+import re
 import logging
 import time
 import sys
@@ -12,33 +13,44 @@ logger.setLevel(logging.INFO)
 defaultSession = boto3.Session()
 client = defaultSession.client('finspace')
 
-# if relying on "event", we need to ensure event is of a specific format
 def lambda_handler(event, context):
-    cluster_name = default_cluster_name
-
-    ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
-    try:
-        resp = client.list_kx_clusters(environmentId=envId, clusterType='RDB')
-        resp['kxClusterSummaries'].sort(key=lambda x: x['createdTimestamp'])
-        cluster_name = resp['kxClusterSummaries'][-1]['clusterName']
-    except Exception as err:
-        logger.error(sys.exc_info())
-        pass
+    logging.info(event)
+    
+    #gaurd 1
+    if 'responsePayload' not in event.keys():
+        logging.error("event payload is not correct. Excpected \'responsePayload\' within event keys")
+        raise ValueError("event payload is not correct. Excpected \'responsePayload\' within event keys")
+    
+    #gaurd 2
+    if 'errorType' not in event['responsePayload']:
+        logging.error("responsePayload is not of expected content. Expected \'errorType\' inside payload")
+        raise ValueError("responsePayload is not of expected content. Expected \'errorType\' inside payload")
         
+    #gaurd 3
+    if event['responsePayload']['errorType'] != "ConflictException":
+        logging.error(f"expected errorType : ConflictException. Found : {event['responsePayload']['errorType']}")
+        raise ValueError(f"expected errorType : ConflictException. Found :  {event['responsePayload']['errorType']}")
+
+    logging.warn("Function will only handle cases where cluster_name has format [a-zA-Z]+[0-9]*")
+    
+    parseMessage = event['responsePayload']['errorMessage']
+    match = re.findall(r'Cluster already exists with alias: [a-zA-Z]+[0-9]*',parseMessage)
+    if not match:
+        logging.error("Expected message not in payload. Aborting")
+        raise ValueError("Expected message not in payload")
+    cluster_name = match[0].split(":")[-1].strip()
+    logging.info(cluster_name)
+    
     clusterInfo = client.get_kx_cluster(environmentId=envId, clusterName=cluster_name)
     
-    logger.info("former capacityConfig is %s" % clusterInfo['capacityConfiguration']) 
-    
-    capacityConfiguration = clusterInfo['capacityConfiguration'].copy()
-    capacityConfiguration['nodeCount'] = 1+clusterInfo['capacityConfiguration']['nodeCount'] #increase the nodeCount by one
-    
-    logger.info("new capacityConfig is %s" % capacityConfiguration)
-
-    rdbCntr = cluster_name.replace('rdb','')
-    rdbCntr = 1 if not rdbCntr else int(rdbCntr)
-    rdbCntr = (rdbCntr%rdbCntr_modulo)+1
-    newClusterId = f"rdb{rdbCntr}"
-
+    match = re.findall(r'[0-9]+',cluster_name)
+    newClusterId = cluster_name
+    if not match:
+        newClusterId = f'{cluster_name}2'
+    else:
+        repl = str((int(match[0])%rdbCntr_modulo)+1)
+        newClusterId = re.sub(match[0],repl,cluster_name)
+        
     databaseInfo = [{
         'databaseName':clusterInfo['databases'][0]['databaseName'],
         'changesetId':clusterInfo['databases'][0]['changesetId']
@@ -62,7 +74,7 @@ def lambda_handler(event, context):
         'clusterType': "RDB",
         'databases': databaseInfo,
         'clusterDescription': "new rdb cluster",
-        'capacityConfiguration': capacityConfiguration,
+        'capacityConfiguration': clusterInfo['capacityConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
         'vpcConfiguration': clusterInfo['vpcConfiguration'],
         'initializationScript' : clusterInfo['initializationScript'],
@@ -79,11 +91,9 @@ def lambda_handler(event, context):
     logging.info("BEGINNING CREATION")
     
     client.create_kx_cluster(**clusterArgs)
-
-    # what happens if the create_kx_cluster fails --> DLQ??
-
+    
     logging.info("CREATION COMPLETE")
     
     return {
-        'statusCode': 200
+        'statusCode':200
     }

@@ -21,7 +21,7 @@ variable "rdbCntr_mod" {
 }
 
 locals {
-  lambda-file-name = "delete_cluster_on_alarm"
+  lambda-file-name = "create_cluster_on_alarm"
 }
 
 #### create and attach the appropriate IAM policies ####
@@ -237,6 +237,7 @@ resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
   name = "rotateRDB_eventRule_${var.region}"
   description = "Scheduler to create a new RDB every two hours"
   schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
+  #schedule_expression = "cron(*/2 * ? * 1-5 2023)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
