@@ -231,28 +231,7 @@ resource "aws_lambda_function" "finSpace-rdb-lambda" {
   timeout = 900
 }
 
-#### create the eventbrighe scheduler ####
-
-resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
-  name = "rotateRDB_eventRule_${var.region}"
-  description = "Scheduler to create a new RDB every two hours"
-  schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
-  #schedule_expression = "cron(*/2 * ? * 1-5 2023)"
-}
-
-resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
-  arn = aws_lambda_function.finSpace-rdb-lambda.arn
-  rule = aws_cloudwatch_event_rule.rotateRDB_eventRule.name
-}
-
-resource "aws_lambda_permission" "lambda_from_schedule_permission" {
-  statement_id = "AllowExecutionOnSchedule"
-  action = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.finSpace-rdb-lambda.function_name
-  principal = "events.amazonaws.com"
-  source_arn = aws_cloudwatch_event_rule.rotateRDB_eventRule.arn
-}
-
+/*
 #### create the alarm ####
 resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization" {
   alarm_name = "trigger-${var.lambda-name}"
@@ -301,6 +280,7 @@ resource "aws_lambda_permission" "lambda_from_cw_permission" {
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda.arn
 }
+*/
 
 output "execution_policy_res" {
   value = data.aws_iam_policy_document.lambda_basic_execution.json

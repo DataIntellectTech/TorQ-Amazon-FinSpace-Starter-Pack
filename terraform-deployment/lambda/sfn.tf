@@ -2,15 +2,30 @@ variable "sfn-machine-name" {
   description = "name of your step functions machine"
 }
 
-### create the appropriate roles lambda_execution_role
+### create the appropriate IAM roles
 
-data "aws_iam_policy_document" "assume_sfn_doc" {
+## step function assume role doc
+data "aws_iam_policy_document" "assume_states_doc" {
   statement {
     effect = "Allow"
 
     principals {
       type        = "Service"
       identifiers = ["states.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+## eventBridge assume role doc
+data "aws_iam_policy_document" "assume_events_doc" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["events.amazonaws.com"]
     }
 
     actions = ["sts:AssumeRole"]
@@ -58,6 +73,18 @@ data "aws_iam_policy_document" "xray_scoped_access_policy_doc" {
   }
 }
 
+## eventBridge policies
+data "aws_iam_policy_document" "eventBridge_policy_doc" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "states:StartExecution"
+    ]
+    resources = [aws_sfn_state_machine.sfn_state_machine.arn]
+  }
+}
+
 resource "aws_iam_policy" "lambda_invoke_scoped_access_policy" {
     name = "${var.sfn-machine-name}-${var.region}-lambdaInvoke-policy"
     policy = data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc.json
@@ -75,7 +102,7 @@ resource "aws_iam_policy" "xray_scoped_access_policy" {
 
 resource "aws_iam_role" "states_execution_role" {
   name = "StepFunctions-${var.sfn-machine-name}-${var.region}-exec-role"
-  assume_role_policy = data.aws_iam_policy_document.assume_sfn_doc.json
+  assume_role_policy = data.aws_iam_policy_document.assume_states_doc.json
 }
 
 resource "aws_iam_role_policy_attachment" "attach_lambda_invoke_scoped_access_policy" {
@@ -93,7 +120,23 @@ resource "aws_iam_role_policy_attachment" "attach_xray_scoped_access_policy" {
     policy_arn = aws_iam_policy.xray_scoped_access_policy.arn
 }
 
-### sfn function here we go ###
+resource "aws_iam_policy" "eventBridge_policy" {
+    name =  "schedule-${var.sfn-machine-name}-${var.region}-policy"
+    policy = data.aws_iam_policy_document.eventBridge_policy_doc.json
+}
+
+resource "aws_iam_role" "eventBridge_role" {
+    name = "schedule-${var.sfn-machine-name}-${var.region}-role"
+    assume_role_policy = data.aws_iam_policy_document.assume_events_doc.json
+}
+
+resource "aws_iam_role_policy_attachment" "attach_eventBridge_policy" {
+    role = aws_iam_role.eventBridge_role.name
+    policy_arn = aws_iam_policy.eventBridge_policy.arn
+}
+
+
+### sfn function ###
 
 resource "aws_sfn_state_machine" "sfn_state_machine" {
     name = "${var.sfn-machine-name}-${var.region}"
@@ -105,3 +148,19 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
         other_error_queue_url               = aws_sqs_queue.lambda_error_queue.url
     })
 }
+
+#### create the eventbrighe scheduler ####
+
+resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
+  name = "rotateRDB_eventRule_${var.region}"
+  description = "Scheduler to create a new RDB every two hours"
+  #schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
+  schedule_expression = "cron(*/2 * ? * 1-5 2023)"
+}
+
+resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
+  arn = aws_sfn_state_machine.sfn_state_machine.arn
+  rule = aws_cloudwatch_event_rule.rotateRDB_eventRule.name
+  role_arn = aws_iam_role.eventBridge_role.arn
+}
+
