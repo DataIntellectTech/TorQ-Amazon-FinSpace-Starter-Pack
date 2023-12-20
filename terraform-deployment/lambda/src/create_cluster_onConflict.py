@@ -5,6 +5,7 @@ import re
 import logging
 import time
 import sys
+import json
 from env import *
 
 logger = logging.getLogger()
@@ -16,24 +17,25 @@ client = defaultSession.client('finspace')
 def lambda_handler(event, context):
     logging.info(event)
     
+    eventKeys = event.keys()
     #gaurd 1
-    if 'responsePayload' not in event.keys():
-        logging.error("event payload is not correct. Excpected \'responsePayload\' within event keys")
-        raise ValueError("event payload is not correct. Excpected \'responsePayload\' within event keys")
-    
-    #gaurd 2
-    if 'errorType' not in event['responsePayload']:
-        logging.error("responsePayload is not of expected content. Expected \'errorType\' inside payload")
-        raise ValueError("responsePayload is not of expected content. Expected \'errorType\' inside payload")
+    if 'Error' not in eventKeys or 'Cause' not in eventKeys :
+        logging.error("event payload is not correct. Excpected \'Error\' and \'Cause\' within event keys")
+        raise ValueError("event payload is not correct. Excpected \'Error\' and \'Cause\' within event keys")
         
-    #gaurd 3
-    if event['responsePayload']['errorType'] != "ConflictException":
-        logging.error(f"expected errorType : ConflictException. Found : {event['responsePayload']['errorType']}")
-        raise ValueError(f"expected errorType : ConflictException. Found :  {event['responsePayload']['errorType']}")
+    #gaurd 2
+    if event['Error'] != "ConflictException":
+        logging.error(f"expected errorType : ConflictException. Found : {event['Error']}")
+        raise ValueError(f"expected errorType : ConflictException. Found :  {event['Error']}")
 
     logging.warn("Function will only handle cases where cluster_name has format [a-zA-Z]+[0-9]*")
     
-    parseMessage = event['responsePayload']['errorMessage']
+    parseMessage = ""
+    if isinstance(event['Cause'],str):
+        parseMessage = json.loads(event['Cause'])['errorMessage']
+    elif isinstance(event['Cause'],dict):
+        parseMessage = event['Cause']['errorMessage']
+
     match = re.findall(r'Cluster already exists with alias: [a-zA-Z]+[0-9]*',parseMessage)
     if not match:
         logging.error("Expected message not in payload. Aborting")

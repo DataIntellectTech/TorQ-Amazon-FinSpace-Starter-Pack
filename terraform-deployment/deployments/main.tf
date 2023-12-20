@@ -51,6 +51,7 @@ module "lambda" {
   source = "../lambda"
 
   lambda-name          = var.lambda-name
+  sfn-machine-name     = var.sfn-machine-name
   region               = var.region
   environment-id       = module.environment.environment-id
   account_id           = module.environment.account_id

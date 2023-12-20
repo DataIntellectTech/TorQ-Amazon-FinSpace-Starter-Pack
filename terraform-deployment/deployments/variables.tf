@@ -87,6 +87,11 @@ variable "lambda-name" {
   type = string
 }
 
+variable "sfn-machine-name" {
+  description = "import the name of your step function"
+  type = string
+}
+
 variable "rdbCntr_modulo" {
   description = "maximum number of rdbs created by lambda"
 }

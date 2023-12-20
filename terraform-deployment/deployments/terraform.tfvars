@@ -16,6 +16,8 @@ kx-user           = "finspace-user-virginia"
 
 # lambda configs
 lambda-name       = "boto3-rdb-scaling-test"
+#set-sfn-machine = should be boolean whether to include step-functions or not
+sfn-machine-name    = "finspace-scaler-state-machine"
 rdbCntr_modulo    = 3
 
 # database name

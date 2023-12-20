@@ -26,26 +26,10 @@ data "aws_iam_policy_document" "lambda_secondary_basic_execution" {
   }
 }
 
-data "aws_iam_policy_document" "lambda_lambda_destination_policy_doc" {
-  statement {
-    effect = "Allow"
-
-    actions = ["lambda:InvokeFunction"]
-
-    resources = [aws_lambda_function.finSpace-rdb-onConflict-lambda.arn]
-  }
-}
-
 resource "aws_iam_policy" "lambda_secondary_basic_policy" {
   name = "${local.lambda-secondary-name}-${var.region}-basic-permissions-role"
 
   policy = data.aws_iam_policy_document.lambda_secondary_basic_execution.json
-}
-
-resource "aws_iam_policy" "lambda_lambda_destination_policy" {
-  name = "${var.lambda-name}-${var.region}-lambda-destination-role"
-
-  policy = data.aws_iam_policy_document.lambda_lambda_destination_policy_doc.json
 }
 
 resource "aws_iam_role" "lambda_secondary_execution_role" {
@@ -53,17 +37,17 @@ resource "aws_iam_role" "lambda_secondary_execution_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
 }
 
-resource "aws_iam_role_policy_attachment" "attach_secondary_1" {
+resource "aws_iam_role_policy_attachment" "attach_lambda_secondary_basic" {
   role = aws_iam_role.lambda_secondary_execution_role.name
   policy_arn = aws_iam_policy.lambda_secondary_basic_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "attach_secondary_2" {
+resource "aws_iam_role_policy_attachment" "attach_ec2_policy_to_secondary" {
   role = aws_iam_role.lambda_secondary_execution_role.name
   policy_arn = aws_iam_policy.lambda_ec2_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "attach_secondary_3" {
+resource "aws_iam_role_policy_attachment" "attach_finspace_policy_to_secondary" {
   role = aws_iam_role.lambda_secondary_execution_role.name
   policy_arn = aws_iam_policy.lambda_finspace_policy.arn
 }
@@ -76,10 +60,5 @@ resource "aws_lambda_function" "finSpace-rdb-onConflict-lambda" {
 
   runtime = "python3.11"
   timeout = 900
-}
-
-resource "aws_iam_role_policy_attachment" "attach_lambda_destination" {
-  role = aws_iam_role.lambda_execution_role.name
-  policy_arn = aws_iam_policy.lambda_lambda_destination_policy.arn
 }
 
