@@ -14,13 +14,26 @@ client = defaultSession.client('finspace')
 
 # if relying on "event", we need to ensure event is of a specific format
 def lambda_handler(event, context):
+
+    def filterByClusterPrefix(clusterSummaries, cluster_prefix):
+        ret = [clusterSummary for clusterSummary in clusterSummaries if cluster_prefix in clusterSummary["clusterName"]]
+        return ret
+    
     cluster_name = default_cluster_name
+    
+    eventKeys = event.keys()
+    if "cluster_prefix" not in eventKeys or "clusterType" not in eventKeys:
+        logging.error("event payload is not correct. Excpected \'cluster_prefix\' and \'clusterType\' within event keys")
+        raise ValueError("event payload is not correct. Excpected \'cluster_prefix\' and \'clusterType\' within event keys")
+        
 
     ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
+    cluster_prefix = event["cluster_prefix"]
     try:
-        resp = client.list_kx_clusters(environmentId=envId, clusterType='RDB')
-        resp['kxClusterSummaries'].sort(key=lambda x: x['createdTimestamp'])
-        cluster_name = resp['kxClusterSummaries'][-1]['clusterName']
+        resp = client.list_kx_clusters(environmentId=envId, clusterType=event["clusterType"])
+        filteredSummaries = filterByClusterPrefix(resp['kxClusterSummaries'], cluster_prefix)
+        filteredSummaries.sort(key=lambda x: x['createdTimestamp'])
+        cluster_name = filteredSummaries[0]['clusterName']
     except Exception as err:
         logger.error(sys.exc_info())
         pass
@@ -34,10 +47,10 @@ def lambda_handler(event, context):
     
     logger.info("new capacityConfig is %s" % capacityConfiguration)
 
-    rdbCntr = cluster_name.replace('rdb','')
-    rdbCntr = 1 if not rdbCntr else int(rdbCntr)
-    rdbCntr = (rdbCntr%rdbCntr_modulo)+1
-    newClusterId = f"rdb{rdbCntr}"
+    cntr = cluster_name.replace(cluster_prefix,'')
+    cntr = 1 if not cntr else int(cntr)
+    cntr = (cntr%rdbCntr_modulo)+1
+    newClusterId = f"{cluster_prefix}{cntr}"
 
     databaseInfo = [{
         'databaseName':clusterInfo['databases'][0]['databaseName'],
