@@ -42,8 +42,6 @@ def lambda_handler(event, context):
     #capacityConfiguration = clusterInfo['capacityConfiguration'].copy()
     #capacityConfiguration['nodeCount'] = 1+clusterInfo['capacityConfiguration']['nodeCount'] #increase the nodeCount by one
     
-    logger.info("new capacityConfig is %s" % capacityConfiguration)
-
     cntr = cluster_name.replace(cluster_prefix,'')
     cntr = 1 if not cntr else int(cntr)
     cntr = (cntr%rdbCntr_modulo)+1
