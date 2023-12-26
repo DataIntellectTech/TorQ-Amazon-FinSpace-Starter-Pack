@@ -18,17 +18,14 @@ def lambda_handler(event, context):
     def filterByClusterPrefix(clusterSummaries, cluster_prefix):
         ret = [clusterSummary for clusterSummary in clusterSummaries if cluster_prefix in clusterSummary["clusterName"]]
         return ret
-    
-    cluster_name = default_cluster_name
-    
+        
     eventKeys = event.keys()
     if "cluster_prefix" not in eventKeys or "clusterType" not in eventKeys:
         logging.error("event payload is not correct. Excpected \'cluster_prefix\' and \'clusterType\' within event keys")
         raise ValueError("event payload is not correct. Excpected \'cluster_prefix\' and \'clusterType\' within event keys")
-        
 
     ## assume that if multiple RDBs, list_kx_clusters lists clusters by LIFO according to creationTimestamp
-    cluster_prefix = event["cluster_prefix"]
+    cluster_name = cluster_prefix = event["cluster_prefix"]
     try:
         resp = client.list_kx_clusters(environmentId=envId, clusterType=event["clusterType"])
         filteredSummaries = filterByClusterPrefix(resp['kxClusterSummaries'], cluster_prefix)

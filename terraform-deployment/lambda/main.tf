@@ -206,7 +206,6 @@ resource "aws_iam_role_policy_attachment" "attach3" {
 resource "local_file" "lambda_configs" {
   content = <<-EOT
     envId="${var.environment-id}"
-    default_cluster_name="rdb"
     rdbCntr_modulo=${var.rdbCntr_mod}
   EOT
   filename = "${path.module}/src/env.py"
