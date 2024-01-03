@@ -1,4 +1,5 @@
 SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
+
 BASH_GREP_SCRIPT:SCRIPT_DIR,"compatibility_scanner/grep.sh";
 BASH_FIND_SCRIPT:SCRIPT_DIR,"compatibility_scanner/find.sh";
 
