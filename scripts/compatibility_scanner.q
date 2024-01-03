@@ -1,5 +1,6 @@
 SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
-BASH_HELPER_SCRIPT:SCRIPT_DIR,"compatibility_scanner.sh";
+BASH_GREP_SCRIPT:SCRIPT_DIR,"compatibility_scanner/grep.sh";
+BASH_FIND_SCRIPT:SCRIPT_DIR,"compatibility_scanner/find.sh";
 
 overridedZsRegex:(
   "\\.z\\.ts";
@@ -28,18 +29,17 @@ scanFile:{[file]
 
   str:-1 _ raze{"(",x,")|"}each overridedZsRegex;
 
-  res:system"bash ",BASH_HELPER_SCRIPT," \"",str,"\" \"",file,"\"";
+  res:system"bash ",BASH_GREP_SCRIPT," \"",str,"\" \"",file,"\"";
+  if[enlist[""]~res;res:()];
+
   res:{{("J"$first x;":" sv 1 _ x)}":" vs x}each res;
   
   {-1"Line ",string[first x],":\t",last x}each res;
-
   -1"\nFound ",string[count res]," lines with compatibility issues in file";
  };
 
 getDirFileList:{[dir]
-  show key hsym`$dir;
-
-  :();
+  :system"bash ",BASH_FIND_SCRIPT," \"",dir,"\"";
  };
 
 parseArgs:{[]
@@ -50,9 +50,10 @@ parseArgs:{[]
 
   if[0h<>type args`files;args[`files]:enlist args`files];
   args[`files]:args[`files] where 10h=type each args`files;
-  args[`files]:{$["/"~first x;x;first[system"pwd"],"/",x]}each args`files;
 
   :args;
  };
+
+
 
 run[];
