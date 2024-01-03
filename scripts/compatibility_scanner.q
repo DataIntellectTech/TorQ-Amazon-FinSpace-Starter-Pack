@@ -1,4 +1,5 @@
-CURRENT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
+SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
+BASH_HELPER_SCRIPT:SCRIPT_DIR,"compatibility_scanner.sh";
 
 overridedZsRegex:(
   "\\.z\\.ts";
@@ -27,7 +28,7 @@ scanFile:{[file]
 
   str:-1 _ raze{"(",x,")|"}each overridedZsRegex;
 
-  res:system"bash compatibility_scanner.sh \"",str,"\" \"",file,"\"";
+  res:system"bash ",BASH_HELPER_SCRIPT," \"",str,"\" \"",file,"\"";
   res:{{("J"$first x;":" sv 1 _ x)}":" vs x}each res;
   
   {-1"Line ",string[first x],":\t",last x}each res;
