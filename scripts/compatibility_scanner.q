@@ -19,7 +19,9 @@ overridedZsRegex:(
 run:{[]
   args:parseArgs[];
   if[not ()~args`dir;args[`files]:distinct args[`files],getDirFileList args`dir];
-  res:$[0<>count args`files;scanFile each args[`files];[-1"No files to scan";()]];
+  res:$[0<>count args`files;sum scanFile each args[`files];[-1"No files to scan";0]];
+
+  -1"\nTotal lines with incompatibilities: ",string res;
 
   exit 0;
  };
@@ -36,6 +38,8 @@ scanFile:{[file]
   
   {-1"Line ",string[first x],":\t",last x}each res;
   -1"\nFound ",string[count res]," lines with compatibility issues in file";
+
+  :count res;
  };
 
 getDirFileList:{[dir]
