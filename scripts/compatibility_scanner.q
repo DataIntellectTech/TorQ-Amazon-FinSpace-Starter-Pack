@@ -50,7 +50,7 @@ parseArgs:{[]
 
   if[0h<>type args`files;args[`files]:enlist args`files];
   args[`files]:args[`files] where 10h=type each args`files;
-  args[`files]:{$["/"~first x;x;SCRIPT_DIR,x]}each args`files;
+  args[`files]:{$["/"~first x;x;first[system"pwd"],"/",x]}each args`files;
 
   :args;
  };
