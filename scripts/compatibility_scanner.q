@@ -26,25 +26,22 @@ run:{[]
 
   res:$[0<>count args`files;sum scanFile[;assignmentRegexPatterns] each args[`files];[-1"No files to scan";0]];
 
-  -1"\nTotal lines with incompatibilities: ",string res;
+  -1"\nChecked ",string[count args`files]," .q script(s)";
+  -1"Total lines with incompatibilities: ",string res;
 
   exit 0;
  };
 
 scanFile:{[file;assignmentRegexPatterns]
-  -1"--- '",file,"' ---";
-
-  checks:raze{enlist[y] cross x cross enlist z}[overridedZsRegex]'[reg`assignmentRegexPatterns;reg`assignmentRegexPatterns];
+  checks:raze{
+    :enlist[y] cross x cross enlist z;
+  }[overridedZsRegex]'[assignmentRegexPatterns`prefix;assignmentRegexPatterns`suffix];
 
   str:-1 _ raze{"(",x,")|"}each checks;
 
-  res:system"bash ",BASH_GREP_SCRIPT," \"",str,"\" \"",file,"\"";
-  if[enlist[""]~res;res:()];
-
-  res:{{("J"$first x;":" sv 1 _ x)}":" vs x}each res;
-  
-  {-1"Line ",string[first x],":\t",last x}each res;
-  -1"\nFound ",string[count res]," lines with compatibility issues in file";
+  res:system"bash ",BASH_GREP_SCRIPT," '",str,"' \"",file,"\"";
+  if[""~raze/[res];res:()];
+  if[0<count res;-1"\n" sv res];
 
   :count res;
  };
@@ -66,7 +63,6 @@ parseArgs:{[]
  };
 
 readAssignmentRegexPatterns:{[file]
-  show file;
   :("**";enlist"\t") 0: hsym`$file;
  };
 

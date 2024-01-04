@@ -1,9 +1,16 @@
 .z.ts:{};
-       .z.pg         :           {};
+.z.pg  :   {};
 `.z.ps set {};
-set[`.z.po]    fwqfw;
-.z.pc
-.z.ws
-.z.wo
+
+
+set[`.z.po]  {};
+set .z.pc
+
+.z.ws set abc;
+.z.wo  set  {}
+
+
 .z.wc
-.z.pi
+.z.pi    :    {}
+
+.z.ts:{}
