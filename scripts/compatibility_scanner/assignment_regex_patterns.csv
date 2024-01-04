@@ -1,0 +1,4 @@
+prefix	suffix
+set([[]|([ \t][ \t]*))[ \t]*`	
+`	[ \t][ \t]*set
+	[ \t]*:

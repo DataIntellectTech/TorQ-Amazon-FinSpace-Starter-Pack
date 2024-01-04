@@ -2,6 +2,7 @@ SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs stri
 
 BASH_GREP_SCRIPT:SCRIPT_DIR,"compatibility_scanner/grep.sh";
 BASH_FIND_SCRIPT:SCRIPT_DIR,"compatibility_scanner/find.sh";
+ASSIGNMENT_REGEX_PATTERNS_CSV:SCRIPT_DIR,"compatibility_scanner/assignment_regex_patterns.csv";
 
 overridedZsRegex:(
   "\\.z\\.ts";
@@ -19,18 +20,23 @@ overridedZsRegex:(
 
 run:{[]
   args:parseArgs[];
+
   if[not ()~args`dir;args[`files]:distinct args[`files],getDirFileList args`dir];
-  res:$[0<>count args`files;sum scanFile each args[`files];[-1"No files to scan";0]];
+  assignmentRegexPatterns:readAssignmentRegexPatterns[ASSIGNMENT_REGEX_PATTERNS_CSV];
+
+  res:$[0<>count args`files;sum scanFile[;assignmentRegexPatterns] each args[`files];[-1"No files to scan";0]];
 
   -1"\nTotal lines with incompatibilities: ",string res;
 
   exit 0;
  };
 
-scanFile:{[file]
+scanFile:{[file;assignmentRegexPatterns]
   -1"--- '",file,"' ---";
 
-  str:-1 _ raze{"(",x,")|"}each overridedZsRegex;
+  checks:raze{enlist[y] cross x cross enlist z}[overridedZsRegex]'[reg`assignmentRegexPatterns;reg`assignmentRegexPatterns];
+
+  str:-1 _ raze{"(",x,")|"}each checks;
 
   res:system"bash ",BASH_GREP_SCRIPT," \"",str,"\" \"",file,"\"";
   if[enlist[""]~res;res:()];
@@ -59,6 +65,9 @@ parseArgs:{[]
   :args;
  };
 
-
+readAssignmentRegexPatterns:{[file]
+  show file;
+  :("**";enlist"\t") 0: hsym`$file;
+ };
 
 run[];
