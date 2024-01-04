@@ -4,6 +4,11 @@ import {
 }
 
 import {
+  to = module.environment.data.aws_caller_identity.current
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.environment.data.aws_iam_policy_document.iam-policy
   id = "Existing_Structure_ID"
 }
@@ -19,13 +24,18 @@ import {
 }
 
 import {
+  to = module.environment.data.aws_kms_key.finspace-key
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.environment.aws_ec2_transit_gateway.test
   id = "Existing_Structure_ID"
 }
 
 import {
   to = module.environment.aws_finspace_kx_database.database
-  id = "abExisting_Structure_IDcd1234"
+  id = "Existing_Structure_ID"
 }
 
 import {
@@ -89,6 +99,11 @@ import {
 }
 
 import {
+  to = module.environment.aws_s3_object.code
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.environment.null_resource.create_changeset
   id = "Existing_Structure_ID"
 }
@@ -99,22 +114,92 @@ import {
 }
 
 import {
+  to = module.lambda.data.archive_file.lambda_my_function
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.assume_events_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.assume_lambda_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.assume_states_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.ec2-permissions-lambda
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.eventBridge_policy_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.lambda.data.aws_iam_policy_document.finspace-extra
   id = "Existing_Structure_ID"
 }
 
 import {
-  to = module.lambda.aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda
+  to = module.lambda.data.aws_iam_policy_document.lambda_basic_execution
   id = "Existing_Structure_ID"
 }
 
 import {
-  to = module.lambda.aws_cloudwatch_event_target.target_finSpace-rdb-lambda
+  to = module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc
   id = "Existing_Structure_ID"
 }
 
 import {
-  to = module.lambda.aws_cloudwatch_metric_alarm.RDBOverCPUUtilization
+  to = module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.lambda_secondary_basic_execution
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.sqs_sendMsg_scoped_access_policy_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_target.onRotateRDB_target
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_target.onRotateWDB_target
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_policy.eventBridge_policy
   id = "Existing_Structure_ID"
 }
 
@@ -134,7 +219,42 @@ import {
 }
 
 import {
+  to = module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_policy.lambda_secondary_basic_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_policy.sqs_sendMsg_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_policy.xray_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role.eventBridge_role
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.lambda.aws_iam_role.lambda_execution_role
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role.lambda_secondary_execution_role
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role.states_execution_role
   id = "Existing_Structure_ID"
 }
 
@@ -154,13 +274,72 @@ import {
 }
 
 import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_secondary
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_secondary
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_lambda_secondary_basic
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_sqs_sendMsg_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.lambda.aws_lambda_function.finSpace-rdb-lambda
   id = "Existing_Structure_ID"
 }
 
+import {
+  to = module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda
+  id = "Existing_Structure_ID"
+}
 
 import {
-  to = module.lambda.aws_lambda_permission.lambda_from_cw_permission
+  to = module.lambda.aws_sfn_state_machine.sfn_state_machine
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_sqs_queue.lambda_error_queue
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.local_file.lambda_configs
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.network.data.aws_availability_zones.finspace-azs
   id = "Existing_Structure_ID"
 }
 
@@ -190,7 +369,7 @@ import {
 }
 
 import {
-  to = module module.network.aws_subnet.finspace-subnets[1] 
+  to = module.network.aws_subnet.finspace-subnets[1]
   id = "Existing_Structure_ID"
 }
 
@@ -200,7 +379,17 @@ import {
 }
 
 import {
-  to = module.network.aws_subnet.finspace-subnets[3] 
+  to = module.network.aws_subnet.finspace-subnets[3]
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.network.aws_subnet.finspace-subnets[4]
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.network.aws_subnet.finspace-subnets[5]
   id = "Existing_Structure_ID"
 }
 
@@ -208,8 +397,4 @@ import {
   to = module.network.aws_vpc.finspace-vpc
   id = "Existing_Structure_ID"
 }
-
-
-
-
 

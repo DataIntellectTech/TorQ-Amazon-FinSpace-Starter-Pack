@@ -16,15 +16,19 @@ variable "account_id" {
   description = "import the account_id of the current root user"
 }
 
+variable "rdbCntr_mod" {
+  description = "maximum number of rdbs created by lambda"
+}
+
 locals {
-  lambda-file-name = "delete_cluster_on_alarm"
+  lambda-file-name = "create_cluster_on_alarm"
 }
 
 #### create and attach the appropriate IAM policies ####
 
 ## basic lambda execution permissions
 
-data "aws_iam_policy_document" "assume_role_doc" {
+data "aws_iam_policy_document" "assume_lambda_doc" {
   statement {
     effect = "Allow"
 
@@ -72,7 +76,7 @@ data "aws_iam_policy_document" "finspace-extra" {
         "finspace:GetKxCluster"
     ]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxCluster/*"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxCluster/*"]
   }
 
   statement {
@@ -80,7 +84,15 @@ data "aws_iam_policy_document" "finspace-extra" {
 
     actions = ["finspace:MountKxDatabase"]
 
-    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/${var.environment-id}/kxDatabase/*"]
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxDatabase/*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = ["finspace:ListKxClusters"]
+
+    resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*"]
   }
 }
 
@@ -137,27 +149,26 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
 ## put it all together
 
 resource "aws_iam_policy" "lambda_ec2_policy" {
-  name = "${var.lambda-name}-ec2-permissions-role"
+  name = "${var.lambda-name}-${var.region}-ec2-permissions-role"
 
   policy = data.aws_iam_policy_document.ec2-permissions-lambda.json
 }
 
 resource "aws_iam_policy" "lambda_basic_policy" {
-  name = "${var.lambda-name}-basic-permissions-role"
+  name = "${var.lambda-name}-${var.region}-basic-permissions-role"
 
   policy = data.aws_iam_policy_document.lambda_basic_execution.json
 }
 
 resource "aws_iam_policy" "lambda_finspace_policy" {
-  name = "${var.lambda-name}-finspace-permissions-role"
+  name = "${var.lambda-name}-${var.region}-finspace-permissions-role"
 
   policy = data.aws_iam_policy_document.finspace-extra.json
 }
 
-
 resource "aws_iam_role" "lambda_execution_role" {
-  name = "boto3-rdb-scaling-test"
-  assume_role_policy = data.aws_iam_policy_document.assume_role_doc.json
+  name = "${var.lambda-name}-role-${var.region}"
+  assume_role_policy = data.aws_iam_policy_document.assume_lambda_doc.json
 }
 
 resource "aws_iam_role_policy_attachment" "attach1" {
@@ -191,9 +202,18 @@ resource "aws_iam_role_policy_attachment" "attach3" {
 #### create lambda function itself ####
 
 ## create the scripts
-##      I don't know how the scripts get attached and stuff
+
+resource "local_file" "lambda_configs" {
+  content = <<-EOT
+    envId="${var.environment-id}"
+    rdbCntr_modulo=${var.rdbCntr_mod}
+  EOT
+  filename = "${path.module}/src/env.py"
+}
 
 data "archive_file" "lambda_my_function" {
+  depends_on = [local_file.lambda_configs]
+
   type             = "zip"
   source_dir      = "${path.module}/src"
   output_file_mode = "0666"
@@ -210,6 +230,7 @@ resource "aws_lambda_function" "finSpace-rdb-lambda" {
   timeout = 900
 }
 
+/*
 #### create the alarm ####
 resource "aws_cloudwatch_metric_alarm" "RDBOverCPUUtilization" {
   alarm_name = "trigger-${var.lambda-name}"
@@ -258,6 +279,7 @@ resource "aws_lambda_permission" "lambda_from_cw_permission" {
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda.arn
 }
+*/
 
 output "execution_policy_res" {
   value = data.aws_iam_policy_document.lambda_basic_execution.json
