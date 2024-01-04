@@ -155,7 +155,7 @@ resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
   name = "rotateRDB_eventRule_${var.region}"
   description = "Scheduler to create a new RDB every two hours"
   schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
-  #schedule_expression = "cron(*/2 * ? * 1-5 2023)"
+  #schedule_expression = "cron(*/2 * ? * 1-5 2024)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
@@ -172,6 +172,7 @@ resource "aws_cloudwatch_event_rule" "rotateWDB_eventRule" {
   name = "rotateWDB_eventRule_${var.region}"
   description = "Scheduler to create a new WDB every two hours"
   schedule_expression = "cron(5 */2 ? * 1-5 2023)"
+  #schedule_expression = "cron(*/3 * ? * 1-5 2024)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateWDB_target" {
