@@ -1,0 +1,4 @@
+prefix	suffix	comment
+set([[]|([ \t][ \t]*))[ \t]*`		e.g. set[.z.pg;{}]
+`	[ \t][ \t]*set	                e.g. `.z.pi set {}
+	[ \t]*:	                        e.g. .z.pi:{}

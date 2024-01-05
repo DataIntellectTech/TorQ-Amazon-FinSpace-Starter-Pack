@@ -14,3 +14,6 @@ set .z.pc
 .z.pi    :    {}
 
 .z.ts:{}
+
+\p 1234
+system"\\p 1234"
