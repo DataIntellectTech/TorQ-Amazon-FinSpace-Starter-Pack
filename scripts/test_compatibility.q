@@ -17,3 +17,6 @@ set .z.pc
 
 \p 1234
 system"\\p 1234"
+
+system"\\p"
+system"\\p     "
