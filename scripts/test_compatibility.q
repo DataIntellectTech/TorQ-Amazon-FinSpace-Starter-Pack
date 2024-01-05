@@ -21,5 +21,6 @@ system"\\p 1234"
 system"\\p"
 system"\\p     "
 
+-1"test";\p 1234;
 
 system"\\p ",string 10
