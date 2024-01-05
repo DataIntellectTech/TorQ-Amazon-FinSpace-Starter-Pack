@@ -20,3 +20,6 @@ system"\\p 1234"
 
 system"\\p"
 system"\\p     "
+
+
+system"\\p ",string 10

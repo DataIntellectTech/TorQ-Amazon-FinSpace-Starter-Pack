@@ -1,3 +1,4 @@
 related_command	regex	comment
 \p	\\p[ \t][ \t]*[0-9]	Setting a port using \p XXX
-\p	system"\\\\p[ \t][ \t]*[^"]	Setting port using system"p XXX"
+\p	system"\\\\p[ \t][ \t]*[0-9]"	Setting port using system"p XXX"
+\p	system"\\\\p[ \t]*",	Setting port using system"p ",string 1234 for example

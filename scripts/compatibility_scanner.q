@@ -24,7 +24,9 @@ run:{[]
   args:parseArgs[];
 
   if[not ()~args`dir;args[`files]:distinct args[`files],getDirFileList args`dir];
+  if[0<count args`files;args[`files]:filterExcluded[args`files;args`exclude]];
   checks:loadChecks[];
+
   res:$[0<>count args`files;sum scanFile[;checks] each args[`files];[-1"No files to scan";0]];
 
   -1"\nChecked ",string[count args`files]," .q script(s)";
@@ -59,6 +61,9 @@ parseArgs:{[]
   if[0h<>type args`files;args[`files]:enlist args`files];
   args[`files]:args[`files] where 10h=type each args`files;
 
+  if[0h<>type args`exclude;args[`exclude]:enlist args`exclude];
+  args[`exclude]:args[`exclude] where 10h=type each args`exclude;
+
   :args;
  };
 
@@ -81,6 +86,10 @@ readAssignmentChecks:{[file]
   :raze{
     :enlist[y] cross x cross enlist z;
   }[OVERRIDED_ZS_REGEX]'[tbl`prefix;tbl`suffix];
+ };
+
+filterExcluded:{[files;excludedFiles]
+  :files where not files in excludedFiles;
  };
 
 run[];
