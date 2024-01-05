@@ -56,5 +56,7 @@ module "lambda" {
   environment-id       = module.environment.environment-id
   account_id           = module.environment.account_id
   rdbCntr_mod          = var.rdbCntr_modulo
+  send-sns-alert       = var.send-sns-alert
+  alert-smpt-target    = var.alert-smpt-target
 }
 

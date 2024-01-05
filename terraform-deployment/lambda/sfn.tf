@@ -41,20 +41,21 @@ data "aws_iam_policy_document" "lambda_invoke_scoped_access_policy_doc" {
 
         resources = [
             aws_lambda_function.finSpace-rdb-lambda.arn,
-            aws_lambda_function.finSpace-rdb-onConflict-lambda.arn
+            aws_lambda_function.finSpace-rdb-onConflict-lambda.arn,
+            aws_lambda_function.finSpace-rdb-errorFormat-lambda.arn
         ]
     }
 
 }
 
-## sqs policies
-data "aws_iam_policy_document" "sqs_sendMsg_scoped_access_policy_doc" {
+## sns policies
+data "aws_iam_policy_document" "sns_publish_scoped_access_policy_doc" {
   statement {
     effect = "Allow"
 
-    actions = ["sqs:SendMessage"]
+    actions = ["sns:Publish"]
 
-    resources = [aws_sqs_queue.lambda_error_queue.arn]
+    resources = [aws_sns_topic.lambda_error_topic.arn]
   }
 }
 
@@ -90,9 +91,9 @@ resource "aws_iam_policy" "lambda_invoke_scoped_access_policy" {
     policy = data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc.json
 }
 
-resource "aws_iam_policy" "sqs_sendMsg_scoped_access_policy" {
-    name = "${var.sfn-machine-name}-${var.region}-sqsSendMsg-policy"
-    policy = data.aws_iam_policy_document.sqs_sendMsg_scoped_access_policy_doc.json
+resource "aws_iam_policy" "sns_publish_scoped_access_policy" {
+    name = "${var.sfn-machine-name}-${var.region}-snsPublish-policy"
+    policy = data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc.json
 }
 
 resource "aws_iam_policy" "xray_scoped_access_policy" {
@@ -110,9 +111,9 @@ resource "aws_iam_role_policy_attachment" "attach_lambda_invoke_scoped_access_po
     policy_arn = aws_iam_policy.lambda_invoke_scoped_access_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "attach_sqs_sendMsg_scoped_access_policy" {
+resource "aws_iam_role_policy_attachment" "attach_sns_publish_scoped_access_policy" {
     role = aws_iam_role.states_execution_role.name
-    policy_arn = aws_iam_policy.sqs_sendMsg_scoped_access_policy.arn
+    policy_arn = aws_iam_policy.sns_publish_scoped_access_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "attach_xray_scoped_access_policy" {
@@ -145,7 +146,8 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
     definition = templatefile("${path.module}/bin/sfn_state_machine_cfg.tpl",{
         create_cluster_on_schedule_func_arn = aws_lambda_function.finSpace-rdb-lambda.arn
         onConflict_error_func_arn           = aws_lambda_function.finSpace-rdb-onConflict-lambda.arn
-        other_error_queue_url               = aws_sqs_queue.lambda_error_queue.url
+        other_error_func_arn                = aws_lambda_function.finSpace-rdb-errorFormat-lambda.arn
+        store_notify_topic_arn              = aws_sns_topic.lambda_error_topic.arn
     })
 }
 
@@ -154,8 +156,8 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
 resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
   name = "rotateRDB_eventRule_${var.region}"
   description = "Scheduler to create a new RDB every two hours"
-  schedule_expression = "cron(0 */2 ? * 1-5 2023)" 
-  #schedule_expression = "cron(*/2 * ? * 1-5 2024)"
+  schedule_expression = "cron(0 */2 ? * 2-6 2024)" 
+  #schedule_expression = "cron(*/2 * ? * 2-6 2024)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
@@ -171,8 +173,8 @@ resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
 resource "aws_cloudwatch_event_rule" "rotateWDB_eventRule" {
   name = "rotateWDB_eventRule_${var.region}"
   description = "Scheduler to create a new WDB every two hours"
-  schedule_expression = "cron(5 */2 ? * 1-5 2023)"
-  #schedule_expression = "cron(*/3 * ? * 1-5 2024)"
+  schedule_expression = "cron(5 */2 ? * 2-6 2024)"
+  #schedule_expression = "cron(*/3 * ? * 2-6 2024)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateWDB_target" {

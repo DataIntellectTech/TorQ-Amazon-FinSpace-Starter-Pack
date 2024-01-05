@@ -1,22 +1,25 @@
-region            = "us-west-2"                              # region for kdb environment
-kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms key (create kms key first)
+region            = "us-east-1"                              # region for kdb environment
+kms-key-id        = "1d74c759-80e3-4780-a721-c27f376bf7c9"      # key id for kms key (create kms key first)
 
 # file paths
-zip_file_path     = "../../../code.zip"                               # path to zipped code
-hdb-path          = "../../../hdb"        	# path to hdb to migrate 
+zip_file_path     = "../../../code.zip"                               # path to zipped code, containing finTorq-App and TorQ with updated database name in env.q
+hdb-path          = "../finTorq-App/hdb"                        # path to hdb to migrate 
+
 
 # unique names for aws/finspace resources
-code-bucket-name  = "finspace-code-bucket"               
-data-bucket-name  = "finspace-data-bucket"                 
-environment-name  = "env-test"                                
-policy-name       = "finspace-policy"
-role-name         = "finspace-role"
-kx-user           = "finspace-user"
+code-bucket-name  = "finspace-code-bucket-virginia"                  
+data-bucket-name  = "finspace-data-bucket-virginia"                 
+environment-name  = "virginia-env-test3"                                
+policy-name       = "finspace-policy-virginia"
+role-name         = "finspace-role-virginia"
+kx-user           = "finspace-user-virginia"
 
 # lambda configs
-lambda-name       = "finspace-lambda-scaling"
-sfn-machine-name    = "finspace-scaler-state-machine"
+lambda-name       = "boto3-rdb-scaling-test"
+sfn-machine-name  = "finspace-scaler-state-machine"
 rdbCntr_modulo    = 3
+send-sns-alert    = true                                      # true=create email subscription. false=no email subscription
+alert-smpt-target = "your.email@dataintellect.com"            # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 

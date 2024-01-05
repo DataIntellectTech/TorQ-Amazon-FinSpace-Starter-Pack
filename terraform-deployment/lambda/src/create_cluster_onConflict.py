@@ -5,7 +5,6 @@ import re
 import logging
 import time
 import sys
-import json
 from env import *
 
 logger = logging.getLogger()
