@@ -1,3 +1,5 @@
+DEBUG_SHOW_REGEX_PASSED:1b;
+
 MAIN_SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
 
 BASH_GREP_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/grep.sh";
@@ -113,7 +115,11 @@ loadChecks:{[]
   checksList:readAssignmentChecks ASSIGNMENT_CHECKS_TSV;
   checksList,:readCommandsChecks COMMANDS_CHECKS_TSV;
 
-  :-1 _ raze{"(",x,")|"}each checksList;
+  res:-1 _ raze{"(",x,")|"}each checksList;
+
+  if[DEBUG_SHOW_REGEX_PASSED;"DEBUG: Regex pattern being passed:";-1 res];
+
+  :res;
  };
 
 readCommandsChecks:{[file]
