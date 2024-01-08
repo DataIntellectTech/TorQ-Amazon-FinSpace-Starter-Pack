@@ -5,6 +5,10 @@
 
 set[`.z.po]  {};
 set .z.pc
+set `.z.pg
+.set `.z.pc
+abc.set `.z.pg
+preset `.z.pi
 
 .z.ws set abc;
 .z.wo  set  {}
