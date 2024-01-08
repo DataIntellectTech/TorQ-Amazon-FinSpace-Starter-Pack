@@ -1,4 +1,20 @@
 related_command	regex	comment
-\p	\\p[ \t][ \t]*[0-9]	Setting a port using \p XXX
-\p	system"\\\\p[ \t][ \t]*[0-9]"	Setting port using system"p XXX"
-\p	system"\\\\p[ \t]*",	Setting port using system"p ",string 1234 for example
+\p	^\\p[ \t][ \t]*[0-9]	    Setting a port using \p XXX
+\p	system"p[ \t][ \t]*[0-9]"	Setting port using system"p XXX"
+\p	system"p[ \t]*",	        Setting port using system"p ",string 1234 for example
+\cd	^\\cd	                    Using \cd command
+\cd	system"cd[ \t"]	            Using system"cd ..." or system"cd"
+\e	^\\e	                    Using \e command
+\e	system"e[ \t"]	            Using system"e ..." or system"e"
+\E	^\\E	                    Using \E command
+\E	system"E[ \t"]	            Using system"E ..." or system"E"
+\g	^\\g	                    Using \g command
+\g	system"g[ \t"]	            Using system"g ..." or system"g"
+\r	^\\r	                    Using \r command
+\r	system"r[ \t"]	            Using system"r ..." or system"r"
+\S	^\\S	                    Using \S command
+\S	system"S[ \t"]	            Using system"S ..." or system"S"
+\T	^\\T	                    Using \T command
+\T	system"T[ \t"]	            Using system"T ..." or system"T"
+\x	^\\x	                    Using \x command
+\x	system"x[ \t"]	            Using system"x ..." or system"x"

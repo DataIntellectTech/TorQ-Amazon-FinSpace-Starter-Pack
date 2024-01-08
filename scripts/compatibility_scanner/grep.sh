@@ -1,1 +1,1 @@
-echo "$(grep -inHE "$1" "$2")"
+echo "$(grep -nHE "$1" "$2")"

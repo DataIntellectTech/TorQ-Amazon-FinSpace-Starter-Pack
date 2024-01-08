@@ -6,17 +6,59 @@ BASH_FIND_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/find.sh";
 ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/assignment_checks.tsv";
 COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/commands_checks.tsv";
 
-OVERRIDED_ZS_REGEX:(
-  "\\.z\\.ts";
-  "\\.z\\.pg";
-  "\\.z\\.ps";
-  "\\.z\\.po";
+ZS_REGEX:(
+  "\\.z\\.a";
+  "\\.z\\.b";
+  "\\.z\\.c";
+  "\\.z\\.d";
+  "\\.z\\.D";
+  "\\.z\\.e";
+  "\\.z\\.ex";
+  "\\.z\\.ey";
+  "\\.z\\.f";
+  "\\.z\\.H";
+  "\\.z\\.h";
+  "\\.z\\.i";
+  "\\.z\\.K";
+  "\\.z\\.k";
+  "\\.z\\.l";
+  "\\.z\\.n";
+  "\\.z\\.N";
+  "\\.z\\.o";
+  "\\.z\\.p";
+  "\\.z\\.P";
+  "\\.z\\.pm";
+  "\\.z\\.q";
+  "\\.z\\.s";
+  "\\.z\\.t";
+  "\\.z\\.T";
+  "\\.z\\.u";
+  "\\.z\\.w";
+  "\\.z\\.W";
+  "\\.z\\.x";
+  "\\.z\\.X";
+  "\\.z\\.z";
+  "\\.z\\.Z";
+  "\\.z\\.zd";
+  "\\.z\\.ac";
+  "\\.z\\.bm";
+  "\\.z\\.exit";
   "\\.z\\.pc";
-  "\\.z\\.ws";
-  "\\.z\\.wo";
-  "\\.z\\.wc";
+  "\\.z\\.pd";
+  "\\.z\\.pg";
+  "\\.z\\.ph";
   "\\.z\\.pi";
-  "\\.z\\.exit"
+  "\\.z\\.po";
+  "\\.z\\.pp";
+  "\\.z\\.pq";
+  "\\.z\\.r";
+  "\\.z\\.ps";
+  "\\.z\\.pw";
+  "\\.z\\.ts";
+  "\\.z\\.vs";
+  "\\.z\\.wc";
+  "\\.z\\.wo";
+  "\\.z\\.ws"
  );
 
 
@@ -85,7 +127,7 @@ readAssignmentChecks:{[file]
 
   :raze{
     :enlist[y] cross x cross enlist z;
-  }[OVERRIDED_ZS_REGEX]'[tbl`prefix;tbl`suffix];
+  }[ZS_REGEX]'[tbl`prefix;tbl`suffix];
  };
 
 filterExcluded:{[files;excludedFiles]
