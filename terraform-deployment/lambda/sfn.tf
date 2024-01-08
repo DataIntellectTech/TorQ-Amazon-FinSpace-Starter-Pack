@@ -156,7 +156,7 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
 resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
   name = "rotateRDB_eventRule_${var.region}"
   description = "Scheduler to create a new RDB every two hours"
-  schedule_expression = "cron(0 */2 ? * 2-6 2024)" 
+  schedule_expression = "cron(0 */2 ? * 2-6 *)" 
 }
 
 resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
@@ -172,7 +172,7 @@ resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
 resource "aws_cloudwatch_event_rule" "rotateWDB_eventRule" {
   name = "rotateWDB_eventRule_${var.region}"
   description = "Scheduler to create a new WDB every two hours"
-  schedule_expression = "cron(5 */2 ? * 2-6 2024)"
+  schedule_expression = "cron(5 */2 ? * 2-6 *)"
 }
 
 resource "aws_cloudwatch_event_target" "onRotateWDB_target" {
