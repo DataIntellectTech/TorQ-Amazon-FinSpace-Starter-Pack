@@ -77,12 +77,11 @@ def lambda_handler(event, context):
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
         if not databaseInfo.get('cacheConfigurations', None):
-            databaseInfo = [{ 
+            databaseInfo = { 
                 'databaseName':databaseInfo['databaseName'],
                 'changesetId':databaseInfo['changesetId']
-                
-            }]
-        clusterArgs['databases'] = databaseInfo
+            }
+        clusterArgs['databases'] = [databaseInfo]
     
     logger.info(clusterArgs)
     
