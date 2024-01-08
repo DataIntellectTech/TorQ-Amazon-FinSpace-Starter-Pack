@@ -44,11 +44,6 @@ def lambda_handler(event, context):
     cntr = 1 if not cntr else int(cntr)
     cntr = (cntr%rdbCntr_modulo)+1
     newClusterId = f"{cluster_prefix}{cntr}"
-
-    databaseInfo = [{
-        'databaseName':clusterInfo['databases'][0]['databaseName'],
-        'changesetId':clusterInfo['databases'][0]['changesetId']
-    }]
     
     commandLineArgs = []
     for k in clusterInfo['commandLineArguments']:
