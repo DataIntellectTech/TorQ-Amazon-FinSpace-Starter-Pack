@@ -72,12 +72,36 @@
     },
     "other_error": {
       "Type": "Task",
-      "Resource": "arn:aws:states:::sqs:sendMessage",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "OutputPath": "$.Payload",
       "Parameters": {
-        "MessageBody.$": "$",
-        "QueueUrl": "${other_error_queue_url}"
+        "Payload.$": "$",
+        "FunctionName": "${other_error_func_arn}"
       },
-      "End": true
-    }
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "store_And_Notify"
+    },
+    "store_And_Notify": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "${store_notify_topic_arn}",
+        "Message.$": "$"
+      },
+      "End": true,
+      "InputPath": "$.Message"
+    } 
   }
 }
