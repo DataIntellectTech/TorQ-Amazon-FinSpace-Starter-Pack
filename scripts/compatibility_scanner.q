@@ -1,4 +1,4 @@
-DEBUG_SHOW_REGEX_PASSED:1b;
+DEBUG_SHOW_REGEX_PASSED:0b;
 
 MAIN_SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
 
@@ -74,7 +74,7 @@ run:{[]
   res:$[0<>count args`files;sum scanFile[;checks] each args[`files];[-1"No files to scan";0]];
 
   -1"\nChecked ",string[count args`files]," .q script(s)";
-  -1"Total lines with incompatibilities: ",string res;
+  -1"Total lines with possible incompatibilities: ",string res;
 
   exit 0;
  };
