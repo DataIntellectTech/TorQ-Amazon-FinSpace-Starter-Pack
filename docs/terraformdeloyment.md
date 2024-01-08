@@ -23,7 +23,7 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/hdb`.
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
 3. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
-4. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` inside the `finTorq-App` directory, changing the database name to the new variable that you have set in line 19.
+4. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` file, changing the database name to the new variable that you have set in line 19.
 5. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
 6. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments`, run `terraform init`.
 7. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
