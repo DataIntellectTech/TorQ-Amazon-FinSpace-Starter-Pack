@@ -21,8 +21,7 @@ resource "aws_sns_topic_subscription" "lambda_error_email_target" {
   count = var.send-sns-alert ? 1 : 0
   topic_arn = aws_sns_topic.lambda_error_topic.arn
   protocol = "email"
-  endpoint = "eugene.temlock@dataintellect.com"
-  #endpoint = var.alert-smpt-target
+  endpoint = var.alert-smpt-target
 }
 
 

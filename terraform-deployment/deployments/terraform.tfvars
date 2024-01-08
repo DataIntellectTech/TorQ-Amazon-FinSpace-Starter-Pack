@@ -19,7 +19,7 @@ lambda-name       = "boto3-rdb-scaling-test"
 sfn-machine-name  = "finspace-scaler-state-machine"
 rdbCntr_modulo    = 3
 send-sns-alert    = true                                      # true=create email subscription. false=no email subscription
-alert-smpt-target = "your.email@dataintellect.com"            # email address to send sns alerts to if send-alert flag is set to 'true'
+alert-smpt-target = "eugene.temlock@dataintellect.com"            # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 
