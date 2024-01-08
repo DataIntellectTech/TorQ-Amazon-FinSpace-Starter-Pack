@@ -174,6 +174,26 @@ import {
 }
 
 import {
+  to = module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_target.onRotateRDB_target
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_cloudwatch_event_target.onRotateWDB_target
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.lambda.aws_iam_policy.eventBridge_policy
   id = "Existing_Structure_ID"
 }
