@@ -1,5 +1,3 @@
-DEBUG_SHOW_REGEX_PASSED:0b;
-
 getFullPath:{[path]
   if[0~count path;:()];
   if[0h~type path;
@@ -13,66 +11,16 @@ getFullPath:{[path]
 
 MAIN_SCRIPT_DIR:(-1*count string .z.f) _ getFullPath string .z.f;
 
+system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/zs_regex.q";
+system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/show_help.q";
+
+DEBUG_SHOW_REGEX_PASSED:0b;
+
 BASH_GREP_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/grep.sh";
 BASH_FIND_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/find.sh";
 
 ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/assignment_checks.tsv";
 COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/commands_checks.tsv";
-
-ZS_REGEX:(
-  "\\.z\\.a";
-  "\\.z\\.b";
-  "\\.z\\.c";
-  "\\.z\\.d";
-  "\\.z\\.D";
-  "\\.z\\.e";
-  "\\.z\\.ex";
-  "\\.z\\.ey";
-  "\\.z\\.f";
-  "\\.z\\.H";
-  "\\.z\\.h";
-  "\\.z\\.i";
-  "\\.z\\.K";
-  "\\.z\\.k";
-  "\\.z\\.l";
-  "\\.z\\.n";
-  "\\.z\\.N";
-  "\\.z\\.o";
-  "\\.z\\.p";
-  "\\.z\\.P";
-  "\\.z\\.pm";
-  "\\.z\\.q";
-  "\\.z\\.s";
-  "\\.z\\.t";
-  "\\.z\\.T";
-  "\\.z\\.u";
-  "\\.z\\.w";
-  "\\.z\\.W";
-  "\\.z\\.x";
-  "\\.z\\.X";
-  "\\.z\\.z";
-  "\\.z\\.Z";
-  "\\.z\\.zd";
-  "\\.z\\.ac";
-  "\\.z\\.bm";
-  "\\.z\\.exit";
-  "\\.z\\.pc";
-  "\\.z\\.pd";
-  "\\.z\\.pg";
-  "\\.z\\.ph";
-  "\\.z\\.pi";
-  "\\.z\\.po";
-  "\\.z\\.pp";
-  "\\.z\\.pq";
-  "\\.z\\.r";
-  "\\.z\\.ps";
-  "\\.z\\.pw";
-  "\\.z\\.ts";
-  "\\.z\\.vs";
-  "\\.z\\.wc";
-  "\\.z\\.wo";
-  "\\.z\\.ws"
- );
 
 
 run:{[]
@@ -132,6 +80,8 @@ getDirFileList:{[dir]
  };
 
 parseArgs:{[]
+  if[$[0<>count .z.x;"--help" in .z.x;0b] or 0~count .z.x;showHelp[]];
+
   args:(enlist[`]!enlist[::]),.Q.opt .z.x;
 
   if[0h~type args`dir;args[`dir]:first args`dir];
@@ -143,7 +93,7 @@ parseArgs:{[]
   if[0h<>type args`exclude;args[`exclude]:enlist args`exclude];
   args[`exclude]:args[`exclude] where 10h=type each args`exclude;
 
-  args[`regex]:$[0<>count .z.x;"-regex" in .z.x;0b];
+  args[`regex]:$[0<>count .z.x;"--regex" in .z.x;0b];
 
   :args;
  };
