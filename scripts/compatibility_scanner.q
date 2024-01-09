@@ -9,7 +9,7 @@ getFullPath:{[path]
     {[x;y] -2"ERROR: Could not find full path for: '",x,"'";()}[path]];
  };
 
-MAIN_SCRIPT_DIR:(-1*count string .z.f) _ getFullPath string .z.f;
+MAIN_SCRIPT_DIR:(-1*count string .z.f) _ getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
 
 system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/zs_regex.q";
 system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/show_help.q";
