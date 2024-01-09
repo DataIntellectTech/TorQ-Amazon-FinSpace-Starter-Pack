@@ -1,6 +1,17 @@
 DEBUG_SHOW_REGEX_PASSED:0b;
 
-MAIN_SCRIPT_DIR:{$["/"~last x;x;x,"/"]}first[system"pwd"],"/","/" sv -1 _ "/" vs string .z.f;
+getFullPath:{[path]
+  if[0~count path;:()];
+  if[0h~type path;
+    $[all 10h=type each path;:{x where {not x~()}each x}getFullPath each path;'wrongtype]
+  ];
+  if[not 10h~type path;'wrongtype];
+
+  :@[{first system"readlink -f '",x,"'"};path;
+    {[x;y] -2"ERROR: Could not find full path for: '",x,"'";()}[path]];
+ };
+
+MAIN_SCRIPT_DIR:(-1*count string .z.f) _ getFullPath string .z.f;
 
 BASH_GREP_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/grep.sh";
 BASH_FIND_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/find.sh";
@@ -66,17 +77,41 @@ ZS_REGEX:(
 
 run:{[]
   args:parseArgs[];
-
-  if[not ()~args`dir;args[`files]:distinct args[`files],getDirFileList args`dir];
-  if[0<count args`files;args[`files]:filterExcluded[args`files;args`exclude]];
   checks:loadChecks[];
 
-  res:$[0<>count args`files;sum scanFile[;checks] each args[`files];[-1"No files to scan";0]];
+  args[`file]:$[
+    args`regex;getFilesFromRegex[args`file;args`dir];
+    {x where x like "*[.]q"}getFullPath args`file
+  ];
+  args[`exclude]:$[
+    args`regex;getFilesFromRegex[args`exclude;args`dir];
+    {x where x like "*[.]q"}getFullPath args`exclude
+  ];
 
-  -1"\nChecked ",string[count args`files]," .q script(s)";
+  if[not ()~args`dir;args[`file]:distinct args[`file],getDirFileList args`dir];
+  if[0<count args`file;args[`file]:filterExcluded[args`file;args`exclude]];
+  
+  res:$[
+    0<>count args`file;[
+      -1"Scanning ",string[count args`file]," .q script(s) . . .\n";
+      sum scanFile[;checks] each args[`file]
+    ];
+    [-1"No files to scan";0]
+  ];
+
+  -1"\nChecked ",string[count args`file]," .q script(s)";
   -1"Total lines with possible incompatibilities: ",string res;
 
   exit 0;
+ };
+
+getFilesFromRegex:{[regexList;dir]
+  if[0~count regexList;:()];
+
+  if[dir~();dir:first system"pwd"];
+  res:raze{system"find ",x," -regextype posix-extended -type f -regex ","'",y,"'"}[dir]each regexList;
+
+  :res where res like "*[.]q";
  };
 
 scanFile:{[file;checks]
@@ -102,11 +137,13 @@ parseArgs:{[]
   if[0h~type args`dir;args[`dir]:first args`dir];
   if[10h<>type args`dir;args[`dir]:()];
 
-  if[0h<>type args`files;args[`files]:enlist args`files];
-  args[`files]:args[`files] where 10h=type each args`files;
+  if[0h<>type args`file;args[`file]:enlist args`file];
+  args[`file]:args[`file] where 10h=type each args`file;
 
   if[0h<>type args`exclude;args[`exclude]:enlist args`exclude];
   args[`exclude]:args[`exclude] where 10h=type each args`exclude;
+
+  args[`regex]:$[0<>count .z.x;"-regex" in .z.x;0b];
 
   :args;
  };
