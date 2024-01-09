@@ -5,7 +5,6 @@ import re
 import logging
 import time
 import sys
-import json
 from env import *
 
 logger = logging.getLogger()
@@ -52,11 +51,6 @@ def lambda_handler(event, context):
     else:
         repl = str((int(match[0])%rdbCntr_modulo)+1)
         newClusterId = re.sub(match[0],repl,cluster_name)
-        
-    databaseInfo = [{
-        'databaseName':clusterInfo['databases'][0]['databaseName'],
-        'changesetId':clusterInfo['databases'][0]['changesetId']
-    }]
     
     commandLineArgs = []
     for k in clusterInfo['commandLineArguments']:
@@ -73,8 +67,7 @@ def lambda_handler(event, context):
     clusterArgs = {
         'environmentId': envId,
         'clusterName': newClusterId,
-        'clusterType': "RDB",
-        'databases': databaseInfo,
+        'clusterType': event["clusterType"],
         'clusterDescription': "new rdb cluster",
         'capacityConfiguration': clusterInfo['capacityConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
@@ -83,10 +76,19 @@ def lambda_handler(event, context):
         'commandLineArguments' : commandLineArgs,
         'code': clusterInfo['code'],
         'executionRole': clusterInfo['executionRole'],
-        'savedownStorageConfiguration': clusterInfo['savedownStorageConfiguration'],
         'azMode' : clusterInfo['azMode'],
         'availabilityZoneId' :clusterInfo['availabilityZoneId']
     }
+    if 'savedownStorageConfiguration' in clusterInfo:
+        clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
+    if 'databases' in clusterInfo:
+        databaseInfo = clusterInfo['databases'][0].copy()
+        if not databaseInfo.get('cacheConfigurations', None):
+            databaseInfo = { 
+                'databaseName':databaseInfo['databaseName'],
+                'changesetId':databaseInfo['changesetId']
+            }
+        clusterArgs['databases'] = [databaseInfo]
     
     logger.info(clusterArgs)
     

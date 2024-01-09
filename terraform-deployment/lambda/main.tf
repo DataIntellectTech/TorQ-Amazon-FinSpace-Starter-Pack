@@ -20,6 +20,14 @@ variable "rdbCntr_mod" {
   description = "maximum number of rdbs created by lambda"
 }
 
+variable "send-sns-alert" {
+  description = "flag to send sns emails or not"
+}
+
+variable "alert-smpt-target" {
+  description = "email address to send sns alerts to. only used if send-alert set to 'true'"
+}
+
 locals {
   lambda-file-name = "create_cluster_on_alarm"
 }
@@ -58,7 +66,7 @@ data "aws_iam_policy_document" "lambda_basic_execution" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.lambda-name}:*"]
+    resources = ["arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.lambda-name}*:*"]
   }
 }
 
