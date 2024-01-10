@@ -1,3 +1,28 @@
+DEBUG_SHOW_REGEX_PASSED:0b;
+
+ZS_REGEX:(
+  "\\.z\\.pm";
+  "\\.z\\.zd";
+  "\\.z\\.ac";
+  "\\.z\\.bm";
+  "\\.z\\.exit";
+  "\\.z\\.pc";
+  "\\.z\\.pd";
+  "\\.z\\.pg";
+  "\\.z\\.ph";
+  "\\.z\\.pi";
+  "\\.z\\.po";
+  "\\.z\\.pp";
+  "\\.z\\.pq";
+  "\\.z\\.ps";
+  "\\.z\\.pw";
+  "\\.z\\.ts";
+  "\\.z\\.vs";
+  "\\.z\\.wc";
+  "\\.z\\.wo";
+  "\\.z\\.ws"
+ );
+
 getFullPath:{[path]
   if[0~count path;:()];
   if[0h~type path;
@@ -10,14 +35,6 @@ getFullPath:{[path]
  };
 
 MAIN_SCRIPT_DIR:{("/" sv -1 _ "/" vs x),"/"}getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
-
-system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/zs_regex.q";
-system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/show_help.q";
-
-DEBUG_SHOW_REGEX_PASSED:0b;
-
-BASH_GREP_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/grep.sh";
-BASH_FIND_SCRIPT:MAIN_SCRIPT_DIR,"compatibility_scanner/find.sh";
 
 ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/assignment_checks.tsv";
 COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/commands_checks.tsv";
@@ -61,7 +78,7 @@ getFilesFromRegex:{[regexList;dir]
   if[0~count regexList;:()];
 
   if[dir~();dir:first system"pwd"];
-  res:raze{system"find ",x," -regextype posix-extended -type f -regex ","'",y,"'"}[dir]each regexList;
+  res:raze{system"find ",x," -regextype posix-extended -type f -regex '",y,"'"}[dir]each regexList;
 
   :getFullPath ignoreNonQScripts res;
  };
@@ -74,15 +91,18 @@ ignoreNonQScripts:{[files]
  };
 
 scanFile:{[file;checks]
-  res:system"bash ",BASH_GREP_SCRIPT," '",checks,"' \"",file,"\"";
+  res:system"printf '%s\\n' \"$(grep -nHE '",checks,"' '",file,"')\"";
+  
   if[""~raze/[res];res:()];
-  if[0<count res;-1"\n" sv res];
+  if[0<count res;
+    -1"\n" sv res;
+  ];
 
   :count res;
  };
 
 getDirFileList:{[dir]
-  :getFullPath system"bash ",BASH_FIND_SCRIPT," \"",dir,"\"";
+  :getFullPath system"echo \"$(find '",dir,"' -name '*\\.q')\"";
  };
 
 parseArgs:{[]
@@ -131,6 +151,25 @@ readAssignmentChecks:{[file]
 
 filterExcluded:{[files;excludedFiles]
   :files where not files in excludedFiles;
+ };
+
+showHelp:{[]
+  -1"+--------------------------------+";
+  -1"| FinSpace Compatibility Scanner |";
+  -1"+--------------------------------+";
+  -1"[Arguments]";
+  -1"";
+  -1"-dir:      Directory to scan";
+  -1"-file:     In normal mode: Scans file(s);";
+  -1"           In regex mode:  Scans file(s) matching regex in dir";
+  -1"                           (or from `pwd` if no dir is passed)";
+  -1"-exclude:  In normal mode: Excludes file(s) from scan;";
+  -1"           In regex mode:  Excludes file(s) from scan matching regex in dir";
+  -1"                           (or from `pwd` if no dir is passed)";
+  -1"--regex:   Switch file and exclude arguments to regex mode (posix-extended)";
+  -1"";
+
+  exit 0;
  };
 
 run[];
