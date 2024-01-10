@@ -60,16 +60,16 @@ run:{[]
   if[not ()~args`dir;args[`file]:distinct args[`file],getDirFileList args`dir];
   if[0<count args`file;args[`file]:filterExcluded[args`file;args`exclude]];
   
-  res:$[
+  lines:$[
     0<>count args`file;[
       -1"Scanning ",string[count args`file]," .q script(s) . . .\n";
-      sum scanFile[;checksDict] each args[`file]
+      raze scanFile[;checksDict] each args[`file]
     ];
-    [-1"No files to scan";0]
+    [-1"No files to scan";()]
   ];
 
   -1"\nChecked ",string[count args`file]," .q script(s)";
-  -1"Total lines with possible incompatibilities: ",string res;
+  -1"Total lines with possible incompatibilities: ",string count lines;
 
   exit 0;
  };
@@ -98,7 +98,7 @@ scanFile:{[file;checksDict]
     -1"\n" sv res;
   ];
 
-  :count res;
+  :res;
  };
 
 getDirFileList:{[dir]
