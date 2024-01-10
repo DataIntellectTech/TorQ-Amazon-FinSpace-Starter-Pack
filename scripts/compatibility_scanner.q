@@ -63,7 +63,7 @@ getFilesFromRegex:{[regexList;dir]
   if[dir~();dir:first system"pwd"];
   res:raze{system"find ",x," -regextype posix-extended -type f -regex ","'",y,"'"}[dir]each regexList;
 
-  :ignoreNonQScripts res;
+  :getFullPath ignoreNonQScripts res;
  };
 
 ignoreNonQScripts:{[files]
