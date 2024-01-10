@@ -6,10 +6,10 @@ getFullPath:{[path]
   if[not 10h~type path;'wrongtype];
 
   :@[{first system"readlink -f '",x,"'"};path;
-    {[x;y] -2"ERROR: Could not find full path for: '",x,"'";()}[path]];
+    {[x;y] -2"ERROR: Could not find path to: '",x,"'";exit 1}[path]];
  };
 
-MAIN_SCRIPT_DIR:(-1*count string .z.f) _ getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
+MAIN_SCRIPT_DIR:{("/" sv -1 _ "/" vs x),"/"}getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
 
 system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/zs_regex.q";
 system"l ",MAIN_SCRIPT_DIR,"compatibility_scanner/show_help.q";
@@ -34,6 +34,10 @@ run:{[]
   args[`exclude]:$[
     args`regex;getFilesFromRegex[args`exclude;args`dir];
     {x where x like "*[.]q"}getFullPath args`exclude
+  ];
+  if[10h~type args`dir;  // Checking directory exists if dir argument was passed, if not exits with an error
+    isInvalidDir:(()~args`dir)or @[{11h<>type key hsym`$x};args`dir;1b];
+    if[isInvalidDir;-2"ERROR: Directory '",args[`dir],"' could not be found";exit 1];
   ];
 
   if[not ()~args`dir;args[`file]:distinct args[`file],getDirFileList args`dir];
@@ -65,7 +69,7 @@ getFilesFromRegex:{[regexList;dir]
 scanFile:{[file;checks]
   if[not {(1~count x) and -11h~type x}key hsym`$file;
     -2"ERROR: No file at location '",file,"'";
-    :0;
+    exit 1;
   ];
 
   res:system"bash ",BASH_GREP_SCRIPT," '",checks,"' \"",file,"\"";
