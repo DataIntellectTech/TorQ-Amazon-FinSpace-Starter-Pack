@@ -82,7 +82,7 @@ scanFile:{[file;checks]
  };
 
 getDirFileList:{[dir]
-  :system"bash ",BASH_FIND_SCRIPT," \"",dir,"\"";
+  :getFullPath system"bash ",BASH_FIND_SCRIPT," \"",dir,"\"";
  };
 
 parseArgs:{[]
