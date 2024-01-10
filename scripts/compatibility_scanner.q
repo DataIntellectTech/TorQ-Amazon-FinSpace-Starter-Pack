@@ -1,26 +1,26 @@
 DEBUG_SHOW_REGEX_PASSED:0b;
 
-ZS_REGEX:(
-  "\\.z\\.pm";
-  "\\.z\\.zd";
-  "\\.z\\.ac";
-  "\\.z\\.bm";
-  "\\.z\\.exit";
-  "\\.z\\.pc";
-  "\\.z\\.pd";
-  "\\.z\\.pg";
-  "\\.z\\.ph";
-  "\\.z\\.pi";
-  "\\.z\\.po";
-  "\\.z\\.pp";
-  "\\.z\\.pq";
-  "\\.z\\.ps";
-  "\\.z\\.pw";
-  "\\.z\\.ts";
-  "\\.z\\.vs";
-  "\\.z\\.wc";
-  "\\.z\\.wo";
-  "\\.z\\.ws"
+ZS_TO_CHECK:(  // .z functions to look out for without the ".z." prefix attached
+  "pm";
+  "zd";
+  "ac";
+  "bm";
+  "exit";
+  "pc";
+  "pd";
+  "pg";
+  "ph";
+  "pi";
+  "po";
+  "pp";
+  "pq";
+  "ps";
+  "pw";
+  "ts";
+  "vs";
+  "wc";
+  "wo";
+  "ws"
  );
 
 getFullPath:{[path]
@@ -42,7 +42,7 @@ COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/commands_checks.tsv";
 
 run:{[]
   args:parseArgs[];
-  checks:loadChecks[];
+  checksDict:loadChecksDict[];
 
   args[`file]:$[
     args`regex;getFilesFromRegex[args`file;args`dir];
@@ -63,7 +63,7 @@ run:{[]
   res:$[
     0<>count args`file;[
       -1"Scanning ",string[count args`file]," .q script(s) . . .\n";
-      sum scanFile[;checks] each args[`file]
+      sum scanFile[;checksDict] each args[`file]
     ];
     [-1"No files to scan";0]
   ];
@@ -90,8 +90,8 @@ ignoreNonQScripts:{[files]
   :res;
  };
 
-scanFile:{[file;checks]
-  res:system"printf '%s\\n' \"$(grep -nHE '",checks,"' '",file,"')\"";
+scanFile:{[file;checksDict]
+  res:system"printf '%s\\n' \"$(grep -nHE '",combineRegexList[value checksDict],"' '",file,"')\"";
   
   if[""~raze/[res];res:()];
   if[0<count res;
@@ -124,29 +124,34 @@ parseArgs:{[]
   :args;
  };
 
-loadChecks:{[]
-  checksList:readAssignmentChecks ASSIGNMENT_CHECKS_TSV;
-  checksList,:readCommandsChecks COMMANDS_CHECKS_TSV;
+loadChecksDict:{[]
+  checksDict:enlist[`z_assignment]!enlist readAssignmentChecks ASSIGNMENT_CHECKS_TSV;
+  checksDict,:enlist[`system_command]!enlist readCommandsChecks COMMANDS_CHECKS_TSV;
 
-  res:-1 _ raze{"(",x,")|"}each checksList;
-
-  if[DEBUG_SHOW_REGEX_PASSED;"DEBUG: Regex pattern being passed:";-1 res];
-
-  :res;
+  if[DEBUG_SHOW_REGEX_PASSED;
+    -1"DEBUG: Regex pattern being passed:";
+    -1 combineRegexList value checksDict;
+  ];
+  
+  :checksDict;
  };
 
 readCommandsChecks:{[file]
   tbl:("**";enlist"\t") 0: hsym`$file;
 
-  :tbl`regex;
+  :combineRegexList tbl`regex;
  };
 
 readAssignmentChecks:{[file]
   tbl:("**";enlist"\t") 0: hsym`$file;
 
-  :raze{
+  :combineRegexList raze{
     :enlist[y] cross x cross enlist z;
-  }[ZS_REGEX]'[tbl`prefix;tbl`suffix];
+  }[ZS_TO_CHECK]'[tbl`prefix;tbl`suffix];
+ };
+
+combineRegexList:{[checksList]
+  :-1 _ raze{"(",x,")|"}each checksList;
  };
 
 filterExcluded:{[files;excludedFiles]
