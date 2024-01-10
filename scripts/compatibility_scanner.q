@@ -29,11 +29,11 @@ run:{[]
 
   args[`file]:$[
     args`regex;getFilesFromRegex[args`file;args`dir];
-    {x where x like "*[.]q"}getFullPath args`file
+    ignoreNonQScripts getFullPath args`file
   ];
   args[`exclude]:$[
     args`regex;getFilesFromRegex[args`exclude;args`dir];
-    {x where x like "*[.]q"}getFullPath args`exclude
+    ignoreNonQScripts getFullPath args`exclude
   ];
   if[10h~type args`dir;  // Checking directory exists if dir argument was passed, if not exits with an error
     isInvalidDir:(()~args`dir)or @[{11h<>type key hsym`$x};args`dir;1b];
@@ -63,15 +63,17 @@ getFilesFromRegex:{[regexList;dir]
   if[dir~();dir:first system"pwd"];
   res:raze{system"find ",x," -regextype posix-extended -type f -regex ","'",y,"'"}[dir]each regexList;
 
-  :res where res like "*[.]q";
+  :ignoreNonQScripts res;
+ };
+
+ignoreNonQScripts:{[files]
+  res:files where files like "*[.]q";
+  if[count[res]<>count files;-1"WARN: Ignored files that are not .q scripts"];
+
+  :res;
  };
 
 scanFile:{[file;checks]
-  if[not {(1~count x) and -11h~type x}key hsym`$file;
-    -2"ERROR: No file at location '",file,"'";
-    exit 1;
-  ];
-
   res:system"bash ",BASH_GREP_SCRIPT," '",checks,"' \"",file,"\"";
   if[""~raze/[res];res:()];
   if[0<count res;-1"\n" sv res];
