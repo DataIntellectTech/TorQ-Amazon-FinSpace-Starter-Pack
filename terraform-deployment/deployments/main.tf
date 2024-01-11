@@ -60,3 +60,8 @@ module "lambda" {
   alert-smpt-target    = var.alert-smpt-target
 }
 
+module "metricfilter" {
+  source = "../metricfilter"
+
+  environment-id       = module.environment.environment-id
+}
