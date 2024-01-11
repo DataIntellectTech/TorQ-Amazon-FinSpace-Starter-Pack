@@ -228,6 +228,8 @@ showHelp:{[]
   -1"-exclude:  In normal mode: Excludes file(s) from scan;";
   -1"           In regex mode:  Excludes file(s) from scan matching regex in dir";
   -1"                           (or from `pwd` if no dir is passed)";
+  -1"-csv:      CSV file to output the results to";
+  -1"           (Adds '.csv' to the end of the filename if not provided)";
   -1"--regex:   Switch file and exclude arguments to regex mode (posix-extended)";
   -1"";
 
