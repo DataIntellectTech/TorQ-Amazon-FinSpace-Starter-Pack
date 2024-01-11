@@ -210,7 +210,7 @@ categoriseLine:{[checkDict;line]
     );
   }[;;line]'[key checkDict;value checkDict];
 
-  1"\033[2K\r";  // Clearing the line for the next step to print over it
+  1"\033[2K\r";  // Clearing the line for the next step to print over it (ANSI escape code to erase current line + carriage return)
 
   :res;
  };
