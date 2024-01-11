@@ -7,7 +7,7 @@ pollNewSvrStatus:{[svrName;W]
   
   hdisc:@[hopen;.aws.get_kx_connection_string "discovery";{-3!x}]; // edit this to use .servers.SERVERS 
   if[6h~type hdisc; hdisc(`.lg.o;`pollNewSvrStatus;"just being triggered from the rdb"); hclose hdisc];
-  .timer.remove each exec id from .timer.timer where `pollNewSvrStatus in' funcparam;
+  .timer.remove each exec id from .timer.timer where `.rdb.pollNewSvrStatus in' funcparam;
  };
 
 killMyself:{[caller]
@@ -15,7 +15,7 @@ killMyself:{[caller]
   //assume the cluster_name and procname are the same
   //set up a timer that checks the status of the cluster_name and attempts to open a handle. If success then do nothin
   //afterwards inform the discovery to redirect the thing
-  .timer.repeat[.proc.cp[];0Wp;0D00:02;(`pollNewSvrStatus;caller;.z.w);"poll for running RDB"];
+  .timer.repeat[.proc.cp[];0Wp;0D00:02;(`.rdb.pollNewSvrStatus;caller;.z.w);"poll for running RDB"];
  };
  
 signalOldCluster:{[]

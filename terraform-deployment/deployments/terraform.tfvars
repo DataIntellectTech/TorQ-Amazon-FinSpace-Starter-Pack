@@ -3,7 +3,7 @@ kms-key-id        = "1d74c759-80e3-4780-a721-c27f376bf7c9"      # key id for kms
 
 # file paths
 zip_file_path     = "../../../code.zip"                               # path to zipped code, containing finTorq-App and TorQ with updated database name in env.q
-hdb-path          = "../finTorq-App/hdb"                        # path to hdb to migrate 
+hdb-path          = "../../hdb"                        # path to hdb to migrate 
 
 
 # unique names for aws/finspace resources
