@@ -37,8 +37,8 @@ getFullPath:{[path]
 
 MAIN_SCRIPT_DIR:{("/" sv -1 _ "/" vs x),"/"}getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
 
-ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/assignment_checks.tsv";
-COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"compatibility_scanner/commands_checks.tsv";
+ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"assignment_checks.tsv";
+COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"commands_checks.tsv";
 
 
 run:{[]
