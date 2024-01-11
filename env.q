@@ -1,6 +1,6 @@
 opts:.Q.opt .z.x;
 codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
-hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finspace-database"];
+hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finspace-database"];                  // Insert name of your database
 
 torqDir:codeDir,"/TorQ";
 appDir:codeDir,"/TorQ-Amazon-FinSpace-Starter-Pack";
@@ -15,7 +15,7 @@ setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
 setenv[`KDBHDB; hdbDir];
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
-setenv[`KDBDATABASETRADE; "finspace-database"];
+setenv[`KDBDATABASETRADE; "finspace-database"];                                                        // Insert name of your database
 setenv[`KDBFINSPACE; "true"];
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
