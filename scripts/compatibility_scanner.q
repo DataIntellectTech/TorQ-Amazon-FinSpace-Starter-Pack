@@ -26,9 +26,10 @@ ZS_TO_CHECK:(  // .z functions to look out for without the ".z." prefix attached
 getFullPath:{[path]
   if[0~count path;:()];
   if[0h~type path;
-    $[all 10h=type each path;:{x where {not x~()}each x}getFullPath each path;'wrongtype]
+    $[all 10h=type each path;:{x where {not x~()}each x}getFullPath each path;
+      [-2"ERROR: Wrong type for 'path': ",-3!type path;'wrongtype]];
   ];
-  if[not 10h~type path;'wrongtype];
+  if[not 10h~type path;-2"ERROR: Wrong type for 'path': ",-3!type path;'wrongtype];
 
   :@[{first system"readlink -f '",x,"'"};path;
     {[x;y] -2"ERROR: Could not find path to: '",x,"'";exit 1}[path]];
@@ -70,6 +71,12 @@ run:{[]
 
   -1"\nChecked ",string[count args`file]," .q script(s)";
   -1"Total lines with possible incompatibilities: ",string count lines;
+
+  $[
+    (not ()~args[`csv])and 0<>count lines;writeToCsv[args`csv;checksDict;lines];
+    0~count lines;-1"WARN: Skipped writing to csv, no lines to output";
+    ()
+  ];
 
   exit 0;
  };
@@ -121,6 +128,9 @@ parseArgs:{[]
 
   args[`regex]:$[0<>count .z.x;"--regex" in .z.x;0b];
 
+  if[0h~type args`csv;args[`csv]:first args`csv];
+  if[10h<>type args`csv;args[`csv]:()];
+
   :args;
  };
 
@@ -156,6 +166,53 @@ combineRegexList:{[checksList]
 
 filterExcluded:{[files;excludedFiles]
   :files where not files in excludedFiles;
+ };
+
+writeToCsv:{[file;checksDict;lines]
+  file:getFullPath file;
+  if[not file like "*[.]csv";
+    -1"WARN: Adding '.csv' suffix to file '",file,"'";
+    file,:".csv";
+  ];
+
+  tbl:categoriseLines[checksDict;lines];
+
+  -1"Saving to file '",file,"' . . .";
+  @[{(hsym`$x) 0: csv 0: y;-1"Saved"}[file];tbl;
+    {[x;y] -2"ERROR: Could not save to '",x,"' due to:\n",y}[file]];
+ };
+
+categoriseLines:{[checksDict;lines]
+  -1"Categorising lines . . .";
+
+  tbl:raze categoriseLine[checksDict]each lines;
+
+  -1"Categorised lines";
+
+  :tbl;
+ };
+
+categoriseLine:{[checkDict;line]
+  .progressTracker.dotNum:@[{mod[1+value x;4]};`.progressTracker.dotNum;0];
+  1"Categorising ",.progressTracker.dotNum#".";  // Used to give the user a visual indication that the program is still progressing without clogging up the logs
+
+  res:raze{[check;checkRegex;line]
+    lineDict:{`file`lineNum`code!(x 0;"J"$x 1;":" sv 2 _ x)}":" vs line;
+
+    found:0<"J"$first system"printf '%s' $(echo '",ssr[lineDict[`code];"'";"'\\''"],"' | grep -cE '",checkRegex,"' )";
+    if[not found;:()];
+
+    :([]
+      category:enlist check;
+      file:enlist lineDict`file;
+      line_num:enlist lineDict`lineNum;
+      code:enlist lineDict`code
+    );
+  }[;;line]'[key checkDict;value checkDict];
+
+  1"\033[2K\r";  // Clearing the line for the next step to print over it
+
+  :res;
  };
 
 showHelp:{[]
