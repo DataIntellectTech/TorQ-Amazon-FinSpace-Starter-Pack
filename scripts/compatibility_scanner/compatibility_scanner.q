@@ -183,7 +183,7 @@ writeToCsv:{[file;checksDict;lines]
  };
 
 categoriseLines:{[checksDict;lines]
-  -1"Categorising lines . . .";
+  -1"Splitting output lines into categories...";
 
   tbl:raze categoriseLine[checksDict]each lines;
 
