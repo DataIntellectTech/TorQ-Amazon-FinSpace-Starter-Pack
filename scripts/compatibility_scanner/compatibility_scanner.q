@@ -63,13 +63,13 @@ run:{[]
   
   lines:$[
     0<>count args`file;[
-      -1"Scanning ",string[count args`file]," .q script(s) . . .\n";
+      -1"Scanning ",string[count args`file]," .q script(s) . . .";
       raze scanFile[;checksDict] each args[`file]
     ];
     [-1"No files to scan";()]
   ];
 
-  -1"\nChecked ",string[count args`file]," .q script(s)";
+  -1"Scanned ",string[count args`file]," .q script(s)";
   -1"Total lines with possible incompatibilities: ",string count lines;
 
   $[
@@ -99,12 +99,11 @@ ignoreNonQScripts:{[files]
  };
 
 scanFile:{[file;checksDict]
+  showProgressDots"Scanning '",file,"' ";
   res:system"printf '%s\\n' \"$(grep -nHE '",combineRegexList[value checksDict],"' '",file,"')\"";
+  clearProgressDots[];
   
   if[""~raze/[res];res:()];
-  if[0<count res;
-    -1"\n" sv res;
-  ];
 
   :res;
  };
@@ -197,7 +196,7 @@ writeToCsv:{[file;checksDict;lines]
 
   tbl:categoriseLines[checksDict;lines];
 
-  -1"Saving to file '",file,"' . . .";
+  -1"Saving results to file '",file,"' . . .";
   @[{(hsym`$x) 0: csv 0: y;-1"Saved"}[file];tbl;
     {[x;y] -2"ERROR: Could not save to '",x,"' due to:\n",y}[file]];
  };
@@ -207,15 +206,14 @@ categoriseLines:{[checksDict;lines]
 
   tbl:raze categoriseLine[checksDict]each lines;
 
-  -1"Categorised lines";
+  -1"Splitted output lines";
 
   :tbl;
  };
 
 categoriseLine:{[checkDict;line]
-  .progressTracker.dotNum:@[{mod[1+value x;4]};`.progressTracker.dotNum;0];
-  1"Categorising ",.progressTracker.dotNum#".";  // Used to give the user a visual indication that the program is still progressing without clogging up the logs
-
+  showProgressDots"Splitting output lines ";
+  
   res:raze{[check;checkRegex;line]
     lineDict:{`file`lineNum`code!(x 0;"J"$x 1;":" sv 2 _ x)}":" vs line;
 
@@ -230,9 +228,18 @@ categoriseLine:{[checkDict;line]
     );
   }[;;line]'[key checkDict;value checkDict];
 
-  1"\033[2K\r";  // Clearing the line for the next step to print over it (ANSI escape code to erase current line + carriage return)
+  clearProgressDots[];
 
   :res;
+ };
+
+showProgressDots:{[prefixStr]  // Used to give the user a visual indication that the program is still progressing without clogging up the logs
+  .progressTracker.dotNum:@[{mod[1+value x;4]};`.progressTracker.dotNum;0];
+  1 prefixStr,.progressTracker.dotNum#".";
+ }
+
+clearProgressDots:{[]  // Clears the line for the next step to print over it (ANSI escape code to erase current line + carriage return)
+  1"\033[2K\r";
  };
 
 showHelp:{[]
