@@ -29,7 +29,7 @@ locals {
     wdb_cluster_names  = ["wdb","wdb2"]
 }
 
-resource "aws_cloudwatch_log_group" "wdb_log_groups" {
+data "aws_cloudwatch_log_group" "wdb_log_groups" {
   for_each   = toset(local.wdb_cluster_names)
   name       = "/aws/vendedlogs/finspace/${var.environment-id}/${each.value}"
 }
@@ -38,7 +38,7 @@ resource "aws_cloudwatch_log_metric_filter" "wdb_log_monit" {
     for_each       = toset(local.wdb_cluster_names)
     name           = local.metric-filter-name
     pattern        = "kill the hdb"             ##hard coded for now, but eventually this should be a configurable variable
-    log_group_name = aws_cloudwatch_log_group.wdb_log_groups[each.value].name
+    log_group_name = data.aws_cloudwatch_log_group.wdb_log_groups[each.value].name
 
     metric_transformation {
         name          = "count_eopMsg_wdb"
@@ -50,6 +50,7 @@ resource "aws_cloudwatch_log_metric_filter" "wdb_log_monit" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "wdb_log_monit_alarm" {
+  count = length(local.wdb_cluster_names) > 0 ? 1 : 0
   alarm_name = "${local.metric-filter-name}_alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = 1
@@ -63,13 +64,14 @@ resource "aws_cloudwatch_metric_alarm" "wdb_log_monit_alarm" {
 }
 
 resource "aws_cloudwatch_event_rule" "wdb_log_monit_rule" {
+  count = length(local.wdb_cluster_names) > 0 ? 1 : 0
   name = "${local.metric-filter-name}_rule"
   description = "trigger lambda when ${local.metric-filter-name} finds any matches"
 
   event_pattern = jsonencode({
     "source": ["aws.cloudwatch"],
     "detail-type": ["CloudWatch Alarm State Change"],
-    "resources": ["${aws_cloudwatch_metric_alarm.wdb_log_monit_alarm.arn}"]
+    "resources": ["${aws_cloudwatch_metric_alarm.wdb_log_monit_alarm[0].arn}"]
     "detail": {
       "state": {
         "value": ["ALARM"]
@@ -79,8 +81,9 @@ resource "aws_cloudwatch_event_rule" "wdb_log_monit_rule" {
 }
 
 resource "aws_cloudwatch_event_target" "wdb_log_monit_rule_target" {
+  count = length(local.wdb_cluster_names) > 0 ? 1 : 0
   arn = var.sfn_state_machine_arn
-  rule = aws_cloudwatch_event_rule.wdb_log_monit_rule.name
+  rule = aws_cloudwatch_event_rule.wdb_log_monit_rule[0].name
   role_arn = var.eventBridge_role_arn
     input = jsonencode({
     cluster_prefix = "hdb",
