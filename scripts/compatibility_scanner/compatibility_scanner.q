@@ -230,7 +230,8 @@ showHelp:{[]
   -1"                           (or from `pwd` if no dir is passed)";
   -1"-csv:      CSV file to output the results to";
   -1"           (Adds '.csv' to the end of the filename if not provided)";
-  -1"--regex:   Switch file and exclude arguments to regex mode (posix-extended)";
+  -1"--regex:   Switch file and exclude arguments from normal mode to regex mode";
+  -1"           (posix-extended)";
   -1"";
 
   exit 0;
