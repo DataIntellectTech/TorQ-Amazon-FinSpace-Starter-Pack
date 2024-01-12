@@ -14,10 +14,15 @@ timeout:system"T"
 connectonstart:0b                   // rdb connects and subscribes to tickerplant on startup
 tickerplanttypes:`segmentedtickerplant
 gatewatypes:`none
-replaylog:1b
+replaylog:0b                        //disable intital log replay - we dont want data until the need period begins
+upd:{[t;x]};                        //discard initial data from subscriptions until start of new period
+
 
 hdbtypes:()                         //connection to HDB not needed
 
 subfiltered:0b
 // path to rdbsub{i}.csv
 subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"];
+
+\d .servers
+CONNECTIONS:`rdb`wdb`gateway         // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS
