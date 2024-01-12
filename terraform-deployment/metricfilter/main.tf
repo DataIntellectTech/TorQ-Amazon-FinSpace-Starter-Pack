@@ -29,7 +29,7 @@ locals {
     wdb_cluster_names  = ["wdb","wdb2"]
 }
 
-data "aws_cloudwatch_log_group" "wdb_log_groups" {
+resource "aws_cloudwatch_log_group" "wdb_log_groups" {
   for_each   = toset(local.wdb_cluster_names)
   name       = "/aws/vendedlogs/finspace/${var.environment-id}/${each.value}"
 }
@@ -38,7 +38,7 @@ resource "aws_cloudwatch_log_metric_filter" "wdb_log_monit" {
     for_each       = toset(local.wdb_cluster_names)
     name           = local.metric-filter-name
     pattern        = "kill the hdb"             ##hard coded for now, but eventually this should be a configurable variable
-    log_group_name = data.aws_cloudwatch_log_group.wdb_log_groups[each.value].name
+    log_group_name = aws_cloudwatch_log_group.wdb_log_groups[each.value].name
 
     metric_transformation {
         name          = "count_eopMsg_wdb"
