@@ -32,7 +32,7 @@ getFullPath:{[path]
   if[not 10h~type path;-2"ERROR: Wrong type for 'path': ",-3!type path;'wrongtype];
 
   :@[{first system"readlink -f '",x,"'"};path;
-    {[x;y] -2"ERROR: Could not find path to: '",x,"'";exit 1}[path]];
+    {[x;y] -2"ERROR: Could not find path to '",x,"' due to:\n",y;exit 1}[path]];
  };
 
 MAIN_SCRIPT_DIR:{("/" sv -1 _ "/" vs x),"/"}getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script form another directory
