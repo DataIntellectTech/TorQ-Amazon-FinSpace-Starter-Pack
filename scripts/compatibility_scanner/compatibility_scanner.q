@@ -147,13 +147,8 @@ parseArgs:{[]
 generateCsvFileName:{[]
   tgtDir:{x,"/"}first system"pwd";
   fNamePrefix:"compatibility_scan_";
-  number:0;
 
-  getFName:{[tgtDir;fNamePrefix;number]tgtDir,fNamePrefix,string[number],".csv"}[tgtDir;fNamePrefix];
-
-  while[0<>count key hsym`$getFName number;number+:1];
-
-  fName:getFName number;
+  fName:tgtDir,fNamePrefix,ssr[string .z.p;":";"."],".csv";
   -1"Output csv file will be: '",fName,"'";
 
   :fName;
