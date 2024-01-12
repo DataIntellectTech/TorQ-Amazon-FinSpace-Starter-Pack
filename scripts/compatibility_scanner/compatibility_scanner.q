@@ -92,7 +92,8 @@ getFilesFromRegex:{[regexList;dir]
 
 ignoreNonQScripts:{[files]
   res:files where files like "*[.]q";
-  if[count[res]<>count files;-1"WARN: Ignored files that are not .q scripts"];
+  if[count[res]<>count files;
+    -1"WARN: Ignored ",string[count[files]-count res]," files that are not .q scripts"];
 
   :res;
  };
