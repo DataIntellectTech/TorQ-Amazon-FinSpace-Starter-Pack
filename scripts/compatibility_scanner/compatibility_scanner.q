@@ -58,7 +58,7 @@ run:{[]
     if[isInvalidDir;-2"ERROR: Directory '",args[`dir],"' could not be found";exit 1];
   ];
 
-  if[not ()~args`dir;args[`file]:distinct args[`file],getDirFileList args`dir];
+  if[not[args`regex]and not ()~args`dir;args[`file]:distinct args[`file],getDirFileList args`dir];
   if[0<count args`file;args[`file]:filterExcluded[args`file;args`exclude]];
   
   lines:$[
