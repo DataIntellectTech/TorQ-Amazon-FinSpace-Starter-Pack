@@ -25,16 +25,20 @@ variable "rdbCntr_mod" {
 
 locals {
     metric-filter-name = "wdb_eop_shutdown_msg"
-    log-group-prefix   = "/aws/vendedlogs/finspace/${var.environment-id}"
     //wdb_cluster_names  = concat(["wdb"],[for i in range(var.rdbCntr_mod) : format("wdb%d",i+1)]) ## uncomment when ready
-    wdb_cluster_names  = ["wdb","wdb1"]
+    wdb_cluster_names  = ["wdb","wdb2"]
+}
+
+data "aws_cloudwatch_log_group" "wdb_log_groups" {
+  for_each   = toset(local.wdb_cluster_names)
+  name       = "/aws/vendedlogs/finspace/${var.environment-id}/${each.value}"
 }
 
 resource "aws_cloudwatch_log_metric_filter" "wdb_log_monit" {
     for_each       = toset(local.wdb_cluster_names)
     name           = local.metric-filter-name
     pattern        = "kill the hdb"             ##hard coded for now, but eventually this should be a configurable variable
-    log_group_name = "${local.log-group-prefix}/${each.value}"
+    log_group_name = data.aws_cloudwatch_log_group.wdb_log_groups[each.value].name
 
     metric_transformation {
         name          = "count_eopMsg_wdb"
@@ -49,8 +53,8 @@ resource "aws_cloudwatch_metric_alarm" "wdb_log_monit_alarm" {
   alarm_name = "${local.metric-filter-name}_alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = 1
-  metric_name = aws_cloudwatch_log_metric_filter.wdb_log_monit["wdb"].metric_transformation[0].name
-  namespace =   aws_cloudwatch_log_metric_filter.wdb_log_monit["wdb"].metric_transformation[0].namespace
+  metric_name = "count_eopMsg_wdb"
+  namespace =   "AWSFinTorq"
   period = 120
   statistic = "Sum"
   threshold = 1
