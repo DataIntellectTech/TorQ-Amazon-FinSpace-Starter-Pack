@@ -130,9 +130,33 @@ parseArgs:{[]
   args[`regex]:$[0<>count .z.x;"--regex" in .z.x;0b];
 
   if[0h~type args`csv;args[`csv]:first args`csv];
-  if[10h<>type args`csv;args[`csv]:()];
+  if[10h<>type args`csv;
+    -1"WARN: No csv file name passed, automatically choosing a file name . . .";
+    args[`csv]:generateCsvFileName[];
+  ];
+
+  if[(()~args`file) and ()~args`dir;
+    -2"ERROR: Insufficient arguments passed";
+    -1"";
+    showHelp[];
+  ];
 
   :args;
+ };
+
+generateCsvFileName:{[]
+  tgtDir:{x,"/"}first system"pwd";
+  fNamePrefix:"compatibility_scan_";
+  number:0;
+
+  getFName:{[tgtDir;fNamePrefix;number]tgtDir,fNamePrefix,string[number],".csv"}[tgtDir;fNamePrefix];
+
+  while[0<>count key hsym`$getFName number;number+:1];
+
+  fName:getFName number;
+  -1"Output csv file will be: '",fName,"'";
+
+  :fName;
  };
 
 loadChecksDict:{[]
@@ -222,17 +246,27 @@ showHelp:{[]
   -1"+--------------------------------+";
   -1"[Arguments]";
   -1"";
-  -1"-dir:      Directory to scan";
-  -1"-file:     In normal mode: Scans file(s);";
+  -1"-dir:      [Required if -file not passed]";
+  -1"           Directory to scan";
+  -1"";
+  -1"-file:     [Required if -dir not passed]";
+  -1"           In normal mode: Scans file(s);";
   -1"           In regex mode:  Scans file(s) matching regex in dir";
   -1"                           (or from `pwd` if no dir is passed)";
-  -1"-exclude:  In normal mode: Excludes file(s) from scan;";
+  -1"";
+  -1"-csv:      [Optional]";
+  -1"           CSV file to output the results to, otherwise a new file";
+  -1"           'compatibility_scan_X.csv' is made in the current working directory";
+  -1"           (Adds '.csv' to the end of the filename if not provided)";
+  -1"";
+  -1"-exclude:  [Optional]";
+  -1"           In normal mode: Excludes file(s) from scan;";
   -1"           In regex mode:  Excludes file(s) from scan matching regex in dir";
   -1"                           (or from `pwd` if no dir is passed)";
-  -1"-csv:      CSV file to output the results to";
-  -1"           (Adds '.csv' to the end of the filename if not provided)";
-  -1"--regex:   Switch file and exclude arguments from normal mode to regex mode";
-  -1"           (posix-extended)";
+  -1"";
+  -1"--regex:   [Optional]";
+  -1"           Switch file and exclude arguments from normal mode to regex mode";
+  -1"           (POSIX-Extended)";
   -1"";
 
   exit 0;
