@@ -1,28 +1,5 @@
 DEBUG_SHOW_REGEX_PASSED:0b;
 
-ZS_TO_CHECK:(  // .z functions to look out for without the ".z." prefix attached
-  "pm";
-  "zd";
-  "ac";
-  "bm";
-  "exit";
-  "pc";
-  "pd";
-  "pg";
-  "ph";
-  "pi";
-  "po";
-  "pp";
-  "pq";
-  "ps";
-  "pw";
-  "ts";
-  "vs";
-  "wc";
-  "wo";
-  "ws"
- );
-
 getFullPath:{[path]
   if[0~count path;:()];
   if[0h~type path;
@@ -37,6 +14,7 @@ getFullPath:{[path]
 
 MAIN_SCRIPT_DIR:{("/" sv -1 _ "/" vs x),"/"}getFullPath string .z.f;  // Used this so that the script will load its dependencies correctly even if the user starts the script from another directory
 
+ZS_TO_CHECK_CSV:MAIN_SCRIPT_DIR,"zs_to_check.csv";
 ASSIGNMENT_CHECKS_TSV:MAIN_SCRIPT_DIR,"assignment_checks.tsv";
 COMMANDS_CHECKS_TSV:MAIN_SCRIPT_DIR,"commands_checks.tsv";
 
@@ -172,11 +150,12 @@ readCommandsChecks:{[file]
  };
 
 readAssignmentChecks:{[file]
+  zsTbl:(enlist"*";enlist csv) 0: hsym`$ZS_TO_CHECK_CSV;
   tbl:("**";enlist"\t") 0: hsym`$file;
 
   :combineRegexList raze{
     :enlist[y] cross x cross enlist z;
-  }[ZS_TO_CHECK]'[tbl`prefix;tbl`suffix];
+  }[zsTbl`z_suffix]'[tbl`prefix;tbl`suffix];
  };
 
 combineRegexList:{[checksList]
