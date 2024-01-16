@@ -25,4 +25,4 @@ subfiltered:0b
 subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"];
 
 \d .servers
-CONNECTIONS:`rdb`wdb`gateway         // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS
+CONNECTIONS:`rdb`wdb               // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS
