@@ -21,6 +21,9 @@ rdbCntr_modulo    = 3
 send-sns-alert    = true                                      # true=create email subscription. false=no email subscription
 alert-smpt-target = "eugene.temlock@dataintellect.com"            # email address to send sns alerts to if send-alert flag is set to 'true'
 
+# metricfilter configs
+wdb_log_groups = ["wdb","wdb2"]                                # configure EXISTING log groups with names like "wdb*" here 
+
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 
 init-script       = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"  # path to init script inside zipped folder
