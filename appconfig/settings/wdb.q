@@ -11,5 +11,3 @@ upd:(::);
 
 \d .servers
 CONNECTIONS:`hdb`tickerplant`rdb`gateway`sort`wdb
-
-
