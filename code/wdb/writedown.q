@@ -1,15 +1,16 @@
 /-endofperiod function to savedown by integer
 endofperiod:{[currp;nextp;data]
-	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data]
-        /-check if there is more than 1 wdb processes
+	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
+        /- Obtain handle of any other running wdb's
 	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
-        /-create a dictionary of process names and their start times
-	times:raze{@[;".proc.starttimeUTC";()][x]} each h;
+        /-Create a list of start times of wdb's found from above
+	times:@[;".proc.starttimeUTC";()]each h;
+        /-If we are the new process, exit function, do not want to writedown
 	if[.proc.starttimeUTC >max times;
+                /-Setting variables so wdb can become the active wdb for this new period
 		@[`.;`upd;:;insert];
 		.wdb.currentpartition:`long$nextp;
 		:()];
-	/-If we are the new process, exit function, do not want to writedown
         /-We must be old process so must writedown
 	hclose each distinct exec w from .sub.SUBSCRIPTIONS;
 	/ Need to download sym file to scratch directory
