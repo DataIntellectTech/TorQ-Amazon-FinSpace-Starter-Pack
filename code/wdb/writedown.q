@@ -20,9 +20,9 @@ endofperiod:{[currp;nextp;data]
 	/-Create changeset containing data
 	.finspace.createchangeset[.finspace.database];
 	/-trigger hdb start with trigger log
-    $[@[get;`.finspace.rdbready;0b];
-	   .wdb.checkrdbready[];
-	   .timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
+	$[@[get;`.finspace.rdbready;0b];
+		.wdb.checkrdbready[];
+		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
 	 ];
 	};
 
