@@ -9,4 +9,4 @@ hdbdir:hsym`$getenv[`KDBSCRATCH];
 database:getenv[`KDBDATABASETRADE];
 
 \d .servers
-CONNECTIONS:`wdb
+CONNECTIONS:enlist `wdb
