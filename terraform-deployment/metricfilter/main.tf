@@ -37,7 +37,7 @@ data "aws_cloudwatch_log_group" "wdb_log_groups" {
 resource "aws_cloudwatch_log_metric_filter" "wdb_log_monit" {
     for_each       = toset(var.wdb_log_groups)
     name           = local.metric-filter-name
-    pattern        = "kill the hdb"             ##hard coded for now, but eventually this should be a configurable variable
+    pattern        = "new rdb ready. create new hdb"             ##hard coded for now, but eventually this should be a configurable variable
     log_group_name = data.aws_cloudwatch_log_group.wdb_log_groups[each.value].name
 
     metric_transformation {
