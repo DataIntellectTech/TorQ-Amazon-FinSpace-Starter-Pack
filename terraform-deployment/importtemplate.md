@@ -164,12 +164,7 @@ import {
 }
 
 import {
-  to = module.lambda.data.aws_iam_policy_document.lambda_secondary_basic_execution
-  id = "Existing_Structure_ID"
-}
-
-import {
-  to = module.lambda.data.aws_iam_policy_document.sqs_sendMsg_scoped_access_policy_doc
+  to = module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc
   id = "Existing_Structure_ID"
 }
 
@@ -224,12 +219,7 @@ import {
 }
 
 import {
-  to = module.lambda.aws_iam_policy.lambda_secondary_basic_policy
-  id = "Existing_Structure_ID"
-}
-
-import {
-  to = module.lambda.aws_iam_policy.sqs_sendMsg_scoped_access_policy
+  to = module.lambda.aws_iam_policy.sns_publish_scoped_access_policy
   id = "Existing_Structure_ID"
 }
 
@@ -244,12 +234,17 @@ import {
 }
 
 import {
+  to = module.lambda.aws_iam_role.lambda_errorFormat_execution_role
+  id = "Existing_Structure_ID"
+}
+
+import {
   to = module.lambda.aws_iam_role.lambda_execution_role
   id = "Existing_Structure_ID"
 }
 
 import {
-  to = module.lambda.aws_iam_role.lambda_secondary_execution_role
+  to = module.lambda.aws_iam_role.lambda_onConflict_execution_role
   id = "Existing_Structure_ID"
 }
 
@@ -274,7 +269,17 @@ import {
 }
 
 import {
-  to = module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_secondary
+  to = module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict
   id = "Existing_Structure_ID"
 }
 
@@ -284,7 +289,7 @@ import {
 }
 
 import {
-  to = module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_secondary
+  to = module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict
   id = "Existing_Structure_ID"
 }
 
@@ -294,17 +299,17 @@ import {
 }
 
 import {
-  to = module.lambda.aws_iam_role_policy_attachment.attach_lambda_secondary_basic
-  id = "Existing_Structure_ID"
-}
-
-import {
-  to = module.lambda.aws_iam_role_policy_attachment.attach_sqs_sendMsg_scoped_access_policy
+  to = module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy
   id = "Existing_Structure_ID"
 }
 
 import {
   to = module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda
   id = "Existing_Structure_ID"
 }
 
@@ -320,6 +325,21 @@ import {
 
 import {
   to = module.lambda.aws_sfn_state_machine.sfn_state_machine
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_sns_topic.lambda_error_topic
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]
+  id = "Existing_Structure_ID"
+}
+
+import {
+  to = module.lambda.aws_sns_topic_subscription.lambda_error_queue_target
   id = "Existing_Structure_ID"
 }
 

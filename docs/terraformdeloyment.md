@@ -20,10 +20,10 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 
 ## How to Use - Initial Deployment (New User Please Follow This Section)
 
-1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/finTorq-App/hdb`.
+1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/hdb`.
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
 3. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
-4. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` inside the `finTorq-App` directory, changing the database name to the new variable that you have set in line 19.
+4. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` file, changing the database name to the new variable that you have set in line 19.
 5. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
 6. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments`, run `terraform init`.
 7. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
@@ -126,8 +126,7 @@ We have created a Terraform import block template in `terraform-deployment/impor
 * module.lambda.data.aws_iam_policy_document.lambda_basic_execution
 * module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc
 * module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc
-* module.lambda.data.aws_iam_policy_document.lambda_secondary_basic_execution
-* module.lambda.data.aws_iam_policy_document.sqs_sendMsg_scoped_access_policy_doc
+* module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc
 * module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc
 * module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule
 * module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule
@@ -138,26 +137,31 @@ We have created a Terraform import block template in `terraform-deployment/impor
 * module.lambda.aws_iam_policy.lambda_ec2_policy
 * module.lambda.aws_iam_policy.lambda_finspace_policy
 * module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy
-* module.lambda.aws_iam_policy.lambda_secondary_basic_policy
-* module.lambda.aws_iam_policy.sqs_sendMsg_scoped_access_policy
+* module.lambda.aws_iam_policy.sns_publish_scoped_access_policy
 * module.lambda.aws_iam_policy.xray_scoped_access_policy
 * module.lambda.aws_iam_role.eventBridge_role
+* module.lambda.aws_iam_role.lambda_errorFormat_execution_role
 * module.lambda.aws_iam_role.lambda_execution_role
-* module.lambda.aws_iam_role.lambda_secondary_execution_role
+* module.lambda.aws_iam_role.lambda_onConflict_execution_role
 * module.lambda.aws_iam_role.states_execution_role
 * module.lambda.aws_iam_role_policy_attachment.attach1
 * module.lambda.aws_iam_role_policy_attachment.attach2
 * module.lambda.aws_iam_role_policy_attachment.attach3
-* module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_secondary
+* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat
+* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict
+* module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict
 * module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy
-* module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_secondary
+* module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict
 * module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy
-* module.lambda.aws_iam_role_policy_attachment.attach_lambda_secondary_basic
-* module.lambda.aws_iam_role_policy_attachment.attach_sqs_sendMsg_scoped_access_policy
+* module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy
 * module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy
+* module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda
 * module.lambda.aws_lambda_function.finSpace-rdb-lambda
 * module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda
 * module.lambda.aws_sfn_state_machine.sfn_state_machine
+* module.lambda.aws_sns_topic.lambda_error_topic
+* module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]
+* module.lambda.aws_sns_topic_subscription.lambda_error_queue_target
 * module.lambda.aws_sqs_queue.lambda_error_queue
 * module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy
 * module.lambda.local_file.lambda_configs
