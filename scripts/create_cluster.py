@@ -94,7 +94,7 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         'environmentId': environmentId,
         'clusterName': clusterName,
         'clusterType': clusterType,
-        'clusterDescription': clusterDescription,
+        'clusterDescription': clusterDescription or f"finspace cluster for {clusterName}",
         'capacityConfiguration': capacityConfiguration,
         'releaseLabel': releaseLabel,
         'vpcConfiguration': vpcConfiguration,
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     parser.add_argument("--clusterName", required=True, help="Name to give the cluster")
     parser.add_argument("--clusterType", 
                         required=("create" in sys.argv), # only required if the action was create
-                        choices=['HDB', 'RDB', 'GATEWAY'],
+                        choices=['HDB', 'RDB', 'GATEWAY', 'GP'],
                         help="Name to give the cluster"
                         )
     
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-    client = boto3.client('finspace')
+    client = boto3.client('finspace', region_name=region)
     lgi("testing aws connection")
     resp = client.get_kx_environment(environmentId=environmentId)
     if resp['ResponseMetadata']['HTTPStatusCode'] != 200:
