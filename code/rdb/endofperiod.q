@@ -5,12 +5,12 @@ endofperiod:{[currp;nextp;data]
 	h:exec w from .servers.SERVERS where proctype=`rdb,not w=0N;
         /-Create a list of start times of rdb's found from above
 	times:@[;".proc.starttimeUTC";()]each h;
-        /-If we are the new process, exit function, do not want to writedown
-	if[.proc.starttimeUTC >max times;
+	/-If we are the new process, exit function, do not want to close handle
+	if[not any times or .proc.starttimeUTC > max times;
 		/-Setting variables so rdb can become the active rdb for this new period
-                @[`.;`upd;:;insert];
+		@[`.;`upd;:;.rdb.upd];
                 :()];
 	/-We must be old process so unsubscribe from the tp and set upd to null
 	hclose each distinct exec w from .sub.SUBSCRIPTIONS;
-        @[`.;`upd;:;0N];
+	/-RDB remains idle to serve client queries
         };

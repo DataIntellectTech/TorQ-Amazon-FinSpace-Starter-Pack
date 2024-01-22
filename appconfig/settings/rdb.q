@@ -9,12 +9,10 @@ hdbclusters:enlist `$"hdb";
 hdbdir:hsym`$getenv[`KDBSCRATCH]    // the location of the hdb directory
 reloadenabled:0b                    // if true, the RDB will not save when .u.end is called but
                                     // will clear it's data using reload function (called by the WDB)
-
 timeout:system"T"
 connectonstart:0b                   // rdb connects and subscribes to tickerplant on startup
 tickerplanttypes:`segmentedtickerplant
 replaylog:0b                        //disable intital log replay - we dont want data until the need period begins
-upd:{[t;x]};                        //discard initial data from subscriptions until start of new period
 
 
 hdbtypes:()                         //connection to HDB not needed

@@ -6,9 +6,9 @@ endofperiod:{[currp;nextp;data]
         /-Create a list of start times of wdb's found from above
 	times:@[;".proc.starttimeUTC";()]each h;
         /-If we are the new process, exit function, do not want to writedown
-	if[.proc.starttimeUTC >max times;
+	if[not any times or .proc.starttimeUTC >max times;
                 /-Setting variables so wdb can become the active wdb for this new period
-		@[`.;`upd;:;insert];
+		@[`.;`upd;:;.wdb.upd];
 		.wdb.currentpartition:`long$nextp;
 		:()];
         /-We must be old process so unsubscribe from the tp and begin writedown process
