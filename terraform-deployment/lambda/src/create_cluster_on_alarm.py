@@ -61,7 +61,7 @@ def lambda_handler(event, context):
         'environmentId': envId,
         'clusterName': newClusterId,
         'clusterType': event["clusterType"],
-        'clusterDescription': "new rdb cluster",
+        'clusterDescription': f"cluster for process {newClusterId}",
         'capacityConfiguration': clusterInfo['capacityConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
         'vpcConfiguration': clusterInfo['vpcConfiguration'],

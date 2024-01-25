@@ -103,3 +103,8 @@ variable "send-sns-alert" {
 variable "alert-smpt-target" {
   description = "email address to send sns alerts to. only used if send-alert set to 'true'"
 }
+
+variable "wdb_log_groups" {
+  type = list
+  description = "list of existing log group names like 'wdb*'"
+}
