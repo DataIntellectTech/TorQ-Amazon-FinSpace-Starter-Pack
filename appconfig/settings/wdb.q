@@ -6,6 +6,3 @@ hdbdir:hsym`$getenv[`KDBSCRATCH];
 
 \d .finspace
 database:getenv[`KDBDATABASETRADE];
-
-\d .servers
-CONNECTIONS:`wdb

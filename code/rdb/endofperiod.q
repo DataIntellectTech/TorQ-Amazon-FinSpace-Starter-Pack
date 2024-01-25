@@ -3,10 +3,10 @@ endofperiod:{[currp;nextp;data]
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
 	/-Obtain handle of any other running rdb's
 	h:exec w from .servers.SERVERS where proctype=`rdb,not w=0N;
-        /-Create a list of start times of rdb's found from above
-	times:@[;".proc.starttimeUTC";()]each h;
+	/-Create a list of start times of rdb's,m including current process so that list is not empty
+	times:.proc.starttimeUTC , @[;".proc.starttimeUTC";()]each h;
 	/-If we are the new process, exit function, do not want to close handle
-	if[not any times or .proc.starttimeUTC > max times;
+	if[.proc.starttimeUTC = max times;
 		/-Setting variables so rdb can become the active rdb for this new period
 		@[`.;`upd;:;.rdb.upd];
                 :()];

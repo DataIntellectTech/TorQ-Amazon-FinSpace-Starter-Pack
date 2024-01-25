@@ -5,8 +5,8 @@ endofperiod:{[currp;nextp;data]
 	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
         /-Create a list of start times of wdb's found from above
 	times:@[;".proc.starttimeUTC";()]each h;
-        /-If we are the new process, exit function, do not want to writedown
-	if[not any times or .proc.starttimeUTC >max times;
+	/-If we are the new process, need to set upd to .wdb.upd and set the partition. Otherwise writedown data. WDB doesn't depend on new process being up.
+	if[not upd~.wdb.upd;
                 /-Setting variables so wdb can become the active wdb for this new period
 		@[`.;`upd;:;.wdb.upd];
 		.wdb.currentpartition:`long$nextp;
