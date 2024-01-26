@@ -16,6 +16,10 @@ variable "account_id" {
   description = "import the account_id of the current root user"
 }
 
+variable "s3-bucket" {
+  description = "arn of code bucket"
+}
+
 variable "rdbCntr_mod" {
   description = "maximum number of rdbs created by lambda"
 }
