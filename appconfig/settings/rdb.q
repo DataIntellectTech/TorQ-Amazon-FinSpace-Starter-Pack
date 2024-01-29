@@ -14,7 +14,6 @@ timeout:system"T"
 connectonstart:0b                   // rdb connects and subscribes to tickerplant on startup
 tickerplanttypes:`segmentedtickerplant
 replaylog:0b                        //disable intital log replay - we dont want data until the need period begins
-upd:{[t;x]};                        //discard initial data from subscriptions until start of new period
 
 
 hdbtypes:()                         //connection to HDB not needed
