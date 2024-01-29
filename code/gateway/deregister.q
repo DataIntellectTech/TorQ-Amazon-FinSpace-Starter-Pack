@@ -15,7 +15,7 @@ addserversfromconnectiontable:{
    if[not count svrIDs; .lg.o[`unregisterfromgw;"No servers to deregister. Aborting"]; :()];
 
    // block incoming queries to these processes
-   update active:0b from `.gw.servers where serverid in svrIDs;
+   update active:0b,disconnecttime:.proc.cp[] from `.gw.servers where serverid in svrIDs;
    
    timerID:first 1?0Ng;
    .timer.repeat[.proc.cp[];0Wp;.gw.DEREGCHECKFREQ;(`.finspace.checkremainingqueries;timerID;svrIDs;update flagdown:0b from deregservers);"check if pending queries in servernames"]
