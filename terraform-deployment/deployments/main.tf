@@ -60,3 +60,11 @@ module "lambda" {
   alert-smpt-target    = var.alert-smpt-target
 }
 
+module "metricfilter" {
+  source = "../metricfilter"
+
+  environment-id        = module.environment.environment-id
+  sfn_state_machine_arn = module.lambda.sfn_state_machine_arn
+  eventBridge_role_arn  = module.lambda.eventBridge_role_arn
+  wdb_log_groups        = var.wdb_log_groups
+}

@@ -19,5 +19,16 @@ endofperiod:{[currp;nextp;data]
 	.wdb.savetables[.wdb.savedir;.wdb.currentpartition;1b;] each .wdb.tablelist[];
 	/-Create changeset containing data
 	.finspace.createchangeset[.finspace.database];
-	/-TODO add logic to trigger hdb start with trigger log
+	/-trigger hdb start with trigger log
+	$[@[get;`.finspace.rdbready;0b];
+		.wdb.checkrdbready[];
+		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
+	 ];
 	};
+
+.wdb.checkrdbready:{
+	if[@[get;`.finspace.rdbready;0b];
+	   .lg.o[`.wdb.checkrdbready;"new rdb ready. create new hdb"];
+	   .timer.remove @/: exec id from .timer.timer where `.wdb.checkrdbready in' funcparam;
+	]
+ };
