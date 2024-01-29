@@ -1,5 +1,5 @@
 
-/d .gw
+\d .gw
 
 DEREGCHECKFREQ:@[value;`.gw.DEREGCHECKFREQ;0D00:00:10];
 
@@ -7,7 +7,7 @@ DEREGCHECKFREQ:@[value;`.gw.DEREGCHECKFREQ;0D00:00:10];
 addserversfromconnectiontable:{
  {.gw.addserverattr'[x`w;x`proctype;x`attributes]}[select w,proctype,attributes from .servers.SERVERS where ((proctype in x) or x~`ALL),not w in ((0;0Ni),exec handle from .gw.servers where not null handle)];}
 
-/d .
+\d .
 
 .finspace.unregisterfromgw:{[servernames]
    // identify the serverid by mapping the handles in .server.SERVERS and .gw.servers
