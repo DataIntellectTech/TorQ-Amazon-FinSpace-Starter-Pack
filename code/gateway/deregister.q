@@ -1,7 +1,7 @@
 
 \d .gw
 
-DEREGCHECKFREQ:@[value;`.gw.DEREGCHECKFREQ;0D00:00:10];
+deregcheckfreq:@[value;`.gw.deregcheckfreq;0D00:00:10];
 
 //overwrite this method to not upsert null handles??
 addserversfromconnectiontable:{
@@ -18,7 +18,7 @@ addserversfromconnectiontable:{
    update active:0b,disconnecttime:.proc.cp[] from `.gw.servers where serverid in svrIDs;
    
    timerID:first 1?0Ng;
-   .timer.repeat[.proc.cp[];0Wp;.gw.DEREGCHECKFREQ;(`.finspace.checkremainingqueries;timerID;svrIDs;update flagdown:0b from deregservers);"check if pending queries in servernames"]
+   .timer.repeat[.proc.cp[];0Wp;.gw.deregcheckfreq;(`.finspace.checkremainingqueries;timerID;svrIDs;update flagdown:0b from deregservers);"check if pending queries in servernames"]
  };
 
 // timerid     | -2h | guid identifier to help remove instance of this function if multiple instances of this function are scheduled
