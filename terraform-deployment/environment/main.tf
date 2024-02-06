@@ -259,6 +259,20 @@ data "aws_iam_policy_document" "iam-policy" {
       "arn:aws:ec2:${var.region}:${data.aws_caller_identity.current.account_id}:vpc-endpoint/*"
     ]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetObjectTagging"
+    ]
+    resources = [
+      "${aws_s3_bucket.finspace-code-bucket.arn}",
+      "${aws_s3_bucket.finspace-code-bucket.arn}/*"
+    ]
+  }
 }
 
 variable "policy-name" {
@@ -348,10 +362,6 @@ output "database-name" {
 
 output "s3-bucket-id" {
   value = aws_s3_bucket.finspace-code-bucket.id
-}
-
-output "s3-bucket-arn" {
-  value = aws_s3_bucket.finspace-code-bucket.arn
 }
 
 output "s3-bucket-key" {
