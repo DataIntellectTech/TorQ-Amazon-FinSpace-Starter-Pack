@@ -3,7 +3,7 @@
 
 deregcheckfreq:@[value;`.gw.deregcheckfreq;0D00:00:10];
 
-//overwrite this method to not upsert null handles??
+//overwrite this method to not upsert null handles
 addserversfromconnectiontable:{
  {.gw.addserverattr'[x`w;x`proctype;x`attributes]}[select w,proctype,attributes from .servers.SERVERS where ((proctype in x) or x~`ALL),not w in ((0;0Ni),exec handle from .gw.servers where not null handle)];}
 
