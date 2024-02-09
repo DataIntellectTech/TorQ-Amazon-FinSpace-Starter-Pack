@@ -50,6 +50,6 @@ sigserverexit:{[id;sInfo]
     // if no other servers of this serverType are active, wait. Else, signal shutdown
     if[count select from .gw.servers where active, servertype=dict`servertype; 
       neg[dict`handle](`.finspace.deletecluster;"");
-      :id;
+      :id
     ];
   };
