@@ -48,5 +48,8 @@ sigserverexit:{[id;sInfo]
     if[(dict`flagdown) or (null first exec handle from .gw.servers where serverid=id); :id];
     
     // if no other servers of this serverType are active, wait. Else, signal shutdown
-    $[count select from .gw.servers where active, servertype=dict`servertype; [neg[dict`handle](`.finspace.deletecluster;""); :id]; ()]
+    if[count select from .gw.servers where active, servertype=dict`servertype; 
+      neg[dict`handle](`.finspace.deletecluster;"");
+      :id;
+    ];
   };
