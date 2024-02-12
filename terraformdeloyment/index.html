@@ -413,6 +413,201 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/01-whatistorq.md" class="md-nav__link">
+        Workshop 01 - What is TorQ?
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/02-Introduction.md" class="md-nav__link">
+        Workshop 02 - Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/03-torqwithmanagedkdbinsights.md" class="md-nav__link">
+        Workshop 03 - TorQ With Managed kdb Insights
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/04-prerequisites.md" class="md-nav__link">
+        Workshop 04 - Prerequisites
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/05-terraform.md" class="md-nav__link">
+        Workshop 05 - Terraform
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/06-clustercreation.md" class="md-nav__link">
+        Workshop 06 - Cluster Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/07-createec2.md" class="md-nav__link">
+        Workshop 07 - Create EC2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/08-clusterconnectionstring.md" class="md-nav__link">
+        Workshop 08 - Cluster Connection String
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/09-setupqpad.md" class="md-nav__link">
+        Workshop 09 - Setup QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/10-connectingusingqpad.md" class="md-nav__link">
+        Workshop 10 - Connecting Using QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/11-runningqueries.md" class="md-nav__link">
+        Workshop 11 - Running Queries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/12-takingitdown.md" class="md-nav__link">
+        Workshop 12 - Taking it Down
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workshop/13-Conclustion.md" class="md-nav__link">
+        Workshop 13 - Conclustion
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -567,10 +762,10 @@
 </ul>
 <h2 id="how-to-use-initial-deployment-new-user-please-follow-this-section">How to Use - Initial Deployment (New User Please Follow This Section)</h2>
 <ol>
-<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/finTorq-App/hdb</code>.</li>
+<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/hdb</code>.</li>
 <li>Move into the <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code> directory; this will be the Terraform working directory from which you should run all <code>terraform</code> commands.</li>
 <li>Modify variables inside the <code>terraform.tfvars</code> file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of <code>"Name"</code>. For example, For the variable on <code>role-name</code>, you can change the variable name by replacing <code>"finspace-role"</code>.</li>
-<li>(Optional) If you have changed the database name from the default <code>finspace-database</code> to any other names, please also edit the <code>env.q</code> inside the <code>finTorq-App</code> directory, changing the database name to the new variable that you have set in line 19.</li>
+<li>(Optional) If you have changed the database name from the default <code>finspace-database</code> to any other names, please also edit the <code>env.q</code> file, changing the database name to the new variable that you have set in line 19.</li>
 <li>Run <code>aws configure</code> in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.</li>
 <li>From your Terraform working directory which is <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code>, run <code>terraform init</code>.</li>
 <li>If initialized without error, run <code>terraform plan</code>. This will show all resources set to be created or destroyed by Terraform.</li>
@@ -582,6 +777,7 @@
 <li>Code Updates: If you make any code changes in <code>TorQ</code> or <code>TorQ-Amazon-FinSpace-Starter-Pack</code> and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.</li>
 <li>Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in <code>clusters/rdb.tf</code> and run Terraform again. The RDB will be recreated with the new node size.</li>
 <li>Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the <code>terraform.tfvars</code> file. To delete a cluster, set its count to 0. To delete all clusters, set <code>create-clusters</code> to 0.</li>
+<li>log groups and metric filters: These resources are only created if the dependent log groups exists. Update the <code>wdb_log_groups</code> variable in <code>terraform.tfvars</code> to include the names of the log groups of your clusters you wish to monitor. WARNING: this terraform stack will fail inelegantly if you list a name of an unexisting log group. To be amended in future iterations.</li>
 </ol>
 <h3 id="basic-commands-in-terraform">Basic Commands in Terraform</h3>
 <ul>
@@ -646,19 +842,60 @@ If you do not set the provider argument, Terraform attempts to import from the d
 <li>module.environment.aws_s3_bucket_versioning.versioning</li>
 <li>module.environment.null_resource.create_changeset</li>
 <li>module.environment.null_resource.upload_hdb</li>
+<li>module.lambda.data.archive_file.lambda_my_function</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_events_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_lambda_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_states_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.ec2-permissions-lambda</li>
+<li>module.lambda.data.aws_iam_policy_document.eventBridge_policy_doc</li>
 <li>module.lambda.data.aws_iam_policy_document.finspace-extra</li>
-<li>module.lambda.aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda</li>
-<li>module.lambda.aws_cloudwatch_event_target.target_finSpace-rdb-lambda</li>
-<li>module.lambda.aws_cloudwatch_metric_alarm.RDBOverCPUUtilization</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_basic_execution</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc</li>
+<li>module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule</li>
+<li>module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule</li>
+<li>module.lambda.aws_cloudwatch_event_target.onRotateRDB_target</li>
+<li>module.lambda.aws_cloudwatch_event_target.onRotateWDB_target</li>
+<li>module.lambda.aws_iam_policy.eventBridge_policy</li>
 <li>module.lambda.aws_iam_policy.lambda_basic_policy</li>
 <li>module.lambda.aws_iam_policy.lambda_ec2_policy</li>
 <li>module.lambda.aws_iam_policy.lambda_finspace_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy</li>
+<li>module.lambda.aws_iam_policy.sns_publish_scoped_access_policy</li>
+<li>module.lambda.aws_iam_policy.xray_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role.eventBridge_role</li>
+<li>module.lambda.aws_iam_role.lambda_errorFormat_execution_role</li>
 <li>module.lambda.aws_iam_role.lambda_execution_role</li>
+<li>module.lambda.aws_iam_role.lambda_onConflict_execution_role</li>
+<li>module.lambda.aws_iam_role.states_execution_role</li>
 <li>module.lambda.aws_iam_role_policy_attachment.attach1</li>
 <li>module.lambda.aws_iam_role_policy_attachment.attach2</li>
 <li>module.lambda.aws_iam_role_policy_attachment.attach3</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda</li>
 <li>module.lambda.aws_lambda_function.finSpace-rdb-lambda</li>
-<li>module.lambda.aws_lambda_permission.lambda_from_cw_permission</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda</li>
+<li>module.lambda.aws_sfn_state_machine.sfn_state_machine</li>
+<li>module.lambda.aws_sns_topic.lambda_error_topic</li>
+<li>module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]</li>
+<li>module.lambda.aws_sns_topic_subscription.lambda_error_queue_target</li>
+<li>module.lambda.aws_sqs_queue.lambda_error_queue</li>
+<li>module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy</li>
+<li>module.lambda.local_file.lambda_configs</li>
+<li>module.metricfilter.data.aws_cloudwatch_log_group.wdb_log_groups["*"]</li>
+<li>module.metricfilter.aws_cloudwatch_event_rule.wdb_log_monit_rule[0]</li>
+<li>module.metricfilter.aws_cloudwatch_event_target.wdb_log_monit_rule_target[0]</li>
+<li>module.metricfilter.aws_cloudwatch_log_metric_filter.wdb_log_monit["*"]</li>
+<li>module.metricfilter.aws_cloudwatch_metric_alarm.wdb_log_monit_alarm[0]</li>
 <li>module.network.aws_internet_gateway.finspace-igw</li>
 <li>module.network.aws_route.finspace-route</li>
 <li>module.network.aws_route_table.finspace-route-table</li>
