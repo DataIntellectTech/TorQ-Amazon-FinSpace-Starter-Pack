@@ -30,24 +30,43 @@ The network should be in the same VPC as your cluster. Select create a new secur
 
 ![EC2 network](graphics/ec2_network.png)
 
-## Adding your new security group to ???? // TODO ZAN
+## Adding your new security group to you EC2
 
-Once created - make sure to add the security group of your Managed kdb Insights cluster (Actions → Security → Change security groups and add search for the one from our cluster)
+Now we need to add the security group of your cluster to your EC2.
 
-You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your cluster (WTH???)
+Navigate to EC2 service.
 
-![alt text](image.png)
-// TODO ZAN what is this?
+![Navigate to EC2](graphics/ec2_navigate.png)
+
+Select "Instances (running)".
+
+![Select Instance running](graphics/ec2_navigate2.png)
+
+Open your EC2 Instance.
+
+![Open EC2 instance](graphics\EC2_connect1.png)
+
+Select "Actions", "Security" then "Change security groups".
+
+![Select change security groups](graphics\ec2_add_security.png)
+
+Search and select the security group that is on your clusters, select "Add security group" then "save".
+
+![Add sceurity group](graphics\ec2_add_security2.png)
+
+You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.
+
+![security group example](graphics/ec2_security.png)
 
 ## Connecting to your EC2 Instance
 
 Open your EC2 Instance.
 
-![](graphics\EC2_connect1.png)
+![Open EC2 instance](graphics\EC2_connect1.png)
 
 Select connect.
 
-![](graphics\EC2_connect2.png)
+![Select connect](graphics\EC2_connect2.png)
 
 ### Get your password
 
@@ -55,11 +74,11 @@ this only needs to be done once. Once you have this password you can skip this s
 
 Select get password.
 
-![](graphics\EC2_connect3.png)
+![Get password](graphics\EC2_connect3.png)
 
 Upload the ``.pem`` that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).
 
-![](graphics\EC2_connect4.png)
+![upload .pem file](graphics\EC2_connect4.png)
 
 This will return the value of your password. Keep a note of this password as you will need it to connect your EC2.
 
@@ -67,6 +86,6 @@ This will return the value of your password. Keep a note of this password as you
 
 Download the remote desktop file.
 
-![](graphics\EC2_connect5.png)
+![dowload remote desktop file](graphics\EC2_connect5.png)
 
 Run this file and enter the password you recieved above when promted. You should now be connected to the Windows remote desktop.
