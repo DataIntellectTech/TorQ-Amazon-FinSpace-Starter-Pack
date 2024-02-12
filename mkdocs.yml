@@ -4,6 +4,19 @@ nav:
     - Getting Started: gettingstarted.md
     - Architecture: architecture.md
     - Deploy Using Terraform: terraformdeloyment.md
+    - Workshop 01 - What is TorQ? : workshop\01-whatistorq.md
+    - Workshop 02 - Introduction : workshop\02-Introduction.md
+    - Workshop 03 - TorQ With Managed kdb Insights : workshop\03-torqwithmanagedkdbinsights.md
+    - Workshop 04 - Prerequisites : workshop\04-prerequisites.md
+    - Workshop 05 - Terraform : workshop\05-terraform.md
+    - Workshop 06 - Cluster Creation : workshop\06-clustercreation.md
+    - Workshop 07 - Create EC2 : workshop\07-createec2.md
+    - Workshop 08 - Cluster Connection String : workshop\08-clusterconnectionstring.md
+    - Workshop 09 - Setup QPad : workshop\09-setupqpad.md
+    - Workshop 10 - Connecting Using QPad : workshop\10-connectingusingqpad.md
+    - Workshop 11 - Running Queries : workshop\11-runningqueries.md
+    - Workshop 12 - Taking it Down : workshop\12-takingitdown.md
+    - Workshop 13 - Conclustion : workshop\13-Conclustion.md
 
 repo_name: 'GitHub'
 repo_url: 'https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack'
