@@ -15,4 +15,4 @@ This Terraform script can be used to deploy an entire environment from scratch. 
 
 It is split into two modules, one for the environment and one for the clusters. This makes the directory more organised and cluster deployments easier to manage. The cluster module is still dependent on the environment module as it will import some variables from here that are needed for cluster creation.
 
-![Terraform Module Diagram](graphics\terraform_modules.png)
+![Terraform Module Diagram](workshop/graphics\terraform_modules.png)

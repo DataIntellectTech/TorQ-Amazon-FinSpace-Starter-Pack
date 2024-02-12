@@ -15,7 +15,7 @@ When porting TorQ to AWS we chose to make a minimum viable product and then buil
 
 These features allow us to store real-time and historical data and make it available to users.
 
-![MVP Architecture](../graphics/architecture.png)
+![MVP Architecture](graphics/architecture.png)
 
 ## Notable Differences within this reduced version of TorQ in comparison to normal TorQ
 
