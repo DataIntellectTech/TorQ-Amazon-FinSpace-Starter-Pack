@@ -5,21 +5,21 @@ Cluster Connection String
 
 In your kdb environment, go to the Users tab and select Add user.
 
-![Create user button](graphics/create_user_button.png)
+![Create user button](workshop/graphics/create_user_button.png)
 
 Give it a name and select the IAM role you created above.
 
-![Add user](graphics/create_user.png)
+![Add user](workshop/graphics/create_user.png)
 
 ## Generate Connection String
 
 On the users tab, copy the links for IAM role and User ARN for the user.
 
-![User details](graphics/user_details.png)
+![User details](workshop/graphics/user_details.png)
 
 Navigate to CloudShell.
 
-![Navigate to CloudShell](graphics/cloudshell.png)
+![Navigate to CloudShell](workshop/graphics/cloudshell.png)
 
 Replace ``<ARN_COPIED_FROM_ABOVE>`` with the IAM Role copied above and run the following (this will not return anything):
 
@@ -34,7 +34,7 @@ This lets you assume the role that you have just created by taking the values re
 
 Copy your kdb Environment Id:
 
-![Get you kdb env ID](graphics/kdbenv_id.png)
+![Get you kdb env ID](workshop/graphics/kdbenv_id.png)
 
 Replace ``<YOUR_KDB_ENVIRONMENT_ID>`` with your kdb environment ID, ``<USER_ARN_COPIED_ABOVE>`` with the User ARN, and ``<NAME_OF_CLUSTER>`` with the name of the cluster you want to connect to. Run the following:
 
@@ -42,4 +42,4 @@ Replace ``<YOUR_KDB_ENVIRONMENT_ID>`` with your kdb environment ID, ``<USER_ARN_
 
 This will return a large connection string which can be used to connect to your cluster.
 
-![Connection string example](graphics/connection_string.png)
+![Connection string example](workshop/graphics/connection_string.png)

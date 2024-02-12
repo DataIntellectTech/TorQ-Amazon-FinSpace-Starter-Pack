@@ -14,7 +14,7 @@ This system will be referred to as your ‘local repository’ throughout this d
 
 To clone this git repository, please navigate to [this repository](https://github.com/DataIntellectTech/TorQ/tree/master) and copy the ssh link as indicated in the below image.
 
-![TorQ SSH Code Download](graphics/download-code-instructions-torq.png)
+![TorQ SSH Code Download](workshop/graphics/download-code-instructions-torq.png)
 
 Run the following command in your Linux system to download the code:
 
@@ -24,7 +24,7 @@ Run the following command in your Linux system to download the code:
 
 To clone this git repository, please navigate to [this repository](https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack/tree/master) and copy the ssh link as indicated in the below image.
 
-![TorQ Amazon FinSpace Starter Pack SSH Code Download](graphics/download-code-instructions-fintorq.png)
+![TorQ Amazon FinSpace Starter Pack SSH Code Download](workshop/graphics/download-code-instructions-fintorq.png)
 
 Run the following command in your Linux system to download the code:
 
