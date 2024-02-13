@@ -28,7 +28,7 @@ unregisterfromgw:{[servernames]
 
 // checks if there are any remaining queries for serverid
 checkremainingqueriesforserver:{[serverid]
-  if[null serverhandle:deregserverids[serverid]; :()];
+  if[null deregserverids[serverid]; :()];
   if[not count where {[dict;id] byId:where id=dict[1;;0]; not all dict[1;byId;2] }[;serverid] each .gw.results _ 0Ni;
      @[.finspace.sigserverexit;serverid;{.lg.o[`sigserverexit;"attempt to close server on cluster with id ",(.Q.s1 serverid)," failed due to error: ",-3!x];}]
    ];
