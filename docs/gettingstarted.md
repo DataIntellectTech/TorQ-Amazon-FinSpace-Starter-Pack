@@ -32,7 +32,7 @@ For setting up your environment and/or clusters manually, more details will beco
 
 Below is an example of what running clusters look like. You can find this page by going to the AWS console -> Amazon Finspace -> Kdb Environment -> select your environment -> clusters tab
 
-![Clusters running example image](graphics/clustersrunning.png)
+![Clusters running example image](graphics/clusters-running.png)
 
 Connecting
 --------
