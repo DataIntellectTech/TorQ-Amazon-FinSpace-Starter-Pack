@@ -36,7 +36,7 @@ resource "aws_finspace_kx_cluster" "discovery-cluster" {
   vpc_configuration {
     vpc_id             = var.vpc-id
     security_group_ids = [var.security-group-id]
-    subnet_ids         = [var.subnet-ids[0]]
+    subnet_ids         = [var.subnet-ids[1]]
     ip_address_type    = "IP_V4"
   }
 
