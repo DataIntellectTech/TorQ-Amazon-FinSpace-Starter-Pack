@@ -240,6 +240,20 @@ data "aws_iam_policy_document" "iam-policy" {
       "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
     ]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetObjectTagging"
+    ]
+    resources = [
+      "${aws_s3_bucket.finspace-code-bucket.arn}",
+      "${aws_s3_bucket.finspace-code-bucket.arn}/*"
+    ]
+  }
 }
 
 variable "policy-name" {
