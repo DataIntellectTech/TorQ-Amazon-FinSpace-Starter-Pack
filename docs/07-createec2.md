@@ -44,15 +44,15 @@ Select "Instances (running)".
 
 Open your EC2 Instance.
 
-![Open EC2 instance](workshop/graphics\EC2_connect1.png)
+![Open EC2 instance](workshop/graphics/EC2_connect1.png)
 
 Select "Actions", "Security" then "Change security groups".
 
-![Select change security groups](workshop/graphics\ec2_add_security.png)
+![Select change security groups](workshop/graphics/ec2_add_security.png)
 
 Search and select the security group that is on your clusters, select "Add security group" then "save".
 
-![Add sceurity group](workshop/graphics\ec2_add_security2.png)
+![Add sceurity group](workshop/graphics/ec2_add_security2.png)
 
 You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.
 
@@ -62,11 +62,11 @@ You should now have two security groups, one from the launch wizard, and the one
 
 Open your EC2 Instance.
 
-![Open EC2 instance](workshop/graphics\EC2_connect1.png)
+![Open EC2 instance](workshop/graphics/EC2_connect1.png)
 
 Select connect.
 
-![Select connect](workshop/graphics\EC2_connect2.png)
+![Select connect](workshop/graphics/EC2_connect2.png)
 
 ### Get your password
 
@@ -74,11 +74,11 @@ this only needs to be done once. Once you have this password you can skip this s
 
 Select get password.
 
-![Get password](workshop/graphics\EC2_connect3.png)
+![Get password](workshop/graphics/EC2_connect3.png)
 
 Upload the ``.pem`` that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).
 
-![upload .pem file](workshop/graphics\EC2_connect4.png)
+![upload .pem file](workshop/graphics/EC2_connect4.png)
 
 This will return the value of your password. Keep a note of this password as you will need it to connect your EC2.
 
@@ -86,6 +86,6 @@ This will return the value of your password. Keep a note of this password as you
 
 Download the remote desktop file.
 
-![dowload remote desktop file](workshop/graphics\EC2_connect5.png)
+![dowload remote desktop file](workshop/graphics/EC2_connect5.png)
 
 Run this file and enter the password you recieved above when promted. You should now be connected to the Windows remote desktop.
