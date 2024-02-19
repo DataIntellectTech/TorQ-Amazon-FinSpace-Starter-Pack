@@ -19,20 +19,20 @@ Then select the “Clusters” tab, and either of the “Create Cluster” butto
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
-    ![Discovery Cluster Details](workshop/graphics\discovery_cluster_details.png)
+    ![Discovery Cluster Details](workshop/graphics/discovery_cluster_details.png)
 
 4. Select "Run as a dedicated cluster" for Cluster running option.
     - For the MVP this is the most appropriate option. For customising later, see [this page](https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html) for more details on kdb scaling groups.
 
 5. Select an Availablilty Zone, make sure it includes your [previous created subnet](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html).
 
-    ![Discovery Availability Zones](workshop/graphics\discovery_availability_zones.png)
+    ![Discovery Availability Zones](workshop/graphics/discovery_availability_zones.png)
 
 6. Select your node size. For this MVP we are going to select the smallest.
 
 7. Leave Tags as empty and select next to go to the next page.
 
-    ![Discovery Node Details](workshop/graphics\discovery_node_details.png)
+    ![Discovery Node Details](workshop/graphics/discovery_node_details.png)
 
 8. Select "Browse S3", search and select your codebucket and select your code.zip file.
     - alternatively, you can copy the URL from the codebucket itself.
@@ -53,15 +53,15 @@ This specified initialization script and the command line arguments will set up 
 
 11. Select next to go to the next page.
 
-![Discovery Add Code](workshop/graphics\discovery_add_code.png)
+![Discovery Add Code](workshop/graphics/discovery_add_code.png)
 
 12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
 
-![Discovery VPC Settings](workshop/graphics\discovery_vpc.png)
+![Discovery VPC Settings](workshop/graphics/discovery_vpc.png)
 
 13. Leave everything as blank and move on to the next page.
 
-![Discovery Config Options](workshop/graphics\discovery_config_options.png)
+![Discovery Config Options](workshop/graphics/discovery_config_options.png)
 
 14. Check the entered information in the review page, then select "create cluster".
 
@@ -73,7 +73,7 @@ This specified initialization script and the command line arguments will set up 
     - Note, this name must match your process name, ``procname``, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.
     - Our suggestion is to use the process type, ``proctype``, with a number. e.g. ``rdb1``.
 
-    ![RDB Cluster Details](workshop/graphics\rdb_cluster_details.png)
+    ![RDB Cluster Details](workshop/graphics/rdb_cluster_details.png)
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
@@ -88,7 +88,7 @@ This specified initialization script and the command line arguments will set up 
 
 8. Leave Tags as empty and select next to go to the next page.
 
-    ![RDB Node Details](workshop/graphics\rdb_node_details.png)
+    ![RDB Node Details](workshop/graphics/rdb_node_details.png)
 
 9. Select "Browse S3", search and select your codebucket and select your code.zip file.
     - alternatively, you can copy the URL from the codebucket itself.
@@ -104,7 +104,7 @@ This specified initialization script and the command line arguments will set up 
 
 This specified initialization script and the command line arguments will set up the necessary environment for your cluster.
 
-![RDB Add Code](workshop/graphics\rdb_add_code.png)
+![RDB Add Code](workshop/graphics/rdb_add_code.png)
 
 12. Select next to go to the next page.
 
@@ -118,7 +118,7 @@ This specified initialization script and the command line arguments will set up 
 
 17. Select next to go to the next page.
 
-    ![RDB Config Options](workshop/graphics\rdb_config_options.png)
+    ![RDB Config Options](workshop/graphics/rdb_config_options.png)
 
 18. Check the entered information in the review page, then select "create cluster".
 
@@ -130,7 +130,7 @@ This specified initialization script and the command line arguments will set up 
     - Note, this name must match your process name, ``procname``, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.
     - Our suggestion is to use the process type, ``proctype``, with a number. e.g. ``hdb1``.
 
-    ![HDB Cluster Details](workshop/graphics\hdb_cluster_details.png)
+    ![HDB Cluster Details](workshop/graphics/hdb_cluster_details.png)
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
@@ -159,7 +159,7 @@ This specified initialization script and the command line arguments will set up 
 
 This specified initialization script and the command line arguments will set up the necessary environment for your cluster.
 
-![HDB Add Code](workshop/graphics\hdb_add_code.png)
+![HDB Add Code](workshop/graphics/hdb_add_code.png)
 
 12. Select next to go to the next page.
 
@@ -171,7 +171,7 @@ This specified initialization script and the command line arguments will set up 
 
 16. Select next to go to the next page.
 
-    ![HDB Config Options](workshop/graphics\hdb_config_options.png)
+    ![HDB Config Options](workshop/graphics/hdb_config_options.png)
 
 17. Check the entered information in the review page, then select "create cluster".
 
@@ -185,7 +185,7 @@ Ensure that the Discovery cluster is in a "Running" state before creating the Ga
     - Note, this name must match your process name, ``procname``, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.
     - Our suggestion is to use the process type, ``proctype``, with a number. e.g. ``gateway1``.
 
-    ![Gateway Cluster Details](workshop/graphics\gw_cluster_details.png)
+    ![Gateway Cluster Details](workshop/graphics/gw_cluster_details.png)
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
@@ -214,7 +214,7 @@ Ensure that the Discovery cluster is in a "Running" state before creating the Ga
 
 This specified initialization script and the command line arguments will set up the necessary environment for your cluster.
 
-![Gateway Add Code](workshop/graphics\gw_add_code.png)
+![Gateway Add Code](workshop/graphics/gw_add_code.png)
 
 12. Select next to go to the next page.
 
@@ -232,7 +232,7 @@ Ensure that the RDB cluster is in a "Running" state before creating the Feed clu
 
 2. Choose a name for your cluster. As this is a sample feed and not a "production" intended process, please name it ``feed1``.
 
-    ![Feed Cluster Details](workshop/graphics\feed_cluster_details.png)
+    ![Feed Cluster Details](workshop/graphics/feed_cluster_details.png)
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
@@ -259,7 +259,7 @@ Ensure that the RDB cluster is in a "Running" state before creating the Feed clu
 
 This specified initialization script and the command line arguments will set up the necessary environment for your cluster.
 
-![Feed Add Code](workshop/graphics\feed_add_code.png)
+![Feed Add Code](workshop/graphics/feed_add_code.png)
 
 11. Select next to go to the next page.
 
@@ -267,7 +267,7 @@ This specified initialization script and the command line arguments will set up 
 
 13. Leave everything as blank and move on to the next page.
 
-    ![Feed Config Options](workshop/graphics\discovery_config_options.png)
+    ![Feed Config Options](workshop/graphics/discovery_config_options.png)
 
 15. Check the entered information in the review page, then select "create cluster".
 
@@ -275,14 +275,13 @@ This specified initialization script and the command line arguments will set up 
 
 When all clusters are up it should look like this:
 
-// TODO ZAN update image with true cluster names
-![All Clusters Running](../graphics/clusters-running.png)
+![All Clusters Running](graphics/clusters-running.png)
 
 ## Errors in cluster creation
 
 On cluster creation, most errors will result in your cluster going to a “Create failed” state.
 
-![Cluster failure](workshop/graphics\cluster_failure.png)
+![Cluster failure](workshop/graphics/cluster_failure.png)
 
 If that is the case you should:
 
