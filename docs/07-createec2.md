@@ -52,7 +52,7 @@ Select "Actions", "Security" then "Change security groups".
 
 Search and select the security group that is on your clusters, select "Add security group" then "save".
 
-![Add sceurity group](workshop/graphics/ec2_add_security2.png)
+![Add security group](workshop/graphics/ec2_add_security2.png)
 
 You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.
 
