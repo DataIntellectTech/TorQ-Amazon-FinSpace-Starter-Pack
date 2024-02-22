@@ -39,5 +39,5 @@ sigserverexit:{[serverid]
   serverhandle:deregserverids[serverid];
   neg[serverhandle](`.finspace.deletecluster;"");
   .finspace.deregserverids:deregserverids _ serverid;
-  .finspace.dereginprog:"b"$count deregserverids _ 0N;
+  .finspace.dereginprog:0<count deregserverids _ 0N;
  }
