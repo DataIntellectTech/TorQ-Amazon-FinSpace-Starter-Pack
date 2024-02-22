@@ -40,9 +40,11 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 //TODO derive rdb handles through discovery cluster instead of generating
 
 .trade.updateRDB:{
- rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;
+ if[not count .trade.rdbHandles; 
+  .trade.rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters];
  tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
- {[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata] each rdbHandles
+ tradedata[`trades]:delete from tradedata[`trades] where null price;
+ {[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata] each .trade.rdbHandles
   };
 
 .trade.endofday:{
