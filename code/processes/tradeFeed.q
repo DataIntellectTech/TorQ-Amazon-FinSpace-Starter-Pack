@@ -40,7 +40,7 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 //TODO derive rdb handles through discovery cluster instead of generating
 
 .trade.updateRDB:{
- rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, not null w;
+ rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, .dotz.liveh w;
  if[not count rdbHandles; .lg.e[`updateRDB;"no valid handles amongst subscribers"]; :()];
  tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
  tradedata[`trades]:delete from tradedata[`trades] where null price;
@@ -48,7 +48,7 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
   };
 
 .trade.endofday:{
- rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, not null w;
+ rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, .dotz.liveh w;
  if[not count rdbHandles; .lg.e[`endofday;"no valid handles amongst subscribers. Try again later"]; :()];
  {[handle;dt] (neg first handle)(`.u.end;dt)}[;.proc.cd[]] each rdbHandles
   };
