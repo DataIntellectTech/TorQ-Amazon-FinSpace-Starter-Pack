@@ -16,7 +16,7 @@ availabilityZoneId = "use1-az6"
 
 # code settings
 s3Bucket = "finspace-code-bucket-virginia"
-s3Key =  "da5e6788656e4c1187d856f3a0940e08ad460ff3.zip"
+s3Key =  "b9f22fce56ad9eb63087364ff74b1dff5e762592.zip"
 initScript = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"
 
 executionRole = "arn:aws:iam::766012286003:role/finspace-role-virginia"
