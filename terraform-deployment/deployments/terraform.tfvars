@@ -21,7 +21,7 @@ send-sns-alert    = false                                      # true=create ema
 alert-smpt-target = "your.name@dataintellect.com"              # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # metricfilter configs
-wdb_log_groups = []                                         # configure EXISTING log groups with names like "wdb*" here eg. ["wdb","wdb2"]
+wdb_log_groups = ["wdb1","wdb2"]                               # configure log groups with prefix "wdb" here eg. ["wdb1","wdb2"]
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 

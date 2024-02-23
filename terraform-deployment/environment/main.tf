@@ -224,7 +224,8 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect  = "Allow"
     actions = [
-      "finspace:ConnectKxCluster"
+      "finspace:ConnectKxCluster",
+      "finspace:DeleteKxCluster"
     ]
     resources = [
       "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
@@ -252,6 +253,24 @@ data "aws_iam_policy_document" "iam-policy" {
     resources = [
       "${aws_s3_bucket.finspace-code-bucket.arn}",
       "${aws_s3_bucket.finspace-code-bucket.arn}/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeTags"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DeleteVpcEndpoints"
+    ]
+    resources = [
+      "arn:aws:ec2:${var.region}:${data.aws_caller_identity.current.account_id}:vpc-endpoint/*"
     ]
   }
 }
