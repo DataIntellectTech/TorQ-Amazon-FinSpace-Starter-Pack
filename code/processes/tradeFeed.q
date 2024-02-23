@@ -52,6 +52,8 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
  {[handle;dt] (neg first handle)(`.u.end;dt)}[;.proc.cd[]] each rdbHandles
   };
 
+.servers.startup[];
+
 .timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateRDB;`);"Publish Trade Feed"];
 
 .timer.rep[`timestamp$.proc.cd[]+00:00;0Wp;1D;(`.trade.endofday;`);0h;"Triggering RDB End of Day";1b];
