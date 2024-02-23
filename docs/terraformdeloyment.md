@@ -1,24 +1,24 @@
 # Terraform Deployment for TorQ in Finspace bundle and FinSpace Environment
 
-This Terraform setup is designed to deploy and manage a FinSpace environment running a TorQ in Finspace bundle.
+This Terraform setup is designed to deploy and manage a FinSpace environment running a TorQ on Managed kdb Insights bundle.
 
 ## Prerequisites
 
-1. Ensure that you have the latest version of the AWS CLI installed. (Refer to Resource Link Section)
-2. Have the latest version of Terraform installed. (Refer to Resource Link Section)
-3. Configure the AWS CLI to your AWS account. (Refer to Resource Link Section)
+1. Ensure that you have the [latest version of the AWS CLI installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+2. Have the [latest version of Terraform installed](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
+3. [Configure the AWS CLI to your AWS account](https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html).
 4. Create a KMS key in the region where you intend to set up your environment. You will also need to edit the key policy to grant FinSpace permissions.
 5. Note that FinSpace environments are limited to one per region. Make sure you don't already have an environment set up in the same region.
-6. Download this repository along with the latest version of TorQ.
-7. This instruction refers to Linux and would only work under the Linux environment.
+6. Download the [latest release version of this repository (TorQ-Amazon-Finspace-Starter-Pack)](https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack/releases/latest).
+7. Download the [latest release version of TorQ](https://github.com/DataIntellectTech/TorQ/releases/latest).
+8. This instruction refers to Linux and would only work under the Linux environment.
 
 ## Resource Link
-* For installing AWS CLI [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-* For Connecting AWS CLI to Your AWS Account [AWS Sign-In](https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html)
-* For installing Terraform [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 * For detailed Terraform deployment instructions, refer to [TorQ in Finspace Deployment / Terraform](https://data-intellect.atlassian.net/wiki/spaces/TK/pages/238944400/FinTorq+Deployment+Terraform).
 
-## How to Use - Initial Deployment (New User Please Follow This Section)
+## How to Use - Initial Deployment
+
+New user please continue and follow this section - Users with existing infrastructure, please skip to our [existing infrastructure section](#deploying-with-terraform-for-user-with-existing-infrastructure).
 
 1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/hdb`.
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; this will be the Terraform working directory from which you should run all `terraform` commands.
@@ -28,9 +28,6 @@ This Terraform setup is designed to deploy and manage a FinSpace environment run
 6. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments`, run `terraform init`.
 7. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
 8. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.)
-
-
-
 
 ## Managing Your Infrastructure
 
@@ -59,7 +56,7 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 - Avoid manual changes to resources managed by Terraform, as this can lead to inconsistencies between the actual infrastructure and Terraform's state.
 
 
-## Deploying With Terraform (User With Existing Infrastructure)
+## Deploying With Terraform For User With Existing Infrastructure
 
 For users with existing infrastructure in their AWS account who would like to reuse the same resources for their TorQ in Finspace bundle, you can use import blocks in Terraform. This functionality allows you to import existing infrastructure resources into Terraform, bringing them under Terraform's management. The import block records that Terraform imported the resource and did not create it. After importing, you can optionally remove import blocks from your configuration or leave them as a record of the resource's origin.
 
