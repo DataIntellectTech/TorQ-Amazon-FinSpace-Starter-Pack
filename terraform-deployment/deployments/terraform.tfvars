@@ -22,7 +22,7 @@ send-sns-alert    = true                                      # true=create emai
 alert-smpt-target = "eugene.temlock@dataintellect.com"            # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # metricfilter configs
-wdb_log_groups = ["wdb","wdb2"]                                # configure log groups with names like "wdb*" here 
+wdb_log_groups = ["wdb1","wdb2"]                                # configure log groups with names like "wdb*" here 
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 
