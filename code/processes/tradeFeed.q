@@ -40,15 +40,16 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 //TODO derive rdb handles through discovery cluster instead of generating
 
 .trade.updateRDB:{
- if[not count .trade.rdbHandles; 
-  .trade.rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters];
- tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
- tradedata[`trades]:delete from tradedata[`trades] where null price;
- {[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata] each .trade.rdbHandles
+  rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, not null w;
+  if[not count rdbHandles; .lg.e[`updateRDB;"no valid handles amongst subscribers"]; :()];
+  tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
+  tradedata[`trades]:delete from tradedata[`trades] where null price;
+  @[{[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata];;{0b}] each rdbHandles
   };
 
 .trade.endofday:{
- rdbHandles:@[{hopen .aws.get_kx_connection_string[x]};;.lg.o[`updateRDB;"failed to get handle(s)"]] each .feed.clusters;
+ rdbHandles:exec w from .servers.SERVERS where procname in .feed.clusters, not null w;
+ if[not count rdbHandles; .lg.e[`endofday;"no valid handles amongst subscribers. Try again later"]; :()];
  {[handle;dt] (neg first handle)(`.u.end;dt)}[;.proc.cd[]] each rdbHandles
   };
 
