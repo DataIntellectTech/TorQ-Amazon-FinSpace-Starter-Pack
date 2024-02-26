@@ -5,7 +5,6 @@
 nq:@[value;`nq;100];                                //number of quotes to generate
 nt:@[value;`nt;100];                                //number of trades to generate
 randomcounts:@[value;`randomcounts;0.00000001];
-clusters:@[value;`clusters;enlist `cluster];        //which rdb cluster or clusters to point the data to
 rnd:{0.01*floor 100*x};
 timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push new dummy data to the rdb clusters
 
