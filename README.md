@@ -7,7 +7,7 @@ This codebase contains
 * Initial code for a TorQ on Managed kdb Insights application
 
 ## Getting Started
-Follow instructions on the [TorQ on Managed kdb Insights Getting Started page](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/gettingstarted/).
+Follow instructions on the [TorQ on Managed kdb Insights Documentation Pages](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/).
 
 ## Updating the Documentation with Mkdocs
 

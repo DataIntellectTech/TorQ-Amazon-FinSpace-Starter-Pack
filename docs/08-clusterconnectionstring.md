@@ -1,7 +1,55 @@
 Cluster Connection String
 ===============
 
-## Create a user
+*Terraform users can skip to our [generate connection string section](#generate-connection-string) as Terraform will have created and set up your role and user for you.*
+
+---------------
+
+## Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))
+
+### Policy
+
+The policy you created need to have at least these permissions (Note the ARN should match that of your created cluster):
+
+    {
+        "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "finspace:ConnectKxCluster",
+                    "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "finspace:GetKxConnectionString",
+                    "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
+                }
+        ]
+    }
+
+### Role
+
+We need to check the Trust Policy of your created role.
+
+Search for the role and open it in the IAM console. Go to Trust relationships.
+
+Your Trust relationship should have at least these:
+    
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "finspace.amazonaws.com",
+                    "AWS": "arn:aws:iam::<ACCOUNT_ID>:root"
+                },
+                "Action": "sts:AssumeRole"
+            }
+        ]
+    }
+
+## Create a user (If manually set up (not useing Terraform))
 
 In your kdb environment, go to the Users tab and select Add user.
 

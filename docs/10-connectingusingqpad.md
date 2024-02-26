@@ -1,4 +1,4 @@
-Connecting USing QPad
+Connecting Using QPad
 ===============
 
 Open qpad, right-click on KDB+ Servers and Add New Server.
