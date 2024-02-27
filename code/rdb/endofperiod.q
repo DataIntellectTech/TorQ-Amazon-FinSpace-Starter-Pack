@@ -7,6 +7,7 @@ endofperiod:{[currp;nextp;data]
 	times:.proc.starttimeUTC , @[;".proc.starttimeUTC";()]each h;
 	/-If we are the new process, exit function, do not want to close handle
 	if[.proc.starttimeUTC = max times;
+		.rdb.rdbpartition:`long$nextp;
 		/-Setting variables so rdb can become the active rdb for this new period
 		@[`.;`upd;:;.rdb.upd];
                 :()];
