@@ -3,7 +3,7 @@ Running Queries
 
 Some example queries have been implemented on the RDB and HDB processes. These are defined in ``$KDBCODE/rdb/examplequeries.q`` and ``$KDBCODE/hdb/examplequeries.q``. These can be run directly on the processes themselves, or from the gateway which will join the results if querying across processes. To test, connect to the gateway cluster.
 
-![QPad Queries](workshop/graphics/qpad_queries.png)
+![qStudio Queries](workshop/graphics/RunningQueries.png)
 
 Example queries are listed below:
 
