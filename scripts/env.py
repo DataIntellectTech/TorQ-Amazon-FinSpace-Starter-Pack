@@ -4,7 +4,7 @@ clusterDescription = ""
 
 # database settings
 databaseName = "finspace-database"
-changesetId = "4Mb4QOMzxC0FbxUGle4PXA"
+changesetId = "psb4u4QZbwbNtBzwgXxfBw"
 
 # node settings
 nodeType = "kx.s.large"
@@ -16,7 +16,7 @@ availabilityZoneId = "use1-az6"
 
 # code settings
 s3Bucket = "finspace-code-bucket-virginia"
-s3Key =  "27cb90c6d4284eaa5ace0ad673cacaa26b040ea7.zip"
+s3Key =  "9e3c2a687d6d8b93888e1d83dccc58838dcbf856.zip"
 initScript = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"
 
 executionRole = "arn:aws:iam::766012286003:role/finspace-role-virginia"
