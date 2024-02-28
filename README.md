@@ -4,7 +4,7 @@ An example market data capture system designed for running in AWS Managed kdb In
 This codebase contains
 
 * Useful scripts for interacting with Managed kdb Insights - ./scripts directory
-* Initial code for a TorQ on Managed kdb Insights application
+* Initial code for a "TorQ for Amazon FinSpace with Managed kdb Insights" application
 
 ## Getting Started
 Follow instructions on the [TorQ on Managed kdb Insights Documentation Pages](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/).

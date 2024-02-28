@@ -23,6 +23,6 @@ If a handle is shown within this table - column `w` - you can assume the connect
 
 ### Heartbeats - .hb.hb
 
-All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Recieved heartbeats are received and a summary can be seen stored within a table called `.hb.hb`.
+All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Heartbeats are received and a summary can be seen stored within the `.hb.hb` table.
 
 The discovery process can be used to view the heartbeat of all processes (with the exception of the Feed).

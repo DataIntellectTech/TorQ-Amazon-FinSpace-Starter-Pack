@@ -2,7 +2,7 @@ Prerequisites
 ===============
 
 - An [AWS account with an AdministratorAccess policy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AdministratorAccess.html) to create the Managed kdb resources.
-- A KX insights license applied to our account. If you don’t have one see [Activate your Managed kdb Insights license - Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/kdb-licensing.html).
+- A KX insights license applied to your account. If you don’t have one see [Activate your Managed kdb Insights license - Amazon FinSpace](https://docs.aws.amazon.com/finspace/latest/userguide/kdb-licensing.html).
 - Inside a Linux system you will need to download code from the [TorQ](https://github.com/DataIntellectTech/TorQ/tree/master) and [TorQ-Amazon-FinSpace-Starter-Pack](https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack/tree/master) GitHub repositories - Instructions below.
 - If you are **NOT** using our Terraform deployment option to create and set up your Kdb Environment, follow [this AWS workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/envcreate) to do so.
 
@@ -28,7 +28,7 @@ Run the following code - ensure you replace `<copied_version_name>` with the rel
 
 Now we will zip these files together:
 
-    zip -r code.zip TorQ/ TorQ-Amazon-FinSpace-Starter-Pack/
+    zip -r code.zip TorQ/ TorQ-Amazon-FinSpace-Starter-Pack/ -x "TorQ*/.git*"
 
 ### Upload to S3 (For Non Terraform Deployment Only)
 

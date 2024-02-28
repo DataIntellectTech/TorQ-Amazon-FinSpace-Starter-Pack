@@ -9,7 +9,7 @@ Cluster Connection String
 
 ### Policy
 
-The policy you created need to have at least these permissions (Note the ARN should match that of your created cluster):
+The policy you created needs to have at least these permissions (Note the ARN should match that of your created cluster):
 
     {
         "Version": "2012-10-17",
