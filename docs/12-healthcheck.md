@@ -21,7 +21,6 @@ Each TorQ process has a table called `.servers.SERVERS` that is used to track co
 
 If a handle is shown within this table - column `w` - you can assume the connection is active.
 
-
 ### Heartbeats - .hb.hb
 
 All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Recieved heartbeats are received and a summary can be seen stored within a table called `.hb.hb`.

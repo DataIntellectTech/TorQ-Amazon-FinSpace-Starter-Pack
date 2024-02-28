@@ -43,7 +43,7 @@ New user please continue and follow this section - Users with existing infrastru
 5. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.
 6. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments`, run `terraform init`.
 7. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
-8. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.)
+8. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: `nohup terraform apply -auto-approve > terraform_apply.log 2>&1 &`. 
 
 You can now skip ahead to our [Managing Your Infrastructure section](#managing-your-infrastructure)
 
@@ -58,7 +58,7 @@ Move into the `deployments` directory, and you'll see an `imports.tf` file (curr
 ### Terraform Import Block Syntax
 
 ```
- import {
+import {
   to = aws_instance.example
   id = "i-abcd1234"
 }
@@ -72,16 +72,17 @@ The above `import` block defines an import of the AWS instance with the ID "i-ab
 
 The import block has the following arguments:
 
-`to` - The instance address this resource will have in your state file.
-`id` - A string with the import ID of the resource.
-`provider`` (optional) - An optional custom resource provider, see [The Resource provider Meta-Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/resource-provider) for details.
-If you do not set the provider argument, Terraform attempts to import from the default provider.
+| Argument | Description | Example |
+| ----------- | ----------- | ----------- |
+| `to` | The instance address this resource will have in your state file. | `to = aws_instance.example` |
+| resourse (e.g. `id` or `name`) | A string with the import information of the resource. | Example 1. `id = "i-abcd1234"`<br> Example 2. `name = "aws/vendedlogs/finspace/myclustername"` |
+| `provider` (optional) | An optional custom resource provider.<br> If you do not set the provider argument, Terraform attempts to import from the default provider. | See [The Resource provider Meta-Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/resource-provider) for details. |
 
-The import block's `id` argument can be a literal string of your resource's import ID, or an expression that evaluates to a string. Terraform needs this import ID to locate the resource you want to import.
+The import block's ID/name argument can be a literal string of your resource's import ID, or an expression that evaluates to a string. Terraform needs this detail to locate the resource you want to import.
 
-The import ID must be known at plan time for planning to succeed. If the value of `id` is only known after apply, `terraform plan` will fail with an error.
+The import ID/name must be known at plan time for planning to succeed. If the value of `id`/`name` is only known after apply, `terraform plan` will fail with an error.
 
-The identifier you use for a resource's import ID is resource-specific. You can find the required ID in the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest) for the resource you wish to import.
+The identifier you use for a resource's import ID/name is resource-specific. You can find the required ID/name in the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest) for the resource you wish to import.
 
 ### Terraform import block Template
 We have created a Terraform import block template in `terraform-deployment/importtemplate.md`. In this template, you can select the needed import block and paste it into the `imports.tf` file within the `terraform-deployment/deployments/imports.tf` directory. Remember to change the ID to the referring ID of your existing infrastructure.
@@ -93,8 +94,6 @@ Once your environment is up and running, you can use this configuration to manag
 1. Code Updates: If you make any code changes in `TorQ` or `TorQ-Amazon-FinSpace-Starter-Pack` and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.
 2. Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in `clusters/rdb.tf` and run Terraform again. The RDB will be recreated with the new node size.
 3. Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the `terraform.tfvars` file. To delete a cluster, set its count to 0. To delete all clusters, set `create-clusters` to 0.
-4. log groups and metric filters: These resources are only created if the dependent log groups exists. Update the `wdb_log_groups` variable in `terraform.tfvars` to include the names of the log groups of your clusters you wish to monitor. WARNING: this terraform stack will fail inelegantly if you list a name of an unexisting log group. To be amended in future iterations.
-
 
 ### Basic Commands in Terraform 
 *  `terraform init`       -   Prepare your working directory for other commands
@@ -132,68 +131,27 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 * module.environment.aws_s3_bucket_versioning.versioning
 * module.environment.null_resource.create_changeset
 * module.environment.null_resource.upload_hdb
-* module.lambda.data.archive_file.lambda_my_function
-* module.lambda.data.aws_iam_policy_document.assume_events_doc
-* module.lambda.data.aws_iam_policy_document.assume_lambda_doc
-* module.lambda.data.aws_iam_policy_document.assume_states_doc
-* module.lambda.data.aws_iam_policy_document.ec2-permissions-lambda
-* module.lambda.data.aws_iam_policy_document.eventBridge_policy_doc
 * module.lambda.data.aws_iam_policy_document.finspace-extra
-* module.lambda.data.aws_iam_policy_document.lambda_basic_execution
-* module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc
-* module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc
-* module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc
-* module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc
-* module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule
-* module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule
-* module.lambda.aws_cloudwatch_event_target.onRotateRDB_target
-* module.lambda.aws_cloudwatch_event_target.onRotateWDB_target
-* module.lambda.aws_iam_policy.eventBridge_policy
+* module.lambda.aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda
+* module.lambda.aws_cloudwatch_event_target.target_finSpace-rdb-lambda
+* module.lambda.aws_cloudwatch_metric_alarm.RDBOverCPUUtilization
 * module.lambda.aws_iam_policy.lambda_basic_policy
 * module.lambda.aws_iam_policy.lambda_ec2_policy
 * module.lambda.aws_iam_policy.lambda_finspace_policy
-* module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy
-* module.lambda.aws_iam_policy.sns_publish_scoped_access_policy
-* module.lambda.aws_iam_policy.xray_scoped_access_policy
-* module.lambda.aws_iam_role.eventBridge_role
-* module.lambda.aws_iam_role.lambda_errorFormat_execution_role
 * module.lambda.aws_iam_role.lambda_execution_role
-* module.lambda.aws_iam_role.lambda_onConflict_execution_role
-* module.lambda.aws_iam_role.states_execution_role
 * module.lambda.aws_iam_role_policy_attachment.attach1
 * module.lambda.aws_iam_role_policy_attachment.attach2
 * module.lambda.aws_iam_role_policy_attachment.attach3
-* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat
-* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict
-* module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict
-* module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy
-* module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict
-* module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy
-* module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy
-* module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy
-* module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda
 * module.lambda.aws_lambda_function.finSpace-rdb-lambda
-* module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda
-* module.lambda.aws_sfn_state_machine.sfn_state_machine
-* module.lambda.aws_sns_topic.lambda_error_topic
-* module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]
-* module.lambda.aws_sns_topic_subscription.lambda_error_queue_target
-* module.lambda.aws_sqs_queue.lambda_error_queue
-* module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy
-* module.lambda.local_file.lambda_configs
-* module.metricfilter.data.aws_cloudwatch_log_group.wdb_log_groups["*"]
-* module.metricfilter.aws_cloudwatch_event_rule.wdb_log_monit_rule[0]
-* module.metricfilter.aws_cloudwatch_event_target.wdb_log_monit_rule_target[0]
-* module.metricfilter.aws_cloudwatch_log_metric_filter.wdb_log_monit["*"]
-* module.metricfilter.aws_cloudwatch_metric_alarm.wdb_log_monit_alarm[0]
+* module.lambda.aws_lambda_permission.lambda_from_cw_permission
 * module.network.aws_internet_gateway.finspace-igw
 * module.network.aws_route.finspace-route
 * module.network.aws_route_table.finspace-route-table
 * module.network.aws_security_group.finspace-security-group
 * module.network.aws_subnet.finspace-subnets[0]
-* module.network.aws_subnet.finspace-subnets[1] 
+* module.network.aws_subnet.finspace-subnets[1]
 * module.network.aws_subnet.finspace-subnets[2]
-* module.network.aws_subnet.finspace-subnets[3] 
+* module.network.aws_subnet.finspace-subnets[3]
 * module.network.aws_vpc.finspace-vpc
 
 ## References and Documentation
