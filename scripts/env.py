@@ -4,7 +4,7 @@ clusterDescription = ""
 
 # database settings
 databaseName = "finspace-database"
-changesetId = "XsYLTlRykQ9qvLTTqdjLGQ"
+changesetId = "4Mb4QOMzxC0FbxUGle4PXA"
 
 # node settings
 nodeType = "kx.s.large"
