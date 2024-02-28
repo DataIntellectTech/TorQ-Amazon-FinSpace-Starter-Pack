@@ -3,6 +3,14 @@ Running Queries
 
 Some example queries have been implemented on the RDB and HDB processes. These are defined in ``$KDBCODE/rdb/examplequeries.q`` and ``$KDBCODE/hdb/examplequeries.q``. These can be run directly on the processes themselves, or from the gateway which will join the results if querying across processes. To test, connect to the gateway cluster.
 
+For queries to be ran through the gateway, we must update some preferences on qStudio. Go to Settings -> Preferences -> Connections tab.
+
+We will need to uncheck the box labelled "Wrap query sent to server".
+
+![Preferences](workshop/graphics/Preferences.png)
+
+The Query's below should then all run successfully!
+
 ![qStudio Queries](workshop/graphics/RunningQueries.png)
 
 Example queries are listed below:
