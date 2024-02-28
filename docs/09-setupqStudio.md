@@ -7,7 +7,7 @@ You must follow these steps from within your EC2 instance.
 
 Navigate to the [TimeStored](https://www.timestored.com/qstudio/download) website and download the relavent version (usually x64).
 
-![Download button on qpad website](workshop/graphics/qStudio_Download.png)
+![Download button on qStudio website](workshop/graphics/qStudio_Download.png)
 
 Download the [Microsoft C++ 2010 service pack](https://www.microsoft.com/en-gb/download/details.aspx?id=26999) (there is a specific DLL from this that you need that is usually installed on Windows machines).
 
