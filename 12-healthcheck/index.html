@@ -13,7 +13,7 @@
     
     
       
-        <title>Architecture - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Health Check - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architecture" class="md-skip">
+        <a href="#check-your-system-is-healthy" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Health Check
             
           </span>
         </div>
@@ -253,8 +253,158 @@
   
   
     <li class="md-nav__item">
-      <a href="../gettingstarted/" class="md-nav__link">
-        Getting Started
+      <a href="../01-whatistorq/" class="md-nav__link">
+        What is TorQ?
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-Introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-torqwithmanagedkdbinsights/" class="md-nav__link">
+        TorQ With Managed kdb Insights
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-prerequisites/" class="md-nav__link">
+        Prerequisites
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-terraform/" class="md-nav__link">
+        Terraform
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-clustercreation/" class="md-nav__link">
+        Cluster Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-createec2/" class="md-nav__link">
+        Create EC2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-clusterconnectionstring/" class="md-nav__link">
+        Cluster Connection String
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-setupqpad/" class="md-nav__link">
+        Setup QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-connectingusingqpad/" class="md-nav__link">
+        Connecting Using QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-runningqueries/" class="md-nav__link">
+        Running Queries
       </a>
     </li>
   
@@ -277,9 +427,74 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Health Check
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Architecture
+        Health Check
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-if-the-system-is-running" class="md-nav__link">
+    Check If the System Is Running
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-some-queries" class="md-nav__link">
+    Run some queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-tables-are-populatedgrowning" class="md-nav__link">
+    Check tables are populated/growning
+  </a>
+  
+    <nav class="md-nav" aria-label="Check tables are populated/growning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-server-connections-serversservers" class="md-nav__link">
+    Check Server Connections - .servers.SERVERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeats-hbhb" class="md-nav__link">
+    Heartbeats - .hb.hb
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -293,8 +508,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../terraformdeloyment/" class="md-nav__link">
-        Deploy Using Terraform
+      <a href="../13-takingitdown/" class="md-nav__link">
+        Taking it Down
       </a>
     </li>
   
@@ -308,188 +523,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../01-whatistorq/" class="md-nav__link">
-        Workshop 01 - What is TorQ?
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02-Introduction/" class="md-nav__link">
-        Workshop 02 - Introduction
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03-torqwithmanagedkdbinsights/" class="md-nav__link">
-        Workshop 03 - TorQ With Managed kdb Insights
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04-prerequisites/" class="md-nav__link">
-        Workshop 04 - Prerequisites
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05-terraform/" class="md-nav__link">
-        Workshop 05 - Terraform
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06-clustercreation/" class="md-nav__link">
-        Workshop 06 - Cluster Creation
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07-createec2/" class="md-nav__link">
-        Workshop 07 - Create EC2
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-clusterconnectionstring/" class="md-nav__link">
-        Workshop 08 - Cluster Connection String
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-setupqpad/" class="md-nav__link">
-        Workshop 09 - Setup QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-connectingusingqpad/" class="md-nav__link">
-        Workshop 10 - Connecting Using QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-runningqueries/" class="md-nav__link">
-        Workshop 11 - Running Queries
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-takingitdown/" class="md-nav__link">
-        Workshop 12 - Taking it Down
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13-conclusion/" class="md-nav__link">
-        Workshop 13 - Conclusion
+      <a href="../14-conclusion/" class="md-nav__link">
+        Conclusion
       </a>
     </li>
   
@@ -515,6 +550,55 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-if-the-system-is-running" class="md-nav__link">
+    Check If the System Is Running
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-some-queries" class="md-nav__link">
+    Run some queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-tables-are-populatedgrowning" class="md-nav__link">
+    Check tables are populated/growning
+  </a>
+  
+    <nav class="md-nav" aria-label="Check tables are populated/growning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-server-connections-serversservers" class="md-nav__link">
+    Check Server Connections - .servers.SERVERS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeats-hbhb" class="md-nav__link">
+    Heartbeats - .hb.hb
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -525,33 +609,26 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/architecture.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/12-healthcheck.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="architecture">Architecture</h1>
-<p>When porting TorQ to Managed kdb Insights we chose to make a minimum viable product and then build out features on top of this. This decision was made so that clients can get a working AWS solution that includes the essential TorQ features that are supported by Managed kdb Insights. We intend to align with the “Amazon FinSpace with Managed kdb Insights” roadmap, adding additional functionality to the TorQ implementation as new “Managed kdb Insights” features become available. The processes available in our first iteration of TorQ on Managed kdb Insights are the following: </p>
-<ul>
-<li>
-<p>Discovery: processes use the discovery service to register their own availability, find other processes (by process type), and subscribe to receive updates for new process availability (by process type). The discovery service does not manage connections- it simply returns tables of registered processes, irrespective of their current availability. It is up to each individual process to manage its own connections.</p>
-</li>
-<li>
-<p>Historical Database: the HDB is a database stored in AWS S3. Historical data is stored in date partitions and can be queried through the gateway process.</p>
-</li>
-<li>
-<p>Real-time Database: The RDB receives data from the feed handler throughout the day and stores it in in-memory tables for faster access.</p>
-</li>
-<li>
-<p>Feed Handler: The feed handler acts as a preparation stage for the data, transforming the data into kdb+ format and writing it to our RDB. The current version of code has the feed handler pushing simulated data to the RDB.</p>
-</li>
-<li>
-<p>Gateway: The gateway connects to the RDB and HDB processes and runs queries against them. It can access a single process, or join data across multiple processes. It also does load balancing and implements a level of resilience by hiding back-end process failure from clients.</p>
-</li>
-</ul>
-<p>These features allow us to store real-time and historical data and make it available to users. </p>
-<p><img alt="Alt text" src="../graphics/architecture.png" /></p>
+<h1 id="check-your-system-is-healthy">Check your system is healthy</h1>
+<h2 id="check-if-the-system-is-running">Check If the System Is Running</h2>
+<p>Below is an example of what running clusters look like. You can find this page by going to the AWS console -&gt; Amazon Finspace -&gt; Kdb Environment -&gt; select your environment -&gt; clusters tab.</p>
+<p><img alt="Clusters running example image" src="../graphics/clusters-running.png" /></p>
+<h2 id="run-some-queries">Run some queries</h2>
+<p>Follow steps on <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/11-runningqueries/">our Running Queries page</a> to run some queries on your Gateway to check there are no errors and data is being returned (if there is data available).</p>
+<h2 id="check-tables-are-populatedgrowning">Check tables are populated/growning</h2>
+<p>If you would like to go into each process to check their health, here are a few details on how.</p>
+<h3 id="check-server-connections-serversservers">Check Server Connections - .servers.SERVERS</h3>
+<p>Each TorQ process has a table called <code>.servers.SERVERS</code> that is used to track connections. Each process (with the exception of the Feed) should have at least one connection in this table to the discovery process (the discovery will have connections to all live processes).</p>
+<p>If a handle is shown within this table - column <code>w</code> - you can assume the connection is active.</p>
+<h3 id="heartbeats-hbhb">Heartbeats - .hb.hb</h3>
+<p>All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Heartbeats are received and a summary can be seen stored within the <code>.hb.hb</code> table.</p>
+<p>The discovery process can be used to view the heartbeat of all processes (with the exception of the Feed).</p>
 
               
             </article>
@@ -565,7 +642,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../gettingstarted/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
+        <a href="../11-runningqueries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Running Queries" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -574,20 +651,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Getting Started
+              Running Queries
             </div>
           </div>
         </a>
       
       
         
-        <a href="../terraformdeloyment/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploy Using Terraform" rel="next">
+        <a href="../13-takingitdown/" class="md-footer__link md-footer__link--next" aria-label="Next: Taking it Down" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Deploy Using Terraform
+              Taking it Down
             </div>
           </div>
           <div class="md-footer__button md-icon">

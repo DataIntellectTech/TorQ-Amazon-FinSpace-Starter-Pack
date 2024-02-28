@@ -13,7 +13,7 @@
     
     
       
-        <title>Workshop 05 - Terraform - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Terraform - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Workshop 05 - Terraform
+              Terraform
             
           </span>
         </div>
@@ -253,53 +253,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../gettingstarted/" class="md-nav__link">
-        Getting Started
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        Architecture
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../terraformdeloyment/" class="md-nav__link">
-        Deploy Using Terraform
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../01-whatistorq/" class="md-nav__link">
-        Workshop 01 - What is TorQ?
+        What is TorQ?
       </a>
     </li>
   
@@ -314,7 +269,7 @@
   
     <li class="md-nav__item">
       <a href="../02-Introduction/" class="md-nav__link">
-        Workshop 02 - Introduction
+        Introduction
       </a>
     </li>
   
@@ -329,7 +284,7 @@
   
     <li class="md-nav__item">
       <a href="../03-torqwithmanagedkdbinsights/" class="md-nav__link">
-        Workshop 03 - TorQ With Managed kdb Insights
+        TorQ With Managed kdb Insights
       </a>
     </li>
   
@@ -344,7 +299,7 @@
   
     <li class="md-nav__item">
       <a href="../04-prerequisites/" class="md-nav__link">
-        Workshop 04 - Prerequisites
+        Prerequisites
       </a>
     </li>
   
@@ -367,9 +322,122 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Terraform
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Workshop 05 - Terraform
+        Terraform
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-link" class="md-nav__link">
+    Resource Link
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-initial-deployment" class="md-nav__link">
+    How to Use - Initial Deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure" class="md-nav__link">
+    How to Use - Deploying With Terraform For Users With Existing Infrastructure
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use - Deploying With Terraform For Users With Existing Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform-import-block-syntax" class="md-nav__link">
+    Terraform Import Block Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-import-block-template" class="md-nav__link">
+    Terraform import block Template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-your-infrastructure" class="md-nav__link">
+    Managing Your Infrastructure
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Your Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-commands-in-terraform" class="md-nav__link">
+    Basic Commands in Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-state-management" class="md-nav__link">
+    Terraform State Management
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-aws-structures-that-will-be-created-with-our-terraform-deployment" class="md-nav__link">
+    List of AWS Structures that will be created with our Terraform deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-documentation" class="md-nav__link">
+    References and Documentation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -384,7 +452,7 @@
   
     <li class="md-nav__item">
       <a href="../06-clustercreation/" class="md-nav__link">
-        Workshop 06 - Cluster Creation
+        Cluster Creation
       </a>
     </li>
   
@@ -399,7 +467,7 @@
   
     <li class="md-nav__item">
       <a href="../07-createec2/" class="md-nav__link">
-        Workshop 07 - Create EC2
+        Create EC2
       </a>
     </li>
   
@@ -414,7 +482,7 @@
   
     <li class="md-nav__item">
       <a href="../08-clusterconnectionstring/" class="md-nav__link">
-        Workshop 08 - Cluster Connection String
+        Cluster Connection String
       </a>
     </li>
   
@@ -429,7 +497,7 @@
   
     <li class="md-nav__item">
       <a href="../09-setupqpad/" class="md-nav__link">
-        Workshop 09 - Setup QPad
+        Setup QPad
       </a>
     </li>
   
@@ -444,7 +512,7 @@
   
     <li class="md-nav__item">
       <a href="../10-connectingusingqpad/" class="md-nav__link">
-        Workshop 10 - Connecting Using QPad
+        Connecting Using QPad
       </a>
     </li>
   
@@ -459,7 +527,7 @@
   
     <li class="md-nav__item">
       <a href="../11-runningqueries/" class="md-nav__link">
-        Workshop 11 - Running Queries
+        Running Queries
       </a>
     </li>
   
@@ -473,8 +541,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../12-takingitdown/" class="md-nav__link">
-        Workshop 12 - Taking it Down
+      <a href="../12-healthcheck/" class="md-nav__link">
+        Health Check
       </a>
     </li>
   
@@ -488,8 +556,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../13-conclusion/" class="md-nav__link">
-        Workshop 13 - Conclusion
+      <a href="../13-takingitdown/" class="md-nav__link">
+        Taking it Down
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-conclusion/" class="md-nav__link">
+        Conclusion
       </a>
     </li>
   
@@ -515,6 +598,103 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-link" class="md-nav__link">
+    Resource Link
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-initial-deployment" class="md-nav__link">
+    How to Use - Initial Deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure" class="md-nav__link">
+    How to Use - Deploying With Terraform For Users With Existing Infrastructure
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use - Deploying With Terraform For Users With Existing Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terraform-import-block-syntax" class="md-nav__link">
+    Terraform Import Block Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-import-block-template" class="md-nav__link">
+    Terraform import block Template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managing-your-infrastructure" class="md-nav__link">
+    Managing Your Infrastructure
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing Your Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-commands-in-terraform" class="md-nav__link">
+    Basic Commands in Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-state-management" class="md-nav__link">
+    Terraform State Management
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-aws-structures-that-will-be-created-with-our-terraform-deployment" class="md-nav__link">
+    List of AWS Structures that will be created with our Terraform deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-and-documentation" class="md-nav__link">
+    References and Documentation
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -532,7 +712,7 @@
 
 
 <h1 id="terraform">Terraform</h1>
-<p>The process of setting up a working Managed kdb environment manually can take some time - especially if you are new to AWS. To aid this process we have a <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/terraformdeloyment/">Terraform deployment option</a> which should allow you to boot TorQ in Managed kdb Insights in a few simple commands. </p>
+<p>The process of setting up a working Managed kdb environment manually can take some time - especially if you are new to AWS. To aid this process we have a Terraform deployment option which should allow you to boot TorQ in Managed kdb Insights in a few simple commands. </p>
 <p>This Terraform script can be used to deploy an entire environment from scratch. This will include:</p>
 <ul>
 <li>
@@ -550,6 +730,156 @@
 </ul>
 <p>It is split into two modules, one for the environment and one for the clusters. This makes the directory more organised and cluster deployments easier to manage. The cluster module is still dependent on the environment module as it will import some variables from here that are needed for cluster creation.</p>
 <p><img alt="Terraform Module Diagram" src="../workshop/graphics/terraform_modules.png" /></p>
+<p>This Terraform setup is designed to deploy and manage a Managed kdb Insights environment running a TorQ bundle.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>Ensure you have followed the <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/04-prerequisites/">standard prerequisite steps</a> to ensure you have the latest versions of code.</li>
+<li>Have the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">latest version of the AWS CLI installed</a>.</li>
+<li>Have the <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli">latest version of Terraform installed</a>.</li>
+<li><a href="https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html">Configure the AWS CLI to your AWS account</a>.</li>
+<li>Create a KMS key in the region where you intend to set up your environment. You will also need to edit the key policy to grant FinSpace permissions.</li>
+<li>Note that FinSpace environments are limited to one per region. Make sure you don't already have an environment set up in the same region.</li>
+<li>This instruction refers to Linux and would only work under the Linux environment.</li>
+</ol>
+<h2 id="resource-link">Resource Link</h2>
+<ul>
+<li>For detailed Terraform deployment instructions, refer to <a href="https://data-intellect.atlassian.net/wiki/spaces/TK/pages/238944400/FinTorq+Deployment+Terraform">TorQ in Finspace Deployment / Terraform</a>.</li>
+</ul>
+<h2 id="how-to-use-initial-deployment">How to Use - Initial Deployment</h2>
+<p>New user please continue and follow this section - Users with existing infrastructure, please skip to our <a href="#deploying-with-terraform-for-users-with-existing-infrastructure">existing infrastructure section</a>.</p>
+<ol>
+<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/hdb</code>.</li>
+<li>Move into the <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code> directory; this will be the Terraform working directory from which you should run all <code>terraform</code> commands.</li>
+<li>Modify variables inside the <code>terraform.tfvars</code> file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of <code>"Name"</code>. For example, For the variable on <code>role-name</code>, you can change the variable name by replacing <code>"finspace-role"</code>.</li>
+<li>(Optional) If you have changed the database name from the default <code>finspace-database</code> to any other names, please also edit the <code>env.q</code> file, changing the database name to the new variable that you have set in line 19.</li>
+<li>Run <code>aws configure</code> in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key.</li>
+<li>From your Terraform working directory which is <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code>, run <code>terraform init</code>.</li>
+<li>If initialized without error, run <code>terraform plan</code>. This will show all resources set to be created or destroyed by Terraform.</li>
+<li>Run <code>terraform apply</code> to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in <code>nohup</code>. (Using <code>nohup</code> might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: <code>nohup terraform apply -auto-approve &gt; terraform_apply.log 2&gt;&amp;1 &amp;</code>. </li>
+</ol>
+<p>You can now skip ahead to our <a href="#managing-your-infrastructure">Managing Your Infrastructure section</a></p>
+<h2 id="how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure">How to Use - Deploying With Terraform For Users With Existing Infrastructure</h2>
+<p>For users with existing infrastructure in their AWS account who would like to reuse the same resources for their TorQ in Finspace bundle, you can use import blocks in Terraform. This functionality allows you to import existing infrastructure resources into Terraform, bringing them under Terraform's management. The import block records that Terraform imported the resource and did not create it. After importing, you can optionally remove import blocks from your configuration or leave them as a record of the resource's origin.</p>
+<p>Once imported, Terraform tracks the resource in your state file. You can then manage the imported resource like any other, updating its attributes and destroying it as part of a standard resource lifecycle.</p>
+<p>Move into the <code>deployments</code> directory, and you'll see an <code>imports.tf</code> file (currently empty). This <code>imports.tf</code> file is automatically run before Terraform applies any changes to the structure, importing existing structures from your AWS to the deployment system.</p>
+<h3 id="terraform-import-block-syntax">Terraform Import Block Syntax</h3>
+<pre><code>import {
+  to = aws_instance.example
+  id = &quot;i-abcd1234&quot;
+}
+
+resource &quot;aws_instance&quot; &quot;example&quot; {
+  name = &quot;hashi&quot;
+  # (other resource arguments...)
+}
+</code></pre>
+<p>The above <code>import</code> block defines an import of the AWS instance with the ID "i-abcd1234" into the <code>aws_instance.example</code> resource in the root module.</p>
+<p>The import block has the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>to</code></td>
+<td>The instance address this resource will have in your state file.</td>
+<td><code>to = aws_instance.example</code></td>
+</tr>
+<tr>
+<td>resourse (e.g. <code>id</code> or <code>name</code>)</td>
+<td>A string with the import information of the resource.</td>
+<td>Example 1. <code>id = "i-abcd1234"</code><br> Example 2. <code>name = "aws/vendedlogs/finspace/myclustername"</code></td>
+</tr>
+<tr>
+<td><code>provider</code> (optional)</td>
+<td>An optional custom resource provider.<br> If you do not set the provider argument, Terraform attempts to import from the default provider.</td>
+<td>See <a href="https://developer.hashicorp.com/terraform/language/meta-arguments/resource-provider">The Resource provider Meta-Argument</a> for details.</td>
+</tr>
+</tbody>
+</table>
+<p>The import block's ID/name argument can be a literal string of your resource's import ID, or an expression that evaluates to a string. Terraform needs this detail to locate the resource you want to import.</p>
+<p>The import ID/name must be known at plan time for planning to succeed. If the value of <code>id</code>/<code>name</code> is only known after apply, <code>terraform plan</code> will fail with an error.</p>
+<p>The identifier you use for a resource's import ID/name is resource-specific. You can find the required ID/name in the <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">provider documentation</a> for the resource you wish to import.</p>
+<h3 id="terraform-import-block-template">Terraform import block Template</h3>
+<p>We have created a Terraform import block template in <code>terraform-deployment/importtemplate.md</code>. In this template, you can select the needed import block and paste it into the <code>imports.tf</code> file within the <code>terraform-deployment/deployments/imports.tf</code> directory. Remember to change the ID to the referring ID of your existing infrastructure.</p>
+<h2 id="managing-your-infrastructure">Managing Your Infrastructure</h2>
+<p>Once your environment is up and running, you can use this configuration to manage it:</p>
+<ol>
+<li>Code Updates: If you make any code changes in <code>TorQ</code> or <code>TorQ-Amazon-FinSpace-Starter-Pack</code> and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.</li>
+<li>Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in <code>clusters/rdb.tf</code> and run Terraform again. The RDB will be recreated with the new node size.</li>
+<li>Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the <code>terraform.tfvars</code> file. To delete a cluster, set its count to 0. To delete all clusters, set <code>create-clusters</code> to 0.</li>
+</ol>
+<h3 id="basic-commands-in-terraform">Basic Commands in Terraform</h3>
+<ul>
+<li><code>terraform init</code>       -   Prepare your working directory for other commands</li>
+<li><code>terraform validate</code>   -   Check whether the configuration is valid</li>
+<li><code>terraform plan</code>       -   Show changes required by the current configuration</li>
+<li><code>terraform apply</code>      -   Create or update infrastructure</li>
+<li><code>terraform destroy</code>    -   Destroy previously-created infrastructure</li>
+<li>For more commands in Terraform, please visit <a href="https://developer.hashicorp.com/terraform/cli/commands">Terraform Command</a> </li>
+</ul>
+<h3 id="terraform-state-management">Terraform State Management</h3>
+<p>Terraform maintains a state file that tracks the state of the deployed infrastructure. This state file is crucial for Terraform to understand what resources have been created and to make changes to them. To ensure proper state management:</p>
+<ul>
+<li>Always store your state files securely, as they may contain sensitive information.</li>
+<li>Consider using remote state storage, such as Amazon S3, to keep your state files safe and accessible from multiple locations.</li>
+<li>Avoid manual changes to resources managed by Terraform, as this can lead to inconsistencies between the actual infrastructure and Terraform's state.</li>
+</ul>
+<h2 id="list-of-aws-structures-that-will-be-created-with-our-terraform-deployment">List of AWS Structures that will be created with our Terraform deployment</h2>
+<ul>
+<li>module.environment.data.aws_iam_policy_document.iam-policy</li>
+<li>module.environment.data.aws_iam_policy_document.s3-code-policy</li>
+<li>module.environment.data.aws_iam_policy_document.s3-data-policy</li>
+<li>module.environment.aws_ec2_transit_gateway.test</li>
+<li>module.environment.aws_finspace_kx_database.database</li>
+<li>module.environment.aws_finspace_kx_environment.environment</li>
+<li>module.environment.aws_finspace_kx_user.finspace-user</li>
+<li>module.environment.aws_iam_policy.finspace-policy</li>
+<li>module.environment.aws_iam_role.finspace-test-role</li>
+<li>module.environment.aws_iam_role_policy_attachment.policy_attachment</li>
+<li>module.environment.aws_s3_bucket.finspace-code-bucket</li>
+<li>module.environment.aws_s3_bucket.finspace-data-bucket</li>
+<li>module.environment.aws_s3_bucket_policy.code-policy</li>
+<li>module.environment.aws_s3_bucket_policy.data-policy</li>
+<li>module.environment.aws_s3_bucket_public_access_block.code_bucket</li>
+<li>module.environment.aws_s3_bucket_public_access_block.data_bucket</li>
+<li>module.environment.aws_s3_bucket_versioning.versioning</li>
+<li>module.environment.null_resource.create_changeset</li>
+<li>module.environment.null_resource.upload_hdb</li>
+<li>module.lambda.data.aws_iam_policy_document.finspace-extra</li>
+<li>module.lambda.aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda</li>
+<li>module.lambda.aws_cloudwatch_event_target.target_finSpace-rdb-lambda</li>
+<li>module.lambda.aws_cloudwatch_metric_alarm.RDBOverCPUUtilization</li>
+<li>module.lambda.aws_iam_policy.lambda_basic_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_ec2_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_finspace_policy</li>
+<li>module.lambda.aws_iam_role.lambda_execution_role</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach1</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach2</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach3</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-lambda</li>
+<li>module.lambda.aws_lambda_permission.lambda_from_cw_permission</li>
+<li>module.network.aws_internet_gateway.finspace-igw</li>
+<li>module.network.aws_route.finspace-route</li>
+<li>module.network.aws_route_table.finspace-route-table</li>
+<li>module.network.aws_security_group.finspace-security-group</li>
+<li>module.network.aws_subnet.finspace-subnets[0]</li>
+<li>module.network.aws_subnet.finspace-subnets[1]</li>
+<li>module.network.aws_subnet.finspace-subnets[2]</li>
+<li>module.network.aws_subnet.finspace-subnets[3]</li>
+<li>module.network.aws_vpc.finspace-vpc</li>
+</ul>
+<h2 id="references-and-documentation">References and Documentation</h2>
+<p>For more in-depth information and documentation, explore the following resources:</p>
+<ul>
+<li><a href="https://learn.hashicorp.com/tutorials/terraform/">Terraform Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/">AWS Documentation</a></li>
+</ul>
+<p>These resources provide detailed information about Terraform and AWS services, best practices, and advanced configurations.</p>
 
               
             </article>
@@ -563,7 +893,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../04-prerequisites/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Workshop 04 - Prerequisites" rel="prev">
+        <a href="../04-prerequisites/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Prerequisites" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -572,20 +902,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Workshop 04 - Prerequisites
+              Prerequisites
             </div>
           </div>
         </a>
       
       
         
-        <a href="../06-clustercreation/" class="md-footer__link md-footer__link--next" aria-label="Next: Workshop 06 - Cluster Creation" rel="next">
+        <a href="../06-clustercreation/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Creation" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Workshop 06 - Cluster Creation
+              Cluster Creation
             </div>
           </div>
           <div class="md-footer__button md-icon">
