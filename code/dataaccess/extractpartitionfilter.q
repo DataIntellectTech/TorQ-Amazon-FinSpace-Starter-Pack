@@ -13,7 +13,7 @@ extractpartitionfilter:{[inputparams;queryparams]
   // Find the partition field
   partfield:.checkinputs.gettableproperty[inputparams;`partfield];
   //return a list of partions to search through
-  //casting to long to account for int partitions in finspace c- add finspace flag here
+  //casting to long to account for int partitions in finspace 
   partrange:`long$`timestamp$.dacustomfuncs.partitionrange[(inputparams`tablename);timerange;.proc.proctype;timecol];
   // Return as kdb native filter
   partfilter:exec enlist(within;partfield;partrange)from inputparams;
