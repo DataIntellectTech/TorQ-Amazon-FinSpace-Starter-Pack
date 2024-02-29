@@ -11,7 +11,7 @@ You will then see a pop-up showing the server properties. This is where you will
 
 The generated connection string provides you with everything you need to fill this out, take this connection string for example;
 
-![Connection String](workshop/graphics/ConnectionString1.png)
+![Connection String](workshop/graphics/ConnectionString2.png)
 
 The required fields in the Server Properties screen are contained within the connection string and are colon separated. Here,
 
