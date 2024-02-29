@@ -5,9 +5,9 @@ When porting TorQ to AWS we chose to make a minimum viable product and then buil
 
 - Discovery: Processes use the discovery service to register their own availability, find other processes (by process type), and subscribe to receive updates for new process availability (by process type). The discovery service does not manage connections - it simply returns tables of registered processes, irrespective of their current availability. It is up to each individual process to manage its own connections.
 
-- Historical Database: The HDB holds data from before the current period. It is read only and used for querying all historical data. Data is stored in int partitions (one per period) and can be queried through the gateway process.
+- Historical Database: The HDB holds data from before the current day. It is read only and used for querying all historical data. Data is stored in date partitions and can be queried through the gateway process. Note: The HDB is unqueriable for around 5 minutes during EOD (End Of Day) processing.
 
-- Real-time Database: The RDB subscribes and captures all data from the feed handler throughout the current period and store it in memory for query or real-time processing.
+- Real-time Database: The RDB subscribes and captures all data from the feed handler throughout the current day and store it in memory for query or real-time processing.
 
 - Feed Handler: The feed handler acts as a preparation stage for the data, transforming the data into kdb+ format and writing it to our RDB.
 
