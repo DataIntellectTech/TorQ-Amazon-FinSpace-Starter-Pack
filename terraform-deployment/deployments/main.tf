@@ -46,14 +46,3 @@ module "network" {
 
   region               = var.region
 }
-
-module "lambda" {
-  source = "../lambda"
-
-  lambda-name = var.lambda-name
-  region = var.region
-  environment-id       = module.environment.environment-id
-  account_id = module.environment.account_id
-
-}
-
