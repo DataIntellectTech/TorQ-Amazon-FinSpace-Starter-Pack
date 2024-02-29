@@ -59,8 +59,29 @@ Connecting
                         },
                         {
                                 "Effect": "Allow",
-                                "Action": "finspace:GetKxConnectionString",
-                                "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
+                                "Action": [
+                                    "finspace:GetKxConnectionString",
+                                    "finspace:UpdateKxClusterDatabases"
+                                 ]
+                                "Resource": [
+                                     "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*",
+                                     "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxDatabase/*/kxDataview/*",
+                                 ]
+                        },
+                        {
+                                "Effect": "Allow",
+                                "Action": [
+                                    "s3:ListBucket",
+                                    "s3:GetObject",
+                                    "s3:GetObjectVersion",
+                                    "s3:GetObjectTagging"
+                                 ]
+                                "Resource": [
+                                     "<YOUR_S3_CODE_BUCKET_ARN>",
+                                     "<YOUR_S3_CODE_BUCKET_ARN>/*",
+                                     "<YOUR_S3_DATA_BUCKET_ARN>",
+                                     "<YOUR_S3_DATA_BUCKET_ARN>/*"
+                                 ] 
                         }
                 ]
         }
