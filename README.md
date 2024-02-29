@@ -26,6 +26,10 @@ Then:
 Head to the address it gives you to check if your changes have worked. More information about using mkdocs can be found [here](http://www.mkdocs.org/)
   
 ## Release Notes
+- **1.0.2, Feb 2024**:
+  * Updated documentation to be more detailed and readable
+  * Updated exec role permissions to be in sync with AWS security changes
+  * Fixed feed connection logic to rdb
 - **1.0.1, Dec 2023**:
   * Renaming project refrences to TorQ-Amazon-FinSpace-Starter-Pack
 - **1.0.0, Dec 2023**:
