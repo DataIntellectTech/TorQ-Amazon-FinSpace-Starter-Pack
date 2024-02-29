@@ -88,6 +88,8 @@ Connecting
 
 Note the ARN should match that of your created cluster, although there doesn’t seem to be anywhere to copy this from directly.
 
+Refer to 04-prerequisites.md to see how to get your S3 bucket ARNs
+
 5. Save the policy, go back to the role view and click the refresh button
 
 6. Search for the policy you just created and select it and click next
