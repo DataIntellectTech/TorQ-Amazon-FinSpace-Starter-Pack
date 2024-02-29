@@ -94,6 +94,7 @@ Once your environment is up and running, you can use this configuration to manag
 1. Code Updates: If you make any code changes in `TorQ` or `TorQ-Amazon-FinSpace-Starter-Pack` and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.
 2. Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in `clusters/rdb.tf` and run Terraform again. The RDB will be recreated with the new node size.
 3. Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the `terraform.tfvars` file. To delete a cluster, set its count to 0. To delete all clusters, set `create-clusters` to 0.
+4. log groups and metric filters: These resources are only created if the dependent log groups exists. Update the `wdb_log_groups` variable in `terraform.tfvars` to include the names of the log groups of your clusters you wish to monitor. WARNING: this terraform stack will fail inelegantly if you list a name of an unexisting log group. To be amended in future iterations.
 
 ### Basic Commands in Terraform 
 *  `terraform init`       -   Prepare your working directory for other commands
@@ -131,19 +132,60 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 * module.environment.aws_s3_bucket_versioning.versioning
 * module.environment.null_resource.create_changeset
 * module.environment.null_resource.upload_hdb
+* module.lambda.data.archive_file.lambda_my_function
+* module.lambda.data.aws_iam_policy_document.assume_events_doc
+* module.lambda.data.aws_iam_policy_document.assume_lambda_doc
+* module.lambda.data.aws_iam_policy_document.assume_states_doc
+* module.lambda.data.aws_iam_policy_document.ec2-permissions-lambda
+* module.lambda.data.aws_iam_policy_document.eventBridge_policy_doc
 * module.lambda.data.aws_iam_policy_document.finspace-extra
-* module.lambda.aws_cloudwatch_event_rule.trigger_finSpace-rdb-lambda
-* module.lambda.aws_cloudwatch_event_target.target_finSpace-rdb-lambda
-* module.lambda.aws_cloudwatch_metric_alarm.RDBOverCPUUtilization
+* module.lambda.data.aws_iam_policy_document.lambda_basic_execution
+* module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc
+* module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc
+* module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc
+* module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc
+* module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule
+* module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule
+* module.lambda.aws_cloudwatch_event_target.onRotateRDB_target
+* module.lambda.aws_cloudwatch_event_target.onRotateWDB_target
+* module.lambda.aws_iam_policy.eventBridge_policy
 * module.lambda.aws_iam_policy.lambda_basic_policy
 * module.lambda.aws_iam_policy.lambda_ec2_policy
 * module.lambda.aws_iam_policy.lambda_finspace_policy
+* module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy
+* module.lambda.aws_iam_policy.sns_publish_scoped_access_policy
+* module.lambda.aws_iam_policy.xray_scoped_access_policy
+* module.lambda.aws_iam_role.eventBridge_role
+* module.lambda.aws_iam_role.lambda_errorFormat_execution_role
 * module.lambda.aws_iam_role.lambda_execution_role
+* module.lambda.aws_iam_role.lambda_onConflict_execution_role
+* module.lambda.aws_iam_role.states_execution_role
 * module.lambda.aws_iam_role_policy_attachment.attach1
 * module.lambda.aws_iam_role_policy_attachment.attach2
 * module.lambda.aws_iam_role_policy_attachment.attach3
+* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat
+* module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict
+* module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict
+* module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy
+* module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict
+* module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy
+* module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy
+* module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy
+* module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda
 * module.lambda.aws_lambda_function.finSpace-rdb-lambda
-* module.lambda.aws_lambda_permission.lambda_from_cw_permission
+* module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda
+* module.lambda.aws_sfn_state_machine.sfn_state_machine
+* module.lambda.aws_sns_topic.lambda_error_topic
+* module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]
+* module.lambda.aws_sns_topic_subscription.lambda_error_queue_target
+* module.lambda.aws_sqs_queue.lambda_error_queue
+* module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy
+* module.lambda.local_file.lambda_configs
+* module.metricfilter.data.aws_cloudwatch_log_group.wdb_log_groups["*"]
+* module.metricfilter.aws_cloudwatch_event_rule.wdb_log_monit_rule[0]
+* module.metricfilter.aws_cloudwatch_event_target.wdb_log_monit_rule_target[0]
+* module.metricfilter.aws_cloudwatch_log_metric_filter.wdb_log_monit["*"]
+* module.metricfilter.aws_cloudwatch_metric_alarm.wdb_log_monit_alarm[0]
 * module.network.aws_internet_gateway.finspace-igw
 * module.network.aws_route.finspace-route
 * module.network.aws_route_table.finspace-route-table
