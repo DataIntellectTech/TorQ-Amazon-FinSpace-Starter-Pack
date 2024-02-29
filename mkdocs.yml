@@ -1,9 +1,20 @@
 site_name: TorQ Amazon FinSpace Starter Pack
 nav:
     - Home: index.md
-    - Getting Started: gettingstarted.md
-    - Architecture: architecture.md
-    - Deploy Using Terraform: terraformdeloyment.md
+    - What is TorQ? : 01-whatistorq.md
+    - Introduction : 02-Introduction.md
+    - TorQ With Managed kdb Insights : 03-torqwithmanagedkdbinsights.md
+    - Prerequisites : 04-prerequisites.md
+    - Terraform : 05-terraform.md
+    - Cluster Creation : 06-clustercreation.md
+    - Create EC2 : 07-createec2.md
+    - Cluster Connection String : 08-clusterconnectionstring.md
+    - Setup QPad : 09-setupqpad.md
+    - Connecting Using QPad : 10-connectingusingqpad.md
+    - Running Queries : 11-runningqueries.md
+    - Health Check : 12-healthcheck.md
+    - Taking it Down : 13-takingitdown.md
+    - Conclusion : 14-conclusion.md
 
 repo_name: 'GitHub'
 repo_url: 'https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack'
