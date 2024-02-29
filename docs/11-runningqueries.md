@@ -7,7 +7,7 @@ For queries to be ran through the gateway, we must update some preferences on qS
 
 We will need to uncheck the box labelled "Wrap query sent to server".
 
-![Preferences](workshop/graphics/Preferences.png)
+![Preferences](workshop/graphics/Preferences1.png)
 
 The Query's below should then all run successfully!
 
