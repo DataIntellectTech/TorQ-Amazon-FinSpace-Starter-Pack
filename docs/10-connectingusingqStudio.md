@@ -11,11 +11,11 @@ You will then see a pop-up showing the server properties. This is where you will
 
 The generated connection string provides you with everything you need to fill this out, take this connection string for example;
 
-![Connection String](workshop/graphics/ConnectionString2.png)
+![Connection String](workshop/graphics/ConnectionString3.png)
 
 The required fields in the Server Properties screen are contained within the connection string and are colon separated. Here,
 
-``Host:`` vpce-0471a7041d652985f-0monuk67.vpce-svc-0793a6d47138b14fb.us-west-2.vpce.amazonaws.com
+``Host:`` vpce-063d07d253dde398d-19p5nh4w.vpce-svc-0b408455b16d79292.us-west-2.vpce.amazonaws.com
 
 ``Port:`` 443
 
@@ -23,6 +23,6 @@ The required fields in the Server Properties screen are contained within the con
 
 ``Username:`` david-finspace
 
-``Password:`` Host=vpce-0471a7041d652985f-0monuk67.vpce-svc-0793a6d47138b14fb.us-west-2.vpce.amazonaws.com&Port=443&User=david-finspace&Action=finspace%3AConnectKxCluster&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAcaCXVzLXdlc3QtMiJGMEQCIGQd7tN%2FXAj8hGQg1sA2T1R2r5usyoP2qpMQedvA4evFAiBaz8Ce9LBhkWiYmIpNcwNCLfOupH57K82YWxVXdxvhQCqBAwjw%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAIaDDc2NjAxMjI4NjAwMyIMZBp6QRId8Dl3V42QKtUCkPWLvgV61rur1vHYnJKuZtMaS%2FBqSxoihJjsH8oEt7HOIjPh7jlehXOAvHHsmAV4gF9l49zFDd39L1VSjzM0R%2BN0LHyUSEya64%2BOIksQ4BAc2TmtxqDWNeDzpFQ7X8%2FWWVTrS5YFedH4iP4XtPoVf0KmQhVRepAbd91nFCJVEv8Wg66zKgg55onPs8B3hH%2FdWIwgrJIe2247VhKJHElLsY3Fi%2FcWR8P%2FMZB%2FcoziItOUfmTrmXg59qxKQWReGIONhbV1IFtEK2tDkaeaKgNiCEY1ZqdFcsxUlFWxWgy5%2FwUVQxEvRkUYdhRGTQm6zOXaKwL0Ut5WKdt%2FCiSvw4BUib7XCf10Y%2FwSbTHFfhFQ2YGgcR54a0WD1J3RN8D%2F%2BjDoD90kej4uled1I8N3bOX1Ppvy1x0oDVBI3H%2F%2BP5U3Vqh8pLTQ5i3euZtgGabuzLbw2WmAMPMwppH9rgY6wAFQ4SVgm%2F%2BdcaXt%2Fw7plQ1NHbKHPHaqQUedw%2BSmsSvYZ3ubyO0eg%2F%2FvDajhf49EOj4H1mQQrzqTl%2BGA10rhn8JMam0a1Bc8WvOl4deoW4pDFPL15By9cQ3FK30%2ByGn2U0STnHbMgaf4PgQ%2BIC0CiCNiTx7JxYUlVnBPCtmzC8rz0YZ24Px92yHtFj6VFmnyLT%2ByJQCSFc6lMtLzPWtfE1SHyexx%2BGb2a3r2tGDbm%2FcAsClZgktDwD7h4bCzSA7OjJ4%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240228T145222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Credential=ASIA3EWPD4QZ2MMPTPVJ%2F20240228%2Fus-west-2%2Ffinspace-apricot%2Faws4_request&X-Amz-Signature=9473c826d24c7e8066b0e10debad8a2779b8ae596ffa7056d344f9548923a210
+``Password:`` Host=vpce-063d07d253dde398d-19p5nh4w.vpce-svc-0b408455b16d79292.us-west-2.vpce.amazonaws.com&Port=443&User=david-finspace&Action=finspace%3AConnectKxCluster&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDUaCXVzLXdlc3QtMiJGMEQCIFOmCCIAE5hyh0obtgV8TeS9jCglbxFPEossH5f4vRhrAiAIaxSHF%2FQhjqACSlmwlLTNJBvx658bQwyiH9LVz20ehSr4AgguEAIaDDc2NjAxMjI4NjAwMyIMl3TMLJjQytFtFLaiKtUCbJrjypNOC5U8GwttcBfln2SV%2FJclct%2FmeDtnUCUcVB3bzcCUOpGQFXUR%2FtonWVO0ZO1SUu%2Bna%2Bs0l0UfMu7K7qDOQhszg1%2Fxdblx0TRi70GVunATeJlpppyQeZNUk9RHSOvGPCN8VKGBJmisbeo3bJb7MvVLak1lgVdLn%2FxUIS0uTfA62PbzU6LPE1nj85bupgLrvAMlSwvZMy3pVXJaN%2BBvk0mulmCvIYfqlqL%2FcjvWbOMQdyXsdAYCO4TRpA7I38Jmfr9h1oee2JVvVMCu41yRQhbAqtqgvNwrhgSyOQASAJSVGiIPHiXyGz5KefntOfq1zADleUrUg0Nvh6EPFj%2FavNsHZyBSapvUVVsx%2FA9aI2aHeg5P%2FtCifq%2Bnxg5vyKSX4GcB7P40pKs3Ymeb3yAUllN2tJ5VXlx7SI3p8jfTB8k72BeOzu%2BLbWs5gtb%2BlZG1cSQwzKSHrwY6wAEpzwyEjjuh50PM6OZgRBNgBEOiqLaTHqjBv7VHcjsF5FnpJqZ2AhBtQXXkFiItA%2FSZ7B0aGbL0sYJ8v7WZZIMtAvg4e0ve9VBYXf4hnl5i82T5EJfAy727E9e25Wwb%2FILZAeOjdTY0IhcgvWlLCeBJNEHEMO8h8yupkLfFQHlNvF14wrH1U8bSd934M8k%2F22%2FDTrZFlVQXe%2FeLYt%2FxOBEHfHWiMH51v2IDv39%2B%2B7%2FGq3XmrcNymPQQ0HcoJEK%2BTjg%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240301T130412Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Credential=ASIA3EWPD4QZXLHMX4GY%2F20240301%2Fus-west-2%2Ffinspace-apricot%2Faws4_request&X-Amz-Signature=c134f0dc1f0cba738c0bf8547c9ca8702593ea9e9b89ee2d17892fd379524d30
 
 ![All Servers](workshop/graphics/CompleteServers1.png)
