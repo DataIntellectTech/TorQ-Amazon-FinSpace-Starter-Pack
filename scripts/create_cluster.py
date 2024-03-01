@@ -106,6 +106,10 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         'availabilityZoneId' :availabilityZoneId
     }
 
+    if (clusterType == 'HDB') and useCache:
+        databases[0]['cacheConfigurations'] = cacheConfiguration
+        clusterArgs['cacheStorageConfigurations'] = cacheStorageConfiguration
+
     if clusterType in ['RDB', 'HDB']:
         clusterArgs['databases'] = databases 
 

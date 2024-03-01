@@ -16,7 +16,7 @@ availabilityZoneId = "use1-az6"
 
 # code settings
 s3Bucket = "finspace-code-bucket-virginia"
-s3Key =  "9e3c2a687d6d8b93888e1d83dccc58838dcbf856.zip"
+s3Key =  "945acf0f36eafdc885757fa1c622d094efc405a7.zip"
 initScript = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"
 
 executionRole = "arn:aws:iam::766012286003:role/finspace-role-virginia"
@@ -30,6 +30,19 @@ savedownStorageConfiguration={
         'type': 'SDS01',
         'size': 10
     }
+
+# flag for HDB to use cache or not
+useCache=True
+
+cacheConfiguration=[{
+    'cacheType':'CACHE_1000',
+    'dbPaths':['/']
+   }]
+
+cacheStorageConfiguration=[{
+    'type':'CACHE_1000',
+    'size':1200
+}]
 
 # network settings
 vpcId = "vpc-0a5b1db302525d776"
