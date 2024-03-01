@@ -20,6 +20,10 @@ variable "s3-bucket-id" {
   description = "name of code bucket"
 }
 
+variable "s3-data-bucket-id" {
+  description = "name of data bucket"
+}
+
 variable "rdbCntr_mod" {
   description = "maximum number of rdbs created by lambda"
 }
@@ -173,7 +177,9 @@ data "aws_iam_policy_document" "s3-permissions-lambda" {
 
     resources = [
       "arn:aws:s3:::${var.s3-bucket-id}",
-      "arn:aws:s3:::${var.s3-bucket-id}/*"
+      "arn:aws:s3:::${var.s3-bucket-id}/*",
+      "arn:aws:s3:::${var.s3-data-bucket-id}",
+      "arn:aws:s3:::${var.s3-data-bucket-id}/*"
     ]
   }
 }
