@@ -1,7 +1,7 @@
 Connecting Using qStudio
 ===============
 
-Open qStudio, right-click on Servers in the top left corner and select 'Add Server'.
+Open qStudio, right-click on 'Servers' in the top left corner and select 'Add Server'.
 
 ![Add Server Connection](workshop/graphics/Servers_qStudio1.png)
 
