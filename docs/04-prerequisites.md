@@ -30,8 +30,78 @@ Now we will zip these files together:
 
     zip -r code.zip TorQ/ TorQ-Amazon-FinSpace-Starter-Pack/ -x "TorQ*/.git*"
 
-### Upload to S3 (For Non Terraform Deployment Only)
+## Create and Upload code to S3 (For Non Terraform Deployment Only)
 
-Then upload them to your AWS S3 codebucket:
+Two S3 buckets are required for this setup - one for the code and one for the data
 
-    aws S3 cp code.zip s3://<you S3 codebucket name>
+Create your S3 bucket by searching for "S3" and clicking "Create Bucket"
+
+Choose the same AWS Region as your AWS Finspace KxEnvirnment
+
+Give your bucket a name
+
+![S3 general configurations](workshop/graphics/S3_general_configuration.png)
+
+Unselect the "Block all public access" box
+
+![S3 Access Settings](workshop/graphics/S3_access_settings.png)
+
+Leave all other settings as the default
+
+### Edit the access policy
+
+Copy the ARN of your S3 buckets in the console by navigating to your S3 bucket, selecting "Properties"
+
+![S3 Bucket Arn](workshop/graphics/S3_code_bucket_arn.png)
+
+Edit the Access policy of both S3 buckets with the JSON document:
+
+```
+{
+    "Version": "2012-10-17",
+    "Id": "FinSpaceServiceAccess",
+    "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "finspace.amazonaws.com"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectTagging",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "<ARN OF BUCKET COPIED EARLIER>/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceAccount": "766012286003"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "finspace.amazonaws.com"
+            },
+            "Action": "s3:ListBucket",
+            "Resource": "<ARN OF BUCKET COPIED EARLIER>",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceAccount": "766012286003"
+                }
+            }
+        }
+    ]
+ }
+```
+
+### Upload code to S3 code bucket
+
+Upload the zip file created earlier to AWS S3 codebucket:
+
+    aws s3 cp code.zip s3://<you S3 codebucket name>
+
+### Upload hdb to S3 data bucket 
+
+Copy the pre-packaged hdb to AWS S3 databucket:
+
+    aws s3 cp --recursive TorQ-Amazon-FinSpace-Starter-Pack/hdb s3://<your S3 data bucket name>/hdb
