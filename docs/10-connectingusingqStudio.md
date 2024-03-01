@@ -5,7 +5,7 @@ Open qStudio, right-click on 'Servers' in the top left corner and select 'Add Se
 
 ![Add Server Connection](workshop/graphics/Servers_qStudio1.png)
 
-You will then see a pop-up showing the server properties. This is where you will add the information from the connection string.
+You will then see a pop-up showing the server properties. This is where you will add the information from the connection string (details below in the next step).
 
 ![Server Properties](workshop/graphics/Server_Properties1.png)
 
