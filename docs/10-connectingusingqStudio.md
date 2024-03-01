@@ -9,7 +9,7 @@ You will then see a pop-up showing the server properties. This is where you will
 
 ![Server Properties](workshop/graphics/Server_Properties1.png)
 
-The generated connection string provides you with everything you need to fill this out, take this connection string for example;
+Follow the step in our [Generate Connection String section](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/08-clusterconnectionstring/#generate-connection-string) to get a fresh connection string. The generated connection string provides you with everything you need to fill the boxes above. See the below connection string for an example:
 
 ![Connection String](workshop/graphics/Connectionstring3.png)
 
