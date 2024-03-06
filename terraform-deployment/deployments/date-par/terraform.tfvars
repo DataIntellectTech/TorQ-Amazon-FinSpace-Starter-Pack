@@ -2,8 +2,8 @@ region            = "us-west-2"                              # region for kdb en
 kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms key (create kms key first)
 
 # file paths
-zip_file_path     = "code.zip"        # path to zipped code 
-hdb-path          = "hdb"             # path to hdb to migrate
+zip_file_path     = "code.zip"        # path to zipped code (symlink recommended)
+hdb-path          = "hdb"             # path to hdb to migrate (symlink recommended)
 
 # unique names for aws/finspace resources
 code-bucket-name  = "finspace-code-bucket"                 
