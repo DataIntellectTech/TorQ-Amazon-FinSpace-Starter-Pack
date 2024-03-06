@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "environment" {
-  source = "../environment"
+  source = "../../environment"
 
   region               = var.region
   code-bucket-name     = var.code-bucket-name
@@ -19,7 +19,7 @@ module "environment" {
 }
 
 module "clusters" {
-  source = "../clusters"
+  source = "../../clusters"
 
   init-script          = var.init-script
   create-clusters      = var.create-clusters
@@ -42,7 +42,7 @@ module "clusters" {
 }
 
 module "network" {
-  source = "../network"
+  source = "../../network"
 
   region               = var.region
 }

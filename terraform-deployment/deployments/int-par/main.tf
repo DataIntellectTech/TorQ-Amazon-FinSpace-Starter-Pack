@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "environment" {
-  source = "../environment"
+  source = "../../environment"
 
   region               = var.region
   code-bucket-name     = var.code-bucket-name
@@ -19,7 +19,7 @@ module "environment" {
 }
 
 module "clusters" {
-  source = "../clusters"
+  source = "../../clusters"
 
   init-script          = var.init-script
   create-clusters      = var.create-clusters
@@ -42,13 +42,13 @@ module "clusters" {
 }
 
 module "network" {
-  source = "../network"
+  source = "../../network"
 
   region               = var.region
 }
 
 module "lambda" {
-  source = "../lambda"
+  source = "../../lambda"
 
   lambda-name          = var.lambda-name
   sfn-machine-name     = var.sfn-machine-name
@@ -63,7 +63,7 @@ module "lambda" {
 }
 
 module "metricfilter" {
-  source = "../metricfilter"
+  source = "../../metricfilter"
 
   environment-id        = module.environment.environment-id
   sfn_state_machine_arn = module.lambda.sfn_state_machine_arn
