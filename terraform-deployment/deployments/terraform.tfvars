@@ -23,7 +23,7 @@ alert-smpt-target = "eugene.temlock@dataintellect.com"            # email addres
 
 # metricfilter configs
 create-mfilters = false                                          # set to 'true' and rerun 'terraform apply' once wdb clusters have been created in your kxenvironment
-wdb_log_groups  = ["wdb1","wdb2"]                                # configure log groups with names like "wdb*" here 
+wdb_log_groups  = ["wdb1","wdb2"]                                # configure log groups with prefix "wdb" here eg. ["wdb1","wdb2"] 
 
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 
