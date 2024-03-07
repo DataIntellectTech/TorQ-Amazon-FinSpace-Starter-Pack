@@ -104,6 +104,10 @@ variable "alert-smpt-target" {
   description = "email address to send sns alerts to. only used if send-alert set to 'true'"
 }
 
+variable "create-mfilters" {
+  description = "flag to create metric filters on wdb log groups"
+}
+
 variable "wdb_log_groups" {
   type = list
   description = "list of existing log group names like 'wdb*'"
