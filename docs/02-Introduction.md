@@ -11,7 +11,9 @@ Introduction
 
 ## What are we going to build?
 
-In this workshop we are going to be continuing on from the [previous kdb environment setup](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/envcreate), and building “TorQ for Amazon FinSpace with Managed kdb Insights”, a MVP of TorQ which is leveraging functionality within AWS. In this MVP, although all the TorQ code will be included within your code bucket, we will only be using files which are a necessity for this MVP creation. This will create a working TorQ setup on the cloud through Managed kdb Insights. We are going to do so by replicating the below steps.
+We will be building “TorQ for Amazon FinSpace with Managed kdb Insights”, a MVP of TorQ which is leveraging functionality within AWS. In this MVP, although all the TorQ code will be included within your code bucket, we will only be using files which are a necessity for this MVP creation. This will create a working TorQ setup on the cloud through Managed kdb Insights. We are going to do so by replicating the below steps.
+
+- Creating and setting up a Kdb Environment on Amazon Finspace.
 
 - Create a General Purpose (GP) cluster for the Discovery process of TorQ. This allows other processes to use the discovery service to register their own availability, find other processes (by process type), and subscribe to receive updates for new process availability.
 

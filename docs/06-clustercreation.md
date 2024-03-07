@@ -1,6 +1,10 @@
 Creating TorQ Clusters
 ===============
 
+*If you have set up your environment using our Terraform deployment option, this page is purely informative. Your clusters will have been created for you by Terraform.*
+
+---------------
+
 To create a cluster, firstly select your kdb environment:
 
 ![Select kdb env](workshop/graphics/kdbenv.png)

@@ -1,7 +1,91 @@
 Cluster Connection String
 ===============
 
-## Create a user
+*Terraform users can skip to our [generate connection string section](#generate-connection-string) as Terraform will have created and set up your role and user for you.*
+
+---------------
+
+## Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))
+
+### Policy
+
+The policy you created needs to have at least these permissions (Note the ARN should match that of your created kxEnvironment):
+
+    {
+        "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "finspace:ConnectKxCluster",
+                    "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": "finspace:GetKxConnectionString",
+                    "Resource": "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*"
+                }
+        ]
+    }
+
+To enable endofday savedowns and your clusters access to your S3 code and data buckets, you will also need the following statements to your policy.
+
+```
+{
+         "Statement": [
+                 {
+                         "Effect": "Allow",
+                         "Action": [
+                             "finspace:UpdateKxClusterDatabases"
+                          ]
+                         "Resource": [
+                              "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*",
+                              "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxDatabase/*/kxDataview/*",
+                          ]
+                 },
+                 {
+                         "Effect": "Allow",
+                         "Action": [
+                             "s3:ListBucket",
+                             "s3:GetObject",
+                             "s3:GetObjectVersion",
+                             "s3:GetObjectTagging"
+                          ]
+                         "Resource": [
+                              "<YOUR_S3_CODE_BUCKET_ARN>",
+                              "<YOUR_S3_CODE_BUCKET_ARN>/*",
+                              "<YOUR_S3_DATA_BUCKET_ARN>",
+                              "<YOUR_S3_DATA_BUCKET_ARN>/*"
+                          ] 
+                 }
+         ]
+ }
+```
+
+To find out how to get the ARN of your S3 buckets reference our [prerequisites section](https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md).
+
+### Role
+
+We need to check the Trust Policy of your created role.
+
+Search for the role and open it in the IAM console. Go to Trust relationships.
+
+Your Trust relationship should have at least these:
+    
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "finspace.amazonaws.com",
+                    "AWS": "arn:aws:iam::<ACCOUNT_ID>:root"
+                },
+                "Action": "sts:AssumeRole"
+            }
+        ]
+    }
+
+## Create a user (If manually set up (not useing Terraform))
 
 In your kdb environment, go to the Users tab and select Add user.
 
