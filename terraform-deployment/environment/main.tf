@@ -112,7 +112,8 @@ data "aws_iam_policy_document" "s3-data-policy" {
     ]
     actions = [
       "s3:GetObject",
-      "s3:GetObjectTagging"
+      "s3:GetObjectTagging",
+      "s3:GetObjectVersion"
     ]
     principals {
       type        = "Service"
@@ -235,10 +236,12 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "finspace:GetKxConnectionString"
+      "finspace:GetKxConnectionString",
+      "finspace:UpdateKxClusterDatabases"
     ]
     resources = [
-      "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
+      "${aws_finspace_kx_environment.environment.arn}/kxCluster/*",
+      "${aws_finspace_kx_environment.environment.arn}/kxDatabase/*/kxDataview/*"
     ]
   }
 
@@ -252,7 +255,9 @@ data "aws_iam_policy_document" "iam-policy" {
     ]
     resources = [
       "${aws_s3_bucket.finspace-code-bucket.arn}",
-      "${aws_s3_bucket.finspace-code-bucket.arn}/*"
+      "${aws_s3_bucket.finspace-code-bucket.arn}/*",
+      "${aws_s3_bucket.finspace-data-bucket.arn}",
+      "${aws_s3_bucket.finspace-data-bucket.arn}/*"
     ]
   }
 
@@ -362,6 +367,10 @@ output "database-name" {
 
 output "s3-bucket-id" {
   value = aws_s3_bucket.finspace-code-bucket.id
+}
+
+output "s3-data-bucket-id" {
+  value = aws_s3_bucket.finspace-data-bucket.id
 }
 
 output "s3-bucket-key" {
