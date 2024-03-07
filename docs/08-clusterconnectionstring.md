@@ -9,7 +9,7 @@ Cluster Connection String
 
 ### Policy
 
-The policy you created needs to have at least these permissions (Note the ARN should match that of your created cluster):
+The policy you created needs to have at least these permissions (Note the ARN should match that of your created kxEnvironment):
 
     {
         "Version": "2012-10-17",
@@ -26,6 +26,42 @@ The policy you created needs to have at least these permissions (Note the ARN sh
                 }
         ]
     }
+
+To enable endofday savedowns and your clusters access to your S3 code and data buckets, you will also need the following statements to your policy.
+
+```
+{
+         "Statement": [
+                 {
+                         "Effect": "Allow",
+                         "Action": [
+                             "finspace:UpdateKxClusterDatabases"
+                          ]
+                         "Resource": [
+                              "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxCluster/*",
+                              "<ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE>/kxDatabase/*/kxDataview/*",
+                          ]
+                 },
+                 {
+                         "Effect": "Allow",
+                         "Action": [
+                             "s3:ListBucket",
+                             "s3:GetObject",
+                             "s3:GetObjectVersion",
+                             "s3:GetObjectTagging"
+                          ]
+                         "Resource": [
+                              "<YOUR_S3_CODE_BUCKET_ARN>",
+                              "<YOUR_S3_CODE_BUCKET_ARN>/*",
+                              "<YOUR_S3_DATA_BUCKET_ARN>",
+                              "<YOUR_S3_DATA_BUCKET_ARN>/*"
+                          ] 
+                 }
+         ]
+ }
+```
+
+To find out how to get the ARN of your S3 buckets reference our [prerequisites section](https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md).
 
 ### Role
 
