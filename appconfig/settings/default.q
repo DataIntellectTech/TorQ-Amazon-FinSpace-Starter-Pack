@@ -9,6 +9,8 @@ system"c 23 2000"
 
 .finspace.enabled:1b;
 
+.finspace.rollovermode:`daily		/[ `daily | `period ] set to `period for intraday writedown, `daily for once per day.
+
 // hb subscriptions keeps the connections alive
 .hb.subenabled:1b;
 
@@ -16,4 +18,4 @@ svrstoload:select from .servers.procstab where proctype = .proc.proctype;
 $[count toload:first (select from svrstoload where procname=.proc.procname)`load;
   .proc.params[`load]:enlist .rmvr.removeenvvar toload;
   if[count svrstoload; .proc.params[`load]:enlist .rmvr.removeenvvar first svrstoload`load]
- ];
+  ];

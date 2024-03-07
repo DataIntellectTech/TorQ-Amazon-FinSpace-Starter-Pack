@@ -2,4 +2,7 @@
 .proc.getattributes:{`int`tables!(.rdb.getpartition[],();tables[])}
 
 \d .
-upd:{[t;x]};
+
+upd:$[`daily~.finspace.rollovermode;
+    .rdb.upd;
+    {[t;x]}];
