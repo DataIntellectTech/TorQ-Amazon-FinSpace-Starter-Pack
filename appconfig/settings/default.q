@@ -18,4 +18,4 @@ svrstoload:select from .servers.procstab where proctype = .proc.proctype;
 $[count toload:first (select from svrstoload where procname=.proc.procname)`load;
   .proc.params[`load]:enlist .rmvr.removeenvvar toload;
   if[count svrstoload; .proc.params[`load]:enlist .rmvr.removeenvvar first svrstoload`load]
-];
+ ];
