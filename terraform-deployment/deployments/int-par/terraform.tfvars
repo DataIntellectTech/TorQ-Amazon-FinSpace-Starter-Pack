@@ -3,7 +3,7 @@ kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms
 
 # file paths
 zip_file_path     = "code.zip"        # path to zipped code
-hdb-path          = "hdb"             # path to hdb to migrate
+hdb-path          = "inthdb/hdb"             # path to hdb to migrate
 
 # unique names for aws/finspace resources
 code-bucket-name  = "finspace-code-bucket"                 
