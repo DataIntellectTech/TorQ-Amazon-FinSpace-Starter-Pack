@@ -7,4 +7,3 @@ startup:{[f;ignoreme]
 		@[`.;`upd;:;{[t;x]}]
                 ];
 	}[startup]
-
