@@ -28,7 +28,6 @@ rolloverendofperiod:{[currp;nextp;data]
 
 endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
 
-
 .wdb.checkrdbready:{
 	if[@[get;`.finspace.rdbready;0b];
 	   .lg.o[`.wdb.checkrdbready;"new rdb ready. create new hdb"];
