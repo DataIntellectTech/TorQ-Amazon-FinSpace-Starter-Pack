@@ -30,7 +30,7 @@ def lambda_handler(event, context):
         resp = client.list_kx_clusters(environmentId=envId, clusterType=event["clusterType"])
         filteredSummaries = filterByClusterPrefix(resp['kxClusterSummaries'], cluster_prefix)
         filteredSummaries.sort(key=lambda x: x['createdTimestamp'])
-        cluster_name = filteredSummaries[0]['clusterName']
+        cluster_name = filteredSummaries[-1]['clusterName']
     except Exception as err:
         logger.error(sys.exc_info())
         pass
