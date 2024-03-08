@@ -98,7 +98,7 @@ Once your environment is up and running, you can use this configuration to manag
 1. Code Updates: If you make any code changes in `TorQ` or `TorQ-Amazon-FinSpace-Starter-Pack` and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.
 2. Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in `clusters/rdb.tf` and run Terraform again. The RDB will be recreated with the new node size.
 3. Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the `terraform.tfvars` file. To delete a cluster, set its count to 0. To delete all clusters, set `create-clusters` to 0.
-4. log groups and metric filters: These resources are only created if the dependent log groups exists. Update the `wdb_log_groups` variable in `terraform.tfvars` to include the names of the log groups of your clusters you wish to monitor. WARNING: this terraform stack will fail inelegantly if you list a name of an unexisting log group. To be amended in future iterations.
+4. log groups and metric filters: These resources are only created if the dependent log groups exists so by default are not ignored. Once your kxenvironment is up, set `create-mfilters` flag to 'true' and update the `wdb_log_groups` variable in `terraform.tfvars` to include the log groups of your clusters you wish to monitor. Then rerun `terraform apply`
 
 ### Basic Commands in Terraform 
 *  `terraform init`       -   Prepare your working directory for other commands
