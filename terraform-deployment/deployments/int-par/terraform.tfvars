@@ -21,6 +21,7 @@ send-sns-alert    = false                                      # true=create ema
 alert-smpt-target = "your.name@dataintellect.com"              # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # metricfilter configs
+create-mfilters = false                                        # set to 'true' and rerun 'terraform apply' once wdb clusters have been created in your kxenvironment
 wdb_log_groups = ["wdb1","wdb2"]                               # configure log groups with prefix "wdb" here eg. ["wdb1","wdb2"]
 
 # database name

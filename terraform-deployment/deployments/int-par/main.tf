@@ -68,5 +68,6 @@ module "metricfilter" {
   environment-id        = module.environment.environment-id
   sfn_state_machine_arn = module.lambda.sfn_state_machine_arn
   eventBridge_role_arn  = module.lambda.eventBridge_role_arn
+  create-mfilters       = var.create-mfilters
   wdb_log_groups        = var.wdb_log_groups
 }
