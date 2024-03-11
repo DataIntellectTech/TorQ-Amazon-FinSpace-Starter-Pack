@@ -112,7 +112,8 @@ data "aws_iam_policy_document" "s3-data-policy" {
     ]
     actions = [
       "s3:GetObject",
-      "s3:GetObjectTagging"
+      "s3:GetObjectTagging",
+      "s3:GetObjectVersion"
     ]
     principals {
       type        = "Service"
@@ -224,7 +225,8 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect  = "Allow"
     actions = [
-      "finspace:ConnectKxCluster"
+      "finspace:ConnectKxCluster",
+      "finspace:DeleteKxCluster"
     ]
     resources = [
       "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
@@ -234,10 +236,46 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "finspace:GetKxConnectionString"
+      "finspace:GetKxConnectionString",
+      "finspace:UpdateKxClusterDatabases"
     ]
     resources = [
-      "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
+      "${aws_finspace_kx_environment.environment.arn}/kxCluster/*",
+      "${aws_finspace_kx_environment.environment.arn}/kxDatabase/*/kxDataview/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetObjectTagging"
+    ]
+    resources = [
+      "${aws_s3_bucket.finspace-code-bucket.arn}",
+      "${aws_s3_bucket.finspace-code-bucket.arn}/*",
+      "${aws_s3_bucket.finspace-data-bucket.arn}",
+      "${aws_s3_bucket.finspace-data-bucket.arn}/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DescribeTags"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:DeleteVpcEndpoints"
+    ]
+    resources = [
+      "arn:aws:ec2:${var.region}:${data.aws_caller_identity.current.account_id}:vpc-endpoint/*"
     ]
   }
 }
@@ -329,6 +367,10 @@ output "database-name" {
 
 output "s3-bucket-id" {
   value = aws_s3_bucket.finspace-code-bucket.id
+}
+
+output "s3-data-bucket-id" {
+  value = aws_s3_bucket.finspace-data-bucket.id
 }
 
 output "s3-bucket-key" {

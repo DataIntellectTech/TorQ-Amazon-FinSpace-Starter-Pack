@@ -1,7 +1,7 @@
 \d .finspace
 
 database:getenv[`KDBDATABASETRADE];
-hdbclusters:enlist `$"hdb";
+hdbclusters:enlist `$"hdb1";        // TODO : Deprecate for phase 2
 
 \d .rdb
 hdbdir:hsym`$getenv[`KDBSCRATCH]    // the location of the hdb directory

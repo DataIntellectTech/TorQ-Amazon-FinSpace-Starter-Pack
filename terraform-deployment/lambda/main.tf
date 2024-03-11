@@ -16,6 +16,14 @@ variable "account_id" {
   description = "import the account_id of the current root user"
 }
 
+variable "s3-bucket-id" {
+  description = "name of code bucket"
+}
+
+variable "s3-data-bucket-id" {
+  description = "name of data bucket"
+}
+
 variable "rdbCntr_mod" {
   description = "maximum number of rdbs created by lambda"
 }
@@ -153,6 +161,28 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
   }
 }
 
+## s3 policies
+
+data "aws_iam_policy_document" "s3-permissions-lambda" {
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetObjectTagging"
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.s3-bucket-id}",
+      "arn:aws:s3:::${var.s3-bucket-id}/*",
+      "arn:aws:s3:::${var.s3-data-bucket-id}",
+      "arn:aws:s3:::${var.s3-data-bucket-id}/*"
+    ]
+  }
+}
 
 ## put it all together
 
@@ -166,6 +196,12 @@ resource "aws_iam_policy" "lambda_basic_policy" {
   name = "${var.lambda-name}-${var.region}-basic-permissions-role"
 
   policy = data.aws_iam_policy_document.lambda_basic_execution.json
+}
+
+resource "aws_iam_policy" "lambda_s3_policy" {
+  name = "${var.lambda-name}-${var.region}-s3-permissions-role"
+
+  policy = data.aws_iam_policy_document.s3-permissions-lambda.json
 }
 
 resource "aws_iam_policy" "lambda_finspace_policy" {
@@ -192,6 +228,11 @@ resource "aws_iam_role_policy_attachment" "attach2" {
 resource "aws_iam_role_policy_attachment" "attach3" {
   role = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.lambda_finspace_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "attach4" {
+  role = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_s3_policy.arn
 }
 
 #resource "aws_iam_role_policy_attachment" "role-policy-attachment" {

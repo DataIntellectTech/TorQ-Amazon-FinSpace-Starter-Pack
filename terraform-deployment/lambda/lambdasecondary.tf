@@ -29,6 +29,11 @@ resource "aws_iam_role_policy_attachment" "attach_finspace_policy_to_onConflict"
   policy_arn = aws_iam_policy.lambda_finspace_policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "attach_s3_policy_to_onConflict" {
+  role = aws_iam_role.lambda_onConflict_execution_role.name
+  policy_arn = aws_iam_policy.lambda_s3_policy.arn
+}
+
 resource "aws_lambda_function" "finSpace-rdb-onConflict-lambda" {
   filename = data.archive_file.lambda_my_function.output_path
   function_name = local.lambda-onConflict-name

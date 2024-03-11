@@ -9,6 +9,8 @@ system"c 23 2000"
 
 .finspace.enabled:1b;
 
+.finspace.rollovermode:`daily;		/[ `daily | `period ] set to `daily for once per day writedown (end of day). `period for intraday writedown and use of our rolling setup (new rdb/wdb/hdb start and the old rdb/wdb/hdb shutdown every set period)
+
 // hb subscriptions keeps the connections alive
 .hb.subenabled:1b;
 
