@@ -1,5 +1,5 @@
 //TODO this can be changed or removed to work with discovery once unblocked
-.feed.clusters:enlist `$"rdb"
+.feed.clusters:enlist `$"stp1"
 
 \d .servers
 

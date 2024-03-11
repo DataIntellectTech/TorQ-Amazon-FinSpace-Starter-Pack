@@ -1,8 +1,9 @@
 host,port,proctype,procname,U,localtime,g,T,w,load,startwithall,extras,qcmd
-localhost,{KDBBASEPORT}+1,discovery,discovery1,,1,0,,,${KDBCODE}/processes/discovery.q,1,,q
-localhost,{KDBBASEPORT}+2,rdb,rdb1,,1,1,180,,${KDBCODE}/processes/rdb.q,1,,q
-localhost,{KDBBASEPORT}+3,hdb,hdb1,,1,1,60,4000,${KDBHDB},1,,q
-localhost,{KDBBASEPORT}+7,gateway,gateway1,,1,1,,4000,${KDBCODE}/processes/gateway.q,1,,q
-localhost,{KDBBASEPORT}+8,wdb,wdb1,,1,1,,,${KDBCODE}/processes/wdb.q,1,,q
-localhost,{KDBBASEPORT}+9,monitor,monitor1,,1,0,,,${KDBCODE}/processes/monitor.q,1,,q
-localhost,{KDBBASEPORT}+10,tradeFeed,tradeFeed1,,1,0,,,${KDBAPPCODE}/processes/tradeFeed.q,1,,q
+localhost,{KDBBASEPORT},discovery,discovery1,,1,0,,,${KDBCODE}/processes/discovery.q,1,,q
+localhost,{KDBBASEPORT},rdb,rdb1,,1,1,180,,${KDBCODE}/processes/rdb.q,1,,q
+localhost,{KDBBASEPORT},hdb,hdb1,,1,1,60,4000,${KDBHDB},1,,q
+localhost,{KDBBASEPORT},gateway,gateway1,,1,1,,4000,${KDBCODE}/processes/gateway.q,1,,q
+localhost,{KDBBASEPORT},wdb,wdb1,,1,1,,,${KDBCODE}/processes/wdb.q,1,,q
+localhost,{KDBBASEPORT},monitor,monitor1,,1,0,,,${KDBCODE}/processes/monitor.q,1,,q
+localhost,{KDBBASEPORT},tradeFeed,tradeFeed1,,1,0,,,${KDBAPPCODE}/processes/tradeFeed.q,1,,q
+localhost,{KDBBASEPORT},segmentedtickerplant,stp1,,1,0,,,${KDBCODE}/processes/segmentedtickerplant.q,1,,q

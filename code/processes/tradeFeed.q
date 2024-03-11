@@ -14,24 +14,17 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 .trade.generateData:{[nq;nt;randomcounts]
  syms:`NOK`YHOO`CSCO`ORCL`AAPL`DELL`IBM`MSFT`GOOG;
  srcs:`N`O`L;
- curr:syms!`EUR`USD`USD`USD`USD`GBP`USD`USD`USD;
- starttime:08:00:00.0;
- hoursinday:08:30:00.0;
  initpxs:syms!20f+count[syms]?30f;
  if[(not -9f=type randomcounts) or not randomcounts within (0;1); '"randomcounts factor should be float within 0 and 1"];
  /- randomize the number of quotes and trades
  nq:`int$nq * 1 + rand[randomcounts]*signum -.5+rand 1f;
  nt:`int$nt * 1 + rand[randomcounts]*signum -.5+rand 1f;
- /- the number of depth ticks - up to
- nd:`int$nq*1.5+rand .5;
- qts:update px*initpxs sym from update px:exp px from update sums px by sym from update px:0.0005*-1+nq?2f from([]time:.z.p;sym:`g#nq?syms;src:`g#nq?srcs);
- qts:select sym,time,src,bid:.feed.rnd px-nq?0.03,ask:.feed.rnd px+nq?0.03,bsize:"i"$(500*1+nq?20),asize:"i"$(500*1+nq?20) from qts;
- trds:update bid:reverse fills reverse bid,ask:reverse fills reverse ask,bsize:reverse fills reverse bsize,asize:reverse fills reverse asize by sym from aj[`sym`time;([]time:.z.p;sym:nt?syms;src:nt?srcs;side:nt?`buy`sell);qts];
- trds:select sym,time,src,price:?[side=`buy;ask;bid],size:`int$(nt?1f)*?[side=`buy;asize;bsize] from trds;
- dpth:update bid:reverse fills reverse bid,ask:reverse fills reverse ask,bsize:reverse fills reverse bsize,asize:reverse fills reverse asize by sym from aj[`sym`time;([]time:.z.p;sym:nd?syms);qts];
- dpth:select sym,time,bid1:bid, bsize1:bsize, bid2:bid-.01, bsize2:"i"$(bsize+500*1+nd?5), bid3:bid-.02,bsize3:"i"$(bsize+500*1+nd?10),ask1:ask, asize1:asize,ask2:ask+.01,asize2:"i"$(asize+500*1+nd?5),ask3:ask+.02,asize3:"i"$(asize+500*1+nd?10) from dpth;
+ qts:update px*initpxs sym from update px:exp px from update sums px by sym from update px:0.0005*-1+nq?2f from([]sym:`g#nq?syms;src:`g#nq?srcs);
+ qts:select sym,src,bid:.feed.rnd px-nq?0.03,ask:.feed.rnd px+nq?0.03,bsize:"i"$(500*1+nq?20),asize:"i"$(500*1+nq?20) from qts;
+ trds:update bid:reverse fills reverse bid,ask:reverse fills reverse ask,bsize:reverse fills reverse bsize,asize:reverse fills reverse asize by sym from aj[enlist[`sym];([]sym:nt?syms;src:nt?srcs;side:nt?`buy`sell);qts];
+ trds:select sym,src,price:?[side=`buy;ask;bid],size:`int$(nt?1f)*?[side=`buy;asize;bsize] from trds;
 
- :(`trades`quotes`depth!(trds;qts;dpth));
+ :(`trades`quotes!(trds;qts));
 
  };
 
