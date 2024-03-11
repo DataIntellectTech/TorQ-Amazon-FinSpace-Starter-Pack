@@ -39,8 +39,9 @@ New user please continue and follow this section - Users with existing infrastru
 1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/inthdb/hdb` or `TorQ-Amazon-FinSpace-Starter-Pack/datehdb/hdb`
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; within there should be two sub-directories : `date-par` and `int-par`. 
   If you want your finspace with Managed Kdb Insights system to use date partitions use `date-par`
-  If you want your system to perform intra-day writedowns with int partitions use `int-par` 
+  If you want your system to perform multiple intra-day writedowns with int partitions use `int-par`
   `cd` into one of the two sub-directories. This will be your Terraform working directory from which you should run all `terraform` commands.
+  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through changesets)[changesets in AWS finspace](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html)
 3. (Optional) symlink your hdb and your zipped source code to your working directory
 4. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
 5. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` file, changing the database name to the new variable that you have set in line 19.
