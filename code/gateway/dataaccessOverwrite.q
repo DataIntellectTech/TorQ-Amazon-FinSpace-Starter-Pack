@@ -33,7 +33,7 @@ adjustqueries:{[options;part]
     // If the response is a dictionary index into the tablename
     procdict:@[procdict;key procdict;{[x;tabname]if[99h=type x;:x[tabname]];:x}[;tabname]];
     //create list of all possible partitions
-    possParts:raze value procdict;
+    possparts:raze value procdict;
     
     st:`long$$[a:-12h~tp:type start:options`starttime;start;`timestamp$start];
     //get partitions required by each proc
