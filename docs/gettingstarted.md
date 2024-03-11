@@ -168,4 +168,4 @@ It is worthwhile checking the logs even for clusters that have been created and 
 Make It Your Own
 ----------------
 
-To customize it for a specific data set update the schema file (code/rdb/schema.q) and replace the feed process with a feed of data from a live system.
+To customize it for a specific data set update the schema file (database.q) and replace the feed process with a feed of data from a live system.

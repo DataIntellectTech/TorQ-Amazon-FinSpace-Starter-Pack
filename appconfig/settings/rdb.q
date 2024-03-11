@@ -1,5 +1,3 @@
-system "l ",getenv[`TORQAPPHOME],"/code/rdb/schema.q"
-
 \d .finspace
 
 database:getenv[`KDBDATABASETRADE];
