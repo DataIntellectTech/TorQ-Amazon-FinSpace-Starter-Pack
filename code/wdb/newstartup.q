@@ -1,7 +1,9 @@
 \d .wdb
-/Ignorme set so function doesnt run immediately
+/Ignoreme set so function doesnt run immediately
 startup:{[f;ignoreme]
 	f[]; /-Call the original startup function
-	@[`.;`upd;:;{[t;x]}]; 
+	$[`daily~.finspace.rollovermode;
+		@[`.;`upd;:;.wdb.upd];
+		@[`.;`upd;:;{[t;x]}]
+                ];
 	}[startup]
-

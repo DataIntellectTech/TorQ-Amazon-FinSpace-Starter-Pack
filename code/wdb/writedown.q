@@ -1,5 +1,5 @@
 /-endofperiod function to savedown by integer
-endofperiod:{[currp;nextp;data]
+rolloverendofperiod:{[currp;nextp;data]
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
         /-Obtain handle of any other running wdb's
 	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
@@ -25,6 +25,8 @@ endofperiod:{[currp;nextp;data]
 		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
 	 ];
 	};
+
+endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
 
 .wdb.checkrdbready:{
 	if[@[get;`.finspace.rdbready;0b];

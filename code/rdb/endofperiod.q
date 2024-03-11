@@ -1,5 +1,5 @@
 /-endofperiod function
-endofperiod:{[currp;nextp;data] 
+rolloverendofperiod:{[currp;nextp;data] 
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
 	/-Obtain handle of any other running rdb's
 	h:exec w from .servers.SERVERS where proctype=`rdb,not w=0N;
