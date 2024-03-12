@@ -81,30 +81,3 @@ variable "gateway-count" {
 variable "discovery-count" {
   description = "no of discovery clusters to create"
 }
-
-variable "lambda-name" {
-  description = "import name of the function"
-  type = string
-}
-
-variable "sfn-machine-name" {
-  description = "import the name of your step function"
-  type = string
-}
-
-variable "rdbCntr_modulo" {
-  description = "maximum number of rdbs created by lambda"
-}
-
-variable "send-sns-alert" {
-  description = "flag to send sns emails or not"
-}
-
-variable "alert-smpt-target" {
-  description = "email address to send sns alerts to. only used if send-alert set to 'true'"
-}
-
-variable "wdb_log_groups" {
-  type = list
-  description = "list of existing log group names like 'wdb*'"
-}

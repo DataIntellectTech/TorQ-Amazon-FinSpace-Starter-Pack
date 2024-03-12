@@ -2,8 +2,8 @@ region            = "us-west-2"                              # region for kdb en
 kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms key (create kms key first)
 
 # file paths
-zip_file_path     = "../../../code.zip"        # path to zipped code
-hdb-path          = "../../../hdb"             # path to hdb to migrate
+zip_file_path     = "code.zip"        # path to zipped code
+hdb-path          = "inthdb/hdb"             # path to hdb to migrate
 
 # unique names for aws/finspace resources
 code-bucket-name  = "finspace-code-bucket"                 
@@ -21,6 +21,7 @@ send-sns-alert    = false                                      # true=create ema
 alert-smpt-target = "your.name@dataintellect.com"              # email address to send sns alerts to if send-alert flag is set to 'true'
 
 # metricfilter configs
+create-mfilters = false                                        # set to 'true' and rerun 'terraform apply' once wdb clusters have been created in your kxenvironment
 wdb_log_groups = ["wdb1","wdb2"]                               # configure log groups with prefix "wdb" here eg. ["wdb1","wdb2"]
 
 # database name

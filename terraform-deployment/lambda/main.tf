@@ -123,7 +123,13 @@ data "aws_iam_policy_document" "ec2-permissions-lambda" {
         "ec2:DescribeSubnets",
         "ec2:CreateTags",
         "ec2:DescribeVpcs",
-        "logs:CreateLogDelivery"
+        "logs:CreateLogDelivery",
+        "logs:DescribeLogGroups",
+        "logs:GetLogDelivery",
+        "logs:ListLogDeliveries",
+        "logs:DescribeResourcePolicies",
+        "logs:PutResourcePolicy",
+        "logs:UpdateLogDelivery"
     ]
 
     resources = ["*"]

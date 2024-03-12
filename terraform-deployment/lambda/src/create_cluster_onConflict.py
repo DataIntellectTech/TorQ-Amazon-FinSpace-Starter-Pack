@@ -67,7 +67,7 @@ def lambda_handler(event, context):
     clusterArgs = {
         'environmentId': envId,
         'clusterName': newClusterId,
-        'clusterType': event["clusterType"],
+        'clusterType': clusterInfo["clusterType"],
         'clusterDescription': f"cluster for process {newClusterId}",
         'capacityConfiguration': clusterInfo['capacityConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
