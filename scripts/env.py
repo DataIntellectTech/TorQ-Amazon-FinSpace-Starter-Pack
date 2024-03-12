@@ -47,6 +47,9 @@ cacheStorageConfiguration=[{
     'size':1200
 }]
 
+## tickerplant log volume configs - should be a list of volume names
+#tickerplantLogVolumes = ["test-tp-volume"]
+
 # network settings
 vpcId = "vpc-0a5b1db302525d776"
 subnetIds = ["subnet-00dbf269c0172ec77"] # can be a list

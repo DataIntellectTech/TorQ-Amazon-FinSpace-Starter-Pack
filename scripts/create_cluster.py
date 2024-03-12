@@ -116,6 +116,9 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
     if clusterType == 'RDB':
         clusterArgs['savedownStorageConfiguration'] = savedownStorageConfiguration
 
+    #if clusterType == 'TICKERPLANT':
+    #    clusterArgs['tickerplantLogConfiguration'] = {'tickerplantLogVolumes':tickerplantLogVolumes}
+
     lgi("creating kx cluster {} of type {} with params {}".format(clusterName, clusterType, clusterArgs))
 
     resp = client.create_kx_cluster(**clusterArgs)
@@ -144,7 +147,7 @@ if __name__ == "__main__":
     parser.add_argument("--clusterName", required=True, help="Name to give the cluster")
     parser.add_argument("--clusterType", 
                         required=("create" in sys.argv), # only required if the action was create
-                        choices=['HDB', 'GP', 'RDB', 'GATEWAY'],
+                        choices=['HDB', 'GP', 'RDB', 'GATEWAY','TICKERPLANT'],
                         help="Name to give the cluster"
                         )
     
