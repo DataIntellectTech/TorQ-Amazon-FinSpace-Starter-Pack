@@ -1,14 +1,18 @@
 /-endofperiod function to savedown by integer
+<<<<<<< HEAD
 endofperiod:{[currp;nextp;data]
+=======
+rolloverendofperiod:{[currp;nextp;data]
+>>>>>>> master
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
         /-Obtain handle of any other running wdb's
 	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
         /-Create a list of start times of wdb's found from above
 	times:@[;".proc.starttimeUTC";()]each h;
-        /-If we are the new process, exit function, do not want to writedown
-	if[.proc.starttimeUTC >max times;
+	/-If we are the new process, need to set upd to .wdb.upd and set the partition. Otherwise writedown data. WDB doesn't depend on new process being up.
+	if[not upd~.wdb.upd;
                 /-Setting variables so wdb can become the active wdb for this new period
-		@[`.;`upd;:;insert];
+		@[`.;`upd;:;.wdb.upd];
 		.wdb.currentpartition:`long$nextp;
 		:()];
         /-We must be old process so unsubscribe from the tp and begin writedown process
@@ -26,6 +30,7 @@ endofperiod:{[currp;nextp;data]
 	 ];
 	};
 
+<<<<<<< HEAD
 endofperiodtest:{
 	/-trigger hdb start with trigger log
 	$[@[get;`.finspace.rdbready;0b];
@@ -33,6 +38,9 @@ endofperiodtest:{
 		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
 	 ];
  };
+=======
+endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
+>>>>>>> master
 
 .wdb.checkrdbready:{
 	if[@[get;`.finspace.rdbready;0b];
@@ -40,5 +48,8 @@ endofperiodtest:{
 	   .timer.remove @/: exec id from .timer.timer where `.wdb.checkrdbready in' funcparam;
 	]
  };
+<<<<<<< HEAD
 
 endofperiodtest[];
+=======
+>>>>>>> master

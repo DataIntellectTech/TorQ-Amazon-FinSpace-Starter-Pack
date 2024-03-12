@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 // 1. you'll need to create a metric filter to monitor the appropriate cloudwatch log group
 //      it would be ideal if we could import the cloudwatch log group inform
 // 2. will probably need a for-each block and count to create one metric filter per wdb log group
@@ -7,6 +8,8 @@
 // 5. import the sfn arn and the eventbridge policy to allow new eventbridge to hit the sfn machine
 
 
+=======
+>>>>>>> master
 variable "environment-id" {
   description = "import the environment_id"
 }
@@ -25,7 +28,11 @@ variable "create-mfilters" {
 
 variable "wdb_log_groups" {
   type        = list
+<<<<<<< HEAD
   description = "list of log group with prefix 'wdb'"
+=======
+  description = "list of log groups with prefix 'wdb'"
+>>>>>>> master
 }
 
 data "aws_cloudwatch_log_groups" "aws_log_groups" {
@@ -99,6 +106,4 @@ resource "aws_cloudwatch_event_target" "wdb_log_monit_rule_target" {
     clusterType = "HDB"
   })
 }
-
-
 

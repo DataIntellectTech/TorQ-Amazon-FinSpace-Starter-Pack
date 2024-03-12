@@ -248,6 +248,22 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect = "Allow"
     actions = [
+      "s3:ListBucket",
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetObjectTagging"
+    ]
+    resources = [
+      "${aws_s3_bucket.finspace-code-bucket.arn}",
+      "${aws_s3_bucket.finspace-code-bucket.arn}/*",
+      "${aws_s3_bucket.finspace-data-bucket.arn}",
+      "${aws_s3_bucket.finspace-data-bucket.arn}/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
       "ec2:DescribeTags"
     ]
     resources = ["*"]
@@ -260,22 +276,6 @@ data "aws_iam_policy_document" "iam-policy" {
     ]
     resources = [
       "arn:aws:ec2:${var.region}:${data.aws_caller_identity.current.account_id}:vpc-endpoint/*"
-    ]
-  }
-
-  statement {
-    effect = "Allow"
-    actions = [
-      "s3:ListBucket",
-      "s3:GetObject",
-      "s3:GetObjectVersion",
-      "s3:GetObjectTagging"
-    ]
-    resources = [
-      "${aws_s3_bucket.finspace-code-bucket.arn}",
-      "${aws_s3_bucket.finspace-code-bucket.arn}/*",
-      "${aws_s3_bucket.finspace-data-bucket.arn}",
-      "${aws_s3_bucket.finspace-data-bucket.arn}/*"
     ]
   }
 }
