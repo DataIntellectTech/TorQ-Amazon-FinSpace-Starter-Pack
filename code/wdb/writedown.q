@@ -1,9 +1,6 @@
 /-endofperiod function to savedown by integer
-<<<<<<< HEAD
-endofperiod:{[currp;nextp;data]
-=======
+
 rolloverendofperiod:{[currp;nextp;data]
->>>>>>> master
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
         /-Obtain handle of any other running wdb's
 	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
@@ -30,17 +27,7 @@ rolloverendofperiod:{[currp;nextp;data]
 	 ];
 	};
 
-<<<<<<< HEAD
-endofperiodtest:{
-	/-trigger hdb start with trigger log
-	$[@[get;`.finspace.rdbready;0b];
-		.wdb.checkrdbready[];
-		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
-	 ];
- };
-=======
 endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
->>>>>>> master
 
 .wdb.checkrdbready:{
 	if[@[get;`.finspace.rdbready;0b];
@@ -48,8 +35,4 @@ endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
 	   .timer.remove @/: exec id from .timer.timer where `.wdb.checkrdbready in' funcparam;
 	]
  };
-<<<<<<< HEAD
 
-endofperiodtest[];
-=======
->>>>>>> master
