@@ -2,14 +2,18 @@
 
 \d .stplg
 
-// In Finspace there is no need for EOD, only EOP as there is nothing extra EOD can do that EOP doesn't in Finspace
 checkends:{
   // jump out early if don't have to do either
   if[nextendUTC > x; :()];
+  // when rollovermode=`period we always want to rolllogs as EOD doesn't run, only EOP
+  rolllogs:$[.finspace.rollovermode~`period;1b;not .eodtime.nextroll < x];
   // check for endofperiod
-  // TODO ZAN will need to change the below line so that eod doesn't stop it
   if[nextperiod < x1:x+.eodtime.dailyadj;
-    stpeoperiod[.stplg`currperiod;.stplg`nextperiod;.stplg.endofdaydata[],(enlist `p)!enlist x1;1b]];
+    stpeoperiod[.stplg`currperiod;.stplg`nextperiod;.stplg.endofdaydata[],(enlist `p)!enlist x1;rolllogs]];
+  // check for endofday
+  // In Finspace there is no need for EOD in rollovermode=`period, only EOP as there is nothing extra EOD can do that EOP doesn't
+  if[(.eodtime.nextroll < x) & not .finspace.rollovermode~`period;
+    if[.eodtime.d<("d"$x)-1;system"t 0";'"more than one day?"]; endofday[.eodtime.d;.stplg.endofdaydata[],(enlist `p)!enlist x]];
  };
 
 init:{[dbname]
@@ -26,8 +30,9 @@ init:{[dbname]
   dldir::`$kdbtplog;
   
   if[(value `..createlogs) or .sctp.loggingmode=`create;
-    // TODO ZAN using currperiod here, will that overwrite the log if the tp restarts?
-    openlog[multilog;dldir;;currperiod]each logtabs;
+    openlog[multilog;dldir;;.z.p+.eodtime.dailyadj]each logtabs;
+    // If appropriate, roll error log
+    if[.stplg.errmode;openlogerr[dldir]];
     // read in the meta table from disk 
     .stpm.metatable:@[get;hsym`$string[.stplg.dldir],"/stpmeta";0#.stpm.metatable];
     // set log sequence number to the max of what we've found

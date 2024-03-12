@@ -10,7 +10,10 @@ reloadenabled:0b                    // if true, the RDB will not save when .u.en
 
 timeout:system"T"
 
-hdbtypes:()                         //connection to HDB not needed
+replaylog:not .finspace.rollovermode~`period;   // if in rollovermode=`period turn off tp log replay
+                                                // as we don't want the current period, we want the next one
+
+hdbtypes:()                         // connection to HDB not needed
 
 // path to rdbsub{i}.csv
 subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"];
