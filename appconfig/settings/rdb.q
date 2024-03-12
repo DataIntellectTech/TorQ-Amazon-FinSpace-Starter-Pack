@@ -10,8 +10,7 @@ reloadenabled:0b                    // if true, the RDB will not save when .u.en
 
 timeout:system"T"
 
-replaylog:not .finspace.rollovermode~`period;   // if in rollovermode=`period turn off tp log replay
-                                                // as we don't want the current period, we want the next one
+replaylog:0b;
 
 hdbtypes:()                         // connection to HDB not needed
 
