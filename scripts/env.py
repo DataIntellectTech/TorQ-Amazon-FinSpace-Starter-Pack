@@ -3,8 +3,10 @@ environmentId = "33c4rqbmsx7bjclrrwb2gc"
 clusterDescription = ""
 
 # database settings
-databaseName = "finspace-database"
-changesetId = "jMb5FJhQ8afvzdQFP0uGSw"
+#databaseName = "finspace-database"
+#changesetId = "jMb5FJhQ8afvzdQFP0uGSw"
+databaseName = "finspace-database-intpar"
+changesetId = "PscZoUKsqvQXO2Lysyzmkg"
 
 # node settings
 nodeType = "kx.s.large"
