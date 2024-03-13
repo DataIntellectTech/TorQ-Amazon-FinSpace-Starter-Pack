@@ -14,8 +14,6 @@ system"c 23 2000"
 // hb subscriptions keeps the connections alive
 .hb.subenabled:1b;
 
-.finspace.schemafilepath:enlist getenv[`TORQAPPHOME],"/database.q";
-
 svrstoload:select from .servers.procstab where proctype = .proc.proctype;
 $[count toload:first (select from svrstoload where procname=.proc.procname)`load;
   .proc.params[`load]:enlist .rmvr.removeenvvar toload;
