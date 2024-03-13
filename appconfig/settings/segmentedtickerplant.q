@@ -5,7 +5,10 @@ multilogperiod:0D02;            // Length of period for STP periodic logging mod
 kdbtplog:.aws.tp_log_path;
 
 \d .proc
+loadcommoncode:1b;              // Needed to load timer
 params[`schemafile]:enlist getenv[`TORQAPPHOME],"/database.q";
 
-\d .hb
-enabled:1b;                     // enbable heartbeating to keep finspace connections alive
+// enable the below variables so heartbeating can keep finspace connections alive
+.servers.enabled:1b;
+.timer.enabled:1b;
+.hb.enabled:1b;

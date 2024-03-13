@@ -41,3 +41,11 @@ init:{[dbname]
     .stpm.updmeta[multilog][`open;logtabs;.z.p+.eodtime.dailyadj];
     ]
  };
+
+\d .
+
+upd:{[t;x]
+  if[t~`heartbeat;.hb.storeheartbeat[x];:()];
+  x:value flip x;
+  .u.upd[t;x]
+ };
