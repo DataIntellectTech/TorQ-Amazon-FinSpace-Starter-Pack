@@ -1,5 +1,3 @@
-system "l ",getenv[`TORQAPPHOME],"/code/rdb/schema.q"
-
 \d .finspace
 
 database:getenv[`KDBDATABASETRADE];
@@ -11,16 +9,14 @@ reloadenabled:0b                    // if true, the RDB will not save when .u.en
                                     // will clear it's data using reload function (called by the WDB)
 
 timeout:system"T"
-connectonstart:0b                   // rdb connects and subscribes to tickerplant on startup
-tickerplanttypes:`segmentedtickerplant
-replaylog:0b                        //disable intital log replay - we dont want data until the need period begins
 
+replaylog:.finspace.rollovermode<>`period;      // if in rollovermode=`period turn off tp log replay
+                                                // as we don't want the current period, we want the next one
 
-hdbtypes:()                         //connection to HDB not needed
+hdbtypes:()                         // connection to HDB not needed
 
-subfiltered:0b
 // path to rdbsub{i}.csv
 subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname),".csv"];
 
 \d .servers
-CONNECTIONS:`rdb`wdb               // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS
+CONNECTIONS:`rdb`wdb                // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS

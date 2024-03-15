@@ -1,4 +1,4 @@
 
 \d .servers
 
-CONNECTIONS:`gateway`rdb         // if connectonstart false, include tickerplant in tickerplanttypes, not in CONNECTIONS
+CONNECTIONS:enlist`segmentedtickerplant         // if connectonstart false, include tickerplant in tickerplanttypes, not in CONNECTIONS
