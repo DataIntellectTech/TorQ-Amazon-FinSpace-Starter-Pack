@@ -12,3 +12,4 @@ params[`schemafile]:enlist getenv[`TORQAPPHOME],"/database.q";
 .servers.enabled:1b;
 .timer.enabled:1b;
 .hb.enabled:1b;
+.servers.STARTUP:1b;

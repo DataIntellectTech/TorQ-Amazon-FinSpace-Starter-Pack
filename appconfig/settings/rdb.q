@@ -10,7 +10,7 @@ reloadenabled:0b                    // if true, the RDB will not save when .u.en
 
 timeout:system"T"
 
-replaylog:not .finspace.rollovermode~`period;   // if in rollovermode=`period turn off tp log replay
+replaylog:.finspace.rollovermode<>`period;      // if in rollovermode=`period turn off tp log replay
                                                 // as we don't want the current period, we want the next one
 
 hdbtypes:()                         // connection to HDB not needed
@@ -20,4 +20,3 @@ subcsv:hsym first `.proc.getconfigfile["rdbsub/rdbsub",(3_string .proc`procname)
 
 \d .servers
 CONNECTIONS:`rdb`wdb                // if connectonstart false,include tickerplant in tickerplanttypes, not in CONNECTIONS
-STARTUP:1b 

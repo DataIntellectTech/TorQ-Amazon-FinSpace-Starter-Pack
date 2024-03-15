@@ -10,7 +10,7 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 
 \d .
 // Generates dummy trade, quotes and depth data to be pushed to the tp
-.trade.generateData:{[nq;nt;randomcounts]
+.trade.generatedata:{[nq;nt;randomcounts]
  syms:`NOK`YHOO`CSCO`ORCL`AAPL`DELL`IBM`MSFT`GOOG;
  srcs:`N`O`L;
  initpxs:syms!20f+count[syms]?30f;
@@ -29,14 +29,14 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
 
 .trade.upd:{[w;t;d](neg first w)(`upd;t;d)};
 
-.trade.updateTP:{
-  tpHandles:exec w from .servers.SERVERS where proctype in `segmentedtickerplant, .dotz.liveh w;
-  if[not count tpHandles; .lg.e[`updateTP;"no valid handles amongst subscribers"]; :()];
-  tradedata:.trade.generateData[.feed.nq;.feed.nt;.feed.randomcounts];
+.trade.updatetp:{
+  tphandles:exec w from .servers.SERVERS where proctype in `segmentedtickerplant, .dotz.liveh w;
+  if[not count tphandles; .lg.e[`updatetp;"no valid handles amongst subscribers"]; :()];
+  tradedata:.trade.generatedata[.feed.nq;.feed.nt;.feed.randomcounts];
   tradedata[`trades]:delete from tradedata[`trades] where null price;
-  @[{[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata];;{0b}] each tpHandles
+  @[{[handle;data].trade.upd[handle;;]'[key data;value data]}[;tradedata];;{0b}] each tphandles
   };
 
 .servers.startup[];
 
-.timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updateTP;`);"Publish Trade Feed"];
+.timer.repeat[.proc.cp[];0Wp;.feed.timerperiod;(`.trade.updatetp;`);"Publish Trade Feed"];
