@@ -1,5 +1,5 @@
-//get the relevant rdb attributes (int partition)
-.proc.getattributes:{`int`tables!(.rdb.getpartition[],();tables[])}
+//get the relevant rdb attributes (generic partitions)
+.proc.getattributes:{`partition`tables!(.rdb.getpartition[],();tables[])}
 
 \d .
 
