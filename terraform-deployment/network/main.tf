@@ -34,8 +34,6 @@ resource "aws_subnet" "finspace-subnets" {
   }
 }
 
-//comment - the subnets may need to associated with the internet_gateway for ec2 connections to work
-
 resource "aws_internet_gateway" "finspace-igw" {
   vpc_id = aws_vpc.finspace-vpc.id
 }
@@ -73,6 +71,10 @@ resource "aws_security_group" "finspace-security-group" {
 
 output "vpc-id" {
   value = aws_vpc.finspace-vpc.id
+}
+
+output "az-ids" {
+  value = data.aws_availability_zones.finspace-azs.zone_ids
 }
 
 output "subnet-ids" {
