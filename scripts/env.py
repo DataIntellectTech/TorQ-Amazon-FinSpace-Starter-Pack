@@ -1,16 +1,20 @@
 # config
 environmentId = "33c4rqbmsx7bjclrrwb2gc"
 clusterDescription = ""
+scalingGroupName = "finTorq-scaling-group"
 
 # database settings
-#databaseName = "finspace-database"
-#changesetId = "jMb5FJhQ8afvzdQFP0uGSw"
-databaseName = "finspace-database-intpar"
-changesetId = "PscZoUKsqvQXO2Lysyzmkg"
+databaseName = "finspace-database"
+changesetId = "cMcNaQzs7to6Ca7eozXUow"
+#databaseName = "finspace-database-intpar"
+#changesetId = "PscZoUKsqvQXO2Lysyzmkg"
+dataviewName = "finTorq_dataview"
+volumeName   = "finTorq-shared"
 
 # node settings
 nodeType = "kx.s.large"
 nodeCount = 1
+memoryReservation = 6
 
 # availability mode - "SINGLE" or "MULTI"
 azMode = "SINGLE" 
@@ -18,11 +22,12 @@ availabilityZoneId = "use1-az6"
 
 # code settings
 s3Bucket = "finspace-code-bucket-virginia"
-s3Key =  "553b3cf936a63c16af3e391dde3583c310d1693e.zip"
+s3Key =  "3e0305668574b121d1432e6af1c1771aad614033.zip"
 #s3Key = "code_rel.zip"
 initScript = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"
 
 executionRole = "arn:aws:iam::766012286003:role/finspace-role-virginia"
+
 
 commandLineArguments = [
     {"key":"noredirect", "value":"true"},
