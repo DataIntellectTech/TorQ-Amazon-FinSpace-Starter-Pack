@@ -131,7 +131,7 @@ def create_scalinggroup_cluster_configs(client, clusterName, clusterType, vpcCon
 
     if clusterType in ['RDB', 'HDB']:
         clusterArgs['databases'] = databases 
-        
+
     if clusterType == 'RDB':
         clusterArgs['savedownStorageConfiguration'] = {'volumeName':volumeName}
 
@@ -214,7 +214,7 @@ if __name__ == "__main__":
     lgi("Successfully found KX environment - {}".format(resp['name']))
     
     if args.action == 'create':
-        resp = create_cluster(client, args.clusterName, args.clusterType, args.scalingGroup or False, proctype=args.proctype, procname=args.procname)
+        resp = create_cluster(client, args.clusterName, args.clusterType, args.scalingGroup or 'False', proctype=args.proctype, procname=args.procname)
     elif args.action == 'destroy':
         resp = delete_cluster(client, args.clusterName)
     elif args.action == 'check_status':
