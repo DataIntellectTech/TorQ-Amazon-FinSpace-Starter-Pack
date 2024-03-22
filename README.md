@@ -26,6 +26,8 @@ Then:
 Head to the address it gives you to check if your changes have worked. More information about using mkdocs can be found [here](http://www.mkdocs.org/)
   
 ## Release Notes
+- **1.0.3, Mar 2024**:
+  * sleep command no longer calls the os, instead mimics
 - **1.0.2, Feb 2024**:
   * Updated documentation to be more detailed and readable
   * Updated exec role permissions to be in sync with AWS security changes
