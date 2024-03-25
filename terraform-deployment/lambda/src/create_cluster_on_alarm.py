@@ -62,7 +62,7 @@ def lambda_handler(event, context):
         'clusterName': newClusterId,
         'clusterType': event["clusterType"],
         'clusterDescription': f"cluster for process {newClusterId}",
-        'capacityConfiguration': clusterInfo['capacityConfiguration'],
+        'scalingGroupConfiguration': clusterInfo['scalingGroupConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
         'vpcConfiguration': clusterInfo['vpcConfiguration'],
         'initializationScript' : clusterInfo['initializationScript'],
@@ -72,14 +72,21 @@ def lambda_handler(event, context):
         'azMode' : clusterInfo['azMode'],
         'availabilityZoneId' :clusterInfo['availabilityZoneId']
     }
+
+    # TODO : This is unclean code. Clean up these if-else statements into a function
     if 'savedownStorageConfiguration' in clusterInfo:
         clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
-        if not databaseInfo.get('cacheConfigurations', None):
+        if 'dataviewConfiguration' in databaseInfo:
+            databaseInfo = {
+                'databaseName': databaseInfo['databaseName'],
+                'dataviewName': databaseInfo['dataviewConfiguration']['dataviewName']
+            }
+        elif not databaseInfo.get('cacheConfigurations', None):
             databaseInfo = { 
                 'databaseName':databaseInfo['databaseName'],
-                'changesetId':databaseInfo['changesetId']
+                'changesetId':databaseInfo['changesetId']               
             }
         clusterArgs['databases'] = [databaseInfo]
     
