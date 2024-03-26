@@ -79,10 +79,10 @@ def create_dedicated_cluster_configs(client, clusterName, clusterType, vpcConfig
         'clusterDescription': clusterDescription or f"finspace cluster for {clusterName}",
         'capacityConfiguration': capacityConfiguration,
         'releaseLabel': releaseLabel,
-        'vpcConfiguration': vpcConfiguration,
+        'vpcConfiguration': vpcConfig,
         'initializationScript' : initScript,
         'commandLineArguments' : cmdLine,
-        'code': code,
+        'code': codeConfig,
         'executionRole': executionRole,
         'azMode' : azMode,
         'availabilityZoneId' :availabilityZoneId
