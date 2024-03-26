@@ -1,14 +1,18 @@
 # config
 environmentId = "rtci3jl7pii6tyhp5d2shk"
 clusterDescription = "fintorq testing"
+scalingGroupName = "finTorq-scaling-group"
 
 # database settings
 databaseName = "finTorq_hdb"
 changesetId = "RMSiPOI0nu8U7aO1EjkOEA"
+dataviewName = "finTorq_dataview"
+volumeName   = "finTorq-shared"
 
 # node settings
 nodeType = "kx.s.large"
 nodeCount = 1
+memoryReservation = 6
 
 # availability mode - "SINGLE" or "MULTI"
 azMode = "SINGLE" 
