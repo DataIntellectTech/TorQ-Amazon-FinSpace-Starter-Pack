@@ -2,6 +2,12 @@ provider "aws" {
   region = var.region
 }
 
+module "network" {
+  source = "../network"
+
+  region               = var.region
+}
+
 module "environment" {
   source = "../environment"
 
@@ -16,6 +22,7 @@ module "environment" {
   policy-name          = var.policy-name
   role-name            = var.role-name
   kx-user              = var.kx-user
+  az-ids               = module.network.az-ids
 }
 
 module "clusters" {
@@ -41,8 +48,3 @@ module "clusters" {
   security-group-id    = module.network.security-group-id
 }
 
-module "network" {
-  source = "../network"
-
-  region               = var.region
-}

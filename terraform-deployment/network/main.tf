@@ -44,6 +44,12 @@ resource "aws_route" "finspace-route" {
   gateway_id             = aws_internet_gateway.finspace-igw.id
 }
 
+resource "aws_route_table_association" "subnet-assocations" {
+  count = length(data.aws_availability_zones.finspace-azs.names)
+  subnet_id = aws_subnet.finspace-subnets[count.index].id
+  route_table_id = aws_route_table.finspace-route-table.id
+}
+
 resource "aws_security_group" "finspace-security-group" {
   name   = "finspace-security-group"
   vpc_id = aws_vpc.finspace-vpc.id
@@ -65,6 +71,10 @@ resource "aws_security_group" "finspace-security-group" {
 
 output "vpc-id" {
   value = aws_vpc.finspace-vpc.id
+}
+
+output "az-ids" {
+  value = data.aws_availability_zones.finspace-azs.zone_ids
 }
 
 output "subnet-ids" {

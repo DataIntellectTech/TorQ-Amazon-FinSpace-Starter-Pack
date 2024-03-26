@@ -1,24 +1,18 @@
-region            = "us-west-2"                              # region for kdb environment
-kms-key-id        = "f0423ed6-d25f-4b1f-9398-d21a5f41d4ec"      # key id for kms key (create kms key first)
+region            = "eu-west-2"                              # region for kdb environment
+kms-key-id        = "ab073e5e-2e4a-43fc-9662-e70982f6bf0b"      # key id for kms key (create kms key first)
 
 # file paths
 zip_file_path     = "../../../code.zip"                       # path to zipped code, containing finTorq-App and TorQ with updated database name in env.q
 hdb-path          = "../../hdb"                               # path to hdb to migrate 
 
-# network details
-# availability_zone = "use1-az6"
-# vpc-id            = "vpc-0a5b1db302525d776"
-# subnets           = ["subnet-b70c92dc"]
-# security-groups   = ["sg-c370258f","sg-0ae04fc92abb499ca"]
-
 
 # unique names for aws/finspace resources
-code-bucket-name  = "finspace-code-bucket"               
-data-bucket-name  = "finspace-data-bucket"                 
-environment-name  = "env-test"                                
-policy-name       = "finspace-policy"
-role-name         = "finspace-role"
-kx-user           = "finspace-user"
+code-bucket-name  = "finspace-code-bucket-london"               
+data-bucket-name  = "finspace-data-bucket-london"                 
+environment-name  = "env-test-london-003"                                
+policy-name       = "finspace-policy-london"
+role-name         = "finspace-role-london"
+kx-user           = "finspace-user-london"
 
 # database name
 database-name     = "finspace-database"                          # database name should match name specified in env.q 

@@ -334,6 +334,44 @@ resource "null_resource" "create_changeset" {
   }
 }
 
+variable "az-ids" {
+  description = "availability zone ids"
+}
+
+resource "aws_finspace_kx_scaling_group" "finspace-scaling-group" {
+  name                 = "finTorq-scaling-group"
+  environment_id       = aws_finspace_kx_environment.environment.id
+  availability_zone_id = var.az-ids[0]
+  host_type            = "kx.sg.4xlarge"
+}
+
+resource "aws_finspace_kx_volume" "finspace-shared-vol" {
+  name                = "finTorq-shared"
+  environment_id      = aws_finspace_kx_environment.environment.id
+  availability_zones  = [var.az-ids[0]]
+  az_mode             = "SINGLE"
+  type                = "NAS_1"
+  nas1_configuration {
+    size = 1200
+    type = "SSD_250"
+  }
+}
+
+resource "aws_finspace_kx_dataview" "finspace_dataview" {
+  name                 = "finTorq_dataview"
+  environment_id       = aws_finspace_kx_environment.environment.id
+  database_name        = aws_finspace_kx_database.database.name
+  availability_zone_id = var.az-ids[0]
+  description          = "Terraform managed Kx Dataview"
+  az_mode              = "SINGLE"
+  auto_update          = true
+
+  segment_configurations {
+    volume_name = aws_finspace_kx_volume.finspace-shared-vol.name
+    db_paths    = ["/*"]
+  }
+}
+
 output "environment-id" {
   value = aws_finspace_kx_environment.environment.id
 }
