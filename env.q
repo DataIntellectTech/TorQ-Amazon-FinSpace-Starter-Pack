@@ -1,9 +1,14 @@
 opts:.Q.opt .z.x;
-codeDir:$[`codeDir in key opts; first opts`codeDir; "/opt/kx/app/code"];
-hdbDir:$[`hdbDir in key opts; first opts`hdbDir; "/opt/kx/app/db/finspace-database"];
+
+setenv[`KDBDATABASETRADE; .aws.akdb];
+
+codeDir:$[`codeDir in key opts; first opts`codeDir; .aws.akcp ];
+hdbDir:$[`hdbDir in key opts; first opts`hdbDir; .aws.akdbp, "/", getenv `KDBDATABASETRADE];
 
 torqDir:codeDir,"/TorQ";
 appDir:codeDir,"/TorQ-Amazon-FinSpace-Starter-Pack";
+
+sharedVolume:string first key `:/opt/kx/app/shared;
 
 setenv[`TORQHOME; torqDir];
 setenv[`TORQAPPHOME; appDir];
@@ -14,8 +19,14 @@ setenv[`KDBLOG; torqDir,"/logs"];
 setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
 setenv[`KDBHDB; hdbDir];
+
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
-setenv[`KDBDATABASETRADE; "finspace-database"];
+// check if we are using a scaling group and not a dedicated cluster
+// scratch dir doesn't exist when using scaling groups
+if[()~key hsym`$getenv[`KDBSCRATCH];
+    // dirs are /common and /clustername of each cluster in the volume
+    setenv[`KDBSCRATCH; "/opt/kx/app/shared/",sharedVolume,"/",first .aws.args[`procname]]];
+
 setenv[`KDBFINSPACE; "true"];
 
 setenv[`KDBAPPCONFIG; appDir,"/appconfig"];
