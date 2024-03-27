@@ -5,7 +5,7 @@ scalingGroupName = "finTorq-scaling-group"
 
 # database settings
 databaseName = "finspace-database"
-changesetId = "cMcNaQzs7to6Ca7eozXUow"
+changesetId = "csdAXFPJSjVmMsG7XJYMGw"
 #databaseName = "finspace-database-intpar"
 #changesetId = "PscZoUKsqvQXO2Lysyzmkg"
 dataviewName = "finTorq_dataview"
@@ -40,7 +40,7 @@ savedownStorageConfiguration={
     }
 
 # flag for HDB to use cache or not
-useCache=False
+useCache=True
 
 cacheConfiguration=[{
     'cacheType':'CACHE_1000',
