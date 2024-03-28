@@ -1,10 +1,6 @@
 /-endofperiod function to savedown by integer
 rolloverendofperiod:{[currp;nextp;data]
 	.lg.o[`endofperiod;"Received endofperiod. currentperiod, nextperiod and data are ",(string currp),", ", (string nextp),", ", .Q.s1 data];
-        /-Obtain handle of any other running wdb's
-	h:exec w from .servers.SERVERS where proctype=`wdb,not w=0N;
-        /-Create a list of start times of wdb's found from above
-	times:@[;".proc.starttimeUTC";()]each h;
 	/-If we are the new process, need to set upd to .wdb.upd and set the partition. Otherwise writedown data. WDB doesn't depend on new process being up.
 	if[not upd~.wdb.upd;
                 /-Setting variables so wdb can become the active wdb for this new period
@@ -19,11 +15,11 @@ rolloverendofperiod:{[currp;nextp;data]
 	.wdb.savetables[.wdb.savedir;.wdb.currentpartition;1b;] each .wdb.tablelist[];
 	/-Create changeset containing data
 	.finspace.createchangeset[.finspace.database];
-	/-trigger hdb start with trigger log
+	/-trigger hdb start with trigger log and delete cluster
 	$[@[get;`.finspace.rdbready;0b];
 		.wdb.checkrdbready[];
 		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
-	 ];
+		];
 	};
 
 endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
@@ -32,5 +28,6 @@ endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
 	if[@[get;`.finspace.rdbready;0b];
 	   .lg.o[`.wdb.checkrdbready;"new rdb ready. create new hdb"];
 	   .timer.remove @/: exec id from .timer.timer where `.wdb.checkrdbready in' funcparam;
+	   .finspace.deletecluster[""];
 	]
  };
