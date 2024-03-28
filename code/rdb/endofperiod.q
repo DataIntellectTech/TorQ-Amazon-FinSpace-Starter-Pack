@@ -6,15 +6,15 @@ rolloverendofperiod:{[currp;nextp;data]
 	/-Create a list of start times of rdb's,m including current process so that list is not empty
 	times:.proc.starttimeUTC , @[;".proc.starttimeUTC";()]each h;
 	/-If we are the new process, exit function, do not want to close handle
+	gateh:exec w from .servers.getservers[`proctype;.rdb.gatewaytypes;()!();0b;0b];
+	/-If we are the new process, exit function, do not want to close handle
 	if[.proc.starttimeUTC = max times;
 		/-Setting variables so rdb can become the active rdb for this new period
 		.rdb.rdbpartition:`long$nextp;
 		/-send message to gateways to update the rdb attributes
-		gateh:exec w from .servers.getservers[`proctype;.rdb.gatewaytypes;()!();0b;0b];
                 .async.send[0b;;(`setattributes;.proc.procname;.proc.proctype;.proc.getattributes[])] each neg[gateh];
 		@[`.;`upd;:;.rdb.upd];
                 :()];
-	/-We must be old process so unsubscribe from the tp and set upd to null
-	hclose each distinct exec w from .sub.SUBSCRIPTIONS;
-	/-RDB remains idle to serve client queries
+	/-RDB remains idle to serve client queries,line below ensures there is no awaiting queries
+	.async.send[0b;;(`.finspace.unregisterfromgw;.proc.procname)] each neg[gateh];
         };
