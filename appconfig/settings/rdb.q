@@ -15,7 +15,8 @@ timeout:system"T"
 connectonstart:0b                   // rdb connects and subscribes to tickerplant on startup
 tickerplanttypes:`segmentedtickerplant
 gatewatypes:`none
-replaylog:1b
+replaylog:.finspace.rollovermode<>`period;      // if in rollovermode=`period turn off tp log replay
+                                                // as we don't want the current period, we want the next one
 
 hdbtypes:()                         //connection to HDB not needed
 
