@@ -5,7 +5,7 @@ scalingGroupName = "finTorq-scaling-group"
 
 # database settings
 databaseName = "finspace-database"
-changesetId = "SMcXAM7sOhkLvkP7iiXyAQ"
+changesetId = "WsdNOffFI2wW46RzXPFpBw"
 #databaseName = "finspace-database-intpar"
 #changesetId = "PscZoUKsqvQXO2Lysyzmkg"
 dataviewName = "finTorq_dataview"
