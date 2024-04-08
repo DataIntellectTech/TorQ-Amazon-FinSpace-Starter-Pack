@@ -8,3 +8,4 @@ hdbdir:hsym`$getenv[`KDBSCRATCH];
 
 \d .finspace
 database:getenv[`KDBDATABASETRADE];
+dataview:getenv[`KDBDATAVIEW];
