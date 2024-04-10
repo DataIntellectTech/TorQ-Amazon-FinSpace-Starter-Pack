@@ -2,10 +2,12 @@
 \d .wdb
 replay:.finspace.rollovermode<>`period;         // if in rollovermode=`period turn off tp log replay
                                                 // as we don't want the current period, we want the next one
-
+ignorelist:`heartbeat`logmsg`svrstoload         // list of tables to ignore when saving to disk
 savedir:hsym`$getenv[`KDBSCRATCH];              // the location of the hdb directory
 hdbdir:hsym`$getenv[`KDBSCRATCH];
 
 \d .finspace
 database:getenv[`KDBDATABASETRADE];
+hdbclusters:enlist `$"hdb1";                    // TODO : Deprecate for phase 2
 dataview:getenv[`KDBDATAVIEW];
+
