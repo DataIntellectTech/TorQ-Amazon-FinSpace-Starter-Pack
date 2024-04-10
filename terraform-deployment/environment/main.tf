@@ -371,6 +371,12 @@ resource "aws_finspace_kx_dataview" "finspace_dataview" {
     volume_name = aws_finspace_kx_volume.finspace-shared-vol.name
     db_paths    = ["/*"]
   }
+
+  lifecycle {
+    ignore_changes = [
+      changeset_id
+    ]
+  }
 }
 
 output "environment-id" {
