@@ -199,7 +199,7 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-    client = boto3.client('finspace')
+    client = boto3.client('finspace', region_name=region)
     lgi("testing aws connection")
     resp = client.get_kx_environment(environmentId=environmentId)
     if resp['ResponseMetadata']['HTTPStatusCode'] != 200:

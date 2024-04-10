@@ -225,7 +225,8 @@ data "aws_iam_policy_document" "iam-policy" {
   statement {
     effect  = "Allow"
     actions = [
-      "finspace:ConnectKxCluster"
+      "finspace:ConnectKxCluster",
+      "finspace:GetKxCluster"
     ]
     resources = [
       "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
