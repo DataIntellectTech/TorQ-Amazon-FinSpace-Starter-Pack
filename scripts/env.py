@@ -34,6 +34,19 @@ savedownStorageConfiguration={
         'size': 50
     }
 
+# flag for HDB to use cache or not
+useCache=True
+
+cacheConfiguration=[{
+    'cacheType':'CACHE_1000',
+    'dbPaths':['/']
+   }]
+
+cacheStorageConfiguration=[{
+    'type':'CACHE_1000',
+    'size':1200
+}]
+
 # network settings
 vpcId = "vpc-079ebe5fbb9198243"
 subnetIds = ["subnet-0a547926c2f5f6c8d"] # can be a list
