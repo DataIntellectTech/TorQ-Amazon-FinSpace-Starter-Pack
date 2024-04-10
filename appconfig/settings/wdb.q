@@ -10,4 +10,3 @@ hdbdir:hsym`$getenv[`KDBSCRATCH];
 database:getenv[`KDBDATABASETRADE];
 hdbclusters:enlist `$"hdb1";                    // TODO : Deprecate for phase 2
 dataview:getenv[`KDBDATAVIEW];
-
