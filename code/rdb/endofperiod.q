@@ -5,7 +5,7 @@ rolloverendofperiod:{[currp;nextp;data]
 	h:exec w from .servers.SERVERS where proctype=`rdb,not w=0N;
 	/-Create a list of start times of rdb's,m including current process so that list is not empty
 	times:.proc.starttimeUTC , @[;".proc.starttimeUTC";()]each h;
-	/-Extract handles of RDB processes
+	/-Extract gateway handles of RDB processes
 	gateh:exec w from .servers.getservers[`proctype;.rdb.gatewaytypes;()!();0b;0b];
 	/-If we are the new process, Set appropriate variables for the active RDB. Exit entire function to not unsubscribe.
 	if[.proc.starttimeUTC = max times;
