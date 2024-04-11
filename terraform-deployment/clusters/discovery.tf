@@ -46,9 +46,14 @@ resource "aws_finspace_kx_cluster" "discovery-cluster" {
     ip_address_type    = "IP_V4"
   }
 
+  #savedown_storage_configuration {
+  #  type = "SDS01"
+  #  size = 100
+  #}
+
   savedown_storage_configuration {
-    type = "SDS01"
-    size = 100
+    volume_name = var.volume-name
   }
+
 }
 

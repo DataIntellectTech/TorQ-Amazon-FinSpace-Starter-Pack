@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "rdb-cluster" {
-  name                  = "rdb"
+  name                  = "rdb1"
   environment_id        = var.environment-id
   type                  = "RDB"
   release_label         = "1.0"
@@ -20,6 +20,7 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
     "procname"   = "rdb${count.index+1}"
     "proctype"   = "rdb"
     "noredirect" = "true"
+    "jsonlogs"   = "true"
   }
   
   capacity_configuration {
@@ -39,8 +40,17 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
     ip_address_type    = "IP_V4"
   }
 
+  #savedown_storage_configuration {
+  #  type = "SDS01"
+  #  size = 100
+  #}
+
+  database {
+    database_name = var.database-name
+    dataview_name = var.dataview-name  # (Optional) uncomment if using cache storage
+  }
+
   savedown_storage_configuration {
-    type = "SDS01"
-    size = 100
+    volume_name = var.volume-name
   }
 }
