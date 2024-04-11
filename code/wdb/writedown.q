@@ -19,7 +19,7 @@ rolloverendofperiod:{[currp;nextp;data]
 	$[@[get;`.finspace.rdbready;0b];
 		.wdb.checkrdbready[];
 		.timer.repeat[.proc.cp[];0Wp;0D00:02;(`.wdb.checkrdbready;`);"set timer to check if newrdb is up"]
-         ];
+	 ];
 	};
 
 endofperiod:$[`daily~.finspace.rollovermode;endofperiod;rolloverendofperiod];
