@@ -54,7 +54,4 @@
   #  size = 100
   #}
 
-  savedown_storage_configuration {
-    volume_name = var.volume-name
-  }
 }
