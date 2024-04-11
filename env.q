@@ -19,6 +19,7 @@ setenv[`KDBLOG; torqDir,"/logs"];
 setenv[`KDBHTML; torqDir,"/html"]
 setenv[`KDBLIB; torqDir,"/lib"];
 setenv[`KDBHDB; hdbDir];
+setenv[`KDBDATAVIEW;"finspace-dataview"];     /-TODO. Make the dataview name not be hard-coded.
 
 setenv[`KDBSCRATCH; "/opt/kx/app/scratch"];
 // check if we are using a scaling group and not a dedicated cluster
