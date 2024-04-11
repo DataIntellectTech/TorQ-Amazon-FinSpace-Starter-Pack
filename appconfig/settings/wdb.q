@@ -5,8 +5,3 @@ replay:.finspace.rollovermode<>`period;         // if in rollovermode=`period tu
 ignorelist:`heartbeat`logmsg`svrstoload         // list of tables to ignore when saving to disk
 savedir:hsym`$getenv[`KDBSCRATCH];              // the location of the hdb directory
 hdbdir:hsym`$getenv[`KDBSCRATCH];
-
-\d .finspace
-database:getenv[`KDBDATABASETRADE];
-hdbclusters:enlist `$"hdb1";                    // TODO : Deprecate for phase 2
-dataview:getenv[`KDBDATAVIEW];
