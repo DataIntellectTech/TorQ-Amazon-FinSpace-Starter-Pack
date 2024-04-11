@@ -1,5 +1,5 @@
 resource "aws_finspace_kx_cluster" "feed-cluster" {
-  name                  = "feed"
+  name                  = "tradeFeed1"
   environment_id        = var.environment-id
   type                  = "GP"
   release_label         = "1.0"
