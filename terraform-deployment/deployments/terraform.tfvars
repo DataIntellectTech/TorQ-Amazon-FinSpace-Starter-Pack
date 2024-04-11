@@ -9,20 +9,23 @@ hdb-path          = "../../hdb"                               # path to hdb to m
 # unique names for aws/finspace resources
 code-bucket-name  = "finspace-code-bucket-london"               
 data-bucket-name  = "finspace-data-bucket-london"                 
-environment-name  = "env-test-london-003"                                
+environment-name  = "env-test-london-005"                                
 policy-name       = "finspace-policy-london"
 role-name         = "finspace-role-london"
 kx-user           = "finspace-user-london"
+scaling-group-name = "finTorq-scaling-group"
+volume-name       = "finTorq-shared"
+dataview-name     = "finspace-dataview"
 
 # database name
 database-name     = "finspace-database"                          # database name should match name specified in env.q 
 init-script       = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"    # path to init script inside zipped folder
 
 # cluster count
-create-clusters   = 0                                        # 1=create no. of clusters specified below, 0=no clusters
+create-clusters   = 1                                        # 1=create no. of clusters specified below, 0=no clusters
 
 rdb-count         = 0
 hdb-count         = 0
 gateway-count     = 0
 feed-count        = 0
-discovery-count   = 0
+discovery-count   = 1

@@ -1,10 +1,10 @@
 resource "aws_finspace_kx_cluster" "discovery-cluster" {
-  name                  = "discovery"
+  name                  = "discovery1"
   environment_id        = var.environment-id
-  type                  = "RDB"
+  type                  = "GP"
   release_label         = "1.0"
   az_mode               = "SINGLE"
-  availability_zone_id  = data.aws_subnet.subnet-0.availability_zone_id
+  availability_zone_id  = var.sg-assigned-az-id  #data.aws_subnet.subnet-0.availability_zone_id
   initialization_script = var.init-script
   execution_role        = var.execution-role
 
@@ -20,12 +20,18 @@ resource "aws_finspace_kx_cluster" "discovery-cluster" {
     "procname"   = "discovery1"
     "proctype"   = "discovery"
     "noredirect" = "true"
+    "jsonlogs"   = "true"
   }
 
+#  capacity_configuration {
+#    node_type  = "kx.s.large"
+#    node_count = 1
+#  }
 
-  capacity_configuration {
-    node_type  = "kx.s.large"
-    node_count = 1
+  scaling_group_configuration {
+    scaling_group_name = var.scaling-group-name
+    memory_reservation = 6
+    node_count         = 1
   }
 
   code {

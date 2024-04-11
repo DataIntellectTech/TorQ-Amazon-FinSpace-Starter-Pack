@@ -76,6 +76,25 @@ data "aws_subnet" "subnet-0" {
   id = var.subnet-ids[0]
 }
 
+variable "sg-assigned-az-id" {
+  description = "availability_zone_id scaling group uses"
+}
+
+variable "scaling-group-name" {
+  description = "name of kdb scaling group"
+  type        = string
+}
+
+variable "volume-name" {
+  description = "name of shared volume"
+  type        = string
+}
+
+variable "dataview-name" {
+  description = "name of finspace dataview"
+  type        = string
+}
+
 output "subnet-0-az-id" {
   value = data.aws_subnet.subnet-0.availability_zone_id
 }

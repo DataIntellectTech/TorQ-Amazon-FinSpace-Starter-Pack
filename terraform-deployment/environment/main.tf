@@ -339,15 +339,30 @@ variable "az-ids" {
   description = "availability zone ids"
 }
 
+variable "scaling-group-name" {
+  description = "name of kdb scaling group"
+  type        = string
+}
+
+variable "volume-name" {
+  description = "name of shared volume"
+  type        = string
+}
+
+variable "dataview-name" {
+  description = "name of finspace dataview"
+  type        = string
+}
+
 resource "aws_finspace_kx_scaling_group" "finspace-scaling-group" {
-  name                 = "finTorq-scaling-group"
+  name                 = var.scaling-group-name
   environment_id       = aws_finspace_kx_environment.environment.id
   availability_zone_id = var.az-ids[0]
   host_type            = "kx.sg.4xlarge"
 }
 
 resource "aws_finspace_kx_volume" "finspace-shared-vol" {
-  name                = "finTorq-shared"
+  name                = var.volume-name
   environment_id      = aws_finspace_kx_environment.environment.id
   availability_zones  = [var.az-ids[0]]
   az_mode             = "SINGLE"
@@ -359,7 +374,7 @@ resource "aws_finspace_kx_volume" "finspace-shared-vol" {
 }
 
 resource "aws_finspace_kx_dataview" "finspace_dataview" {
-  name                 = "finTorq_dataview"
+  name                 = var.dataview-name
   environment_id       = aws_finspace_kx_environment.environment.id
   database_name        = aws_finspace_kx_database.database.name
   availability_zone_id = var.az-ids[0]

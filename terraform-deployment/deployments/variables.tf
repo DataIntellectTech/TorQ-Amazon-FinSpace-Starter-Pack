@@ -38,6 +38,21 @@ variable "database-name" {
   type        = string
 }
 
+variable "scaling-group-name" {
+  description = "name of kdb scaling group"
+  type        = string
+}
+
+variable "volume-name" {
+  description = "name of shared volume"
+  type        = string
+}
+
+variable "dataview-name" {
+  description = "name of finspace dataview"
+  type        = string
+}
+
 variable "policy-name" {
   description = "name of policy attached to IAM role"
   type        = string
