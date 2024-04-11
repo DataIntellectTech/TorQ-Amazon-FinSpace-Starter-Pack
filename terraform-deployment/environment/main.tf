@@ -425,3 +425,7 @@ output "create-changeset" {
 output "execution-role" {
   value = aws_iam_role.finspace-test-role.arn
 }
+
+output "kdb-scaling-group" {
+  value = aws_finspace_kx_scaling_group.finspace-scaling-group
+}

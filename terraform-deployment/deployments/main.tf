@@ -49,8 +49,7 @@ module "clusters" {
   vpc-id               = module.network.vpc-id
   subnet-ids           = module.network.subnet-ids
   security-group-id    = module.network.security-group-id
-  sg-assigned-az-id    = module.network.az-ids[0]
-  scaling-group-name   = var.scaling-group-name
+  scaling-group        = module.environment.kdb-scaling-group
   volume-name          = var.volume-name
   dataview-name        = var.dataview-name 
 }

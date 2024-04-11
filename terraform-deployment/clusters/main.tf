@@ -76,13 +76,8 @@ data "aws_subnet" "subnet-0" {
   id = var.subnet-ids[0]
 }
 
-variable "sg-assigned-az-id" {
-  description = "availability_zone_id scaling group uses"
-}
-
-variable "scaling-group-name" {
-  description = "name of kdb scaling group"
-  type        = string
+variable "scaling-group" {
+  description = "imported kdb scaling group clusters should run on"
 }
 
 variable "volume-name" {

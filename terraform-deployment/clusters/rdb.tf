@@ -4,7 +4,7 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
   type                  = "RDB"
   release_label         = "1.0"
   az_mode               = "SINGLE"
-  availability_zone_id  = data.aws_subnet.subnet-0.availability_zone_id
+  availability_zone_id  = var.scaling-group.availability_zone_id  #data.aws_subnet.subnet-0.availability_zone_id
   initialization_script = var.init-script
   execution_role        = var.execution-role
 
@@ -13,7 +13,8 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
   depends_on = [
     var.s3-code-object, 
     aws_finspace_kx_cluster.discovery-cluster,
-    var.environment-resource
+    var.environment-resource,
+    var.scaling-group
   ]
 
   command_line_arguments = {
@@ -23,9 +24,15 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
     "jsonlogs"   = "true"
   }
   
-  capacity_configuration {
-    node_type  = "kx.s.large"
-    node_count = 1
+  #capacity_configuration {
+  #  node_type  = "kx.s.large"
+  #  node_count = 1
+  #}
+
+  scaling_group_configuration {
+    scaling_group_name = var.scaling-group.name
+    memory_reservation = 6
+    node_count         = 1
   }
 
   code {
@@ -52,5 +59,9 @@ resource "aws_finspace_kx_cluster" "rdb-cluster" {
 
   savedown_storage_configuration {
     volume_name = var.volume-name
+  }
+
+  lifecycle {
+    ignore_changes = [database]
   }
 }
