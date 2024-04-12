@@ -6,7 +6,7 @@ scalingGroupName = "finTorq-scaling-group"
 # database settings
 databaseName = "finTorq_hdb"
 changesetId = "RMSiPOI0nu8U7aO1EjkOEA"
-dataviewName = "finTorq_dataview"
+dataviewName = "finspace-dataview"
 volumeName   = "finTorq-shared"
 
 # node settings
@@ -35,7 +35,7 @@ savedownStorageConfiguration={
     }
 
 # flag for HDB to use cache or not
-useCache=True
+useCache=False
 
 cacheConfiguration=[{
     'cacheType':'CACHE_1000',
