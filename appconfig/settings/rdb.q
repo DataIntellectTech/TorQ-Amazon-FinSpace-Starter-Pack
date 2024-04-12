@@ -1,10 +1,5 @@
 system "l ",getenv[`TORQAPPHOME],"/code/rdb/schema.q"
 
-\d .finspace
-
-database:getenv[`KDBDATABASETRADE];
-hdbclusters:enlist `$"hdb1";        // TODO : Deprecate for phase 2
-
 \d .rdb
 hdbdir:hsym`$getenv[`KDBSCRATCH]    // the location of the hdb directory
 reloadenabled:0b                    // if true, the RDB will not save when .u.end is called but
