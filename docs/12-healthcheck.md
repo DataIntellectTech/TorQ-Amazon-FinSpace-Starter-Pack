@@ -26,11 +26,3 @@ If a handle is shown within this table - column `w` - you can assume the connect
 All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Heartbeats are received and a summary can be seen stored within the `.hb.hb` table.
 
 The discovery process can be used to view the heartbeat of all processes (with the exception of the Feed).
-
-### Cloudwatch Alarms
-
-In cloudwatch, it may be beneficial to set up an alarm to alert you if a a particular log has been recorded.
-
-The steps to do this can be found here: [AWS Cloudwatch Alarms.](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_alarm_log_group_metric_filter.html)
-
-You can set an alarm for any possible log output, one that may be helpful in particular is to monitor the logs for an unsuccessful writedown/creation of a changeset. At which point this may need to be investigated further.
