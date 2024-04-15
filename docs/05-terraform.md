@@ -41,11 +41,11 @@ New user please continue and follow this section - Users with existing infrastru
   If you want your finspace with Managed Kdb Insights system to use date partitions use `date-par`
   If you want your system to perform multiple intra-day writedowns with int partitions use `int-par`
   `cd` into one of the two sub-directories. This will be your Terraform working directory from which you should run all `terraform` commands.
-  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through changesets)[changesets in AWS finspace](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html)
+  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through [changesets](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html))
 3. (Optional) symlink your hdb and your zipped source code to your working directory
 4. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
 5. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` file, changing the database name to the new variable that you have set in line 19.
-6. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key [Prerequisites](#Prerequisites).
+6. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key [Prerequisites](#prerequisites).
 7. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments/date-par|int-par`, run `terraform init`.
 8. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
 9. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: `nohup terraform apply -auto-approve > terraform_apply.log 2>&1 &`. 
