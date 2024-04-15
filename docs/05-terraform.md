@@ -34,7 +34,7 @@ This Terraform setup is designed to deploy and manage a Managed kdb Insights env
 
 ## How to Use - Initial Deployment
 
-New user please continue and follow this section - Users with existing infrastructure, please skip to our [existing infrastructure section](#deploying-with-terraform-for-users-with-existing-infrastructure).
+New user please continue and follow this section - Users with existing infrastructure, please skip to our [existing infrastructure section](#how-to-use---deploying-with-terraform-for-users-with-existing-infrastructure).
 
 1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/inthdb/hdb` or `TorQ-Amazon-FinSpace-Starter-Pack/datehdb/hdb`
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; within there should be two sub-directories : `date-par` and `int-par`. 
