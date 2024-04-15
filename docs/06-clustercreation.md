@@ -23,30 +23,45 @@ Then select the “Clusters” tab, and either of the “Create Cluster” butto
 
 3. Select the execution role for the [IAM user previously created](https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup). The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.
 
-    ![Discovery Cluster Details](workshop/graphics/discovery_cluster_details.png)
+<details>
+<summary>Click to Show Image</summary>
 
-4. Select "Run as a dedicated cluster" for Cluster running option.
-    - For the MVP this is the most appropriate option. For customising later, see [this page](https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html) for more details on kdb scaling groups.
+![Discovery Cluster Details](workshop/graphics/discovery_cluster_details.png)
+</details>
 
-5. Select an Availablilty Zone, make sure it includes your [previous created subnet](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html).
+4. Select "Run on kdb scaling group" for the Cluster running option
 
-    ![Discovery Availability Zones](workshop/graphics/discovery_availability_zones.png)
+<details>
+<summary>Click to Show Image</summary>
 
-6. Select your node size. For this MVP we are going to select the smallest.
+![Discovery Cluster Running](workshop/graphics/discovery_cluster_running.png)
+</details>
 
-7. Leave Tags as empty and select next to go to the next page.
+5. Create a kdb scaling group (Link: [Creating a Managed kdb scaling group](https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html)), for this MVP we recommend the smallest node type available
+6. Once the scaling group is active, choose that group in the dropdown in the "Kdb scaling group details" section
+7. In the Node details section, set the memory reservation per node to the minimum allowed (6 MiB) and leave the rest blank
 
-    ![Discovery Node Details](workshop/graphics/discovery_node_details.png)
+<details>
+<summary>Click to Show Image</summary>
 
-8. Select "Browse S3", search and select your codebucket and select your code.zip file.
+![Discovery Memory Reservation](workshop/graphics/discovery_memory_reservation.png)
+</details>
+
+8.  Leave Tags as empty and select next to go to the next page.
+
+9. Select "Browse S3", search and select your codebucket and select your code.zip file.
     - alternatively, you can copy the URL from the codebucket itself.
 
-    ![Select your code bucket](workshop/graphics/S3_bucket1.png)
-    ![Select your code file](workshop/graphics/S3_bucket2.png)
+<details>
+<summary>Click to Show Image</summary>
 
-9. Enter ``TorQ-Amazon-FinSpace-Starter-Pack/env.q`` as your initialization script.
+![Select your code bucket](workshop/graphics/S3_bucket1.png)
+![Select your code file](workshop/graphics/S3_bucket2.png)
+</details>
 
-10. Select "Add command-line arguments" twice and enter the keys and values in the below table:
+10. Enter ``TorQ-Amazon-FinSpace-Starter-Pack/env.q`` as your initialization script.
+
+11. Select "Add command-line arguments" twice and enter the keys and values in the below table:
 
     | Key | Value |
     | ----------- | ----------- |
@@ -55,19 +70,31 @@ Then select the “Clusters” tab, and either of the “Create Cluster” butto
 
 This specified initialization script and the command line arguments will set up the necessary environment for your cluster.
 
-11. Select next to go to the next page.
+<details>
+<summary>Click to Show Image</summary>
 
 ![Discovery Add Code](workshop/graphics/discovery_add_code.png)
+</details>
 
-12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
+12.  Select next to go to the next page.
+
+13.  Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
+
+<details>
+<summary>Click to Show Image</summary>
 
 ![Discovery VPC Settings](workshop/graphics/discovery_vpc.png)
+</details>
 
-13. Leave everything as blank and move on to the next page.
+14. Leave everything as blank and move on to the next page.
+
+<details>
+<summary>Click to Show Image</summary>
 
 ![Discovery Config Options](workshop/graphics/discovery_config_options.png)
+</details>
 
-14. Check the entered information in the review page, then select "create cluster".
+15. Check the entered information in the review page, then select "create cluster".
 
 ## Real-Time Database (RDB) Cluster
 
