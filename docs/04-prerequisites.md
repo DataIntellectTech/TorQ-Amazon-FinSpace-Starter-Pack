@@ -32,7 +32,7 @@ Now we will zip these files together:
 
 ## Create and Upload code to S3 (For Non Terraform Deployment Only)
 
-**Two** S3 buckets are required for this setup - one for the code and one for the data.
+**Two S3 buckets are required for this setup** - one for the code and one for the data.
 
 Create your S3 bucket by searching for "S3" and clicking "Create Bucket".
 
