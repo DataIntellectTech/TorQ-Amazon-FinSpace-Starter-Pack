@@ -25,16 +25,16 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
     "jsonlogs"   = "true"
   }
   
-#  capacity_configuration {
-#    node_type  = "kx.s.large"
-#    node_count = 1
-#  }
-
-  scaling_group_configuration {
-    scaling_group_name = var.scaling-group.name
-    memory_reservation = 6
-    node_count         = 1
+  capacity_configuration {
+    node_type  = "kx.s.large"
+    node_count = 1
   }
+
+//  scaling_group_configuration {
+//    scaling_group_name = var.scaling-group.name
+//    memory_reservation = 6
+//    node_count         = 1
+//  }
 
   code {
     s3_bucket = var.s3-bucket-id
@@ -55,7 +55,7 @@ resource "aws_finspace_kx_cluster" "hdb-cluster" {
 
   database {
     database_name = var.database-name
-    dataview_name = var.dataview-name  # (Optional) uncomment if using cache storage
+//    dataview_name = var.dataview-name  # (Optional) uncomment if using cache storage
 //   cache_configurations {
 //   cache_type = "CACHE_1000"
 //     db_paths   = ["/2015.01.15/","/2015.01.16/","/2015.01.17/","/2015.01.18/","/2015.01.19/","/2015.01.20/"]
