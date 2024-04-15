@@ -112,6 +112,11 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 - Avoid manual changes to resources managed by Terraform, as this can lead to inconsistencies between the actual infrastructure and Terraform's state.
 
 ## List of AWS Structures that will be created with our Terraform deployment
+* module.clusters.aws_finspace_kx_cluster.discovery-cluster[0]
+* module.clusters.aws_finspace_kx_cluster.feed-cluster[0]
+* module.clusters.aws_finspace_kx_cluster.gateway-cluster[0]
+* module.clusters.aws_finspace_kx_cluster.hdb-cluster[0]
+* module.clusters.aws_finspace_kx_cluster.rdb-cluster[0]
 * module.environment.data.aws_iam_policy_document.iam-policy
 * module.environment.data.aws_iam_policy_document.s3-code-policy
 * module.environment.data.aws_iam_policy_document.s3-data-policy
