@@ -29,8 +29,8 @@ The discovery process can be used to view the heartbeat of all processes (with t
 
 ### Cloudwatch Alarms
 
-In cloudwatch, it may be beneficial to set up an alarm to alert you if a a particular log has been recorded.
+In cloudwatch, it may be beneficial to set up an alarm to alert you if a particular log has been recorded.
 
 The steps to do this can be found here: [AWS Cloudwatch Alarms.](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_alarm_log_group_metric_filter.html)
 
-You can set an alarm for any possible log output, one that may be helpful in particular is to monitor the logs for an unsuccessful writedown/creation of a changeset. At which point this may need to be investigated further.
+You can set an alarm for any possible log output, one that may be helpful in particular is to monitor the logs for an unsuccessful writedown/creation of a changeset. At which point this may need to be investigated further.i
