@@ -135,6 +135,9 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 * module.network.aws_route.finspace-route
 * module.network.aws_route_table.finspace-route-table
 * module.network.aws_security_group.finspace-security-group
+* module.network.aws_route_table_association.subnet-assocations[0]
+* module.network.aws_route_table_association.subnet-assocations[1]
+* module.network.aws_route_table_association.subnet-assocations[2]
 * module.network.aws_subnet.finspace-subnets[0]
 * module.network.aws_subnet.finspace-subnets[1]
 * module.network.aws_subnet.finspace-subnets[2]
