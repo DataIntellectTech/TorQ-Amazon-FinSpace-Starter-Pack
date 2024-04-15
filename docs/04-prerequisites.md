@@ -98,7 +98,7 @@ Edit the Access policy of both S3 buckets with the JSON document:
 
 Upload the zip file created earlier to AWS S3 codebucket:
 
-    aws s3 cp code.zip s3://<you S3 codebucket name>
+    aws s3 cp code.zip s3://<your S3 codebucket name>
 
 ### Upload hdb to S3 data bucket 
 
