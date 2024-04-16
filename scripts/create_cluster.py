@@ -59,10 +59,7 @@ def check_status(client, clusterName, action, waitForCompletion=False):
         else:
             return True
 
-
-
-def create_cluster(client, clusterName, clusterType, **kwargs):
-
+def create_dedicated_cluster_configs(client, clusterName, clusterType, vpcConfig, codeConfig, cmdLine):
     databases = [
         {
             "databaseName": databaseName,
@@ -73,6 +70,74 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         "nodeType": nodeType,
         "nodeCount": nodeCount
     }
+
+    clusterArgs = {
+        'environmentId': environmentId,
+        'clusterName': clusterName,
+        'clusterType': clusterType,
+        'clusterDescription': clusterDescription or f"finspace cluster for {clusterName}",
+        'capacityConfiguration': capacityConfiguration,
+        'releaseLabel': releaseLabel,
+        'vpcConfiguration': vpcConfig,
+        'initializationScript' : initScript,
+        'commandLineArguments' : cmdLine,
+        'code': codeConfig,
+        'executionRole': executionRole,
+        'azMode' : azMode,
+        'availabilityZoneId' :availabilityZoneId
+    }
+
+    if (clusterType == 'HDB') and useCache:
+        databases[0]['cacheConfigurations'] = cacheConfiguration
+        clusterArgs['cacheStorageConfigurations'] = cacheStorageConfiguration
+
+    if clusterType in ['RDB', 'HDB']:
+        clusterArgs['databases'] = databases 
+
+    if clusterType == 'RDB':
+        clusterArgs['savedownStorageConfiguration'] = savedownStorageConfiguration
+
+    return clusterArgs
+
+def create_scalinggroup_cluster_configs(client, clusterName, clusterType, vpcConfig, codeConfig, cmdLine):
+    databases = [
+        {
+            "databaseName": databaseName,
+            "dataviewName": dataviewName
+        }
+    ]
+    scalingGroupConfiguration = {
+        'memoryReservation': memoryReservation,
+        'nodeCount': nodeCount,
+        'scalingGroupName': scalingGroupName
+    }
+
+    clusterArgs = {
+        'environmentId': environmentId,
+        'clusterName': clusterName,
+        'clusterType': clusterType,
+        'clusterDescription': clusterDescription or f"finspace cluster for {clusterName}",
+        'scalingGroupConfiguration': scalingGroupConfiguration,
+        'releaseLabel': releaseLabel,
+        'vpcConfiguration': vpcConfig,
+        'initializationScript' : initScript,
+        'commandLineArguments' : cmdLine,
+        'code': codeConfig,
+        'executionRole': executionRole,
+        'azMode' : azMode,
+        'availabilityZoneId' :availabilityZoneId
+    }
+
+    if clusterType in ['RDB', 'HDB']:
+        clusterArgs['databases'] = databases 
+
+    if clusterType == 'RDB':
+        clusterArgs['savedownStorageConfiguration'] = {'volumeName':volumeName}
+
+    return clusterArgs
+
+def create_cluster(client, clusterName, clusterType, useSG, **kwargs):
+
     vpcConfiguration = {
         "vpcId": vpcId,
         "securityGroupIds": securityGroupIds,
@@ -90,27 +155,11 @@ def create_cluster(client, clusterName, clusterType, **kwargs):
         if v is not None:
             cmdLine.append({'key':k, 'value':v})
 
-    clusterArgs = {
-        'environmentId': environmentId,
-        'clusterName': clusterName,
-        'clusterType': clusterType,
-        'clusterDescription': clusterDescription or f"finspace cluster for {clusterName}",
-        'capacityConfiguration': capacityConfiguration,
-        'releaseLabel': releaseLabel,
-        'vpcConfiguration': vpcConfiguration,
-        'initializationScript' : initScript,
-        'commandLineArguments' : cmdLine,
-        'code': code,
-        'executionRole': executionRole,
-        'azMode' : azMode,
-        'availabilityZoneId' :availabilityZoneId
-    }
-
-    if clusterType in ['RDB', 'HDB']:
-        clusterArgs['databases'] = databases 
-
-    if clusterType == 'RDB':
-        clusterArgs['savedownStorageConfiguration'] = savedownStorageConfiguration
+    clusterArgs = {}
+    if useSG == 'False':
+        clusterArgs = create_dedicated_cluster_configs(client, clusterName, clusterType, vpcConfiguration, code, cmdLine)
+    else:
+        clusterArgs = create_scalinggroup_cluster_configs(client, clusterName, clusterType, vpcConfiguration, code, cmdLine)
 
     lgi("creating kx cluster {} of type {} with params {}".format(clusterName, clusterType, clusterArgs))
 
@@ -146,6 +195,7 @@ if __name__ == "__main__":
     
     parser.add_argument("--proctype", help="type of the torq proc")
     parser.add_argument("--procname", help="name of the torq proc")
+    parser.add_argument("--scalingGroup", choices=['True','False'], help="flag if using scaling group")
     
     args = parser.parse_args()
 
@@ -159,7 +209,7 @@ if __name__ == "__main__":
     lgi("Successfully found KX environment - {}".format(resp['name']))
     
     if args.action == 'create':
-        resp = create_cluster(client, args.clusterName, args.clusterType, proctype=args.proctype, procname=args.procname)
+        resp = create_cluster(client, args.clusterName, args.clusterType, args.scalingGroup or 'False', proctype=args.proctype, procname=args.procname)
     elif args.action == 'destroy':
         resp = delete_cluster(client, args.clusterName)
     elif args.action == 'check_status':

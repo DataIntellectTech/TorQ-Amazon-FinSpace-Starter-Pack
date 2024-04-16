@@ -1,14 +1,18 @@
 # config
 environmentId = "rtci3jl7pii6tyhp5d2shk"
 clusterDescription = "fintorq testing"
+scalingGroupName = "finTorq-scaling-group"
 
 # database settings
 databaseName = "finTorq_hdb"
 changesetId = "RMSiPOI0nu8U7aO1EjkOEA"
+dataviewName = "finspace-dataview"
+volumeName   = "finTorq-shared"
 
 # node settings
 nodeType = "kx.s.large"
 nodeCount = 1
+memoryReservation = 6
 
 # availability mode - "SINGLE" or "MULTI"
 azMode = "SINGLE" 
@@ -29,6 +33,19 @@ savedownStorageConfiguration={
         'type': 'SDS01',
         'size': 50
     }
+
+# flag for HDB to use cache or not
+useCache=False
+
+cacheConfiguration=[{
+    'cacheType':'CACHE_1000',
+    'dbPaths':['/']
+   }]
+
+cacheStorageConfiguration=[{
+    'type':'CACHE_1000',
+    'size':1200
+}]
 
 # network settings
 vpcId = "vpc-079ebe5fbb9198243"
