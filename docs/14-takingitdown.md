@@ -41,9 +41,11 @@ On the confirmation dialog box, enter confirm then select “Delete”.
 
 1. Select your kdb environment and navigate to the "Kdb scaling groups" tab. Then select the scaling group you like to delete and click "Delete"
 
+![Delete Scaling Group](workshop/graphics/delete_scaling_groups.png)
+
 2. On the confirmation dialog box, type "confirm" and then click the "Delete" button.
 
-
+![Delete Scaling Group confirm](workshop/graphics/confirm_delete_scaling_groups.png)
 
 ## Deleting your database 
 
