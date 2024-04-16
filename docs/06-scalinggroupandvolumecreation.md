@@ -47,6 +47,7 @@ If you plan to run your HDB cluster on a scaling group this step is required. Ot
 
 To create a scaling group through the AWS Console, select your kdb environment and navigate to the "databases" tab:
 
+![Select kdb env](workshop/graphics/kdbenv.png)
 ![Database tab](workshop/graphics/database_tab.png)
 
 Select the database that has the changesets appropriate for your use case.
