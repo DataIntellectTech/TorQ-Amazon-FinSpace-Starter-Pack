@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "network" {
-  source = "../network"
+  source = "../../network"
 
   region               = var.region
 }
@@ -52,12 +52,6 @@ module "clusters" {
   scaling-group        = module.environment.kdb-scaling-group
   volume-name          = var.volume-name
   dataview-name        = var.dataview-name 
-}
-
-module "network" {
-  source = "../../network"
-
-  region               = var.region
 }
 
 module "lambda" {
