@@ -51,7 +51,7 @@ To create a scaling group through the AWS Console, select your kdb environment a
 ![Database tab](workshop/graphics/database_tab.png)
 
 Select the database that has the changesets appropriate for your use case.
-To learn more about changesets click <placeholder>
+To learn more about changesets click [this link](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html)
 
 1. Navigate to the "Dataview tab" and click the "Create dataview" button
 
