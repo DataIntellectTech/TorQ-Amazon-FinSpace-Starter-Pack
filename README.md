@@ -26,6 +26,10 @@ Then:
 Head to the address it gives you to check if your changes have worked. More information about using mkdocs can be found [here](http://www.mkdocs.org/)
   
 ## Release Notes
+- **1.1.0, Apr 2024**
+  * env.q now uses native .aws variables to dynamically set global variables
+  * terraform updates to support scaling group and shared volume compatibility
+  * create_clusters.py supports creation of dedicated clusters and clusters on scaling groups
 - **1.0.3, Mar 2024**:
   * sleep command no longer calls the os, instead mimics
 - **1.0.2, Feb 2024**:
