@@ -386,9 +386,15 @@ resource "aws_finspace_kx_dataview" "finspace_dataview" {
   az_mode              = "SINGLE"
   auto_update          = true
 
-  segment_configurations {
-    volume_name = aws_finspace_kx_volume.finspace-shared-vol.name
-    db_paths    = ["/*"]
+//  segment_configurations {
+//    volume_name = aws_finspace_kx_volume.finspace-shared-vol.name
+//    db_paths    = ["/*"]
+//  }
+
+  lifecycle {
+    ignore_changes = [
+      changeset_id
+    ]
   }
 }
 
