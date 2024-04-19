@@ -7,8 +7,10 @@
     if[res[`status]<>"RUNNING"; :()];
 
     // refresh connections + clear RDB data
-    if[count d:exec i from `.servers.SERVERS where proctype=`discovery, .dotz.liveh w;
-       .servers.reqdiscoveryretryallfinspaceconn[first d]];
+    if[count d:exec i from `.servers.SERVERS where proctype=`discovery;
+       .servers.retryrows d;
+       h:exec w from .servers.SERVERS[d] where .dotz.liveh;
+       .servers.reqdiscoveryretryallfinspaceconn[first h]];
   ];
  };
 
