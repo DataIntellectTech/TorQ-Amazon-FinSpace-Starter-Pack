@@ -27,7 +27,7 @@ The policy you created needs to have at least these permissions (Note the ARN sh
         ]
     }
 
-To enable endofday savedowns and your clusters access to your S3 code and data buckets, you will also need the following statements to your policy.
+To enable endofday savedowns and your clusters access to your S3 code and data buckets, you will also need the following statements to your policy
 
 ```
 {
@@ -61,7 +61,7 @@ To enable endofday savedowns and your clusters access to your S3 code and data b
  }
 ```
 
-To find out how to get the ARN of your S3 buckets reference our [prerequisites section](https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md).
+To find out how to get the ARN of your S3 buckets reference https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md
 
 ### Role
 

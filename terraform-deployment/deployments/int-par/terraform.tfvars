@@ -12,6 +12,9 @@ environment-name  = "env-test"
 policy-name       = "finspace-policy"
 role-name         = "finspace-role"
 kx-user           = "finspace-user"
+scaling-group-name = "finTorq-scaling-group"
+volume-name       = "finTorq-shared"
+dataview-name     = "finspace-dataview"
 
 # lambda configs
 lambda-name       = "finspace-lambda-scaling"

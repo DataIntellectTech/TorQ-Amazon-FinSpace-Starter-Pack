@@ -2,6 +2,12 @@ provider "aws" {
   region = var.region
 }
 
+module "network" {
+  source = "../../network"
+
+  region               = var.region
+}
+
 module "environment" {
   source = "../../environment"
 
@@ -13,9 +19,13 @@ module "environment" {
   kms-key-id           = var.kms-key-id
   environment-name     = var.environment-name
   database-name        = var.database-name
+  scaling-group-name   = var.scaling-group-name
+  volume-name          = var.volume-name
+  dataview-name        = var.dataview-name
   policy-name          = var.policy-name
   role-name            = var.role-name
   kx-user              = var.kx-user
+  az-ids               = module.network.az-ids
 }
 
 module "clusters" {
@@ -39,10 +49,8 @@ module "clusters" {
   vpc-id               = module.network.vpc-id
   subnet-ids           = module.network.subnet-ids
   security-group-id    = module.network.security-group-id
+  scaling-group        = module.environment.kdb-scaling-group
+  volume-name          = var.volume-name
+  dataview-name        = var.dataview-name 
 }
 
-module "network" {
-  source = "../../network"
-
-  region               = var.region
-}

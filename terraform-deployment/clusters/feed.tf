@@ -1,10 +1,10 @@
 resource "aws_finspace_kx_cluster" "feed-cluster" {
-  name                  = "feed"
+  name                  = "tradeFeed1"
   environment_id        = var.environment-id
-  type                  = "RDB"
+  type                  = "GP"
   release_label         = "1.0"
   az_mode               = "SINGLE"
-  availability_zone_id  = data.aws_subnet.subnet-0.availability_zone_id
+  availability_zone_id  = var.scaling-group.availability_zone_id  #data.aws_subnet.subnet-0.availability_zone_id
   initialization_script = var.init-script
   execution_role        = var.execution-role
 
@@ -14,18 +14,26 @@ resource "aws_finspace_kx_cluster" "feed-cluster" {
     var.s3-code-object,  
     aws_finspace_kx_cluster.discovery-cluster,
     var.environment-resource,
-    var.environment-id
+    var.environment-id,
+    var.scaling-group
   ]
 
   command_line_arguments = {
     "procname"   = "tradeFeed${count.index+1}"
     "proctype"   = "tradeFeed"
     "noredirect" = "true"
+    "jsonlogs"   = "true"
   }
   
-  capacity_configuration {
-    node_type  = "kx.s.large"
-    node_count = 1
+#  capacity_configuration {
+#    node_type  = "kx.s.large"
+#    node_count = 1
+#  }
+
+  scaling_group_configuration {
+    scaling_group_name = var.scaling-group.name
+    memory_reservation = 6
+    node_count         = 1
   }
 
   code {
@@ -40,8 +48,12 @@ resource "aws_finspace_kx_cluster" "feed-cluster" {
     ip_address_type    = "IP_V4"
   }
 
+  #savedown_storage_configuration {
+  #  type = "SDS01"
+  #  size = 100
+  #}
+
   savedown_storage_configuration {
-    type = "SDS01"
-    size = 100
-  }  
+    volume_name = var.volume-name
+  } 
 }

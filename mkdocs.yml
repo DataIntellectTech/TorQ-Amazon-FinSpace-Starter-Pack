@@ -6,15 +6,16 @@ nav:
     - TorQ With Managed kdb Insights : 03-torqwithmanagedkdbinsights.md
     - Prerequisites : 04-prerequisites.md
     - Terraform : 05-terraform.md
-    - Cluster Creation : 06-clustercreation.md
-    - Create EC2 : 07-createec2.md
-    - Cluster Connection String : 08-clusterconnectionstring.md
-    - Setup QPad : 09-setupqpad.md
-    - Connecting Using QPad : 10-connectingusingqpad.md
-    - Running Queries : 11-runningqueries.md
-    - Health Check : 12-healthcheck.md
-    - Taking it Down : 13-takingitdown.md
-    - Conclusion : 14-conclusion.md
+    - Scaling Group Creation : 06-scalinggroupandvolumecreation.md
+    - Cluster Creation : 07-clustercreation.md
+    - Create EC2 : 08-createec2.md
+    - Cluster Connection String : 09-clusterconnectionstring.md
+    - Setup QPad : 10-setupqpad.md
+    - Connecting Using QPad : 11-connectingusingqpad.md
+    - Running Queries : 12-runningqueries.md
+    - Health Check : 13-healthcheck.md
+    - Taking it Down : 14-takingitdown.md
+    - Conclusion : 15-conclusion.md
 
 repo_name: 'GitHub'
 repo_url: 'https://github.com/DataIntellectTech/TorQ-Amazon-FinSpace-Starter-Pack'
