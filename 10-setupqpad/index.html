@@ -13,7 +13,7 @@
     
     
       
-        <title>Running Queries - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Setup QPad - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-queries" class="md-skip">
+        <a href="#setup-qpad" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running Queries
+              Setup QPad
             
           </span>
         </div>
@@ -328,7 +328,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-clustercreation/" class="md-nav__link">
+      <a href="../06-scalinggroupandvolumecreation/" class="md-nav__link">
+        Scaling Group Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-clustercreation/" class="md-nav__link">
         Cluster Creation
       </a>
     </li>
@@ -343,7 +358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../07-createec2/" class="md-nav__link">
+      <a href="../08-createec2/" class="md-nav__link">
         Create EC2
       </a>
     </li>
@@ -358,38 +373,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../08-clusterconnectionstring/" class="md-nav__link">
+      <a href="../09-clusterconnectionstring/" class="md-nav__link">
         Cluster Connection String
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-setupqpad/" class="md-nav__link">
-        Setup QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-connectingusingqpad/" class="md-nav__link">
-        Connecting Using QPad
       </a>
     </li>
   
@@ -412,9 +397,40 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Setup QPad
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Running Queries
+        Setup QPad
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-qpad" class="md-nav__link">
+    Download QPad
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -428,7 +444,37 @@
   
   
     <li class="md-nav__item">
-      <a href="../12-healthcheck/" class="md-nav__link">
+      <a href="../11-connectingusingqpad/" class="md-nav__link">
+        Connecting Using QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-runningqueries/" class="md-nav__link">
+        Running Queries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-healthcheck/" class="md-nav__link">
         Health Check
       </a>
     </li>
@@ -443,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../13-takingitdown/" class="md-nav__link">
+      <a href="../14-takingitdown/" class="md-nav__link">
         Taking it Down
       </a>
     </li>
@@ -458,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14-conclusion/" class="md-nav__link">
+      <a href="../15-conclusion/" class="md-nav__link">
         Conclusion
       </a>
     </li>
@@ -485,6 +531,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download-qpad" class="md-nav__link">
+    Download QPad
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -495,49 +556,28 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/11-runningqueries.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/10-setupqpad.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="running-queries">Running Queries</h1>
-<p>Some example queries have been implemented on the RDB and HDB processes. These are defined in <code>$KDBCODE/rdb/examplequeries.q</code> and <code>$KDBCODE/hdb/examplequeries.q</code>. These can be run directly on the processes themselves, or from the gateway which will join the results if querying across processes. To test, connect to the gateway cluster.</p>
-<p><img alt="QPad Queries" src="../workshop/graphics/qpad_queries.png" /></p>
-<p>Example queries are listed below:</p>
-<pre><code>// From the gateway, run a query on the RDB
-.gw.syncexec["select sum size by sym from trades";`rdb]
-
-// Run a query on the HDB
-.gw.syncexec["select count i by date from trades";`hdb]
-
-// Run a freeform time bucketed query and join the results across the RDB and HDB
-// Note that this is generally bad practice as the HDB query doesn't contain a date clause
-.gw.syncexec["select sum size, max price by 0D00:05 xbar time from trades where sym=`IBM";`hdb`rdb]
-
-// Run a query across the RDB and HDB which uses a different join function to add the data from both 
-.gw.syncexecj["select sum size by sym from trades";`rdb`hdb;sum]
-
-// Run the pre-defined functions - these are implemented to query the RDB and HDB as efficiently as possible
-
-// Run a bucketed HLOC query, both as a string and in functional form
-.gw.syncexec["hloc[2015.01.07;.z.d;0D12]";`hdb`rdb]
-.gw.syncexec[(`hloc;2015.01.07;.z.d;0D12);`hdb`rdb]
-
-// Run a count by sym across a date range, and add the results. 
-// Run both as a string and in functional from
-.gw.syncexecj["countbysym[2015.01.07;.z.d]";`hdb`rdb;sum]
-.gw.syncexecj[(`countbysym;2015.01.07;.z.d);`hdb`rdb;sum]
-
-// Run a gateway query with a bespoke join function to line up results and compare today's data with historic data
-.gw.syncexecj[(`countbysym;2015.01.07;.z.d);`hdb`rdb;{(`sym xkey select sym,histavgsize:size%tradecount from x 0) lj `sym xkey select sym,todayavgsize:size%tradecount from x 1}]
-
-// Send a query for a process type which doesn't exist
-.gw.syncexec["select count i by date from trades";`hdb`rubbish]
-
-// Send a query which fails
-.gw.syncexec["1+`a";`hdb]
-</code></pre>
+<h1 id="setup-qpad">Setup QPad</h1>
+<p>You must follow these steps from within your EC2 instance.</p>
+<h2 id="download-qpad">Download QPad</h2>
+<p>Navigate to the <a href="https://www.qinsightpad.com/">qInsightPad</a> website and select the download arrow.</p>
+<p><img alt="Download button on qpad website" src="../workshop/graphics/qpad_download1.png" /></p>
+<p>Download the relavent version (usually x64).</p>
+<p><img alt="Download x64 version" src="../workshop/graphics/qpad_download2.png" /></p>
+<p>Download the <a href="https://www.microsoft.com/en-gb/download/details.aspx?id=26999">Microsoft C++ 2010 service pack</a> (there is a specific DLL from this that you need that is usually installed on Windows machines).</p>
+<p><img alt="Download MSPack" src="../workshop/graphics/MSpack_download.png" /></p>
+<p>Select the relavent version (usually x64).</p>
+<p><img alt="Download MSPack select version" src="../workshop/graphics/MSpack_download2.png" /></p>
+<p>Run the file that was just downloaded.</p>
+<p>Search for ‘Edit Environment variables’ and add <code>SSL_VERIFY_SERVER=NO</code> as one of them.</p>
+<p><img alt="Edit Environment Variables 1" src="../workshop/graphics/edit_env_var1.png" />
+<img alt="Edit Environment Variables 2" src="../workshop/graphics/edit_env_var2.png" />
+<img alt="Edit Environment Variables 3" src="../workshop/graphics/edit_env_var3.png" /></p>
 
               
             </article>
@@ -551,7 +591,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../10-connectingusingqpad/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Connecting Using QPad" rel="prev">
+        <a href="../09-clusterconnectionstring/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cluster Connection String" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -560,20 +600,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Connecting Using QPad
+              Cluster Connection String
             </div>
           </div>
         </a>
       
       
         
-        <a href="../12-healthcheck/" class="md-footer__link md-footer__link--next" aria-label="Next: Health Check" rel="next">
+        <a href="../11-connectingusingqpad/" class="md-footer__link md-footer__link--next" aria-label="Next: Connecting Using QPad" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Health Check
+              Connecting Using QPad
             </div>
           </div>
           <div class="md-footer__button md-icon">

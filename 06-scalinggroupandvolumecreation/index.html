@@ -13,7 +13,7 @@
     
     
       
-        <title>Cluster Creation - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Scaling Group Creation - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-torq-clusters" class="md-skip">
+        <a href="#creating-kx-managed-insight-scaling-groups-shared-volumes-and-aws-finspace-dataviews" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cluster Creation
+              Scaling Group Creation
             
           </span>
         </div>
@@ -338,12 +338,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Cluster Creation
+          Scaling Group Creation
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Cluster Creation
+        Scaling Group Creation
       </a>
       
         
@@ -362,50 +362,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#discovery-cluster" class="md-nav__link">
-    Discovery Cluster
+  <a href="#scaling-groups" class="md-nav__link">
+    Scaling Groups
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#real-time-database-rdb-cluster" class="md-nav__link">
-    Real-Time Database (RDB) Cluster
+  <a href="#shared-volume" class="md-nav__link">
+    Shared Volume
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#historical-database-hdb-cluster" class="md-nav__link">
-    Historical Database (HDB) Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gateway-cluster" class="md-nav__link">
-    Gateway Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feed-cluster" class="md-nav__link">
-    Feed Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#on-completion" class="md-nav__link">
-    On Completion
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#errors-in-cluster-creation" class="md-nav__link">
-    Errors in cluster creation
+  <a href="#optional-dataview" class="md-nav__link">
+    (Optional) Dataview
   </a>
   
 </li>
@@ -426,7 +398,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../07-createec2/" class="md-nav__link">
+      <a href="../07-clustercreation/" class="md-nav__link">
+        Cluster Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-createec2/" class="md-nav__link">
         Create EC2
       </a>
     </li>
@@ -441,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../08-clusterconnectionstring/" class="md-nav__link">
+      <a href="../09-clusterconnectionstring/" class="md-nav__link">
         Cluster Connection String
       </a>
     </li>
@@ -456,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../09-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad/" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -471,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad/" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -486,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-runningqueries/" class="md-nav__link">
+      <a href="../12-runningqueries/" class="md-nav__link">
         Running Queries
       </a>
     </li>
@@ -501,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12-healthcheck/" class="md-nav__link">
+      <a href="../13-healthcheck/" class="md-nav__link">
         Health Check
       </a>
     </li>
@@ -516,7 +503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../13-takingitdown/" class="md-nav__link">
+      <a href="../14-takingitdown/" class="md-nav__link">
         Taking it Down
       </a>
     </li>
@@ -531,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14-conclusion/" class="md-nav__link">
+      <a href="../15-conclusion/" class="md-nav__link">
         Conclusion
       </a>
     </li>
@@ -565,50 +552,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#discovery-cluster" class="md-nav__link">
-    Discovery Cluster
+  <a href="#scaling-groups" class="md-nav__link">
+    Scaling Groups
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#real-time-database-rdb-cluster" class="md-nav__link">
-    Real-Time Database (RDB) Cluster
+  <a href="#shared-volume" class="md-nav__link">
+    Shared Volume
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#historical-database-hdb-cluster" class="md-nav__link">
-    Historical Database (HDB) Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gateway-cluster" class="md-nav__link">
-    Gateway Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feed-cluster" class="md-nav__link">
-    Feed Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#on-completion" class="md-nav__link">
-    On Completion
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#errors-in-cluster-creation" class="md-nav__link">
-    Errors in cluster creation
+  <a href="#optional-dataview" class="md-nav__link">
+    (Optional) Dataview
   </a>
   
 </li>
@@ -625,460 +584,70 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/06-clustercreation.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/06-scalinggroupandvolumecreation.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="creating-torq-clusters">Creating TorQ Clusters</h1>
-<p><em>If you have set up your environment using our Terraform deployment option, this page is purely informative. Your clusters will have been created for you by Terraform.</em></p>
+<h1 id="creating-kx-managed-insight-scaling-groups-shared-volumes-and-aws-finspace-dataviews">Creating Kx Managed Insight Scaling Groups, Shared Volumes, and AWS Finspace Dataviews</h1>
+<p><em>If you have set up your environment using our Terraform deployment option, this page is purely informative. These resources will have be created for you by Terraform.</em></p>
 <hr />
-<p>To create a cluster, firstly select your kdb environment:</p>
-<p><img alt="Select kdb env" src="../workshop/graphics/kdbenv.png" /></p>
-<p>Then select the “Clusters” tab, and either of the “Create Cluster” buttons:</p>
-<p><img alt="Create Cluster Button" src="../workshop/graphics/create-cluster.png" /></p>
-<h2 id="discovery-cluster">Discovery Cluster</h2>
+<h2 id="scaling-groups">Scaling Groups</h2>
+<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the "Kdb scaling groups" tab:</p>
+<p><img alt="Select kdb env" src="../workshop/graphics/kdbenv.png" />
+<img alt="Scaling Group Tab" src="../workshop/graphics/scalinggroups_tab.png" /></p>
+<p>Click the "Create kdb scaling group" button</p>
 <ol>
-<li>
-<p>Set the cluster type to “General Purpose”, also known as "GP".</p>
-</li>
-<li>
-<p>Choose a name for your cluster.</p>
-<ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>discovery1</code>.</li>
+<li>Provide a name for the kdb scaling group unique to the kdb environment. You will be asked to choose a Host type as well. Choose "kx.sg.4xlarge" or larger host type.</li>
+<li>Select an Availability Zone make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a></li>
+<li>Click the "Create kdb scaling group" button when you are happy with the settings.</li>
+</ol>
+<p><img alt="Scaling Group Settings" src="../workshop/graphics/Create_kdb_scaling_group.png" /></p>
+<h2 id="shared-volume">Shared Volume</h2>
+<p>To create a shared volume through the AWS Console, select your kdb environment and navigate to the "Volumes" tab:</p>
+<p><img alt="Volumes Tab" src="../workshop/graphics/volumes_tab.png" /></p>
+<p>Click the "Create Volume" button</p>
+<ol>
+<li>Provide a name for the volume unique to the kdb environment. You will be asked to choose a Volume Type. For now, "NAS_1" is the only option</li>
+<li>Under NAS_1 configurations, provide details for the hardware type and the amount of disk capacity allocated. <ul>
+<li>Choose either SSD_250 or SSD_1000 for the best performance</li>
+<li>The size of allocated disk space must be at least 1200 GiB.</li>
 </ul>
-</li>
-<li>
-<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
-<p><img alt="Discovery Cluster Details" src="../workshop/graphics/discovery_cluster_details.png" /></p>
-</li>
-<li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
-</li>
-<li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
-<p><img alt="Discovery Availability Zones" src="../workshop/graphics/discovery_availability_zones.png" /></p>
-</li>
-<li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
-</li>
-<li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
-<p><img alt="Discovery Node Details" src="../workshop/graphics/discovery_node_details.png" /></p>
-</li>
-<li>
-<p>Select "Browse S3", search and select your codebucket and select your code.zip file.</p>
-<ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
-</ul>
-<p><img alt="Select your code bucket" src="../workshop/graphics/S3_bucket1.png" />
-<img alt="Select your code file" src="../workshop/graphics/S3_bucket2.png" /></p>
-</li>
-<li>
-<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
-</li>
-<li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proctype</td>
-<td>discovery</td>
-</tr>
-<tr>
-<td>procname</td>
-<td>discovery1</td>
-</tr>
-</tbody>
-</table>
 </li>
 </ol>
-<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><img alt="Volume Settings" src="../workshop/graphics/Create_shared_volume_pt1.png" /></p>
 <ol>
-<li>Select next to go to the next page.</li>
+<li>Choose an Availability Zone. It is recommended that it matches with the Availability Zone you assigned the kdb scaling group to run on</li>
+<li>Click the "create volume" button when you are happy with the settings</li>
 </ol>
-<p><img alt="Discovery Add Code" src="../workshop/graphics/discovery_add_code.png" /></p>
+<p><img alt="Volume AZ Settings" src="../workshop/graphics/Create_shared_volume_pt2.png" /></p>
+<h2 id="optional-dataview">(Optional) Dataview</h2>
+<p><em>You must have a shared volume created to perform this step</em></p>
+<p>If you plan to run your HDB cluster on a scaling group this step is required. Otherwise, this step is optional.</p>
+<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the "databases" tab:</p>
+<p><img alt="Database tab" src="../workshop/graphics/database_tab.png" /></p>
+<p>Select the database that has the changesets appropriate for your use case.
+To learn more about changesets click <a href="https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html">this link</a></p>
 <ol>
-<li>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</li>
+<li>Navigate to the "Dataview tab" and click the "Create dataview" button</li>
 </ol>
-<p><img alt="Discovery VPC Settings" src="../workshop/graphics/discovery_vpc.png" /></p>
+<p><img alt="Dataview tab" src="../workshop/graphics/Create_dataview_pt0.png" /></p>
 <ol>
-<li>Leave everything as blank and move on to the next page.</li>
+<li>Under "Dataview details" provide a name for your dataview that is unique to your kdb environment</li>
+<li>Choose an Availability Zone. This must match the Availability Zone your kdb scaling group runs on</li>
 </ol>
-<p><img alt="Discovery Config Options" src="../workshop/graphics/discovery_config_options.png" /></p>
+<p><img alt="Dataview Settings 1" src="../workshop/graphics/Create_dataview_pt1.png" /></p>
 <ol>
-<li>Check the entered information in the review page, then select "create cluster".</li>
-</ol>
-<h2 id="real-time-database-rdb-cluster">Real-Time Database (RDB) Cluster</h2>
-<ol>
-<li>
-<p>Set the cluster type to “RDB".</p>
-</li>
-<li>
-<p>Choose a name for your cluster.</p>
-<ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>rdb1</code>.</li>
-</ul>
-<p><img alt="RDB Cluster Details" src="../workshop/graphics/rdb_cluster_details.png" /></p>
-</li>
-<li>
-<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
-</li>
-<li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
+<li>Under "Changeset update settings" you have the option of choosing two modes:<ul>
+<li>Auto-update : (Recommended) The dataview will automatically use data from the latest changeset</li>
+<li>Static      : The dataview will use data from a pre-determined changeset id</li>
 </ul>
 </li>
-<li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
-</li>
-<li>
-<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
-</li>
-<li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
-</li>
-<li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
-<p><img alt="RDB Node Details" src="../workshop/graphics/rdb_node_details.png" /></p>
-</li>
-<li>
-<p>Select "Browse S3", search and select your codebucket and select your code.zip file.</p>
-<ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
-</ul>
-</li>
-<li>
-<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
-</li>
-<li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proctype</td>
-<td>rdb</td>
-</tr>
-<tr>
-<td>procname</td>
-<td>rdb1</td>
-</tr>
-</tbody>
-</table>
-</li>
+<li>Under "Segment Configuration" choose the root path for your "database path" and the volume you create in the prior step</li>
 </ol>
-<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
-<p><img alt="RDB Add Code" src="../workshop/graphics/rdb_add_code.png" /></p>
-<ol>
-<li>
-<p>Select next to go to the next page.</p>
-</li>
-<li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
-</li>
-<li>
-<p>Select your "Database name" from the dropdown menu in the "Savedown database configuration" section.</p>
-</li>
-<li>
-<p>Select <code>SDS01</code> from the "Savedown volume type" dropdown menu.</p>
-</li>
-<li>
-<p>Enter an amount (in GiB) of required "Savedown volume". <code>10</code> for this MVP.</p>
-</li>
-<li>
-<p>Select next to go to the next page.</p>
-<p><img alt="RDB Config Options" src="../workshop/graphics/rdb_config_options.png" /></p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select "create cluster".</p>
-</li>
-</ol>
-<h2 id="historical-database-hdb-cluster">Historical Database (HDB) Cluster</h2>
-<ol>
-<li>
-<p>Set the cluster type to "HDB".</p>
-</li>
-<li>
-<p>Choose a name for your cluster.</p>
-<ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>hdb1</code>.</li>
-</ul>
-<p><img alt="HDB Cluster Details" src="../workshop/graphics/hdb_cluster_details.png" /></p>
-</li>
-<li>
-<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
-</li>
-<li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
-</li>
-<li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
-</li>
-<li>
-<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
-</li>
-<li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
-</li>
-<li>
-<p>Leave Auto-scaling and Tags as empty and select next to go to the next page.</p>
-</li>
-<li>
-<p>Select "Browse S3", search and select your codebucket and select your code.zip file.</p>
-<ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
-</ul>
-</li>
-<li>
-<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
-</li>
-<li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proctype</td>
-<td>hdb</td>
-</tr>
-<tr>
-<td>procname</td>
-<td>hdb1</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
-<p><img alt="HDB Add Code" src="../workshop/graphics/hdb_add_code.png" /></p>
-<ol>
-<li>
-<p>Select next to go to the next page.</p>
-</li>
-<li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
-</li>
-<li>
-<p>For "Database name" select your database from the dropdown menu. Changeset will autoselect at this point.</p>
-</li>
-<li>
-<p>Select "No caching".</p>
-</li>
-<li>
-<p>Select next to go to the next page.</p>
-<p><img alt="HDB Config Options" src="../workshop/graphics/hdb_config_options.png" /></p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select "create cluster".</p>
-</li>
-</ol>
-<h2 id="gateway-cluster">Gateway Cluster</h2>
-<p>Ensure that the Discovery cluster is in a "Running" state before creating the Gateway cluster.</p>
-<ol>
-<li>
-<p>Set the cluster type to “Gateway".</p>
-</li>
-<li>
-<p>Choose a name for your cluster.</p>
-<ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>gateway1</code>.</li>
-</ul>
-<p><img alt="Gateway Cluster Details" src="../workshop/graphics/gw_cluster_details.png" /></p>
-</li>
-<li>
-<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
-</li>
-<li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
-</li>
-<li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
-</li>
-<li>
-<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
-</li>
-<li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
-</li>
-<li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
-</li>
-<li>
-<p>Select "Browse S3", search and select your codebucket and select your code.zip file.</p>
-<ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
-</ul>
-</li>
-<li>
-<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
-</li>
-<li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proctype</td>
-<td>gateway</td>
-</tr>
-<tr>
-<td>procname</td>
-<td>gateway1</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
-<p><img alt="Gateway Add Code" src="../workshop/graphics/gw_add_code.png" /></p>
-<ol>
-<li>
-<p>Select next to go to the next page.</p>
-</li>
-<li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
-</li>
-<li>
-<p>This page had no editing options. Select next to go to the next page.</p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select "create cluster".</p>
-</li>
-</ol>
-<h2 id="feed-cluster">Feed Cluster</h2>
-<p>Ensure that the RDB cluster is in a "Running" state before creating the Feed cluster.</p>
-<ol>
-<li>
-<p>Set the cluster type to “General Purpose”, also known as "GP".</p>
-</li>
-<li>
-<p>Choose a name for your cluster. As this is a sample feed and not a "production" intended process, please name it <code>feed1</code>.</p>
-<p><img alt="Feed Cluster Details" src="../workshop/graphics/feed_cluster_details.png" /></p>
-</li>
-<li>
-<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
-</li>
-<li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
-</li>
-<li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
-</li>
-<li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
-</li>
-<li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
-</li>
-<li>
-<p>Select "Browse S3", search and select your codebucket and select your code.zip file.</p>
-<ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
-</ul>
-</li>
-<li>
-<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
-</li>
-<li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proctype</td>
-<td>tradeFeed</td>
-</tr>
-<tr>
-<td>procname</td>
-<td>tradeFeed1</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
-<p><img alt="Feed Add Code" src="../workshop/graphics/feed_add_code.png" /></p>
-<ol>
-<li>
-<p>Select next to go to the next page.</p>
-</li>
-<li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
-</li>
-<li>
-<p>Leave everything as blank and move on to the next page.</p>
-<p><img alt="Feed Config Options" src="../workshop/graphics/discovery_config_options.png" /></p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select "create cluster".</p>
-</li>
-</ol>
-<h2 id="on-completion">On Completion</h2>
-<p>When all clusters are up it should look like this:</p>
-<p><img alt="All Clusters Running" src="../graphics/clusters-running.png" /></p>
-<h2 id="errors-in-cluster-creation">Errors in cluster creation</h2>
-<p>On cluster creation, most errors will result in your cluster going to a “Create failed” state.</p>
-<p><img alt="Cluster failure" src="../workshop/graphics/cluster_failure.png" /></p>
-<p>If that is the case you should:</p>
-<ul>
-<li>
-<p>Click the cluster name in the “Cluster” section of your environment.</p>
-<p><img alt="Select Cluster" src="../workshop/graphics/cluster_select.png" /></p>
-</li>
-<li>
-<p>Scroll down the page and open the “Logs” tab. This should have a message with a more individualised error you can check.</p>
-</li>
-<li>
-<p>If you click the LogStream for an individual log it will take you to AWS CloudWatch where you can filter the messages for keywords or for messages in a certain time window.</p>
-<p><img alt="Select Cluster Logs" src="../workshop/graphics/cluster_logs.png" /></p>
-</li>
-</ul>
-<p>It is worthwhile checking the logs even for clusters that have been created and searching for terms like <code>err</code>, <code>error</code> or <code>fail</code>.</p>
+<p><img alt="Dataview Settings 2" src="../workshop/graphics/Create_dataview_pt2.png" /></p>
+<p>Click "Create dataview" when you are happy with the settings</p>
 
               
             </article>
@@ -1108,13 +677,13 @@
       
       
         
-        <a href="../07-createec2/" class="md-footer__link md-footer__link--next" aria-label="Next: Create EC2" rel="next">
+        <a href="../07-clustercreation/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Creation" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Create EC2
+              Cluster Creation
             </div>
           </div>
           <div class="md-footer__button md-icon">

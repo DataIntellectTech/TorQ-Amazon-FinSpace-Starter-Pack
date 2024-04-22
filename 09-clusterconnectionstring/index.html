@@ -13,7 +13,7 @@
     
     
       
-        <title>Taking it Down - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Cluster Connection String - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#taking-it-down" class="md-skip">
+        <a href="#cluster-connection-string" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Taking it Down
+              Cluster Connection String
             
           </span>
         </div>
@@ -328,7 +328,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-clustercreation/" class="md-nav__link">
+      <a href="../06-scalinggroupandvolumecreation/" class="md-nav__link">
+        Scaling Group Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-clustercreation/" class="md-nav__link">
         Cluster Creation
       </a>
     </li>
@@ -343,83 +358,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../07-createec2/" class="md-nav__link">
+      <a href="../08-createec2/" class="md-nav__link">
         Create EC2
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-clusterconnectionstring/" class="md-nav__link">
-        Cluster Connection String
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-setupqpad/" class="md-nav__link">
-        Setup QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-connectingusingqpad/" class="md-nav__link">
-        Connecting Using QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11-runningqueries/" class="md-nav__link">
-        Running Queries
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12-healthcheck/" class="md-nav__link">
-        Health Check
       </a>
     </li>
   
@@ -443,12 +383,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Taking it Down
+          Cluster Connection String
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Taking it Down
+        Cluster Connection String
       </a>
       
         
@@ -467,15 +407,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deleting-clusters" class="md-nav__link">
-    Deleting clusters
+  <a href="#ensure-your-role-has-correct-permissions-if-manually-set-up-not-useing-terraform" class="md-nav__link">
+    Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))
+  </a>
+  
+    <nav class="md-nav" aria-label="Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-user-if-manually-set-up-not-useing-terraform" class="md-nav__link">
+    Create a user (If manually set up (not useing Terraform))
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deleting-your-database" class="md-nav__link">
-    Deleting your database
+  <a href="#generate-connection-string" class="md-nav__link">
+    Generate Connection String
   </a>
   
 </li>
@@ -496,7 +463,82 @@
   
   
     <li class="md-nav__item">
-      <a href="../14-conclusion/" class="md-nav__link">
+      <a href="../10-setupqpad/" class="md-nav__link">
+        Setup QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-connectingusingqpad/" class="md-nav__link">
+        Connecting Using QPad
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-runningqueries/" class="md-nav__link">
+        Running Queries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-healthcheck/" class="md-nav__link">
+        Health Check
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-takingitdown/" class="md-nav__link">
+        Taking it Down
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-conclusion/" class="md-nav__link">
         Conclusion
       </a>
     </li>
@@ -530,15 +572,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deleting-clusters" class="md-nav__link">
-    Deleting clusters
+  <a href="#ensure-your-role-has-correct-permissions-if-manually-set-up-not-useing-terraform" class="md-nav__link">
+    Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))
+  </a>
+  
+    <nav class="md-nav" aria-label="Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role" class="md-nav__link">
+    Role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-user-if-manually-set-up-not-useing-terraform" class="md-nav__link">
+    Create a user (If manually set up (not useing Terraform))
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#deleting-your-database" class="md-nav__link">
-    Deleting your database
+  <a href="#generate-connection-string" class="md-nav__link">
+    Generate Connection String
   </a>
   
 </li>
@@ -555,23 +624,110 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/13-takingitdown.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/09-clusterconnectionstring.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="taking-it-down">Taking it Down</h1>
-<h2 id="deleting-clusters">Deleting clusters</h2>
-<p>From your Kdb environmnet select the cluster you want to delete and select "Delete".</p>
-<p><img alt="Select delete cluster" src="../workshop/graphics/delete_cluster1.png" /></p>
-<p>On the confirmation dialog box, enter confirm then select “Delete”.</p>
-<p><img alt="delete cluster" src="../workshop/graphics/delete_cluster2.png" /></p>
-<h2 id="deleting-your-database">Deleting your database</h2>
-<p>From your Kdb environment select the "Databases" tab, select the database you want to delete and select "Delete".</p>
-<p><img alt="delete cluster" src="../workshop/graphics/delete_database1.png" /></p>
-<p>On the confirmation dialog box, enter confirm then select “Delete”.</p>
-<p><img alt="delete cluster" src="../workshop/graphics/delete_database2.png" /></p>
+<h1 id="cluster-connection-string">Cluster Connection String</h1>
+<p><em>Terraform users can skip to our <a href="#generate-connection-string">generate connection string section</a> as Terraform will have created and set up your role and user for you.</em></p>
+<hr />
+<h2 id="ensure-your-role-has-correct-permissions-if-manually-set-up-not-useing-terraform">Ensure Your Role has Correct Permissions (If manually set up (not useing Terraform))</h2>
+<h3 id="policy">Policy</h3>
+<p>The policy you created needs to have at least these permissions (Note the ARN should match that of your created kxEnvironment):</p>
+<pre><code>{
+    "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "finspace:ConnectKxCluster",
+                "Resource": "&lt;ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE&gt;/kxCluster/*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": "finspace:GetKxConnectionString",
+                "Resource": "&lt;ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE&gt;/kxCluster/*"
+            }
+    ]
+}
+</code></pre>
+<p>To enable endofday savedowns and your clusters access to your S3 code and data buckets, you will also need the following statements to your policy</p>
+<pre><code>{
+         &quot;Statement&quot;: [
+                 {
+                         &quot;Effect&quot;: &quot;Allow&quot;,
+                         &quot;Action&quot;: [
+                             &quot;finspace:UpdateKxClusterDatabases&quot;
+                          ]
+                         &quot;Resource&quot;: [
+                              &quot;&lt;ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE&gt;/kxCluster/*&quot;,
+                              &quot;&lt;ENVIRONMENT_ARN_COPIED_FROM_KDB_ENIRONMENT_PAGE&gt;/kxDatabase/*/kxDataview/*&quot;,
+                          ]
+                 },
+                 {
+                         &quot;Effect&quot;: &quot;Allow&quot;,
+                         &quot;Action&quot;: [
+                             &quot;s3:ListBucket&quot;,
+                             &quot;s3:GetObject&quot;,
+                             &quot;s3:GetObjectVersion&quot;,
+                             &quot;s3:GetObjectTagging&quot;
+                          ]
+                         &quot;Resource&quot;: [
+                              &quot;&lt;YOUR_S3_CODE_BUCKET_ARN&gt;&quot;,
+                              &quot;&lt;YOUR_S3_CODE_BUCKET_ARN&gt;/*&quot;,
+                              &quot;&lt;YOUR_S3_DATA_BUCKET_ARN&gt;&quot;,
+                              &quot;&lt;YOUR_S3_DATA_BUCKET_ARN&gt;/*&quot;
+                          ] 
+                 }
+         ]
+ }
+</code></pre>
+<p>To find out how to get the ARN of your S3 buckets reference https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md</p>
+<h3 id="role">Role</h3>
+<p>We need to check the Trust Policy of your created role.</p>
+<p>Search for the role and open it in the IAM console. Go to Trust relationships.</p>
+<p>Your Trust relationship should have at least these:</p>
+<pre><code>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "finspace.amazonaws.com",
+                "AWS": "arn:aws:iam::&lt;ACCOUNT_ID&gt;:root"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+</code></pre>
+<h2 id="create-a-user-if-manually-set-up-not-useing-terraform">Create a user (If manually set up (not useing Terraform))</h2>
+<p>In your kdb environment, go to the Users tab and select Add user.</p>
+<p><img alt="Create user button" src="../workshop/graphics/create_user_button.png" /></p>
+<p>Give it a name and select the IAM role you created above.</p>
+<p><img alt="Add user" src="../workshop/graphics/create_user.png" /></p>
+<h2 id="generate-connection-string">Generate Connection String</h2>
+<p>On the users tab, copy the links for IAM role and User ARN for the user.</p>
+<p><img alt="User details" src="../workshop/graphics/user_details.png" /></p>
+<p>Navigate to CloudShell.</p>
+<p><img alt="Navigate to CloudShell" src="../workshop/graphics/cloudshell.png" /></p>
+<p>Replace <code>&lt;ARN_COPIED_FROM_ABOVE&gt;</code> with the IAM Role copied above and run the following (this will not return anything):</p>
+<pre><code>export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
+$(aws sts assume-role \
+--role-arn &lt;ARN_COPIED_FROM_ABOVE&gt; \
+--role-session-name "connect-to-finTorq" \
+--query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
+--output text))
+</code></pre>
+<p>This lets you assume the role that you have just created by taking the values returned from the aws sts assume-role command and setting them in your AWS_ACCESS_KEY_ID... etc environment variables. NOTE - if you need to switch back to your own user within the CloudShell, you will need to run unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN to unset these environment variables.</p>
+<p>Copy your kdb Environment Id:</p>
+<p><img alt="Get you kdb env ID" src="../workshop/graphics/kdbenv_id.png" /></p>
+<p>Replace <code>&lt;YOUR_KDB_ENVIRONMENT_ID&gt;</code> with your kdb environment ID, <code>&lt;USER_ARN_COPIED_ABOVE&gt;</code> with the User ARN, and <code>&lt;NAME_OF_CLUSTER&gt;</code> with the name of the cluster you want to connect to. Run the following:</p>
+<pre><code>aws finspace get-kx-connection-string --environment-id &lt;YOUR_KDB_ENVIRONMENT_ID&gt; --user-arn &lt;USER_ARN_COPIED_ABOVE&gt; --cluster-name &lt;NAME_OF_CLUSTER&gt;
+</code></pre>
+<p>This will return a large connection string which can be used to connect to your cluster.</p>
+<p><img alt="Connection string example" src="../workshop/graphics/connection_string.png" /></p>
 
               
             </article>
@@ -585,7 +741,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../12-healthcheck/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Health Check" rel="prev">
+        <a href="../08-createec2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Create EC2" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -594,20 +750,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Health Check
+              Create EC2
             </div>
           </div>
         </a>
       
       
         
-        <a href="../14-conclusion/" class="md-footer__link md-footer__link--next" aria-label="Next: Conclusion" rel="next">
+        <a href="../10-setupqpad/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup QPad" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Conclusion
+              Setup QPad
             </div>
           </div>
           <div class="md-footer__button md-icon">

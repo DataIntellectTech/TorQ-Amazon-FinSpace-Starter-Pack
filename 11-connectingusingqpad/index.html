@@ -13,7 +13,7 @@
     
     
       
-        <title>Create EC2 - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Connecting Using QPad - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-and-connect-to-an-ec2-instance" class="md-skip">
+        <a href="#connecting-using-qpad" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Create EC2
+              Connecting Using QPad
             
           </span>
         </div>
@@ -328,8 +328,68 @@
   
   
     <li class="md-nav__item">
-      <a href="../06-clustercreation/" class="md-nav__link">
+      <a href="../06-scalinggroupandvolumecreation/" class="md-nav__link">
+        Scaling Group Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-clustercreation/" class="md-nav__link">
         Cluster Creation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-createec2/" class="md-nav__link">
+        Create EC2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-clusterconnectionstring/" class="md-nav__link">
+        Cluster Connection String
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-setupqpad/" class="md-nav__link">
+        Setup QPad
       </a>
     </li>
   
@@ -352,120 +412,10 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Create EC2
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Create EC2
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-windows-ec2-instance" class="md-nav__link">
-    Create a Windows EC2 Instance
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-your-new-security-group-to-you-ec2" class="md-nav__link">
-    Adding your new security group to you EC2
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connecting-to-your-ec2-instance" class="md-nav__link">
-    Connecting to your EC2 Instance
-  </a>
-  
-    <nav class="md-nav" aria-label="Connecting to your EC2 Instance">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-your-password" class="md-nav__link">
-    Get your password
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect" class="md-nav__link">
-    Connect
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08-clusterconnectionstring/" class="md-nav__link">
-        Cluster Connection String
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09-setupqpad/" class="md-nav__link">
-        Setup QPad
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10-connectingusingqpad/" class="md-nav__link">
         Connecting Using QPad
       </a>
+      
     </li>
   
 
@@ -478,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-runningqueries/" class="md-nav__link">
+      <a href="../12-runningqueries/" class="md-nav__link">
         Running Queries
       </a>
     </li>
@@ -493,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12-healthcheck/" class="md-nav__link">
+      <a href="../13-healthcheck/" class="md-nav__link">
         Health Check
       </a>
     </li>
@@ -508,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../13-takingitdown/" class="md-nav__link">
+      <a href="../14-takingitdown/" class="md-nav__link">
         Taking it Down
       </a>
     </li>
@@ -523,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../14-conclusion/" class="md-nav__link">
+      <a href="../15-conclusion/" class="md-nav__link">
         Conclusion
       </a>
     </li>
@@ -550,55 +500,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-windows-ec2-instance" class="md-nav__link">
-    Create a Windows EC2 Instance
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-your-new-security-group-to-you-ec2" class="md-nav__link">
-    Adding your new security group to you EC2
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connecting-to-your-ec2-instance" class="md-nav__link">
-    Connecting to your EC2 Instance
-  </a>
-  
-    <nav class="md-nav" aria-label="Connecting to your EC2 Instance">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-your-password" class="md-nav__link">
-    Get your password
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect" class="md-nav__link">
-    Connect
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -609,66 +510,17 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/07-createec2.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/11-connectingusingqpad.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="creating-and-connect-to-an-ec2-instance">Creating and Connect to an EC2 Instance</h1>
-<h2 id="create-a-windows-ec2-instance">Create a Windows EC2 Instance</h2>
-<p>Navigate to the EC2 service.</p>
-<p><img alt="Navigate to the EC2 service" src="../workshop/graphics/navigate_ec2.png" /></p>
-<p>Select "launch instance" to create a new EC2 instance.</p>
-<p><img alt="Select launch instance" src="../workshop/graphics/ec2_launch.png" /></p>
-<p>Most options here can be left as their defaults. Here are the ones that need selected/changing:</p>
-<ol>
-<li>
-<p>Select "Windows" from the Quick Start options.</p>
-<p><img alt="select windows quick start" src="../workshop/graphics/ec2_application.png" /></p>
-</li>
-<li>
-<p>We need to create a new key pair: Select "Create new key pair".</p>
-<p><img alt="Select create new key pair" src="../workshop/graphics/ec2_keypair_button.png" /></p>
-</li>
-<li>
-<p>Enter a name for your key pair, leave the key pair type as <code>RSA</code> and the file format as <code>.pem</code>. This will download a key file to you PC which you will use to connect to the instance.</p>
-<p><img alt="Create new key pair" src="../workshop/graphics/create_key_pair.png" /></p>
-</li>
-</ol>
-<p>The network should be in the same VPC as your cluster. Select create a new security group that allows connections from anywhere.
-    - This is only for the purposes of the MVP. For customising see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html">this page</a> on security groups.</p>
-<p><img alt="EC2 network" src="../workshop/graphics/ec2_network.png" /></p>
-<h2 id="adding-your-new-security-group-to-you-ec2">Adding your new security group to you EC2</h2>
-<p>Now we need to add the security group of your cluster to your EC2.</p>
-<p>Navigate to EC2 service.</p>
-<p><img alt="Navigate to EC2" src="../workshop/graphics/ec2_navigate.png" /></p>
-<p>Select "Instances (running)".</p>
-<p><img alt="Select Instance running" src="../workshop/graphics/ec2_navigate2.png" /></p>
-<p>Open your EC2 Instance.</p>
-<p><img alt="Open EC2 instance" src="../workshop/graphics/EC2_connect1.png" /></p>
-<p>Select "Actions", "Security" then "Change security groups".</p>
-<p><img alt="Select change security groups" src="../workshop/graphics/ec2_add_security.png" /></p>
-<p>Search and select the security group that is on your clusters, select "Add security group" then "save".</p>
-<p><img alt="Add security group" src="../workshop/graphics/ec2_add_security2.png" /></p>
-<p>You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.</p>
-<p><img alt="security group example" src="../workshop/graphics/ec2_security.png" /></p>
-<h2 id="connecting-to-your-ec2-instance">Connecting to your EC2 Instance</h2>
-<p>Open your EC2 Instance.</p>
-<p><img alt="Open EC2 instance" src="../workshop/graphics/EC2_connect1.png" /></p>
-<p>Select connect.</p>
-<p><img alt="Select connect" src="../workshop/graphics/EC2_connect2.png" /></p>
-<h3 id="get-your-password">Get your password</h3>
-<p>this only needs to be done once. Once you have this password you can skip this step.</p>
-<p>Select get password.</p>
-<p><img alt="Get password" src="../workshop/graphics/EC2_connect3.png" /></p>
-<p>Upload the <code>.pem</code> that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).</p>
-<p><img alt="upload .pem file" src="../workshop/graphics/EC2_connect4.png" /></p>
-<p>This will return the value of your password. Keep a note of this password as you will need it to connect your EC2.</p>
-<h3 id="connect">Connect</h3>
-<p>Download the remote desktop file.</p>
-<p><img alt="dowload remote desktop file" src="../workshop/graphics/EC2_connect5.png" /></p>
-<p>Run this file and enter the password you recieved above when promted. You should now be connected to the Windows remote desktop.</p>
+<h1 id="connecting-using-qpad">Connecting Using QPad</h1>
+<p>Open qpad, right-click on KDB+ Servers and Add New Server.</p>
+<p>Copy everything in the connection string into the symbol field except the beginning <code>tcp://</code>.</p>
+<p>Click test and then click OK to save. You have 60 minutes from the creation of your connection string before the connection string becomes stale and requires to be re-generated.</p>
+<p><img alt="Add Server Connection" src="../workshop/graphics/qpad_add_server.png" /></p>
 
               
             </article>
@@ -682,7 +534,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../06-clustercreation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cluster Creation" rel="prev">
+        <a href="../10-setupqpad/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup QPad" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -691,20 +543,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Cluster Creation
+              Setup QPad
             </div>
           </div>
         </a>
       
       
         
-        <a href="../08-clusterconnectionstring/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Connection String" rel="next">
+        <a href="../12-runningqueries/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Queries" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Cluster Connection String
+              Running Queries
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -13,7 +13,7 @@
     
     
       
-        <title>Terraform - TorQ Amazon FinSpace Starter Pack</title>
+        <title>Cluster Creation - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#terraform" class="md-skip">
+        <a href="#creating-torq-clusters" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Terraform
+              Cluster Creation
             
           </span>
         </div>
@@ -311,134 +311,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Terraform
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../05-terraform/" class="md-nav__link">
         Terraform
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#resource-link" class="md-nav__link">
-    Resource Link
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-initial-deployment" class="md-nav__link">
-    How to Use - Initial Deployment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure" class="md-nav__link">
-    How to Use - Deploying With Terraform For Users With Existing Infrastructure
-  </a>
-  
-    <nav class="md-nav" aria-label="How to Use - Deploying With Terraform For Users With Existing Infrastructure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#terraform-import-block-syntax" class="md-nav__link">
-    Terraform Import Block Syntax
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#terraform-import-block-template" class="md-nav__link">
-    Terraform import block Template
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#managing-your-infrastructure" class="md-nav__link">
-    Managing Your Infrastructure
-  </a>
-  
-    <nav class="md-nav" aria-label="Managing Your Infrastructure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-commands-in-terraform" class="md-nav__link">
-    Basic Commands in Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#terraform-state-management" class="md-nav__link">
-    Terraform State Management
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#list-of-aws-structures-that-will-be-created-with-our-terraform-deployment" class="md-nav__link">
-    List of AWS Structures that will be created with our Terraform deployment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references-and-documentation" class="md-nav__link">
-    References and Documentation
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -464,11 +341,101 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../07-clustercreation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Cluster Creation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Cluster Creation
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-cluster" class="md-nav__link">
+    Discovery Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-database-rdb-cluster" class="md-nav__link">
+    Real-Time Database (RDB) Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historical-database-hdb-cluster" class="md-nav__link">
+    Historical Database (HDB) Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-cluster" class="md-nav__link">
+    Gateway Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feed-cluster" class="md-nav__link">
+    Feed Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-completion" class="md-nav__link">
+    On Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors-in-cluster-creation" class="md-nav__link">
+    Errors in cluster creation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -627,83 +594,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resource-link" class="md-nav__link">
-    Resource Link
+  <a href="#discovery-cluster" class="md-nav__link">
+    Discovery Cluster
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-initial-deployment" class="md-nav__link">
-    How to Use - Initial Deployment
+  <a href="#real-time-database-rdb-cluster" class="md-nav__link">
+    Real-Time Database (RDB) Cluster
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure" class="md-nav__link">
-    How to Use - Deploying With Terraform For Users With Existing Infrastructure
-  </a>
-  
-    <nav class="md-nav" aria-label="How to Use - Deploying With Terraform For Users With Existing Infrastructure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#terraform-import-block-syntax" class="md-nav__link">
-    Terraform Import Block Syntax
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#terraform-import-block-template" class="md-nav__link">
-    Terraform import block Template
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#managing-your-infrastructure" class="md-nav__link">
-    Managing Your Infrastructure
-  </a>
-  
-    <nav class="md-nav" aria-label="Managing Your Infrastructure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-commands-in-terraform" class="md-nav__link">
-    Basic Commands in Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#terraform-state-management" class="md-nav__link">
-    Terraform State Management
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#list-of-aws-structures-that-will-be-created-with-our-terraform-deployment" class="md-nav__link">
-    List of AWS Structures that will be created with our Terraform deployment
+  <a href="#historical-database-hdb-cluster" class="md-nav__link">
+    Historical Database (HDB) Cluster
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references-and-documentation" class="md-nav__link">
-    References and Documentation
+  <a href="#gateway-cluster" class="md-nav__link">
+    Gateway Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feed-cluster" class="md-nav__link">
+    Feed Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-completion" class="md-nav__link">
+    On Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors-in-cluster-creation" class="md-nav__link">
+    Errors in cluster creation
   </a>
   
 </li>
@@ -720,176 +654,513 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/05-terraform.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/07-clustercreation.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="terraform">Terraform</h1>
-<p>The process of setting up a working Managed kdb environment manually can take some time - especially if you are new to AWS. To aid this process we have a Terraform deployment option which should allow you to boot TorQ in Managed kdb Insights in a few simple commands. </p>
-<p>This Terraform script can be used to deploy an entire environment from scratch. This will include:</p>
-<ul>
-<li>
-<p>creating and uploading data to S3 buckets with required policies</p>
-</li>
-<li>
-<p>creating IAM roles</p>
-</li>
-<li>
-<p>creating network and transit gateway</p>
-</li>
-<li>
-<p>as well as deploying clusters.</p>
-</li>
-</ul>
-<p>It is split into two modules, one for the environment and one for the clusters. This makes the directory more organised and cluster deployments easier to manage. The cluster module is still dependent on the environment module as it will import some variables from here that are needed for cluster creation.</p>
-<p><img alt="Terraform Module Diagram" src="../workshop/graphics/terraform_modules.png" /></p>
-<p>This Terraform setup is designed to deploy and manage a Managed kdb Insights environment running a TorQ bundle.</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<ol>
-<li>Ensure you have followed the <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/04-prerequisites/">standard prerequisite steps</a> to ensure you have the latest versions of code.</li>
-<li>Have the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">latest version of the AWS CLI installed</a>.</li>
-<li>Have the <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli">latest version of Terraform installed</a>.</li>
-<li><a href="https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html">Configure the AWS CLI to your AWS account</a>.</li>
-<li>Create a KMS key in the region where you intend to set up your environment. You will also need to edit the key policy to grant FinSpace permissions.</li>
-<li>Note that FinSpace environments are limited to one per region. Make sure you don't already have an environment set up in the same region.</li>
-<li>This instruction refers to Linux and would only work under the Linux environment.</li>
-</ol>
-<h2 id="resource-link">Resource Link</h2>
-<ul>
-<li>For detailed Terraform deployment instructions, refer to <a href="https://data-intellect.atlassian.net/wiki/spaces/TK/pages/238944400/FinTorq+Deployment+Terraform">TorQ in Finspace Deployment / Terraform</a>.</li>
-</ul>
-<h2 id="how-to-use-initial-deployment">How to Use - Initial Deployment</h2>
-<p>New user please continue and follow this section - Users with existing infrastructure, please skip to our <a href="#how-to-use---deploying-with-terraform-for-users-with-existing-infrastructure">existing infrastructure section</a>.</p>
-<ol>
-<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/hdb</code>.</li>
-<li>Move into the <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code> directory; this will be the Terraform working directory from which you should run all <code>terraform</code> commands.</li>
-<li>Modify variables inside the <code>terraform.tfvars</code> file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of <code>"Name"</code>. For example, For the variable on <code>role-name</code>, you can change the variable name by replacing <code>"finspace-role"</code>.</li>
-<li>(Optional) If you have changed the database name from the default <code>finspace-database</code> to any other names, please also edit the <code>env.q</code> file, changing the database name to the new variable that you have set in line 19.</li>
-<li>Run <code>aws configure</code> in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key <a href="#prerequisites">Prerequisites</a>.</li>
-<li>From your Terraform working directory which is <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code>, run <code>terraform init</code>.</li>
-<li>If initialized without error, run <code>terraform plan</code>. This will show all resources set to be created or destroyed by Terraform.</li>
-<li>Run <code>terraform apply</code> to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in <code>nohup</code>. (Using <code>nohup</code> might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: <code>nohup terraform apply -auto-approve &gt; terraform_apply.log 2&gt;&amp;1 &amp;</code>. </li>
-</ol>
-<p>You can now skip ahead to our <a href="#managing-your-infrastructure">Managing Your Infrastructure section</a></p>
-<h2 id="how-to-use-deploying-with-terraform-for-users-with-existing-infrastructure">How to Use - Deploying With Terraform For Users With Existing Infrastructure</h2>
-<p>For users with existing infrastructure in their AWS account who would like to reuse the same resources for their TorQ in Finspace bundle, you can use import blocks in Terraform. This functionality allows you to import existing infrastructure resources into Terraform, bringing them under Terraform's management. The import block records that Terraform imported the resource and did not create it. After importing, you can optionally remove import blocks from your configuration or leave them as a record of the resource's origin.</p>
-<p>Once imported, Terraform tracks the resource in your state file. You can then manage the imported resource like any other, updating its attributes and destroying it as part of a standard resource lifecycle.</p>
-<p>Move into the <code>deployments</code> directory, and you'll see an <code>imports.tf</code> file (currently empty). This <code>imports.tf</code> file is automatically run before Terraform applies any changes to the structure, importing existing structures from your AWS to the deployment system.</p>
-<h3 id="terraform-import-block-syntax">Terraform Import Block Syntax</h3>
-<pre><code>import {
-  to = aws_instance.example
-  id = &quot;i-abcd1234&quot;
-}
+<h1 id="creating-torq-clusters">Creating TorQ Clusters</h1>
+<p><em>If you have set up your environment using our Terraform deployment option, this page is purely informative. Your clusters will have been created for you by Terraform.</em></p>
+<hr />
+<p>To create a cluster, first select your kdb environment:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/kdbenv.png" alt="Select kdb env" width="90%"/>
+</p>
 
-resource &quot;aws_instance&quot; &quot;example&quot; {
-  name = &quot;hashi&quot;
-  # (other resource arguments...)
-}
-</code></pre>
-<p>The above <code>import</code> block defines an import of the AWS instance with the ID "i-abcd1234" into the <code>aws_instance.example</code> resource in the root module.</p>
-<p>The import block has the following arguments:</p>
+<p>Then select the <code>Clusters</code> tab, then either of the <code>Create cluster</code> buttons:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/create-cluster.png" alt="Create Cluster Button" width="90%"/>
+</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<p>For these clusters, you will require:</p>
+<ul>
+<li>A kdb scaling group</li>
+<li>A database with:</li>
+<li>A changeset</li>
+<li>A dataview</li>
+<li>A volume</li>
+</ul>
+<h2 id="discovery-cluster">Discovery Cluster</h2>
+<ol>
+<li>
+<p>Set the <code>Cluster type</code> to <code>General purpose</code>, also known as "GP".</p>
+</li>
+<li>
+<p>Choose a name for your cluster.</p>
+<ul>
+<li><strong>Note:</strong> this name must match your process name (<code>procname</code>) added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but <code>procname</code> is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong>, e.g. <code>discovery1</code>.</li>
+</ul>
+</li>
+<li>
+<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_details.png" alt="Discovery Cluster Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select <code>Run on kdb scaling group</code> for the Cluster running option.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_running.png" alt="Discovery Cluster Running" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+</li>
+<li>
+<p>In the Node details section, set the memory reservation per node to the minimum allowed (6 MiB) and leave the rest blank.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_memory_reservation.png" alt="Discovery Memory Reservation" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Leave Tags as empty and select <code>Next</code> to go to the next page.</p>
+</li>
+<li>
+<p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
+<ul>
+<li>Alternatively, you can copy the URL from the codebucket itself.</li>
+</ul>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/S3_bucket1.png" alt="Select your code bucket" width="90%"/>
+</p></p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/S3_bucket2.png" alt="Select your code file" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
+</li>
+<li>
+<p>Select <code>Add command-line argument</code> twice and enter the keys and values in the below table:</p>
 <table>
 <thead>
 <tr>
-<th>Argument</th>
-<th>Description</th>
-<th>Example</th>
+<th>Key</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>to</code></td>
-<td>The instance address this resource will have in your state file.</td>
-<td><code>to = aws_instance.example</code></td>
+<td>proctype</td>
+<td>discovery</td>
 </tr>
 <tr>
-<td>resourse (e.g. <code>id</code> or <code>name</code>)</td>
-<td>A string with the import information of the resource.</td>
-<td>Example 1. <code>id = "i-abcd1234"</code><br> Example 2. <code>name = "aws/vendedlogs/finspace/myclustername"</code></td>
-</tr>
-<tr>
-<td><code>provider</code> (optional)</td>
-<td>An optional custom resource provider.<br> If you do not set the provider argument, Terraform attempts to import from the default provider.</td>
-<td>See <a href="https://developer.hashicorp.com/terraform/language/meta-arguments/resource-provider">The Resource provider Meta-Argument</a> for details.</td>
+<td>procname</td>
+<td>discovery1</td>
 </tr>
 </tbody>
 </table>
-<p>The import block's ID/name argument can be a literal string of your resource's import ID, or an expression that evaluates to a string. Terraform needs this detail to locate the resource you want to import.</p>
-<p>The import ID/name must be known at plan time for planning to succeed. If the value of <code>id</code>/<code>name</code> is only known after apply, <code>terraform plan</code> will fail with an error.</p>
-<p>The identifier you use for a resource's import ID/name is resource-specific. You can find the required ID/name in the <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">provider documentation</a> for the resource you wish to import.</p>
-<h3 id="terraform-import-block-template">Terraform import block Template</h3>
-<p>We have created a Terraform import block template in <code>terraform-deployment/importtemplate.md</code>. In this template, you can select the needed import block and paste it into the <code>imports.tf</code> file within the <code>terraform-deployment/deployments/imports.tf</code> directory. Remember to change the ID to the referring ID of your existing infrastructure.</p>
-<h2 id="managing-your-infrastructure">Managing Your Infrastructure</h2>
-<p>Once your environment is up and running, you can use this configuration to manage it:</p>
-<ol>
-<li>Code Updates: If you make any code changes in <code>TorQ</code> or <code>TorQ-Amazon-FinSpace-Starter-Pack</code> and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.</li>
-<li>Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in <code>clusters/rdb.tf</code> and run Terraform again. The RDB will be recreated with the new node size.</li>
-<li>Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the <code>terraform.tfvars</code> file. To delete a cluster, set its count to 0. To delete all clusters, set <code>create-clusters</code> to 0.</li>
+<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_add_code.png" alt="Discovery Add Code" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select <code>Next</code> to go to the next page.</p>
+</li>
+<li>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readily available default), then select next to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_vpc.png" alt="Discovery VPC Settings" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Leave everything as blank and move on to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_config_options.png" alt="Discovery Config Options" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
+</li>
 </ol>
-<h3 id="basic-commands-in-terraform">Basic Commands in Terraform</h3>
+<h2 id="real-time-database-rdb-cluster">Real-Time Database (RDB) Cluster</h2>
+<ol>
+<li>
+<p>Set the cluster type to “RDB".</p>
+</li>
+<li>
+<p>Choose a name for your cluster.</p>
 <ul>
-<li><code>terraform init</code>       -   Prepare your working directory for other commands</li>
-<li><code>terraform validate</code>   -   Check whether the configuration is valid</li>
-<li><code>terraform plan</code>       -   Show changes required by the current configuration</li>
-<li><code>terraform apply</code>      -   Create or update infrastructure</li>
-<li><code>terraform destroy</code>    -   Destroy previously-created infrastructure</li>
-<li>For more commands in Terraform, please visit <a href="https://developer.hashicorp.com/terraform/cli/commands">Terraform Command</a> </li>
+<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
+<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>rdb1</code>.</li>
 </ul>
-<h3 id="terraform-state-management">Terraform State Management</h3>
-<p>Terraform maintains a state file that tracks the state of the deployed infrastructure. This state file is crucial for Terraform to understand what resources have been created and to make changes to them. To ensure proper state management:</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_cluster_details.png" alt="RDB Cluster Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
+</li>
+<li>
+<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
 <ul>
-<li>Always store your state files securely, as they may contain sensitive information.</li>
-<li>Consider using remote state storage, such as Amazon S3, to keep your state files safe and accessible from multiple locations.</li>
-<li>Avoid manual changes to resources managed by Terraform, as this can lead to inconsistencies between the actual infrastructure and Terraform's state.</li>
+<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
 </ul>
-<h2 id="list-of-aws-structures-that-will-be-created-with-our-terraform-deployment">List of AWS Structures that will be created with our Terraform deployment</h2>
+</li>
+<li>
+<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+</li>
+<li>
+<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
+</li>
+<li>
+<p>Select your node size. For this MVP we are going to select the smallest.</p>
+</li>
+<li>
+<p>Leave Tags as empty and select next to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_node_details.png" alt="RDB Node Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
 <ul>
-<li>module.clusters.aws_finspace_kx_cluster.discovery-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.feed-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.gateway-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.hdb-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.rdb-cluster[0]</li>
-<li>module.environment.data.aws_iam_policy_document.iam-policy</li>
-<li>module.environment.data.aws_iam_policy_document.s3-code-policy</li>
-<li>module.environment.data.aws_iam_policy_document.s3-data-policy</li>
-<li>module.environment.aws_ec2_transit_gateway.test</li>
-<li>module.environment.aws_finspace_kx_database.database</li>
-<li>module.environment.aws_finspace_kx_environment.environment</li>
-<li>module.environment.aws_finspace_kx_user.finspace-user</li>
-<li>module.environment.aws_iam_policy.finspace-policy</li>
-<li>module.environment.aws_iam_role.finspace-test-role</li>
-<li>module.environment.aws_iam_role_policy_attachment.policy_attachment</li>
-<li>module.environment.aws_s3_bucket.finspace-code-bucket</li>
-<li>module.environment.aws_s3_bucket.finspace-data-bucket</li>
-<li>module.environment.aws_s3_bucket_policy.code-policy</li>
-<li>module.environment.aws_s3_bucket_policy.data-policy</li>
-<li>module.environment.aws_s3_bucket_public_access_block.code_bucket</li>
-<li>module.environment.aws_s3_bucket_public_access_block.data_bucket</li>
-<li>module.environment.aws_s3_bucket_versioning.versioning</li>
-<li>module.environment.null_resource.create_changeset</li>
-<li>module.environment.null_resource.upload_hdb</li>
-<li>module.network.aws_internet_gateway.finspace-igw</li>
-<li>module.network.aws_route.finspace-route</li>
-<li>module.network.aws_route_table.finspace-route-table</li>
-<li>module.network.aws_security_group.finspace-security-group</li>
-<li>module.network.aws_route_table_association.subnet-assocations[0]</li>
-<li>module.network.aws_route_table_association.subnet-assocations[1]</li>
-<li>module.network.aws_route_table_association.subnet-assocations[2]</li>
-<li>module.network.aws_subnet.finspace-subnets[0]</li>
-<li>module.network.aws_subnet.finspace-subnets[1]</li>
-<li>module.network.aws_subnet.finspace-subnets[2]</li>
-<li>module.network.aws_subnet.finspace-subnets[3]</li>
-<li>module.network.aws_vpc.finspace-vpc</li>
+<li>Alternatively, you can copy the URL from the codebucket itself.</li>
 </ul>
-<h2 id="references-and-documentation">References and Documentation</h2>
-<p>For more in-depth information and documentation, explore the following resources:</p>
+</li>
+<li>
+<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
+</li>
+<li>
+<p>Select <code>Add command-line argument</code> twice and enter the keys and values in the below table:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proctype</td>
+<td>rdb</td>
+</tr>
+<tr>
+<td>procname</td>
+<td>rdb1</td>
+</tr>
+</tbody>
+</table>
+<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_add_code.png" alt="RDB Add Code" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+</li>
+<li>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+</li>
+<li>
+<p>Select your "Database name" from the dropdown menu in the "Savedown database configuration" section.</p>
+</li>
+<li>
+<p>Select <code>SDS01</code> from the "Savedown volume type" dropdown menu.</p>
+</li>
+<li>
+<p>Enter an amount (in GiB) of required "Savedown volume". <code>10</code> for this MVP.</p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_config_options.png" alt="RDB Config Options" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
+</li>
+</ol>
+<h2 id="historical-database-hdb-cluster">Historical Database (HDB) Cluster</h2>
+<ol>
+<li>
+<p>Set the <code>Cluster type</code> to <code>HDB</code>.</p>
+</li>
+<li>
+<p>Choose a name for your cluster.</p>
 <ul>
-<li><a href="https://learn.hashicorp.com/tutorials/terraform/">Terraform Documentation</a></li>
-<li><a href="https://docs.aws.amazon.com/">AWS Documentation</a></li>
+<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
+<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>hdb1</code>.</li>
 </ul>
-<p>These resources provide detailed information about Terraform and AWS services, best practices, and advanced configurations.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/hdb_cluster_details.png" alt="HDB Cluster Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
+</li>
+<li>
+<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
+<ul>
+<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
+</ul>
+</li>
+<li>
+<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+</li>
+<li>
+<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
+</li>
+<li>
+<p>Select your node size. For this MVP we are going to select the smallest.</p>
+</li>
+<li>
+<p>Leave Auto-scaling and Tags as empty and select next to go to the next page.</p>
+</li>
+<li>
+<p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
+<ul>
+<li>Alternatively, you can copy the URL from the codebucket itself.</li>
+</ul>
+</li>
+<li>
+<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
+</li>
+<li>
+<p>Select <code>Add command-line argument</code> twice and enter the keys and values in the below table:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proctype</td>
+<td>hdb</td>
+</tr>
+<tr>
+<td>procname</td>
+<td>hdb1</td>
+</tr>
+</tbody>
+</table>
+<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/hdb_add_code.png" alt="HDB Add Code" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+</li>
+<li>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+</li>
+<li>
+<p>For "Database name" select your database from the dropdown menu. Changeset will autoselect at this point.</p>
+</li>
+<li>
+<p>Select "No caching".</p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/hdb_config_options.png" alt="HDB Config Options" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Check the entered information in the review page, then select "create cluster".</p>
+</li>
+</ol>
+<h2 id="gateway-cluster">Gateway Cluster</h2>
+<p>Ensure that the Discovery cluster is in a "Running" state before creating the Gateway cluster.</p>
+<ol>
+<li>
+<p>Set the <code>Cluster type</code> to <code>Gateway</code>.</p>
+</li>
+<li>
+<p>Choose a name for your cluster.</p>
+<ul>
+<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
+<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>gateway1</code>.</li>
+</ul>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/gw_cluster_details.png" alt="Gateway Cluster Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
+</li>
+<li>
+<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
+<ul>
+<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
+</ul>
+</li>
+<li>
+<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+</li>
+<li>
+<p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
+</li>
+<li>
+<p>Select your node size. For this MVP we are going to select the smallest.</p>
+</li>
+<li>
+<p>Leave Tags as empty and select next to go to the next page.</p>
+</li>
+<li>
+<p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
+<ul>
+<li>alternatively, you can copy the URL from the codebucket itself.</li>
+</ul>
+</li>
+<li>
+<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
+</li>
+<li>
+<p>Select <code>Add command-line argument</code> twice and enter the keys and values in the below table:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proctype</td>
+<td>gateway</td>
+</tr>
+<tr>
+<td>procname</td>
+<td>gateway1</td>
+</tr>
+</tbody>
+</table>
+<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/gw_add_code.png" alt="Gateway Add Code" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+</li>
+<li>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+</li>
+<li>
+<p>This page had no editing options. Select next to go to the next page.</p>
+</li>
+<li>
+<p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
+</li>
+</ol>
+<h2 id="feed-cluster">Feed Cluster</h2>
+<p>Ensure that the RDB cluster is in a <code>Running</code> state before creating the Feed cluster.</p>
+<ol>
+<li>
+<p>Set the <code>Cluster type</code> to <code>General purpose</code>, also known as "GP".</p>
+</li>
+<li>
+<p>Choose a name for your cluster. As this is a sample feed and not a "production" intended process, please name it <code>feed1</code>.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/feed_cluster_details.png" alt="Feed Cluster Details" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
+</li>
+<li>
+<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
+<ul>
+<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
+</ul>
+</li>
+<li>
+<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+</li>
+<li>
+<p>Select your node size. For this MVP we are going to select the smallest.</p>
+</li>
+<li>
+<p>Leave Tags as empty and select next to go to the next page.</p>
+</li>
+<li>
+<p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
+<ul>
+<li>alternatively, you can copy the URL from the codebucket itself.</li>
+</ul>
+</li>
+<li>
+<p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
+</li>
+<li>
+<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proctype</td>
+<td>tradeFeed</td>
+</tr>
+<tr>
+<td>procname</td>
+<td>tradeFeed1</td>
+</tr>
+</tbody>
+</table>
+<p>This specified initialization script and the command line arguments will set up the necessary environment for your cluster.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/feed_add_code.png" alt="Feed Add Code" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Select next to go to the next page.</p>
+</li>
+<li>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+</li>
+<li>
+<p>Leave everything as blank and move on to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_config_options.png" alt="Feed Config Options" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
+</li>
+</ol>
+<h2 id="on-completion">On Completion</h2>
+<p>When all clusters are up it should look like this:</p>
+<p style="text-align: center">
+    <img src="graphics/clusters-running.png" alt="All Clusters Running" width="90%"/>
+</p>
+
+<h2 id="errors-in-cluster-creation">Errors in cluster creation</h2>
+<p>On cluster creation, most errors will result in your cluster going to a <code>Create failed</code> state.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/cluster_failure.png" alt="Cluster failure" width="90%"/>
+</p>
+
+<p>If that is the case you should:</p>
+<ul>
+<li>
+<p>Click the cluster name in the <code>Clusters</code> section of your environment.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/cluster_select.png" alt="Select Cluster" width="90%"/>
+</p></p>
+</li>
+<li>
+<p>Scroll down the page and open the <code>Logs</code> tab. This should have a message with a more individualised error you can check.</p>
+</li>
+<li>
+<p>If you click the LogStream for an individual log it will take you to AWS CloudWatch where you can filter the messages for keywords or for messages in a certain time window.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/cluster_logs.png" alt="Select Cluster Logs" width="90%"/>
+</p></p>
+</li>
+</ul>
+<p>It is worthwhile checking the logs even for clusters that have been created and searching for terms like <code>err</code>, <code>error</code> or <code>fail</code>.</p>
 
               
             </article>
@@ -903,7 +1174,7 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../04-prerequisites/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Prerequisites" rel="prev">
+        <a href="../06-scalinggroupandvolumecreation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Scaling Group Creation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -912,20 +1183,20 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
               <span class="md-footer__direction">
                 Previous
               </span>
-              Prerequisites
+              Scaling Group Creation
             </div>
           </div>
         </a>
       
       
         
-        <a href="../06-scalinggroupandvolumecreation/" class="md-footer__link md-footer__link--next" aria-label="Next: Scaling Group Creation" rel="next">
+        <a href="../08-createec2/" class="md-footer__link md-footer__link--next" aria-label="Next: Create EC2" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Scaling Group Creation
+              Create EC2
             </div>
           </div>
           <div class="md-footer__button md-icon">
