@@ -153,37 +153,37 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
 
 #### create the eventbrighe scheduler ####
 
-resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
-  name = "rotateRDB_eventRule_${var.region}"
-  description = "Scheduler to create a new RDB every two hours"
-  schedule_expression = "cron(0 */2 ? * 2-6 *)" 
-}
+//resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
+//  name = "rotateRDB_eventRule_${var.region}"
+//  description = "Scheduler to create a new RDB every two hours"
+//  schedule_expression = "cron(0 */2 ? * 2-6 *)" 
+//}
 
-resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
-  arn = aws_sfn_state_machine.sfn_state_machine.arn
-  rule = aws_cloudwatch_event_rule.rotateRDB_eventRule.name
-  role_arn = aws_iam_role.eventBridge_role.arn
-    input = jsonencode({
-    cluster_prefix = "rdb",
-    clusterType = "RDB"
-  })
-}
+//resource "aws_cloudwatch_event_target" "onRotateRDB_target" {
+//  arn = aws_sfn_state_machine.sfn_state_machine.arn
+//  rule = aws_cloudwatch_event_rule.rotateRDB_eventRule.name
+//  role_arn = aws_iam_role.eventBridge_role.arn
+//    input = jsonencode({
+//    cluster_prefix = "rdb",
+//    clusterType = "RDB"
+//  })
+//}
 
-resource "aws_cloudwatch_event_rule" "rotateWDB_eventRule" {
-  name = "rotateWDB_eventRule_${var.region}"
-  description = "Scheduler to create a new WDB every two hours"
-  schedule_expression = "cron(5 */2 ? * 2-6 *)"
-}
+//resource "aws_cloudwatch_event_rule" "rotateWDB_eventRule" {
+//  name = "rotateWDB_eventRule_${var.region}"
+//  description = "Scheduler to create a new WDB every two hours"
+//  schedule_expression = "cron(5 */2 ? * 2-6 *)"
+//}
 
-resource "aws_cloudwatch_event_target" "onRotateWDB_target" {
-  arn = aws_sfn_state_machine.sfn_state_machine.arn
-  rule = aws_cloudwatch_event_rule.rotateWDB_eventRule.name
-  role_arn = aws_iam_role.eventBridge_role.arn
-    input = jsonencode({
-    cluster_prefix = "wdb",
-    clusterType = "RDB"
-  })
-}
+//resource "aws_cloudwatch_event_target" "onRotateWDB_target" {
+//  arn = aws_sfn_state_machine.sfn_state_machine.arn
+//  rule = aws_cloudwatch_event_rule.rotateWDB_eventRule.name
+//  role_arn = aws_iam_role.eventBridge_role.arn
+//    input = jsonencode({
+//    cluster_prefix = "wdb",
+//    clusterType = "RDB"
+//  })
+//}
 
 output "sfn_state_machine_arn" {
   value = aws_sfn_state_machine.sfn_state_machine.arn
