@@ -79,11 +79,30 @@ def lambda_handler(event, context):
         'azMode' : clusterInfo['azMode'],
         'availabilityZoneId' :clusterInfo['availabilityZoneId']
     }
+
+    # use capacityConfiguration if dedicated, scalingGroupConfiguration if on scaling group
+    if 'capacityConfiguration' in clusterInfo:
+        clusterArgs['capacityConfiguration'] = clusterInfo['capacityConfiguration']
+    elif 'scalingGroupConfiguration' in clusterInfo:
+        clusterArgs['scalingGroupConfiguration'] =  clusterInfo['scalingGroupConfiguration']
+
     if 'savedownStorageConfiguration' in clusterInfo:
         clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
+        
+    # handle databases
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
-        if not databaseInfo.get('cacheConfigurations', None):
+
+        if 'changesetId' in databaseInfo and use_latest_changeset:
+            latestChangeset = client.list_kx_changesets(environmentId=envId, databaseName=databaseInfo['databaseName'], maxResults=1)
+            databaseInfo['changesetId'] = latestChangeset['kxChangesets'][0]['changesetId']
+
+        if 'dataviewConfiguration' in databaseInfo:
+            databaseInfo = {
+                'databaseName': databaseInfo['databaseName'],
+                'dataviewName': databaseInfo['dataviewConfiguration']['dataviewName']
+            }
+        elif not databaseInfo.get('cacheConfigurations', None):
             databaseInfo = { 
                 'databaseName':databaseInfo['databaseName'],
                 'changesetId':databaseInfo['changesetId']

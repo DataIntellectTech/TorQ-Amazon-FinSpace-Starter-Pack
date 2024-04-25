@@ -37,9 +37,6 @@ def lambda_handler(event, context):
         
     clusterInfo = client.get_kx_cluster(environmentId=envId, clusterName=cluster_name)
         
-    #capacityConfiguration = clusterInfo['capacityConfiguration'].copy()
-    #capacityConfiguration['nodeCount'] = 1+clusterInfo['capacityConfiguration']['nodeCount'] #increase the nodeCount by one
-    
     cntr = cluster_name.replace(cluster_prefix,'')
     cntr = 1 if not cntr else int(cntr)
     cntr = (cntr%rdbCntr_modulo)+1
@@ -72,24 +69,29 @@ def lambda_handler(event, context):
         'availabilityZoneId' :clusterInfo['availabilityZoneId']
     }
 
+    # use capacityConfiguration if dedicated, scalingGroupConfiguration if on scaling group
     if 'capacityConfiguration' in clusterInfo:
         clusterArgs['capacityConfiguration'] = clusterInfo['capacityConfiguration']
     elif 'scalingGroupConfiguration' in clusterInfo:
-        clusterArgs['scalingGroupConfiguration'] =  clusterInfo['scalingGroupConfiguration'],        
+        clusterArgs['scalingGroupConfiguration'] =  clusterInfo['scalingGroupConfiguration']        
 
     if 'savedownStorageConfiguration' in clusterInfo:
         clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
+
+    # handle databases
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
+
+        if 'changesetId' in databaseInfo and use_latest_changeset:
+            latestChangeset = client.list_kx_changesets(environmentId=envId, databaseName=databaseInfo['databaseName'], maxResults=1)
+            databaseInfo['changesetId'] = latestChangeset['kxChangesets'][0]['changesetId']
+
         if 'dataviewConfiguration' in databaseInfo:
             databaseInfo = {
                 'databaseName': databaseInfo['databaseName'],
                 'dataviewName': databaseInfo['dataviewConfiguration']['dataviewName']
             }
         elif not databaseInfo.get('cacheConfigurations', None):
-            if event["clusterType"] == "HDB":
-                latestChangeset = client.list_kx_changesets(environmentId=envId, databaseName=databaseInfo['databaseName'], maxResults=1)
-                databaseInfo['changesetId'] = latestChangeset = latestChangeset['kxChangesets'][0]['changesetId']
             databaseInfo = { 
                 'databaseName':databaseInfo['databaseName'],
                 'changesetId':databaseInfo['changesetId']

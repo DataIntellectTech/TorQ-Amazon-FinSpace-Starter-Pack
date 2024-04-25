@@ -265,6 +265,7 @@ resource "local_file" "lambda_configs" {
   content = <<-EOT
     envId="${var.environment-id}"
     rdbCntr_modulo=${var.rdbCntr_mod}
+    use_latest_changeset=True
   EOT
   filename = "${path.module}/src/env.py"
 }
