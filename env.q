@@ -40,3 +40,4 @@ setenv[`TORQPROCESSES; getenv[`KDBAPPCONFIG],"/process.csv"];
 
 / TODO - remove this once we can pass in the env file as a cmd line parameter
 system"l ",torqDir,"/torq.q";
+
