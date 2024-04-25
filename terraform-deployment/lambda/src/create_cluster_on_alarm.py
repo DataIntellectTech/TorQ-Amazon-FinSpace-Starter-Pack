@@ -78,6 +78,9 @@ def lambda_handler(event, context):
     if 'savedownStorageConfiguration' in clusterInfo:
         clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
 
+    if 'cacheStorageConfigurations' in clusterInfo:
+        clusterArgs['cacheStorageConfigurations'] = clusterInfo['cacheStorageConfigurations']
+
     # handle databases
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
