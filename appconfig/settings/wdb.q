@@ -5,6 +5,7 @@ replay:.finspace.rollovermode<>`period;         // if in rollovermode=`period tu
 ignorelist:`heartbeat`logmsg`svrstoload         // list of tables to ignore when saving to disk
 savedir:hsym`$getenv[`KDBSCRATCH];              // the location of the hdb directory
 hdbdir:hsym`$getenv[`KDBSCRATCH];
+reloadorder:
 
 \d .finspace
 database:getenv[`KDBDATABASETRADE];
