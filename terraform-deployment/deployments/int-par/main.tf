@@ -77,4 +77,5 @@ module "metricfilter" {
   eventBridge_role_arn  = module.lambda.eventBridge_role_arn
   create-mfilters       = var.create-mfilters
   wdb_log_groups        = var.wdb_log_groups
+  alarm_pattern         = "new rdb ready. create new hdb"
 }
