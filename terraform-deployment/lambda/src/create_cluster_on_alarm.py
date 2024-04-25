@@ -62,7 +62,6 @@ def lambda_handler(event, context):
         'clusterName': newClusterId,
         'clusterType': event["clusterType"],
         'clusterDescription': f"cluster for process {newClusterId}",
-        'capacityConfiguration': clusterInfo['capacityConfiguration'],
         'releaseLabel': clusterInfo['releaseLabel'],
         'vpcConfiguration': clusterInfo['vpcConfiguration'],
         'initializationScript' : clusterInfo['initializationScript'],
@@ -72,11 +71,25 @@ def lambda_handler(event, context):
         'azMode' : clusterInfo['azMode'],
         'availabilityZoneId' :clusterInfo['availabilityZoneId']
     }
+
+    if 'capacityConfiguration' in clusterInfo:
+        clusterArgs['capacityConfiguration'] = clusterInfo['capacityConfiguration']
+    elif 'scalingGroupConfiguration' in clusterInfo:
+        clusterArgs['scalingGroupConfiguration'] =  clusterInfo['scalingGroupConfiguration'],        
+
     if 'savedownStorageConfiguration' in clusterInfo:
         clusterArgs['savedownStorageConfiguration'] = clusterInfo['savedownStorageConfiguration']
     if 'databases' in clusterInfo:
         databaseInfo = clusterInfo['databases'][0].copy()
-        if not databaseInfo.get('cacheConfigurations', None):
+        if 'dataviewConfiguration' in databaseInfo:
+            databaseInfo = {
+                'databaseName': databaseInfo['databaseName'],
+                'dataviewName': databaseInfo['dataviewConfiguration']['dataviewName']
+            }
+        elif not databaseInfo.get('cacheConfigurations', None):
+            if event["clusterType"] == "HDB":
+                latestChangeset = client.list_kx_changesets(environmentId=envId, databaseName=databaseInfo['databaseName'], maxResults=1)
+                databaseInfo['changesetId'] = latestChangeset = latestChangeset['kxChangesets'][0]['changesetId']
             databaseInfo = { 
                 'databaseName':databaseInfo['databaseName'],
                 'changesetId':databaseInfo['changesetId']

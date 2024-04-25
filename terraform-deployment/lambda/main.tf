@@ -98,7 +98,10 @@ data "aws_iam_policy_document" "finspace-extra" {
   statement {
     effect = "Allow"
 
-    actions = ["finspace:MountKxDatabase"]
+    actions = [
+      "finspace:MountKxDatabase",
+      ""finspace:ListKxChangesets"
+    ]
 
     resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxDatabase/*"]
   }
