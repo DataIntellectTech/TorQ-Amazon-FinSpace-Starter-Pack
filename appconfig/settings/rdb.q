@@ -1,7 +1,7 @@
 
 \d .rdb
 hdbdir:hsym`$getenv[`KDBSCRATCH]    // the location of the hdb directory
-reloadenabled:0b                    // if true, the RDB will not save when .u.end is called but
+reloadenabled:1b                    // if true, the RDB will not save when .u.end is called but
                                     // will clear it's data using reload function (called by the WDB)
 
 timeout:system"T"
