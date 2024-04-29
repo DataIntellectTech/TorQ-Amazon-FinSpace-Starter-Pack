@@ -22,9 +22,10 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
  qts:select sym,src,bid:.feed.rnd px-nq?0.03,ask:.feed.rnd px+nq?0.03,bsize:"i"$(500*1+nq?20),asize:"i"$(500*1+nq?20) from qts;
  trds:update bid:reverse fills reverse bid,ask:reverse fills reverse ask,bsize:reverse fills reverse bsize,asize:reverse fills reverse asize by sym from aj[enlist[`sym];([]sym:nt?syms;src:nt?srcs;side:nt?`buy`sell);qts];
  trds:select sym,src,price:?[side=`buy;ask;bid],size:`int$(nt?1f)*?[side=`buy;asize;bsize] from trds;
+ dpth:update bid:reverse fills reverse bid,ask:reverse fills reverse ask,bsize:reverse fills reverse bsize,asize:reverse fills reverse asize by sym from aj[enlist[`sym];([]sym:nd?syms);qts];
+ dpth:select sym,bid1:bid, bsize1:bsize, bid2:bid-.01, bsize2:"i"$(bsize+500*1+nd?5), bid3:bid-.02,bsize3:"i"$(bsize+500*1+nd?10),ask1:ask, asize1:asize,ask2:ask+.01,asize2:"i"$(asize+500*1+nd?5),ask3:ask+.02,asize3:"i"$(asize+500*1+nd?10) from dpth;
 
- :(`trades`quotes!(trds;qts));
-
+ :(`trades`quotes`depth!(trds;qts;dpth));
  };
 
 .trade.upd:{[w;t;d](neg first w)(`upd;t;d)};
