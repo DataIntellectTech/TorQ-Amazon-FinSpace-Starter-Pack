@@ -4,7 +4,7 @@
 
   .lg.o[`hdbstartup;"trigger rdbs to remove rows found at eod"];
   rdbs:exec w from .servers.SERVERS where proctype = `rdb, .dotz.liveh w;
-  func:{ if[`eodtabcounts in key .rdb; .rdb.reload[]] };
+  func:{ if[`eodtabcount in key .rdb; .rdb.reload[]] };
   rdbs @\: (func;`);
   //rdbs @\: (`.rdb.reload;`)
  };
