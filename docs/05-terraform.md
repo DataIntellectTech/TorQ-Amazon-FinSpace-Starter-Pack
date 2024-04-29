@@ -206,7 +206,7 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 Normally, you should be able to take down your entire stack by running `terraform destroy`. There are some known limitations in this terraform stack, and a few manual steps are involved:
 1. Delete any clusters that have been created manually or by any lambdas. On the console navigate to your kx environment, select the 'Clusters' tab, and delete each cluster by selecting the cluster and clicking 'Delete'.
 2. manually delete your hdb. This is because the hdb files are deployed using "local-exec" but not managed by terraform istelf. To do this run : `aws s3 rm --region "<region>" --recursive s3://<your bucket name>/hdb/`.
-3. Run `terraform destory`
+3. Run `terraform destroy`
 4. Sometimes terraform does not report if the transit gateway has been destroyed. Navigate to VPC > Transit Gateways on the AWS console, and delete any outstanding transit gateways associated with your kx environment (you may need to delete any transit gateway attachments before deleting the transit gateway itself)
 
 ## References and Documentation
