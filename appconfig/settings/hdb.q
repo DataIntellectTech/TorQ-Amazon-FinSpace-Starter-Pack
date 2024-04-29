@@ -13,7 +13,7 @@
 
 \d .servers
 
-CONNECTIONS:enlist`rdb`gateway;
+CONNECTIONS:`rdb`gateway;
 
 
 
