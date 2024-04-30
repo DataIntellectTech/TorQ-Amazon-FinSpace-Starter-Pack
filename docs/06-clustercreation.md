@@ -52,7 +52,7 @@ For these clusters, you will require:
         <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
     </p>
 
-6. In the `Node details` section, set the memory reservation per node to the minimum allowed (6 MiB) and leave the rest blank.
+6. In the `Node details` section, set the `Memory reservation per node` to the minimum allowed (6 MiB) and leave the rest blank.
     
     <p style="text-align: center">
         <img src="workshop/graphics/discovery_memory_reservation.png" alt="Discovery Memory Reservation" width="90%"/>
@@ -88,7 +88,7 @@ For these clusters, you will require:
 
 11. Select `Next` to go to the next page.
 
-12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readily available default), then select next to go to the next page.
+12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readily available default), then select `Next` to go to the next page.
     
     <p style="text-align: center">
         <img src="workshop/graphics/discovery_vpc.png" alt="Discovery VPC Settings" width="90%"/>
@@ -155,9 +155,9 @@ For these clusters, you will require:
         <img src="workshop/graphics/rdb_add_code.png" alt="RDB Add Code" width="90%"/>
     </p>
 
-12. Select next to go to the next page.
+12. Select `Next` to go to the next page.
 
-13. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
+13. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select `Next` to go to the next page.
 
 14. In the `Savedown database configuration` section, select your database in the `Database name` dropdown menu.
 
@@ -295,11 +295,11 @@ Ensure that the Discovery cluster is in a "Running" state before creating the Ga
         <img src="workshop/graphics/gw_add_code.png" alt="Gateway Add Code" width="90%"/>
     </p>
 
-12. Select next to go to the next page.
+12. Select `Next` to go to the next page.
 
-13. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
+13. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select `Next` to go to the next page.
 
-14. This page had no editing options. Select next to go to the next page.
+14. This page had no editing options. Select `Next` to go to the next page.
 
 15. Check the entered information in the review page, then select `Create cluster`.
 
@@ -329,7 +329,7 @@ Ensure that the RDB cluster is in a `Running` state before creating the Feed clu
         <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
     </p>
 
-6. In the `Node details` section, set the memory reservation per node to the minimum allowed (6 MiB) and leave the rest blank.
+6. In the `Node details` section, set the `Memory reservation per node` to the minimum allowed (6 MiB) and leave the rest blank.
     
     <p style="text-align: center">
         <img src="workshop/graphics/discovery_memory_reservation.png" alt="Discovery Memory Reservation" width="90%"/>
@@ -355,9 +355,9 @@ Ensure that the RDB cluster is in a `Running` state before creating the Feed clu
         <img src="workshop/graphics/feed_add_code.png" alt="Feed Add Code" width="90%"/>
     </p>
 
-11. Select next to go to the next page.
+11. Select `Next` to go to the next page.
 
-12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select next to go to the next page.
+12. Select your previously created [VPC ID](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html), [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html), and Security Groups (we can use the readilty available default), then select `Next` to go to the next page.
 
 13. Leave everything as blank and click `Next` to move on to the next page.
 
