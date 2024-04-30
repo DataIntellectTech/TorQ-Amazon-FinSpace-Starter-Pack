@@ -16,7 +16,3 @@
  };
 
 .proc.addinitlist(`.hdb.startup;`);
-
-\d .servers
-
-CONNECTIONS:`rdb`gateway;
