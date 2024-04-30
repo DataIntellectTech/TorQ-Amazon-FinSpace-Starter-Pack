@@ -94,7 +94,7 @@ For these clusters, you will require:
         <img src="workshop/graphics/discovery_vpc.png" alt="Discovery VPC Settings" width="90%"/>
     </p>
 
-13. Leave everything as blank and move on to the next page.
+13. Leave everything as blank and click `Next` to move on to the next page.
     
     <p style="text-align: center">
         <img src="workshop/graphics/discovery_config_options.png" alt="Discovery Config Options" width="90%"/>
@@ -278,7 +278,7 @@ Ensure that the Discovery cluster is in a "Running" state before creating the Ga
     </p>
 
 9. Select `Browse S3`, search and select your codebucket and select your code.zip file.
-    - alternatively, you can copy the URL from the codebucket itself.
+    - Alternatively, you can copy the URL from the codebucket itself.
 
 10. Enter `TorQ-Amazon-FinSpace-Starter-Pack/env.q` as your initialization script.
 
@@ -338,7 +338,7 @@ Ensure that the RDB cluster is in a `Running` state before creating the Feed clu
 7. Leave Tags as empty and select `Next` to go to the next page.
 
 8. Select `Browse S3`, search and select your codebucket and select your code.zip file.
-    - alternatively, you can copy the URL from the codebucket itself.
+    - Alternatively, you can copy the URL from the codebucket itself.
 
 9. Enter `TorQ-Amazon-FinSpace-Starter-Pack/env.q` as your initialization script.
 
