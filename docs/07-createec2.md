@@ -35,7 +35,7 @@ Most options here can be left as their defaults. Here are the ones that need sel
         <img src="workshop/graphics/create_key_pair.png" alt="Create new key pair" width="90%"/>
     </p>
 
-The network should be in the same VPC as your cluster. Select create a new security group that allows connections from anywhere.
+The network should be in the same VPC as your cluster. Select `Create security group` that allows Remote Desktop Protocol (RDP) connections from anywhere.
     - This is only for the purposes of the MVP. For customising see [this page](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html) on security groups.
 
 <p style="text-align: center">
