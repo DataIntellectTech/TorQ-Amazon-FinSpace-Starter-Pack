@@ -5,30 +5,42 @@ Creating and Connect to an EC2 Instance
 
 Navigate to the EC2 service.
 
-![Navigate to the EC2 service](workshop/graphics/navigate_ec2.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/navigate_ec2.png" alt="Navigate to the EC2 service" width="90%"/>
+</p>
 
-Select "launch instance" to create a new EC2 instance.
+Select `Launch instance` to create a new EC2 instance.
 
-![Select launch instance](workshop/graphics/ec2_launch.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_launch.png" alt="Select launch instance" width="90%"/>
+</p>
 
 Most options here can be left as their defaults. Here are the ones that need selected/changing:
 
-1. Select "Windows" from the Quick Start options.
+1. Select "Windows" from the `Quick Start` options.
 
-    ![select windows quick start](workshop/graphics/ec2_application.png)
+    <p style="text-align: center">
+        <img src="workshop/graphics/ec2_application.png" alt="select windows quick start" width="90%"/>
+    </p>
 
-2. We need to create a new key pair: Select "Create new key pair".
+2. We need to create a new key pair: Select `Create new key pair`.
 
-    ![Select create new key pair](workshop/graphics/ec2_keypair_button.png)
+    <p style="text-align: center">
+        <img src="workshop/graphics/ec2_keypair_button.png" alt="Select create new key pair" width="90%"/>
+    </p>
 
-3. Enter a name for your key pair, leave the key pair type as ``RSA`` and the file format as ``.pem``. This will download a key file to you PC which you will use to connect to the instance.
+3. Enter a name for your key pair, leave the key pair type as `RSA` and the file format as `.pem`. This will download a key file to you PC which you will use to connect to the instance.
 
-    ![Create new key pair](workshop/graphics/create_key_pair.png)
+    <p style="text-align: center">
+        <img src="workshop/graphics/create_key_pair.png" alt="Create new key pair" width="90%"/>
+    </p>
 
 The network should be in the same VPC as your cluster. Select create a new security group that allows connections from anywhere.
     - This is only for the purposes of the MVP. For customising see [this page](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html) on security groups.
 
-![EC2 network](workshop/graphics/ec2_network.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_network.png" alt="EC2 network" width="90%"/>
+</p>
 
 ## Adding your new security group to you EC2
 
@@ -36,37 +48,53 @@ Now we need to add the security group of your cluster to your EC2.
 
 Navigate to EC2 service.
 
-![Navigate to EC2](workshop/graphics/ec2_navigate.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_navigate.png" alt="Navigate to EC2" width="90%"/>
+</p>
 
-Select "Instances (running)".
+Select `Instances (running)`.
 
-![Select Instance running](workshop/graphics/ec2_navigate2.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_navigate2.png" alt="Select Instance running" width="90%"/>
+</p>
 
 Open your EC2 Instance.
 
-![Open EC2 instance](workshop/graphics/EC2_connect1.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect1.png" alt="Open EC2 instance" width="90%"/>
+</p>
 
-Select "Actions", "Security" then "Change security groups".
+Select `Actions`, `Security` then `Change security groups`.
 
-![Select change security groups](workshop/graphics/ec2_add_security.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_add_security.png" alt="Select change security groups" width="90%"/>
+</p>
 
-Search and select the security group that is on your clusters, select "Add security group" then "save".
+Search and select the security group that is on your clusters, select `Add security group` then `Save`.
 
-![Add security group](workshop/graphics/ec2_add_security2.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_add_security2.png" alt="Add security group" width="90%"/>
+</p>
 
 You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.
 
-![security group example](workshop/graphics/ec2_security.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/ec2_security.png" alt="security group example" width="90%"/>
+</p>
 
 ## Connecting to your EC2 Instance
 
 Open your EC2 Instance.
 
-![Open EC2 instance](workshop/graphics/EC2_connect1.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect1.png" alt="Open EC2 instance" width="90%"/>
+</p>
 
 Select connect.
 
-![Select connect](workshop/graphics/EC2_connect2.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect2.png" alt="Select connect" width="90%"/>
+</p>
 
 ### Get your password
 
@@ -74,11 +102,15 @@ this only needs to be done once. Once you have this password you can skip this s
 
 Select get password.
 
-![Get password](workshop/graphics/EC2_connect3.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect3.png" alt="Get password" width="90%"/>
+</p>
 
-Upload the ``.pem`` that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).
+Upload the `.pem` that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).
 
-![upload .pem file](workshop/graphics/EC2_connect4.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect4.png" alt="upload .pem file" width="90%"/>
+</p>
 
 This will return the value of your password. Keep a note of this password as you will need it to connect your EC2.
 
@@ -86,6 +118,8 @@ This will return the value of your password. Keep a note of this password as you
 
 Download the remote desktop file.
 
-![dowload remote desktop file](workshop/graphics/EC2_connect5.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/EC2_connect5.png" alt="dowload remote desktop file" width="90%"/>
+</p>
 
 Run this file and enter the password you recieved above when promted. You should now be connected to the Windows remote desktop.
