@@ -98,7 +98,7 @@ Select connect.
 
 ### Get your password
 
-this only needs to be done once. Once you have this password you can skip this step.
+This only needs to be done once. Once you have this password you can skip this step.
 
 Select get password.
 
