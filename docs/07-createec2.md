@@ -20,7 +20,7 @@ Most options here can be left as their defaults. Here are the ones that need sel
 1. Select "Windows" from the `Quick Start` options.
 
     <p style="text-align: center">
-        <img src="workshop/graphics/ec2_application.png" alt="select windows quick start" width="90%"/>
+        <img src="workshop/graphics/ec2_application.png" alt="Select windows quick start" width="90%"/>
     </p>
 
 2. We need to create a new key pair: Select `Create new key pair`.
@@ -79,7 +79,7 @@ Search and select the security group that is on your clusters, select `Add secur
 You should now have two security groups, one from the launch wizard, and the one you added manually that is also attached to your clusters.
 
 <p style="text-align: center">
-    <img src="workshop/graphics/ec2_security.png" alt="security group example" width="90%"/>
+    <img src="workshop/graphics/ec2_security.png" alt="Security group example" width="90%"/>
 </p>
 
 ## Connecting to your EC2 Instance
@@ -109,7 +109,7 @@ Select get password.
 Upload the `.pem` that was saved to you PC earlier (alternativly you can just paste the contents of this file in the text box).
 
 <p style="text-align: center">
-    <img src="workshop/graphics/EC2_connect4.png" alt="upload .pem file" width="90%"/>
+    <img src="workshop/graphics/EC2_connect4.png" alt="Upload .pem file" width="90%"/>
 </p>
 
 This will return the value of your password. Keep a note of this password as you will need it to connect your EC2.
@@ -119,7 +119,7 @@ This will return the value of your password. Keep a note of this password as you
 Download the remote desktop file.
 
 <p style="text-align: center">
-    <img src="workshop/graphics/EC2_connect5.png" alt="dowload remote desktop file" width="90%"/>
+    <img src="workshop/graphics/EC2_connect5.png" alt="Dowload remote desktop file" width="90%"/>
 </p>
 
 Run this file and enter the password you recieved above when promted. You should now be connected to the Windows remote desktop.
