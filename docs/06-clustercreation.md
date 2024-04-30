@@ -118,7 +118,7 @@ For these clusters, you will require:
 4. Select `Run on kdb scaling group` for the Cluster running option.
    
     <p style="text-align: center">
-        <img src="workshop/graphics/discovery_cluster_running.png" alt="Discovery Cluster Running" width="90%"/>
+        <img src="workshop/graphics/discovery_cluster_running.png" alt="RDB Cluster Running" width="90%"/>
     </p>
 
 5. Choose your group in the dropdown in the `Kdb scaling group details` section.
@@ -187,7 +187,7 @@ For these clusters, you will require:
 4. Select `Run on kdb scaling group` for the Cluster running option.
    
     <p style="text-align: center">
-        <img src="workshop/graphics/discovery_cluster_running.png" alt="Discovery Cluster Running" width="90%"/>
+        <img src="workshop/graphics/discovery_cluster_running.png" alt="HDB Cluster Running" width="90%"/>
     </p>
 
 5. Choose your group in the dropdown in the `Kdb scaling group details` section.
@@ -258,7 +258,7 @@ Ensure that the Discovery cluster is in a "Running" state before creating the Ga
 4. Select `Run on kdb scaling group` for the Cluster running option.
    
     <p style="text-align: center">
-        <img src="workshop/graphics/discovery_cluster_running.png" alt="Discovery Cluster Running" width="90%"/>
+        <img src="workshop/graphics/discovery_cluster_running.png" alt="Gateway Cluster Running" width="90%"/>
     </p>
 
 5. Choose your group in the dropdown in the `Kdb scaling group details` section.
@@ -320,7 +320,7 @@ Ensure that the RDB cluster is in a `Running` state before creating the Feed clu
 4. Select `Run on kdb scaling group` for the Cluster running option.
    
     <p style="text-align: center">
-        <img src="workshop/graphics/discovery_cluster_running.png" alt="Discovery Cluster Running" width="90%"/>
+        <img src="workshop/graphics/discovery_cluster_running.png" alt="Feed Cluster Running" width="90%"/>
     </p>
 
 5. Choose your group in the dropdown in the `Kdb scaling group details` section.
@@ -332,7 +332,7 @@ Ensure that the RDB cluster is in a `Running` state before creating the Feed clu
 6. In the `Node details` section, set the `Memory reservation per node` to the minimum allowed (6 MiB) and leave the rest blank.
     
     <p style="text-align: center">
-        <img src="workshop/graphics/discovery_memory_reservation.png" alt="Discovery Memory Reservation" width="90%"/>
+        <img src="workshop/graphics/discovery_memory_reservation.png" alt="Feed Memory Reservation" width="90%"/>
     </p>
 
 7. Leave Tags as empty and select `Next` to go to the next page.
