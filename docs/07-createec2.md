@@ -64,7 +64,7 @@ Open your EC2 Instance.
     <img src="workshop/graphics/EC2_connect1.png" alt="Open EC2 instance" width="90%"/>
 </p>
 
-Select `Actions`, `Security` then `Change security groups`.
+Select `Actions` -> `Security` -> `Change security groups`.
 
 <p style="text-align: center">
     <img src="workshop/graphics/ec2_add_security.png" alt="Select change security groups" width="90%"/>
@@ -90,7 +90,7 @@ Open your EC2 Instance.
     <img src="workshop/graphics/EC2_connect1.png" alt="Open EC2 instance" width="90%"/>
 </p>
 
-Select connect.
+Select `Connect`.
 
 <p style="text-align: center">
     <img src="workshop/graphics/EC2_connect2.png" alt="Select connect" width="90%"/>
@@ -100,7 +100,7 @@ Select connect.
 
 This only needs to be done once. Once you have this password you can skip this step.
 
-Select get password.
+Select `Get password`.
 
 <p style="text-align: center">
     <img src="workshop/graphics/EC2_connect3.png" alt="Get password" width="90%"/>
