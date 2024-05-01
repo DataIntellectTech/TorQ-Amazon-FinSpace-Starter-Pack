@@ -73,6 +73,10 @@ output "vpc-id" {
   value = aws_vpc.finspace-vpc.id
 }
 
+output "az-ids" {
+  value = data.aws_availability_zones.finspace-azs.zone_ids
+}
+
 output "subnet-ids" {
   value = aws_subnet.finspace-subnets[*].id
 }

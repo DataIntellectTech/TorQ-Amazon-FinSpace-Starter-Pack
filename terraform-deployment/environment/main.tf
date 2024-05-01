@@ -226,7 +226,8 @@ data "aws_iam_policy_document" "iam-policy" {
     effect  = "Allow"
     actions = [
       "finspace:ConnectKxCluster",
-      "finspace:DeleteKxCluster"
+      "finspace:DeleteKxCluster",
+      "finspace:GetKxCluster"
     ]
     resources = [
       "${aws_finspace_kx_environment.environment.arn}/kxCluster/*"
@@ -353,6 +354,65 @@ resource "null_resource" "create_changeset" {
   }
 }
 
+variable "az-ids" {
+  description = "availability zone ids"
+}
+
+variable "scaling-group-name" {
+  description = "name of kdb scaling group"
+  type        = string
+}
+
+variable "volume-name" {
+  description = "name of shared volume"
+  type        = string
+}
+
+variable "dataview-name" {
+  description = "name of finspace dataview"
+  type        = string
+}
+
+resource "aws_finspace_kx_scaling_group" "finspace-scaling-group" {
+  name                 = var.scaling-group-name
+  environment_id       = aws_finspace_kx_environment.environment.id
+  availability_zone_id = var.az-ids[0]
+  host_type            = "kx.sg.4xlarge"
+}
+
+resource "aws_finspace_kx_volume" "finspace-shared-vol" {
+  name                = var.volume-name
+  environment_id      = aws_finspace_kx_environment.environment.id
+  availability_zones  = [var.az-ids[0]]
+  az_mode             = "SINGLE"
+  type                = "NAS_1"
+  nas1_configuration {
+    size = 1200
+    type = "SSD_250"
+  }
+}
+
+resource "aws_finspace_kx_dataview" "finspace_dataview" {
+  name                 = var.dataview-name
+  environment_id       = aws_finspace_kx_environment.environment.id
+  database_name        = aws_finspace_kx_database.database.name
+  availability_zone_id = var.az-ids[0]
+  description          = "Terraform managed Kx Dataview"
+  az_mode              = "SINGLE"
+  auto_update          = true
+
+  segment_configurations {
+    volume_name = aws_finspace_kx_volume.finspace-shared-vol.name
+    db_paths    = ["/*"]
+  }
+
+  lifecycle {
+    ignore_changes = [
+      changeset_id
+    ]
+  }
+}
+
 output "environment-id" {
   value = aws_finspace_kx_environment.environment.id
 }
@@ -387,4 +447,8 @@ output "create-changeset" {
 
 output "execution-role" {
   value = aws_iam_role.finspace-test-role.arn
+}
+
+output "kdb-scaling-group" {
+  value = aws_finspace_kx_scaling_group.finspace-scaling-group
 }

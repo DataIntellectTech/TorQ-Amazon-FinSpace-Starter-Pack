@@ -34,23 +34,23 @@ Now we will zip these files together:
 
 **Two S3 buckets are required for this setup** - one for the code and one for the data.
 
-Create your S3 bucket by searching for "S3" and clicking "Create Bucket".
+Create your S3 bucket by searching for "S3" and clicking "Create Bucket"
 
-Choose the same AWS Region as your AWS Finspace KxEnvirnment.
+Choose the same AWS Region as your AWS Finspace KxEnvirnment
 
-Give your bucket a name.
+Give your bucket a name
 
 ![S3 general configurations](workshop/graphics/S3_general_configuration.png)
 
-Unselect the "Block all public access" box.
+Unselect the "Block all public access" box
 
 ![S3 Access Settings](workshop/graphics/S3_access_settings.png)
 
-Leave all other settings as the default.
+Leave all other settings as the default
 
 ### Edit the access policy
 
-Copy the ARN of your S3 buckets in the console by navigating to your S3 bucket, selecting "Properties".
+Copy the ARN of your S3 buckets in the console by navigating to your S3 bucket, selecting "Properties"
 
 ![S3 Bucket Arn](workshop/graphics/S3_code_bucket_arn.png)
 

@@ -99,7 +99,6 @@ For these clusters, you will require:
     <p style="text-align: center">
         <img src="workshop/graphics/discovery_config_options.png" alt="Discovery Config Options" width="90%"/>
     </p>
-
 14. Check the entered information in the review page, then select `Create cluster`.
 
 ## Real-Time Database (RDB) Cluster
