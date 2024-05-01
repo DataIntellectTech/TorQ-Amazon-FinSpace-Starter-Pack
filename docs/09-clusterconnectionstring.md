@@ -67,7 +67,7 @@ To find out how to get the ARN of your S3 buckets reference https://dataintellec
 
 We need to check the Trust Policy of your created role.
 
-Search for the role and open it in the IAM console. Go to Trust relationships.
+Search for the role and open it in the IAM console. Go to `Trust relationships`.
 
 Your Trust relationship should have at least these:
     
@@ -87,25 +87,33 @@ Your Trust relationship should have at least these:
 
 ## Create a user (If manually set up (not useing Terraform))
 
-In your kdb environment, go to the Users tab and select Add user.
+In your kdb environment, go to the `Users` tab and select `Add user`.
 
-![Create user button](workshop/graphics/create_user_button.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/create_user_button.png" alt="Create user button" width="90%"/>
+</p>
 
-Give it a name and select the IAM role you created above.
+Give it a name and select the `IAM role` you created above.
 
-![Add user](workshop/graphics/create_user.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/create_user.png" alt="Add user" width="90%"/>
+</p>
 
 ## Generate Connection String
 
-On the users tab, copy the links for IAM role and User ARN for the user.
+On the `Users` tab, copy the links for `IAM role` and `User ARN` for the user.
 
-![User details](workshop/graphics/user_details.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/user_details.png" alt="User details" width="90%"/>
+</p>
 
-Navigate to CloudShell.
+Navigate to `CloudShell`.
 
-![Navigate to CloudShell](workshop/graphics/cloudshell.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/cloudshell.png" alt="Navigate to CloudShell" width="90%"/>
+</p>
 
-Replace ``<ARN_COPIED_FROM_ABOVE>`` with the IAM Role copied above and run the following (this will not return anything):
+Replace `<ARN_COPIED_FROM_ABOVE>` with the `IAM Role` copied above and run the following (this will not return anything):
 
     export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
     $(aws sts assume-role \
@@ -114,16 +122,20 @@ Replace ``<ARN_COPIED_FROM_ABOVE>`` with the IAM Role copied above and run the f
     --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
     --output text))
 
-This lets you assume the role that you have just created by taking the values returned from the aws sts assume-role command and setting them in your AWS_ACCESS_KEY_ID... etc environment variables. NOTE - if you need to switch back to your own user within the CloudShell, you will need to run unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN to unset these environment variables.
+This lets you assume the role that you have just created by taking the values returned from the `aws sts assume-role` command and setting them in your `AWS_ACCESS_KEY_ID`, e.t.c. environment variables. NOTE - if you need to switch back to your own user within the CloudShell, you will need to run `unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN` to unset these environment variables.
 
-Copy your kdb Environment Id:
+Copy your kdb Environment ID:
 
-![Get you kdb env ID](workshop/graphics/kdbenv_id.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/kdbenv_id.png" alt="Get you kdb env ID" width="90%"/>
+</p>
 
-Replace ``<YOUR_KDB_ENVIRONMENT_ID>`` with your kdb environment ID, ``<USER_ARN_COPIED_ABOVE>`` with the User ARN, and ``<NAME_OF_CLUSTER>`` with the name of the cluster you want to connect to. Run the following:
+Replace `<YOUR_KDB_ENVIRONMENT_ID>` with your kdb environment ID, `<USER_ARN_COPIED_ABOVE>` with the `User ARN`, and `<NAME_OF_CLUSTER>` with the name of the cluster you want to connect to. Run the following:
 
     aws finspace get-kx-connection-string --environment-id <YOUR_KDB_ENVIRONMENT_ID> --user-arn <USER_ARN_COPIED_ABOVE> --cluster-name <NAME_OF_CLUSTER>
 
 This will return a large connection string which can be used to connect to your cluster.
 
-![Connection string example](workshop/graphics/connection_string.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/connection_string.png" alt="Connection string example" width="90%"/>
+</p>
