@@ -24,6 +24,7 @@ timerperiod:@[value;`timerperiod;0D00:01:00.000];   //the time interval to push 
  trds:select sym,src,price:?[side=`buy;ask;bid],size:`int$(nt?1f)*?[side=`buy;asize;bsize] from trds;
 
  :(`trades`quotes!(trds;qts));
+ 
  };
 
 .trade.upd:{[w;t;d](neg first w)(`upd;t;d)};
