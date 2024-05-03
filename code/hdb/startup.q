@@ -1,4 +1,6 @@
 
+//called after new HDB cluster finishes loading all dependencies
+//triggers RDB reload instead of the HDB and removes old HDB cluster if it is a replacement
 .hdb.startup:{
   .lg.o[`hdbstartup;"trigger rdbs to remove rows found at eod"];
   rdbs:exec w from .servers.SERVERS where proctype = `rdb, .dotz.liveh w;
