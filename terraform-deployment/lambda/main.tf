@@ -100,7 +100,7 @@ data "aws_iam_policy_document" "finspace-extra" {
 
     actions = [
       "finspace:MountKxDatabase",
-      "finspace:ListKxChangesets"
+    "finspace:ListKxChangesets"
     ]
 
     resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxDatabase/*"]
