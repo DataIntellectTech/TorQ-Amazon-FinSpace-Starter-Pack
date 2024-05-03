@@ -1,4 +1,3 @@
 proctype,tablename,primarytimecolumn,attributecolumn,instrumentcolumn,rolltimeoffset,rolltimezone,datatimezone,partitionfield
 ,trades,time,sym,sym,,,,
 ,quotes,time,sym,sym,,,,
-,depth,time,sym,sym,,,,
