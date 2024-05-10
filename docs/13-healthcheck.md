@@ -13,7 +13,7 @@ Below is an example of what running clusters look like. You can find this page b
 
 Follow steps on [our Running Queries page](https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/11-runningqueries/) to run some queries on your Gateway to check there are no errors and data is being returned (if there is data available).
 
-## Check tables are populated/growning
+## Check tables are populated/growing
 
 If you would like to go into each process to check their health, here are a few details on how.
 
