@@ -3,7 +3,7 @@ Check your system is healthy
 
 ## Check If the System Is Running
 
-Below is an example of what running clusters look like. You can find this page by going to the AWS console -> Amazon Finspace -> Kdb Environment -> select your environment -> clusters tab.
+Below is an example of what running clusters look like. You can find this page by going to the AWS Console -> `Amazon FinSpace` -> `Kdb environments` -> Select your environment -> `Clusters`
 
 <p style="text-align: center">
     <img src="graphics/clusters-running.png" alt="Clusters running example image" width="90%"/>

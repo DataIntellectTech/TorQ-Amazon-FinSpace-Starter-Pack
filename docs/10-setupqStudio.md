@@ -17,7 +17,7 @@ Download the [Microsoft C++ 2010 service pack](https://www.microsoft.com/en-gb/d
     <img src="workshop/graphics/MSpack_download.png" alt="Download MSPack" width="90%"/>
 </p>
 
-Select the relavent version (usually x64).**
+Select the relevant version (usually x64).**
 
 <p style="text-align: center">
     <img src="workshop/graphics/MSpack_download2.png" alt="Download MSPack select version" width="90%"/>
