@@ -5,6 +5,13 @@
 addserversfromconnectiontable:{
  {.gw.addserverattr'[x`w;x`proctype;x`attributes]}[select w,proctype,attributes from .servers.SERVERS where ((proctype in x) or x~`ALL),not w in ((0;0Ni),exec handle from .gw.servers where not null handle)];}
 
+//update the server active flag in .gw.servers
+setserveractiveflag:{[servername;isactive]
+  if[count res:(select handle:w, procname from .servers.SERVERS where procname in servername) lj `handle xkey .gw.servers;
+     update active:isactive from `.gw.servers where serverid in (exec serverid from res);
+   ];
+ };
+
 \d .finspace
 
 deregserverids:(enlist 0N)!enlist (::);
