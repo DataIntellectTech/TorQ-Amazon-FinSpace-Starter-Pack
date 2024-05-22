@@ -3,7 +3,7 @@
 hdbdir:hsym`$getenv[`KDBSCRATCH]    // the location of the hdb directory
 reloadenabled:1b                    // if true, the RDB will not save when .u.end is called but
                                     // will clear it's data using reload function (called by the WDB)
-
+ignorelist:`heartbeat`logmsg`svrstoload         // list of tables to ignore when saving to disk
 timeout:system"T"
 
 replaylog:.finspace.rollovermode<>`period;      // if in rollovermode=`period turn off tp log replay
