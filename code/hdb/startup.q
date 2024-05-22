@@ -7,9 +7,10 @@
 
   // block queries to new hdb
   gws @\: (`.gw.setserveractiveflag;.proc.procname;0b);
-  // wait for status change
+  // this code can run when the cluster is still in CREATING state. Wait for status change
   .finspace.checkstatus[(.finspace.getcluster;.proc.procname);("RUNNING";"FAILURE");00:01;0D01];
 
+  // due to a race condition with loading hdb data the gw connection handle potentially may only retrieve stale data
   // identify the row and retry connection
   {[h;tgt]
      tgtidx:first @[h;({exec i from .servers.SERVERS where procname=x};tgt);()];
@@ -19,10 +20,11 @@
      if[doretry; h(`.servers.retryrows;tgtidx)];
    }[;.proc.procname] each gws;
 
+  // block queries to the rdbs and old hdb
   rdbs:select procname,w from .servers.SERVERS where proctype = `rdb, .dotz.liveh w;
-  // block queries to the rdbs
   rdbnames:exec procname from rdbs;
-  gws @\: (`.gw.setserveractiveflag;rdbnames;0b);
+  oldhdb:first .proc.params[`replaceProc];
+  gws @\: (`.gw.setserverreplacement;rdbnames,oldhdb;.proc.procname);
 
   // clear data from rdbs
   .lg.o[`hdbstartup;"trigger rdbs to remove rows found at eod"];
@@ -31,16 +33,14 @@
   rdbhandles @\: (func;.z.d);
   .lg.o[`hdbstartup;"finished signaling rdbs to drop rows at time of eod"];
 
-  // block queries to old hdb and begin shutdown process
-  if[count deleteme:first .proc.params[`replaceProc];
-      .lg.o[`hdbstartup;"sending signal to delete the cluster named ",deleteme];
-      gws @\: (`.finspace.unregisterfromgw;enlist `$deleteme);
+  // begin shutdown process for old hdb
+  if[count oldhdb;
+      .lg.o[`hdbstartup;"sending signal to delete the cluster named ",oldhdb];
+      gws @\: (`.finspace.unregisterfromgw;enlist `$oldhdb);
     ];
 
   // enable queries to the rdbs
   gws @\: (`.gw.setserveractiveflag;rdbnames;1b);
-  // enable queries to new hdb
-  gws @\: (`.gw.setserveractiveflag;.proc.procname;1b);
 
   .lg.o[`hdbstartup;"finishing hdb startup"];
  };

@@ -12,6 +12,20 @@ setserveractiveflag:{[servername;isactive]
    ];
  };
 
+//a function to simultaniously deactivate old services and active new ones. Updates the server active flag in .gw.servers
+setserverreplacement:{[oldserver;newserver]
+  oldserverdetails:(select handle:w, procname from .servers.SERVERS where procname in oldserver) lj `handle xkey .gw.servers;
+  newserverdetails:(select handle:w, procname from .servers.SERVERS where procname in newserver) lj `handle xkey .gw.servers;
+  
+  //seperating out the calls and checks as we would still want the active flag to be set even if old one is down
+  if[count newserverdetails;
+     update active:1b from `.gw.servers where serverid in (exec serverid from newserverdetails);
+     if[count oldserverdetails;
+       update active:0b from `.gw.servers where serverid in (exec serverid from oldserverdetails);
+     ];
+   ];
+ };
+
 \d .finspace
 
 deregserverids:(enlist 0N)!enlist (::);
