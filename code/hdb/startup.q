@@ -26,10 +26,10 @@
   oldhdb:first .proc.params[`replaceProc];
   gws @\: (`.gw.setserverreplacement;rdbnames,oldhdb;.proc.procname);
 
-  // clear data from rdbs
+  // clear data from rdbs and enable queries
   .lg.o[`hdbstartup;"trigger rdbs to remove rows found at eod"];
   rdbhandles:exec w from rdbs;
-  func:{ if[`eodtabcount in key .rdb; .rdb.reload[x]] };
+  func:{ if[`eodtabcount in key .rdb; .rdb.reload[x]]; gws:exec w from .servers.SERVERS where proctype = `gateway, .dotz.liveh w; gws @\: (`.gw.setserveractiveflag;.proc.procname;1b) };
   rdbhandles @\: (func;.z.d);
   .lg.o[`hdbstartup;"finished signaling rdbs to drop rows at time of eod"];
 
@@ -38,9 +38,6 @@
       .lg.o[`hdbstartup;"sending signal to delete the cluster named ",oldhdb];
       gws @\: (`.finspace.unregisterfromgw;enlist `$oldhdb);
     ];
-
-  // enable queries to the rdbs
-  gws @\: (`.gw.setserveractiveflag;rdbnames;1b);
 
   .lg.o[`hdbstartup;"finishing hdb startup"];
  };
