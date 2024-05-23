@@ -151,6 +151,8 @@ resource "aws_sfn_state_machine" "sfn_state_machine" {
     })
 }
 
+#### Uncomment if using int-par deployment #### 
+/*
 #### create the eventbrighe scheduler ####
 
 resource "aws_cloudwatch_event_rule" "rotateRDB_eventRule" {
@@ -184,6 +186,7 @@ resource "aws_cloudwatch_event_target" "onRotateWDB_target" {
     clusterType = "RDB"
   })
 }
+*/
 
 output "sfn_state_machine_arn" {
   value = aws_sfn_state_machine.sfn_state_machine.arn

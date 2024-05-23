@@ -98,7 +98,10 @@ data "aws_iam_policy_document" "finspace-extra" {
   statement {
     effect = "Allow"
 
-    actions = ["finspace:MountKxDatabase"]
+    actions = [
+      "finspace:MountKxDatabase",
+      "finspace:ListKxChangesets"
+    ]
 
     resources = ["arn:aws:finspace:${var.region}:${var.account_id}:kxEnvironment/*/kxDatabase/*"]
   }
@@ -262,6 +265,7 @@ resource "local_file" "lambda_configs" {
   content = <<-EOT
     envId="${var.environment-id}"
     rdbCntr_modulo=${var.rdbCntr_mod}
+    use_latest_changeset=True
   EOT
   filename = "${path.module}/src/env.py"
 }

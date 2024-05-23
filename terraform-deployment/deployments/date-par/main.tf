@@ -54,3 +54,28 @@ module "clusters" {
   dataview-name        = var.dataview-name 
 }
 
+module "lambda" {
+  source = "../../lambda"
+
+  lambda-name          = var.lambda-name
+  sfn-machine-name     = var.sfn-machine-name
+  region               = var.region
+  environment-id       = module.environment.environment-id
+  account_id           = module.environment.account_id
+  s3-bucket-id         = module.environment.s3-bucket-id
+  s3-data-bucket-id    = module.environment.s3-data-bucket-id
+  rdbCntr_mod          = var.rdbCntr_modulo
+  send-sns-alert       = var.send-sns-alert
+  alert-smpt-target    = var.alert-smpt-target
+}
+
+module "metricfilter" {
+  source = "../../metricfilter"
+
+  environment-id        = module.environment.environment-id
+  sfn_state_machine_arn = module.lambda.sfn_state_machine_arn
+  eventBridge_role_arn  = module.lambda.eventBridge_role_arn
+  create-mfilters       = var.create-mfilters
+  wdb_log_groups        = var.wdb_log_groups
+  alarm_pattern         = "bringing up new hdb cluster"
+}

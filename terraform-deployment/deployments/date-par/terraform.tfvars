@@ -16,6 +16,17 @@ scaling-group-name = "finTorq-scaling-group"
 volume-name       = "finTorq-shared"
 dataview-name     = "finspace-dataview"
 
+# lambda configs
+lambda-name       = "finspace-lambda-scaling"
+sfn-machine-name  = "finspace-scaler-state-machine"
+rdbCntr_modulo    = 3
+send-sns-alert    = false                                      # true=create email subscription. false=no email subscription
+alert-smpt-target = "your.name@dataintellect.com"              # email address to send sns alerts to if send-alert flag is set to 'true'
+
+# metricfilter configs
+create-mfilters = false                                        # set to 'true' and rerun 'terraform apply' once wdb clusters have been created in your kxenvironment
+wdb_log_groups = ["wdb1","wdb2"]                               # configure log groups with prefix "wdb" here eg. ["wdb1","wdb2"]
+
 # database name
 database-name     = "finspace-database"                        # database name should match name specified in env.q 
 init-script       = "TorQ-Amazon-FinSpace-Starter-Pack/env.q"  # path to init script inside zipped folder
