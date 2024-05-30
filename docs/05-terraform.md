@@ -5,17 +5,19 @@ The process of setting up a working Managed kdb environment manually can take so
 
 This Terraform script can be used to deploy an entire environment from scratch. This will include:
 
-- creating and uploading data to S3 buckets with required policies
+- Creating and uploading data to S3 buckets with required policies
 
-- creating IAM roles
+- Creating IAM roles
 
-- creating network and transit gateway
+- Creating network and transit gateway
 
-- as well as deploying clusters.
+- Deploying clusters
 
 It is split into two modules, one for the environment and one for the clusters. This makes the directory more organised and cluster deployments easier to manage. The cluster module is still dependent on the environment module as it will import some variables from here that are needed for cluster creation.
 
-![Terraform Module Diagram](workshop/graphics/terraform_modules.png)
+<p style="text-align: center">
+    <img src="workshop/graphics/terraform_modules.png" alt="Terraform Module Diagram" width="90%"/>
+</p>
 
 This Terraform setup is designed to deploy and manage a Managed kdb Insights environment running a TorQ bundle.
 
@@ -34,18 +36,18 @@ This Terraform setup is designed to deploy and manage a Managed kdb Insights env
 
 ## How to Use - Initial Deployment
 
-New user please continue and follow this section - Users with existing infrastructure, please skip to our [existing infrastructure section](#deploying-with-terraform-for-users-with-existing-infrastructure).
+New user please continue and follow this section - Users with existing infrastructure, please skip to our [existing infrastructure section](#how-to-use---deploying-with-terraform-for-users-with-existing-infrastructure).
 
 1. (Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in `TorQ-Amazon-FinSpace-Starter-Pack/inthdb/hdb` or `TorQ-Amazon-FinSpace-Starter-Pack/datehdb/hdb`
 2. Move into the `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments` directory; within there should be two sub-directories : `date-par` and `int-par`. 
   If you want your finspace with Managed Kdb Insights system to use date partitions use `date-par`
   If you want your system to perform multiple intra-day writedowns with int partitions use `int-par`
   `cd` into one of the two sub-directories. This will be your Terraform working directory from which you should run all `terraform` commands.
-  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through changesets)[changesets in AWS finspace](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html)
+  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through [changesets](https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html))
 3. (Optional) symlink your hdb and your zipped source code to your working directory
 4. Modify variables inside the `terraform.tfvars` file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of `"Name"`. For example, For the variable on `role-name`, you can change the variable name by replacing `"finspace-role"`.
 5. (Optional) If you have changed the database name from the default `finspace-database` to any other names, please also edit the `env.q` file, changing the database name to the new variable that you have set in line 19.
-6. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key [Prerequisites](#Prerequisites).
+6. Run `aws configure` in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key [Prerequisites](#prerequisites).
 7. From your Terraform working directory which is `TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments/date-par|int-par`, run `terraform init`.
 8. If initialized without error, run `terraform plan`. This will show all resources set to be created or destroyed by Terraform.
 9. Run `terraform apply` to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in `nohup`. (Using `nohup` might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: `nohup terraform apply -auto-approve > terraform_apply.log 2>&1 &`. 
@@ -209,7 +211,7 @@ Terraform maintains a state file that tracks the state of the deployed infrastru
 Normally, you should be able to take down your entire stack by running `terraform destroy`. There are some known limitations in this terraform stack, and a few manual steps are involved:
 1. Delete any clusters that have been created manually or by any lambdas. On the console navigate to your kx environment, select the 'Clusters' tab, and delete each cluster by selecting the cluster and clicking 'Delete'.
 2. manually delete your hdb. This is because the hdb files are deployed using "local-exec" but not managed by terraform istelf. To do this run : `aws s3 rm --region "<region>" --recursive s3://<your bucket name>/hdb/`.
-3. Run `terraform destory`
+3. Run `terraform destroy`
 4. Sometimes terraform does not report if the transit gateway has been destroyed. Navigate to VPC > Transit Gateways on the AWS console, and delete any outstanding transit gateways associated with your kx environment (you may need to delete any transit gateway attachments before deleting the transit gateway itself)
 
 ## References and Documentation
