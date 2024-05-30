@@ -26,6 +26,12 @@ Then:
 Head to the address it gives you to check if your changes have worked. More information about using mkdocs can be found [here](http://www.mkdocs.org/)
   
 ## Release Notes
+- **2.0.0, May 2024**
+  * Added support for STP process
+  * Added support for WDB process
+  * Added support for AWS Dataviews and Scaling Groups
+  * Added support for DataAccess API
+  * Bug Fixes
 - **1.1.0, Apr 2024**
   * env.q now uses native .aws variables to dynamically set global variables
   * terraform updates to support scaling group and shared volume compatibility

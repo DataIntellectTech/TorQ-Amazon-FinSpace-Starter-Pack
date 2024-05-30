@@ -1,2 +1,2 @@
 
-TorQ Finspace Starter Pack v 1.10.0
+TorQ Amazon Finspace Starter Pack v 2.0.0
