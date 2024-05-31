@@ -388,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -403,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -481,11 +481,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-tables-are-populatedgrowning" class="md-nav__link">
-    Check tables are populated/growning
+  <a href="#check-tables-are-populatedgrowing" class="md-nav__link">
+    Check tables are populated/growing
   </a>
   
-    <nav class="md-nav" aria-label="Check tables are populated/growning">
+    <nav class="md-nav" aria-label="Check tables are populated/growing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -498,6 +498,13 @@
           <li class="md-nav__item">
   <a href="#heartbeats-hbhb" class="md-nav__link">
     Heartbeats - .hb.hb
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudwatch-alarms" class="md-nav__link">
+    Cloudwatch Alarms
   </a>
   
 </li>
@@ -586,11 +593,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-tables-are-populatedgrowning" class="md-nav__link">
-    Check tables are populated/growning
+  <a href="#check-tables-are-populatedgrowing" class="md-nav__link">
+    Check tables are populated/growing
   </a>
   
-    <nav class="md-nav" aria-label="Check tables are populated/growning">
+    <nav class="md-nav" aria-label="Check tables are populated/growing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -603,6 +610,13 @@
           <li class="md-nav__item">
   <a href="#heartbeats-hbhb" class="md-nav__link">
     Heartbeats - .hb.hb
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudwatch-alarms" class="md-nav__link">
+    Cloudwatch Alarms
   </a>
   
 </li>
@@ -632,11 +646,14 @@
 
 <h1 id="check-your-system-is-healthy">Check your system is healthy</h1>
 <h2 id="check-if-the-system-is-running">Check If the System Is Running</h2>
-<p>Below is an example of what running clusters look like. You can find this page by going to the AWS console -&gt; Amazon Finspace -&gt; Kdb Environment -&gt; select your environment -&gt; clusters tab.</p>
-<p><img alt="Clusters running example image" src="../graphics/clusters-running.png" /></p>
+<p>Below is an example of what running clusters look like. You can find this page by going to the AWS Console -&gt; <code>Amazon FinSpace</code> -&gt; <code>Kdb environments</code> -&gt; Select your environment -&gt; <code>Clusters</code></p>
+<p style="text-align: center">
+    <img src="graphics/clusters-running.png" alt="Clusters running example image" width="90%"/>
+</p>
+
 <h2 id="run-some-queries">Run some queries</h2>
 <p>Follow steps on <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/11-runningqueries/">our Running Queries page</a> to run some queries on your Gateway to check there are no errors and data is being returned (if there is data available).</p>
-<h2 id="check-tables-are-populatedgrowning">Check tables are populated/growning</h2>
+<h2 id="check-tables-are-populatedgrowing">Check tables are populated/growing</h2>
 <p>If you would like to go into each process to check their health, here are a few details on how.</p>
 <h3 id="check-server-connections-serversservers">Check Server Connections - .servers.SERVERS</h3>
 <p>Each TorQ process has a table called <code>.servers.SERVERS</code> that is used to track connections. Each process (with the exception of the Feed) should have at least one connection in this table to the discovery process (the discovery will have connections to all live processes).</p>
@@ -644,6 +661,10 @@
 <h3 id="heartbeats-hbhb">Heartbeats - .hb.hb</h3>
 <p>All processes regularly publish a signal to show it is still active. This signal is called a heartbeat. Heartbeats are received and a summary can be seen stored within the <code>.hb.hb</code> table.</p>
 <p>The discovery process can be used to view the heartbeat of all processes (with the exception of the Feed).</p>
+<h3 id="cloudwatch-alarms">Cloudwatch Alarms</h3>
+<p>In cloudwatch, it may be beneficial to set up an alarm to alert you if a particular log has been recorded.</p>
+<p>The steps to do this can be found here: <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_alarm_log_group_metric_filter.html">AWS Cloudwatch Alarms.</a></p>
+<p>You can set an alarm for any possible log output, one that may be helpful in particular is to monitor the logs for an unsuccessful writedown/creation of a changeset. At which point this may need to be investigated further.i</p>
 
               
             </article>

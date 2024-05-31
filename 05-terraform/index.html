@@ -426,6 +426,19 @@
     List of AWS Structures that will be created with our Terraform deployment
   </a>
   
+    <nav class="md-nav" aria-label="List of AWS Structures that will be created with our Terraform deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destorying-your-infastructure" class="md-nav__link">
+    Destorying your infastructure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -511,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -526,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -699,6 +712,19 @@
     List of AWS Structures that will be created with our Terraform deployment
   </a>
   
+    <nav class="md-nav" aria-label="List of AWS Structures that will be created with our Terraform deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#destorying-your-infastructure" class="md-nav__link">
+    Destorying your infastructure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -731,20 +757,23 @@
 <p>This Terraform script can be used to deploy an entire environment from scratch. This will include:</p>
 <ul>
 <li>
-<p>creating and uploading data to S3 buckets with required policies</p>
+<p>Creating and uploading data to S3 buckets with required policies</p>
 </li>
 <li>
-<p>creating IAM roles</p>
+<p>Creating IAM roles</p>
 </li>
 <li>
-<p>creating network and transit gateway</p>
+<p>Creating network and transit gateway</p>
 </li>
 <li>
-<p>as well as deploying clusters.</p>
+<p>Deploying clusters</p>
 </li>
 </ul>
 <p>It is split into two modules, one for the environment and one for the clusters. This makes the directory more organised and cluster deployments easier to manage. The cluster module is still dependent on the environment module as it will import some variables from here that are needed for cluster creation.</p>
-<p><img alt="Terraform Module Diagram" src="../workshop/graphics/terraform_modules.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/terraform_modules.png" alt="Terraform Module Diagram" width="90%"/>
+</p>
+
 <p>This Terraform setup is designed to deploy and manage a Managed kdb Insights environment running a TorQ bundle.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ol>
@@ -763,12 +792,17 @@
 <h2 id="how-to-use-initial-deployment">How to Use - Initial Deployment</h2>
 <p>New user please continue and follow this section - Users with existing infrastructure, please skip to our <a href="#how-to-use---deploying-with-terraform-for-users-with-existing-infrastructure">existing infrastructure section</a>.</p>
 <ol>
-<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/hdb</code>.</li>
-<li>Move into the <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code> directory; this will be the Terraform working directory from which you should run all <code>terraform</code> commands.</li>
+<li>(Optional) If you have an HDB you want to migrate to FinSpace, replace the dummy HDB in <code>TorQ-Amazon-FinSpace-Starter-Pack/inthdb/hdb</code> or <code>TorQ-Amazon-FinSpace-Starter-Pack/datehdb/hdb</code></li>
+<li>Move into the <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code> directory; within there should be two sub-directories : <code>date-par</code> and <code>int-par</code>. 
+  If you want your finspace with Managed Kdb Insights system to use date partitions use <code>date-par</code>
+  If you want your system to perform multiple intra-day writedowns with int partitions use <code>int-par</code>
+  <code>cd</code> into one of the two sub-directories. This will be your Terraform working directory from which you should run all <code>terraform</code> commands.
+  (Note: All writedowns in Finspace with Managed Kdb Insights will be done through <a href="https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html">changesets</a>)</li>
+<li>(Optional) symlink your hdb and your zipped source code to your working directory</li>
 <li>Modify variables inside the <code>terraform.tfvars</code> file, such as region name, environment name, database name. You can modify it by replacing the variable name inside of <code>"Name"</code>. For example, For the variable on <code>role-name</code>, you can change the variable name by replacing <code>"finspace-role"</code>.</li>
 <li>(Optional) If you have changed the database name from the default <code>finspace-database</code> to any other names, please also edit the <code>env.q</code> file, changing the database name to the new variable that you have set in line 19.</li>
 <li>Run <code>aws configure</code> in the terminal to set up your access key and secret key from your AWS account. This is needed to connect to your account and use the Terraform deployment. Check our resource link for more instructions on how to find your access key and secret key <a href="#prerequisites">Prerequisites</a>.</li>
-<li>From your Terraform working directory which is <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments</code>, run <code>terraform init</code>.</li>
+<li>From your Terraform working directory which is <code>TorQ-Amazon-FinSpace-Starter-Pack/terraform-deployment/deployments/date-par|int-par</code>, run <code>terraform init</code>.</li>
 <li>If initialized without error, run <code>terraform plan</code>. This will show all resources set to be created or destroyed by Terraform.</li>
 <li>Run <code>terraform apply</code> to execute this plan. The initial deployment can take approximately 45 minutes, and connection losses can cause errors with deployment, so it's a good idea to run this in <code>nohup</code>. (Using <code>nohup</code> might lead to a higher cost of operating the codes if you are using Terraform from a cloud environment.) Example nohup run: <code>nohup terraform apply -auto-approve &gt; terraform_apply.log 2&gt;&amp;1 &amp;</code>. </li>
 </ol>
@@ -827,6 +861,7 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
 <li>Code Updates: If you make any code changes in <code>TorQ</code> or <code>TorQ-Amazon-FinSpace-Starter-Pack</code> and want to apply these to your clusters, rezip these directories and run the Terraform deployment again. This will recreate clusters with the updated code.</li>
 <li>Cluster Config: If you want to make changes to a cluster's config settings (e.g., node size of the RDB), update this in <code>clusters/rdb.tf</code> and run Terraform again. The RDB will be recreated with the new node size.</li>
 <li>Delete/Create Clusters: Clusters can be deleted or created individually or all at once from the <code>terraform.tfvars</code> file. To delete a cluster, set its count to 0. To delete all clusters, set <code>create-clusters</code> to 0.</li>
+<li>(<strong>int-par deployment only</strong>) log groups and metric filters: These resources are only created if the dependent log groups exists so by default are ignored. Once your kxenvironment is up, set <code>create-mfilters</code> flag to 'true' and update the <code>wdb_log_groups</code> variable in <code>terraform.tfvars</code> to include the log groups of your clusters you wish to monitor. Then rerun <code>terraform apply</code></li>
 </ol>
 <h3 id="basic-commands-in-terraform">Basic Commands in Terraform</h3>
 <ul>
@@ -846,11 +881,6 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
 </ul>
 <h2 id="list-of-aws-structures-that-will-be-created-with-our-terraform-deployment">List of AWS Structures that will be created with our Terraform deployment</h2>
 <ul>
-<li>module.clusters.aws_finspace_kx_cluster.discovery-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.feed-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.gateway-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.hdb-cluster[0]</li>
-<li>module.clusters.aws_finspace_kx_cluster.rdb-cluster[0]</li>
 <li>module.environment.data.aws_iam_policy_document.iam-policy</li>
 <li>module.environment.data.aws_iam_policy_document.s3-code-policy</li>
 <li>module.environment.data.aws_iam_policy_document.s3-data-policy</li>
@@ -870,6 +900,60 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
 <li>module.environment.aws_s3_bucket_versioning.versioning</li>
 <li>module.environment.null_resource.create_changeset</li>
 <li>module.environment.null_resource.upload_hdb</li>
+<li>module.lambda.data.archive_file.lambda_my_function</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_events_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_lambda_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.assume_states_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.ec2-permissions-lambda</li>
+<li>module.lambda.data.aws_iam_policy_document.eventBridge_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.finspace-extra</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_basic_execution</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_error_queue_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.lambda_invoke_scoped_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.sns_publish_scoped_access_policy_doc</li>
+<li>module.lambda.data.aws_iam_policy_document.xray_scoped_access_policy_doc</li>
+<li>module.lambda.aws_cloudwatch_event_rule.rotateRDB_eventRule</li>
+<li>module.lambda.aws_cloudwatch_event_rule.rotateWDB_eventRule</li>
+<li>module.lambda.aws_cloudwatch_event_target.onRotateRDB_target</li>
+<li>module.lambda.aws_cloudwatch_event_target.onRotateWDB_target</li>
+<li>module.lambda.aws_iam_policy.eventBridge_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_basic_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_ec2_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_finspace_policy</li>
+<li>module.lambda.aws_iam_policy.lambda_invoke_scoped_access_policy</li>
+<li>module.lambda.aws_iam_policy.sns_publish_scoped_access_policy</li>
+<li>module.lambda.aws_iam_policy.xray_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role.eventBridge_role</li>
+<li>module.lambda.aws_iam_role.lambda_errorFormat_execution_role</li>
+<li>module.lambda.aws_iam_role.lambda_execution_role</li>
+<li>module.lambda.aws_iam_role.lambda_onConflict_execution_role</li>
+<li>module.lambda.aws_iam_role.states_execution_role</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach1</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach2</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach3</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_basic_to_errorFormat</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_basic_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_ec2_policy_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_eventBridge_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_finspace_policy_to_onConflict</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_lambda_invoke_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_sns_publish_scoped_access_policy</li>
+<li>module.lambda.aws_iam_role_policy_attachment.attach_xray_scoped_access_policy</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-errorFormat-lambda</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-lambda</li>
+<li>module.lambda.aws_lambda_function.finSpace-rdb-onConflict-lambda</li>
+<li>module.lambda.aws_sfn_state_machine.sfn_state_machine</li>
+<li>module.lambda.aws_sns_topic.lambda_error_topic</li>
+<li>module.lambda.aws_sns_topic_subscription.lambda_error_email_target[0]</li>
+<li>module.lambda.aws_sns_topic_subscription.lambda_error_queue_target</li>
+<li>module.lambda.aws_sqs_queue.lambda_error_queue</li>
+<li>module.lambda.aws_sqs_queue_policy.lambda_error_queue_access_policy</li>
+<li>module.lambda.local_file.lambda_configs</li>
+<li>module.metricfilter.data.aws_cloudwatch_log_group.wdb_log_groups["*"]</li>
+<li>module.metricfilter.aws_cloudwatch_event_rule.wdb_log_monit_rule[0]</li>
+<li>module.metricfilter.aws_cloudwatch_event_target.wdb_log_monit_rule_target[0]</li>
+<li>module.metricfilter.aws_cloudwatch_log_metric_filter.wdb_log_monit["*"]</li>
+<li>module.metricfilter.aws_cloudwatch_metric_alarm.wdb_log_monit_alarm[0]</li>
 <li>module.network.aws_internet_gateway.finspace-igw</li>
 <li>module.network.aws_route.finspace-route</li>
 <li>module.network.aws_route_table.finspace-route-table</li>
@@ -883,6 +967,12 @@ resource &quot;aws_instance&quot; &quot;example&quot; {
 <li>module.network.aws_subnet.finspace-subnets[3]</li>
 <li>module.network.aws_vpc.finspace-vpc</li>
 </ul>
+<h3 id="destorying-your-infastructure">Destorying your infastructure</h3>
+<p>Normally, you should be able to take down your entire stack by running <code>terraform destroy</code>. There are some known limitations in this terraform stack, and a few manual steps are involved:
+1. Delete any clusters that have been created manually or by any lambdas. On the console navigate to your kx environment, select the 'Clusters' tab, and delete each cluster by selecting the cluster and clicking 'Delete'.
+2. manually delete your hdb. This is because the hdb files are deployed using "local-exec" but not managed by terraform istelf. To do this run : <code>aws s3 rm --region "&lt;region&gt;" --recursive s3://&lt;your bucket name&gt;/hdb/</code>.
+3. Run <code>terraform destroy</code>
+4. Sometimes terraform does not report if the transit gateway has been destroyed. Navigate to VPC &gt; Transit Gateways on the AWS console, and delete any outstanding transit gateways associated with your kx environment (you may need to delete any transit gateway attachments before deleting the transit gateway itself)</p>
 <h2 id="references-and-documentation">References and Documentation</h2>
 <p>For more in-depth information and documentation, explore the following resources:</p>
 <ul>

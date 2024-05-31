@@ -13,7 +13,7 @@
     
     
       
-        <title>Setup QPad - TorQ Amazon FinSpace Starter Pack</title>
+        <title>10 setupqStudio - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup-qpad" class="md-skip">
+        <a href="#setup-qstudio" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup QPad
+              10 setupqStudio
             
           </span>
         </div>
@@ -386,52 +386,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Setup QPad
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#download-qpad" class="md-nav__link">
-    Download QPad
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -444,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -538,8 +497,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#download-qpad" class="md-nav__link">
-    Download QPad
+  <a href="#download-qstudio" class="md-nav__link">
+    Download qStudio
   </a>
   
 </li>
@@ -556,28 +515,41 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/10-setupqpad.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/10-setupqStudio.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="setup-qpad">Setup QPad</h1>
+<h1 id="setup-qstudio">Setup qStudio</h1>
 <p>You must follow these steps from within your EC2 instance.</p>
-<h2 id="download-qpad">Download QPad</h2>
-<p>Navigate to the <a href="https://www.qinsightpad.com/">qInsightPad</a> website and select the download arrow.</p>
-<p><img alt="Download button on qpad website" src="../workshop/graphics/qpad_download1.png" /></p>
-<p>Download the relavent version (usually x64).</p>
-<p><img alt="Download x64 version" src="../workshop/graphics/qpad_download2.png" /></p>
+<h2 id="download-qstudio">Download qStudio</h2>
+<p>Navigate to the <a href="https://www.timestored.com/qstudio/download">TimeStored</a> website and download the relavent version (usually x64).</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/qStudio_Download1.png" alt="Download button on qStudio website" width="90%"/>
+</p>
+
 <p>Download the <a href="https://www.microsoft.com/en-gb/download/details.aspx?id=26999">Microsoft C++ 2010 service pack</a> (there is a specific DLL from this that you need that is usually installed on Windows machines).</p>
-<p><img alt="Download MSPack" src="../workshop/graphics/MSpack_download.png" /></p>
-<p>Select the relavent version (usually x64).</p>
-<p><img alt="Download MSPack select version" src="../workshop/graphics/MSpack_download2.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/MSpack_download.png" alt="Download MSPack" width="90%"/>
+</p>
+
+<p>Select the relevant version (usually x64).**</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/MSpack_download2.png" alt="Download MSPack select version" width="90%"/>
+</p>
+
 <p>Run the file that was just downloaded.</p>
 <p>Search for ‘Edit Environment variables’ and add <code>SSL_VERIFY_SERVER=NO</code> as one of them.</p>
-<p><img alt="Edit Environment Variables 1" src="../workshop/graphics/edit_env_var1.png" />
-<img alt="Edit Environment Variables 2" src="../workshop/graphics/edit_env_var2.png" />
-<img alt="Edit Environment Variables 3" src="../workshop/graphics/edit_env_var3.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/edit_env_var1.png" alt="Edit Environment Variables 1" width="90%"/>
+</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/edit_env_var2.png" alt="Edit Environment Variables 2" width="90%"/>
+</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/edit_env_var3.png" alt="Edit Environment Variables 3" width="90%"/>
+</p>
 
               
             </article>
@@ -587,41 +559,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../09-clusterconnectionstring/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cluster Connection String" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Cluster Connection String
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../11-connectingusingqpad/" class="md-footer__link md-footer__link--next" aria-label="Next: Connecting Using QPad" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Connecting Using QPad
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

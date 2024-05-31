@@ -13,7 +13,7 @@
     
     
       
-        <title>Connecting Using QPad - TorQ Amazon FinSpace Starter Pack</title>
+        <title>11 connectingusingqStudio - TorQ Amazon FinSpace Starter Pack</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#connecting-using-qpad" class="md-skip">
+        <a href="#connecting-using-qstudio" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Connecting Using QPad
+              11 connectingusingqStudio
             
           </span>
         </div>
@@ -388,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -401,21 +401,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
-      
     </li>
   
 
@@ -510,17 +500,37 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/11-connectingusingqpad.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/DataIntellectTech/TorQ/edit/master/docs/11-connectingusingqStudio.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="connecting-using-qpad">Connecting Using QPad</h1>
-<p>Open qpad, right-click on KDB+ Servers and Add New Server.</p>
-<p>Copy everything in the connection string into the symbol field except the beginning <code>tcp://</code>.</p>
-<p>Click test and then click OK to save. You have 60 minutes from the creation of your connection string before the connection string becomes stale and requires to be re-generated.</p>
-<p><img alt="Add Server Connection" src="../workshop/graphics/qpad_add_server.png" /></p>
+<h1 id="connecting-using-qstudio">Connecting Using qStudio</h1>
+<p>Open qStudio, right-click on <code>Servers</code> in the top left corner and select <code>Add Server</code>.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Servers_qStudio1.png" alt="Add Server Connection" width="90%"/>
+</p>
+
+<p>You will then see a pop-up showing the server properties. This is where you will add the information from the connection string (details below in the next step).</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Server_Properties1.png" alt="Server Properties" width="90%"/>
+</p>
+
+<p>Follow the step in our <a href="https://dataintellecttech.github.io/TorQ-Amazon-FinSpace-Starter-Pack/08-clusterconnectionstring/#generate-connection-string">Generate Connection String section</a> to get a fresh connection string. The generated connection string provides you with everything you need to fill the boxes above. See the below connection string for an example:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Connectionstring3.png" alt="Connection String" width="90%"/>
+</p>
+
+<p>The required fields in the Server Properties screen are contained within the connection string and are colon separated. Here,</p>
+<p><code>Host:</code> vpce-063d07d253dde398d-19p5nh4w.vpce-svc-0b408455b16d79292.us-west-2.vpce.amazonaws.com</p>
+<p><code>Port:</code> 443</p>
+<p><code>Name:</code> This is just the name of your process, can be anything i.e. rdb</p>
+<p><code>Username:</code> david-finspace</p>
+<p><code>Password:</code> Host=vpce-063d07d253dde398d-19p5nh4w.vpce-svc-0b408455b16d79292.us-west-2.vpce.amazonaws.com&amp;Port=443&amp;User=david-finspace&amp;Action=finspace%3AConnectKxCluster&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDUaCXVzLXdlc3QtMiJGMEQCIFOmCCIAE5hyh0obtgV8TeS9jCglbxFPEossH5f4vRhrAiAIaxSHF%2FQhjqACSlmwlLTNJBvx658bQwyiH9LVz20ehSr4AgguEAIaDDc2NjAxMjI4NjAwMyIMl3TMLJjQytFtFLaiKtUCbJrjypNOC5U8GwttcBfln2SV%2FJclct%2FmeDtnUCUcVB3bzcCUOpGQFXUR%2FtonWVO0ZO1SUu%2Bna%2Bs0l0UfMu7K7qDOQhszg1%2Fxdblx0TRi70GVunATeJlpppyQeZNUk9RHSOvGPCN8VKGBJmisbeo3bJb7MvVLak1lgVdLn%2FxUIS0uTfA62PbzU6LPE1nj85bupgLrvAMlSwvZMy3pVXJaN%2BBvk0mulmCvIYfqlqL%2FcjvWbOMQdyXsdAYCO4TRpA7I38Jmfr9h1oee2JVvVMCu41yRQhbAqtqgvNwrhgSyOQASAJSVGiIPHiXyGz5KefntOfq1zADleUrUg0Nvh6EPFj%2FavNsHZyBSapvUVVsx%2FA9aI2aHeg5P%2FtCifq%2Bnxg5vyKSX4GcB7P40pKs3Ymeb3yAUllN2tJ5VXlx7SI3p8jfTB8k72BeOzu%2BLbWs5gtb%2BlZG1cSQwzKSHrwY6wAEpzwyEjjuh50PM6OZgRBNgBEOiqLaTHqjBv7VHcjsF5FnpJqZ2AhBtQXXkFiItA%2FSZ7B0aGbL0sYJ8v7WZZIMtAvg4e0ve9VBYXf4hnl5i82T5EJfAy727E9e25Wwb%2FILZAeOjdTY0IhcgvWlLCeBJNEHEMO8h8yupkLfFQHlNvF14wrH1U8bSd934M8k%2F22%2FDTrZFlVQXe%2FeLYt%2FxOBEHfHWiMH51v2IDv39%2B%2B7%2FGq3XmrcNymPQQ0HcoJEK%2BTjg%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20240301T130412Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=900&amp;X-Amz-Credential=ASIA3EWPD4QZXLHMX4GY%2F20240301%2Fus-west-2%2Ffinspace-apricot%2Faws4_request&amp;X-Amz-Signature=c134f0dc1f0cba738c0bf8547c9ca8702593ea9e9b89ee2d17892fd379524d30</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/CompleteServers1.png" alt="All Servers" width="90%"/>
+</p>
 
               
             </article>
@@ -530,41 +540,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../10-setupqpad/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup QPad" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Setup QPad
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../12-runningqueries/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Queries" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Running Queries
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

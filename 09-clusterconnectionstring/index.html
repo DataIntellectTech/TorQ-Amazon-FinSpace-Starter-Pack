@@ -463,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -478,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -686,7 +686,7 @@
 <p>To find out how to get the ARN of your S3 buckets reference https://dataintellecttech.github.io/TorQ-Finance-Starter-Pack/04-prerequisites.md</p>
 <h3 id="role">Role</h3>
 <p>We need to check the Trust Policy of your created role.</p>
-<p>Search for the role and open it in the IAM console. Go to Trust relationships.</p>
+<p>Search for the role and open it in the IAM console. Go to <code>Trust relationships</code>.</p>
 <p>Your Trust relationship should have at least these:</p>
 <pre><code>{
     "Version": "2012-10-17",
@@ -703,16 +703,28 @@
 }
 </code></pre>
 <h2 id="create-a-user-if-manually-set-up-not-useing-terraform">Create a user (If manually set up (not useing Terraform))</h2>
-<p>In your kdb environment, go to the Users tab and select Add user.</p>
-<p><img alt="Create user button" src="../workshop/graphics/create_user_button.png" /></p>
-<p>Give it a name and select the IAM role you created above.</p>
-<p><img alt="Add user" src="../workshop/graphics/create_user.png" /></p>
+<p>In your kdb environment, go to the <code>Users</code> tab and select <code>Add user</code>.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/create_user_button.png" alt="Create user button" width="90%"/>
+</p>
+
+<p>Give it a name and select the <code>IAM role</code> you created above.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/create_user.png" alt="Add user" width="90%"/>
+</p>
+
 <h2 id="generate-connection-string">Generate Connection String</h2>
-<p>On the users tab, copy the links for IAM role and User ARN for the user.</p>
-<p><img alt="User details" src="../workshop/graphics/user_details.png" /></p>
-<p>Navigate to CloudShell.</p>
-<p><img alt="Navigate to CloudShell" src="../workshop/graphics/cloudshell.png" /></p>
-<p>Replace <code>&lt;ARN_COPIED_FROM_ABOVE&gt;</code> with the IAM Role copied above and run the following (this will not return anything):</p>
+<p>On the <code>Users</code> tab, copy the links for <code>IAM role</code> and <code>User ARN</code> for the user.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/user_details.png" alt="User details" width="90%"/>
+</p>
+
+<p>Navigate to <code>CloudShell</code>.</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/cloudshell.png" alt="Navigate to CloudShell" width="90%"/>
+</p>
+
+<p>Replace <code>&lt;ARN_COPIED_FROM_ABOVE&gt;</code> with the <code>IAM Role</code> copied above and run the following (this will not return anything):</p>
 <pre><code>export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
 $(aws sts assume-role \
 --role-arn &lt;ARN_COPIED_FROM_ABOVE&gt; \
@@ -720,14 +732,19 @@ $(aws sts assume-role \
 --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
 --output text))
 </code></pre>
-<p>This lets you assume the role that you have just created by taking the values returned from the aws sts assume-role command and setting them in your AWS_ACCESS_KEY_ID... etc environment variables. NOTE - if you need to switch back to your own user within the CloudShell, you will need to run unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN to unset these environment variables.</p>
-<p>Copy your kdb Environment Id:</p>
-<p><img alt="Get you kdb env ID" src="../workshop/graphics/kdbenv_id.png" /></p>
-<p>Replace <code>&lt;YOUR_KDB_ENVIRONMENT_ID&gt;</code> with your kdb environment ID, <code>&lt;USER_ARN_COPIED_ABOVE&gt;</code> with the User ARN, and <code>&lt;NAME_OF_CLUSTER&gt;</code> with the name of the cluster you want to connect to. Run the following:</p>
+<p>This lets you assume the role that you have just created by taking the values returned from the <code>aws sts assume-role</code> command and setting them in your <code>AWS_ACCESS_KEY_ID</code>, e.t.c. environment variables. NOTE - if you need to switch back to your own user within the CloudShell, you will need to run <code>unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN</code> to unset these environment variables.</p>
+<p>Copy your kdb Environment ID:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/kdbenv_id.png" alt="Get you kdb env ID" width="90%"/>
+</p>
+
+<p>Replace <code>&lt;YOUR_KDB_ENVIRONMENT_ID&gt;</code> with your kdb environment ID, <code>&lt;USER_ARN_COPIED_ABOVE&gt;</code> with the <code>User ARN</code>, and <code>&lt;NAME_OF_CLUSTER&gt;</code> with the name of the cluster you want to connect to. Run the following:</p>
 <pre><code>aws finspace get-kx-connection-string --environment-id &lt;YOUR_KDB_ENVIRONMENT_ID&gt; --user-arn &lt;USER_ARN_COPIED_ABOVE&gt; --cluster-name &lt;NAME_OF_CLUSTER&gt;
 </code></pre>
 <p>This will return a large connection string which can be used to connect to your cluster.</p>
-<p><img alt="Connection string example" src="../workshop/graphics/connection_string.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/connection_string.png" alt="Connection string example" width="90%"/>
+</p>
 
               
             </article>
@@ -757,13 +774,13 @@ $(aws sts assume-role \
       
       
         
-        <a href="../10-setupqpad/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup QPad" rel="next">
+        <a href="../12-runningqueries/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Queries" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Setup QPad
+              Running Queries
             </div>
           </div>
           <div class="md-footer__button md-icon">

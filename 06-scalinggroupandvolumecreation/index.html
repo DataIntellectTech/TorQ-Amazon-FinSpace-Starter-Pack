@@ -443,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -458,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -594,60 +594,89 @@
 <p><em>If you have set up your environment using our Terraform deployment option, this page is purely informative. These resources will have be created for you by Terraform.</em></p>
 <hr />
 <h2 id="scaling-groups">Scaling Groups</h2>
-<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the "Kdb scaling groups" tab:</p>
-<p><img alt="Select kdb env" src="../workshop/graphics/kdbenv.png" />
-<img alt="Scaling Group Tab" src="../workshop/graphics/scalinggroups_tab.png" /></p>
-<p>Click the "Create kdb scaling group" button</p>
+<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the <code>Kdb scaling groups</code> tab:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/kdbenv.png" alt="Select kdb env" width="90%"/>
+</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/scalinggroups_tab.png" alt="Scaling Group Tab" width="90%"/>
+</p>
+
+<p>Click the <code>Create kdb scaling group</code> button</p>
 <ol>
-<li>Provide a name for the kdb scaling group unique to the kdb environment. You will be asked to choose a Host type as well. Choose "kx.sg.4xlarge" or larger host type.</li>
+<li>Provide a <code>Name</code> for the kdb scaling group unique to the kdb environment. You will be asked to choose a <code>Host type</code> as well. Choose "kx.sg.4xlarge" or larger host type.</li>
 <li>Select an Availability Zone make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a></li>
-<li>Click the "Create kdb scaling group" button when you are happy with the settings.</li>
+<li>Click the <code>Create kdb scaling group</code> button when you are happy with the settings.</li>
 </ol>
-<p><img alt="Scaling Group Settings" src="../workshop/graphics/Create_kdb_scaling_group.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_kdb_scaling_group.png" alt="Scaling Group Settings" width="90%"/>
+</p>
+
 <h2 id="shared-volume">Shared Volume</h2>
-<p>To create a shared volume through the AWS Console, select your kdb environment and navigate to the "Volumes" tab:</p>
-<p><img alt="Volumes Tab" src="../workshop/graphics/volumes_tab.png" /></p>
-<p>Click the "Create Volume" button</p>
+<p>To create a shared volume through the AWS Console, select your kdb environment and navigate to the <code>Volumes</code> tab:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/volumes_tab.png" alt="Volumes Tab" width="90%"/>
+</p>
+
+<p>Click the <code>Create volume</code> button</p>
 <ol>
-<li>Provide a name for the volume unique to the kdb environment. You will be asked to choose a Volume Type. For now, "NAS_1" is the only option</li>
+<li>Provide a <code>Name</code> for the volume unique to the kdb environment. You will be asked to choose a <code>Volume type</code>. For now, "NAS_1" is the only option</li>
 <li>Under NAS_1 configurations, provide details for the hardware type and the amount of disk capacity allocated. <ul>
 <li>Choose either SSD_250 or SSD_1000 for the best performance</li>
 <li>The size of allocated disk space must be at least 1200 GiB.</li>
 </ul>
 </li>
 </ol>
-<p><img alt="Volume Settings" src="../workshop/graphics/Create_shared_volume_pt1.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_shared_volume_pt1.png" alt="Volume Settings" width="90%"/>
+</p>
+
 <ol>
 <li>Choose an Availability Zone. It is recommended that it matches with the Availability Zone you assigned the kdb scaling group to run on</li>
-<li>Click the "create volume" button when you are happy with the settings</li>
+<li>Click the <code>Create volume</code> button when you are happy with the settings</li>
 </ol>
-<p><img alt="Volume AZ Settings" src="../workshop/graphics/Create_shared_volume_pt2.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_shared_volume_pt2.png" alt="Volume AZ Settings" width="90%"/>
+</p>
+
 <h2 id="optional-dataview">(Optional) Dataview</h2>
 <p><em>You must have a shared volume created to perform this step</em></p>
 <p>If you plan to run your HDB cluster on a scaling group this step is required. Otherwise, this step is optional.</p>
-<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the "databases" tab:</p>
-<p><img alt="Database tab" src="../workshop/graphics/database_tab.png" /></p>
+<p>To create a scaling group through the AWS Console, select your kdb environment and navigate to the <code>Databases</code> tab:</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/database_tab.png" alt="Database tab" width="90%"/>
+</p>
+
 <p>Select the database that has the changesets appropriate for your use case.
 To learn more about changesets click <a href="https://docs.aws.amazon.com/finspace/latest/userguide/creating-changeset-in-a-dataset.html">this link</a></p>
 <ol>
-<li>Navigate to the "Dataview tab" and click the "Create dataview" button</li>
+<li>Navigate to the <code>Dataview</code> tab and click the <code>Create dataview</code> button</li>
 </ol>
-<p><img alt="Dataview tab" src="../workshop/graphics/Create_dataview_pt0.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_dataview_pt0.png" alt="Dataview tab" width="90%"/>
+</p>
+
 <ol>
-<li>Under "Dataview details" provide a name for your dataview that is unique to your kdb environment</li>
+<li>Under <code>Dataview details</code> provide a <code>Name</code> for your dataview that is unique to your kdb environment</li>
 <li>Choose an Availability Zone. This must match the Availability Zone your kdb scaling group runs on</li>
 </ol>
-<p><img alt="Dataview Settings 1" src="../workshop/graphics/Create_dataview_pt1.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_dataview_pt1.png" alt="Dataview Settings 1" width="90%"/>
+</p>
+
 <ol>
-<li>Under "Changeset update settings" you have the option of choosing two modes:<ul>
+<li>Under <code>Changeset update settings</code> you have the option of choosing two modes:<ul>
 <li>Auto-update : (Recommended) The dataview will automatically use data from the latest changeset</li>
 <li>Static      : The dataview will use data from a pre-determined changeset id</li>
 </ul>
 </li>
-<li>Under "Segment Configuration" choose the root path for your "database path" and the volume you create in the prior step</li>
+<li>Under <code>Segment configuration - optional</code> choose the root path for your <code>Database path</code> and the <code>Volume</code> you created in the prior step</li>
 </ol>
-<p><img alt="Dataview Settings 2" src="../workshop/graphics/Create_dataview_pt2.png" /></p>
-<p>Click "Create dataview" when you are happy with the settings</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/Create_dataview_pt2.png" alt="Dataview Settings 2" width="90%"/>
+</p>
+
+<p>Click <code>Create dataview</code> when you are happy with the settings</p>
 
               
             </article>

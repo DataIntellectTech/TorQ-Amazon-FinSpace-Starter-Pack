@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -505,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -707,17 +707,26 @@
 <pre><code>zip -r code.zip TorQ/ TorQ-Amazon-FinSpace-Starter-Pack/ -x "TorQ*/.git*"
 </code></pre>
 <h2 id="create-and-upload-code-to-s3-for-non-terraform-deployment-only">Create and Upload code to S3 (For Non Terraform Deployment Only)</h2>
-<p>Two S3 buckets are required for this setup - one for the code and one for the data</p>
-<p>Create your S3 bucket by searching for "S3" and clicking "Create Bucket"</p>
+<p><strong>Two S3 buckets are required for this setup</strong> - one for the code and one for the data.</p>
+<p>Create your S3 bucket by searching for "S3" and clicking <code>Create bucket</code></p>
 <p>Choose the same AWS Region as your AWS Finspace KxEnvirnment</p>
 <p>Give your bucket a name</p>
-<p><img alt="S3 general configurations" src="../workshop/graphics/S3_general_configuration.png" /></p>
-<p>Unselect the "Block all public access" box</p>
-<p><img alt="S3 Access Settings" src="../workshop/graphics/S3_access_settings.png" /></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/S3_general_configuration.png" alt="S3 general configurations" width="90%"/>
+</p>
+
+<p>Unselect the <code>Block all public access</code> box</p>
+<p style="text-align: center">
+    <img src="workshop/graphics/S3_access_settings.png" alt="S3 Access Settings" width="90%"/>
+</p>
+
 <p>Leave all other settings as the default</p>
 <h3 id="edit-the-access-policy">Edit the access policy</h3>
-<p>Copy the ARN of your S3 buckets in the console by navigating to your S3 bucket, selecting "Properties"</p>
-<p><img alt="S3 Bucket Arn" src="../workshop/graphics/S3_code_bucket_arn.png" /></p>
+<p>Copy the ARN of your S3 buckets in the console by navigating to your S3 bucket, selecting <code>Properties</code></p>
+<p style="text-align: center">
+    <img src="workshop/graphics/S3_code_bucket_arn.png" alt="S3 Bucket Arn" width="90%"/>
+</p>
+
 <p>Edit the Access policy of both S3 buckets with the JSON document:</p>
 <pre><code>{
     &quot;Version&quot;: &quot;2012-10-17&quot;,
@@ -757,7 +766,7 @@
 </code></pre>
 <h3 id="upload-code-to-s3-code-bucket">Upload code to S3 code bucket</h3>
 <p>Upload the zip file created earlier to AWS S3 codebucket:</p>
-<pre><code>aws s3 cp code.zip s3://&lt;you S3 codebucket name&gt;
+<pre><code>aws s3 cp code.zip s3://&lt;your S3 codebucket name&gt;
 </code></pre>
 <h3 id="upload-hdb-to-s3-data-bucket">Upload hdb to S3 data bucket</h3>
 <p>Copy the pre-packaged hdb to AWS S3 databucket:</p>

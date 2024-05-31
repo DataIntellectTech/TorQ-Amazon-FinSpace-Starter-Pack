@@ -449,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -464,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -622,7 +622,10 @@
 </li>
 </ul>
 <p>These features allow us to store real-time and historical data and make it available to users.</p>
-<p><img alt="MVP Architecture" src="../graphics/architecture.png" /></p>
+<p style="text-align: center">
+    <img src="graphics/architecture.png" alt="MVP Architecture" width="90%"/>
+</p>
+
 <h2 id="notable-differences-within-this-reduced-version-of-torq-in-comparison-to-normal-torq">Notable Differences within this reduced version of TorQ in comparison to normal TorQ</h2>
 <h3 id="envq">env.q</h3>
 <p>The entry point script is <code>env.q</code> which sets initial environment variables and loads the main <code>torq.q</code> script. This is used because Managed kdb Insights does not allow setting environment variables or running shell scripts at startup. The “env.q” file is the first of our files loaded in and it then specifies based on start-up parameters what to load in next. It also references and connects to the setup created inside Managed kdb Insights . For example, the database name for your AWS environment is referenced inside of this file.</p>

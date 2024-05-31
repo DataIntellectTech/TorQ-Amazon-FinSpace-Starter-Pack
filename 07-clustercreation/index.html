@@ -478,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../10-setupqpad/" class="md-nav__link">
+      <a href="../10-setupqpad.md" class="md-nav__link">
         Setup QPad
       </a>
     </li>
@@ -493,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../11-connectingusingqpad/" class="md-nav__link">
+      <a href="../11-connectingusingqpad.md" class="md-nav__link">
         Connecting Using QPad
       </a>
     </li>
@@ -690,7 +690,7 @@
 <li>
 <p>Choose a name for your cluster.</p>
 <ul>
-<li><strong>Note:</strong> this name must match your process name (<code>procname</code>) added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but <code>procname</code> is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong>, e.g. <code>discovery1</code>.</li>
+<li><strong>Note:</strong> This name must match your process name (<code>procname</code>) added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but <code>procname</code> is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong>, e.g. <code>discovery1</code>.</li>
 </ul>
 </li>
 <li>
@@ -707,9 +707,12 @@
 </li>
 <li>
 <p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>In the Node details section, set the memory reservation per node to the minimum allowed (6 MiB) and leave the rest blank.</p>
+<p>In the <code>Node details</code> section, set the <code>Memory reservation per node</code> to the minimum allowed (6 MiB) and leave the rest blank.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/discovery_memory_reservation.png" alt="Discovery Memory Reservation" width="90%"/>
 </p></p>
@@ -761,19 +764,17 @@
 <p>Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readily available default), then select next to go to the next page.</p>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readily available default), then select <code>Next</code> to go to the next page.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/discovery_vpc.png" alt="Discovery VPC Settings" width="90%"/>
 </p></p>
 </li>
 <li>
-<p>Leave everything as blank and move on to the next page.</p>
+<p>Leave everything as blank and click <code>Next</code> to move on to the next page.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/discovery_config_options.png" alt="Discovery Config Options" width="90%"/>
-</p></p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
+</p>
+14. Check the entered information in the review page, then select <code>Create cluster</code>.</p>
 </li>
 </ol>
 <h2 id="real-time-database-rdb-cluster">Real-Time Database (RDB) Cluster</h2>
@@ -784,8 +785,7 @@
 <li>
 <p>Choose a name for your cluster.</p>
 <ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>rdb1</code>.</li>
+<li><strong>Note:</strong> This name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong> e.g. <code>rdb1</code>.</li>
 </ul>
 <p><p style="text-align: center">
     <img src="workshop/graphics/rdb_cluster_details.png" alt="RDB Cluster Details" width="90%"/>
@@ -795,22 +795,25 @@
 <p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
 </li>
 <li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
+<p>Select <code>Run on kdb scaling group</code> for the Cluster running option.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_running.png" alt="RDB Cluster Running" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+<p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
+</p></p>
 </li>
 <li>
 <p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
 </li>
 <li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
+<p>Set <code>Memory reservation per node</code> to the minimum value (6 MiB).</p>
 </li>
 <li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
+<p>Leave Tags as empty and select <code>Next</code> to go to the next page.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/rdb_node_details.png" alt="RDB Node Details" width="90%"/>
 </p></p>
@@ -850,22 +853,19 @@
 </p></p>
 </li>
 <li>
-<p>Select next to go to the next page.</p>
+<p>Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your "Database name" from the dropdown menu in the "Savedown database configuration" section.</p>
+<p>In the <code>Savedown database configuration</code> section, select your database in the <code>Database name</code> dropdown menu.</p>
 </li>
 <li>
-<p>Select <code>SDS01</code> from the "Savedown volume type" dropdown menu.</p>
+<p>In the <code>Savedown storage configuration - optional</code> section, select your volume in the <code>Volume name - optional</code> dropdown menu.</p>
 </li>
 <li>
-<p>Enter an amount (in GiB) of required "Savedown volume". <code>10</code> for this MVP.</p>
-</li>
-<li>
-<p>Select next to go to the next page.</p>
+<p>Select <code>Next</code> to go to the next page.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/rdb_config_options.png" alt="RDB Config Options" width="90%"/>
 </p></p>
@@ -882,8 +882,7 @@
 <li>
 <p>Choose a name for your cluster.</p>
 <ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>hdb1</code>.</li>
+<li><strong>Note:</strong> This name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong> e.g. <code>hdb1</code>.</li>
 </ul>
 <p><p style="text-align: center">
     <img src="workshop/graphics/hdb_cluster_details.png" alt="HDB Cluster Details" width="90%"/>
@@ -893,22 +892,28 @@
 <p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
 </li>
 <li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
+<p>Select <code>Run on kdb scaling group</code> for the Cluster running option.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_running.png" alt="HDB Cluster Running" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+<p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
+</p></p>
 </li>
 <li>
 <p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
 </li>
 <li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
+<p>Set <code>Memory reservation per node</code> to the minimum value (6 MiB).</p>
 </li>
 <li>
-<p>Leave Auto-scaling and Tags as empty and select next to go to the next page.</p>
+<p>Leave Tags as empty and select <code>Next</code> to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_node_details.png" alt="HDB Node Details" width="90%"/>
+</p></p>
 </li>
 <li>
 <p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
@@ -945,26 +950,27 @@
 </p></p>
 </li>
 <li>
-<p>Select next to go to the next page.</p>
+<p>Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>For "Database name" select your database from the dropdown menu. Changeset will autoselect at this point.</p>
+<p>For <code>Database name</code>, select your database from the dropdown menu.</p>
 </li>
 <li>
-<p>Select "No caching".</p>
+<p>For <code>Dataview name</code>, select your dataview from the dropdown menu.</p>
 </li>
 <li>
-<p>Select next to go to the next page.</p>
-<p><p style="text-align: center">
+<p>Select <code>Next</code> to go to the next page.</p>
+</li>
+</ol>
+<p style="text-align: center">
     <img src="workshop/graphics/hdb_config_options.png" alt="HDB Config Options" width="90%"/>
-</p></p>
-</li>
-<li>
-<p>Check the entered information in the review page, then select "create cluster".</p>
-</li>
+</p>
+
+<ol>
+<li>Check the entered information in the review page, then select <code>Create cluster</code>.</li>
 </ol>
 <h2 id="gateway-cluster">Gateway Cluster</h2>
 <p>Ensure that the Discovery cluster is in a "Running" state before creating the Gateway cluster.</p>
@@ -975,8 +981,7 @@
 <li>
 <p>Choose a name for your cluster.</p>
 <ul>
-<li>Note, this name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is.</li>
-<li>Our suggestion is to use the process type, <code>proctype</code>, with a number. e.g. <code>gateway1</code>.</li>
+<li><strong>Note:</strong> This name must match your process name, <code>procname</code>, added during the next stage of cluster creation - This is due to process connections requiring the cluster name, which is not visible from within the process, but procname is. <strong>Our suggestion is to use the process type</strong> (<code>proctype</code>) <strong>with a number</strong> e.g. <code>gateway1</code>.</li>
 </ul>
 <p><p style="text-align: center">
     <img src="workshop/graphics/gw_cluster_details.png" alt="Gateway Cluster Details" width="90%"/>
@@ -986,27 +991,33 @@
 <p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
 </li>
 <li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
+<p>Select <code>Run on kdb scaling group</code> for the Cluster running option.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_running.png" alt="Gateway Cluster Running" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+<p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
+</p></p>
 </li>
 <li>
 <p>Enter a node count of "1". This will be the number of instances in a cluster. For the MVP only 1 is needed.</p>
 </li>
 <li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
+<p>Set <code>Memory reservation per node</code> to the minimum value (6 MiB).</p>
 </li>
 <li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
+<p>Leave Tags as empty and select <code>Next</code> to go to the next page.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/rdb_node_details.png" alt="Gateway Node Details" width="90%"/>
+</p></p>
 </li>
 <li>
 <p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
 <ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
+<li>Alternatively, you can copy the URL from the codebucket itself.</li>
 </ul>
 </li>
 <li>
@@ -1038,13 +1049,13 @@
 </p></p>
 </li>
 <li>
-<p>Select next to go to the next page.</p>
+<p>Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>This page had no editing options. Select next to go to the next page.</p>
+<p>This page had no editing options. Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
 <p>Check the entered information in the review page, then select <code>Create cluster</code>.</p>
@@ -1066,31 +1077,37 @@
 <p>Select the execution role for the <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/a1575309-1f43-4945-a5fa-a4d62d5e821d/en-US/rolesetup">IAM user previously created</a>. The user for all 5 clusters should be the same. This is so that each cluster has the correct permissions.</p>
 </li>
 <li>
-<p>Select "Run as a dedicated cluster" for Cluster running option.</p>
-<ul>
-<li>For the MVP this is the most appropriate option. For customising later, see <a href="https://docs.aws.amazon.com/finspace/latest/userguide/create-scaling-groups.html">this page</a> for more details on kdb scaling groups.</li>
-</ul>
+<p>Select <code>Run on kdb scaling group</code> for the Cluster running option.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_cluster_running.png" alt="Feed Cluster Running" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Select an Availablilty Zone, make sure it includes your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">previous created subnet</a>.</p>
+<p>Choose your group in the dropdown in the <code>Kdb scaling group details</code> section.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/kdb_scaling_group_details.png" alt="Kdb Scaling Group Details" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Select your node size. For this MVP we are going to select the smallest.</p>
+<p>In the <code>Node details</code> section, set the <code>Memory reservation per node</code> to the minimum allowed (6 MiB) and leave the rest blank.</p>
+<p><p style="text-align: center">
+    <img src="workshop/graphics/discovery_memory_reservation.png" alt="Feed Memory Reservation" width="90%"/>
+</p></p>
 </li>
 <li>
-<p>Leave Tags as empty and select next to go to the next page.</p>
+<p>Leave Tags as empty and select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
 <p>Select <code>Browse S3</code>, search and select your codebucket and select your code.zip file.</p>
 <ul>
-<li>alternatively, you can copy the URL from the codebucket itself.</li>
+<li>Alternatively, you can copy the URL from the codebucket itself.</li>
 </ul>
 </li>
 <li>
 <p>Enter <code>TorQ-Amazon-FinSpace-Starter-Pack/env.q</code> as your initialization script.</p>
 </li>
 <li>
-<p>Select "Add command-line arguments" twice and enter the keys and values in the below table:</p>
+<p>Select <code>Add command-line argument</code> twice and enter the keys and values in the below table:</p>
 <table>
 <thead>
 <tr>
@@ -1115,13 +1132,13 @@
 </p></p>
 </li>
 <li>
-<p>Select next to go to the next page.</p>
+<p>Select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select next to go to the next page.</p>
+<p>Select your previously created <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html">VPC ID</a>, <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-subnets.html">Subnets</a>, and Security Groups (we can use the readilty available default), then select <code>Next</code> to go to the next page.</p>
 </li>
 <li>
-<p>Leave everything as blank and move on to the next page.</p>
+<p>Leave everything as blank and click <code>Next</code> to move on to the next page.</p>
 <p><p style="text-align: center">
     <img src="workshop/graphics/discovery_config_options.png" alt="Feed Config Options" width="90%"/>
 </p></p>
